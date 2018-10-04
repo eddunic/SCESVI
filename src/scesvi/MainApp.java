@@ -1,4 +1,4 @@
-package ch.makery.scesvi;
+package scesvi;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 	
-	Stage primaryStage;
-	BorderPane rootLayout;
+	private Stage primaryStage;
+	private BorderPane rootLayout;
 	
 	
 	@Override

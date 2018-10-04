@@ -1,2 +1,2 @@
 # SCESVI
-Sistema de Controle de Entrada e VeÃ­culos Institucionais - Trabalho Interdisciplinar
+Sistema de Controle de Entrada e Saída de Veículos Institucionais - Trabalho Interdisciplinar
