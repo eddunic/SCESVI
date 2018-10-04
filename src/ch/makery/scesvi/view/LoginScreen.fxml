@@ -22,7 +22,7 @@
                   <Image url="@../../../../../res/images/login.png" />
                </image>
             </ImageView>
-            <JFXTextField fx:id="tNome" labelFloat="true" layoutX="97.0" layoutY="160.0" prefHeight="30.0" prefWidth="197.0" promptText="Nome de usário" unFocusColor="#9d9c9c">
+            <JFXTextField fx:id="tNome" labelFloat="true" layoutX="97.0" layoutY="160.0" prefHeight="30.0" prefWidth="197.0" promptText="Nome de usuário" unFocusColor="#9d9c9c">
                <font>
                   <Font size="14.0" />
                </font>
