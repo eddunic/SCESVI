@@ -1,4 +1,4 @@
-package ch.makery.scesvi.model;
+package scesvi.model;
 
 import java.time.LocalDate;
 

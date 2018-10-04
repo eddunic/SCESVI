@@ -1,4 +1,4 @@
-package ch.makery.scesvi;
+package scesvi;
 
 import java.io.IOException;
 
