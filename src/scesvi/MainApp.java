@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import scesvi.model.DAO;
 
 public class MainApp extends Application {
 	
@@ -46,8 +47,8 @@ public class MainApp extends Application {
 	        rootLayout.setCenter(loginScreen);
 
 	        // Dá ao controlador acesso à the main app.
-	        //PersonOverviewController controller = loader.getController();
-	        //controller.setMainApp(this);
+	        DAO controller = loader.getController();
+	        controller.setMainApp(this);
 
 	    } catch (IOException e) {
 	        e.printStackTrace();
