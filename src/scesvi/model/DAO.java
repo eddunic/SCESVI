@@ -21,6 +21,7 @@ public class DAO {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scesvi", "root", "");
 			statement = connection.createStatement();
+			System.out.println("Conexão estabelecida");			
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
@@ -43,15 +44,14 @@ public class DAO {
 		}
 	}
 
-	public void setMainApp(MainApp mainApp) {
+/*	public void setMainApp(MainApp mainApp) {
 		getConnection();
 		if (isConnected()) { 
-			this.mainApp = mainApp;
 			System.out.println("Conexão estabelecida");			
 		} else {
 			System.out.println("Erro ao conectar");
-			//disconnection();
+			disconnection();
 		}
-	}
+	}*/
 		
 }

@@ -14,7 +14,7 @@
          </image>
       </ImageView>
       <JFXTextField labelFloat="true" layoutX="164.0" layoutY="185.0" text="Nome de usuário" />
-      <JFXTextField layoutX="401.0" layoutY="185.0" text="E-mail" />
+      <JFXTextField labelFloat="true" layoutX="401.0" layoutY="185.0" text="E-mail" />
       <JFXTextField layoutX="164.0" layoutY="259.0" text="Senha" />
       <JFXTextField layoutX="401.0" layoutY="259.0" text="Senha" />
       <ImageView fitHeight="55.0" fitWidth="59.0" layoutX="273.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">

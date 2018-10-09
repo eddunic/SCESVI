@@ -46,10 +46,10 @@ public class MainApp extends Application {
 			rootLayout.setCenter(loginScreen);
 
 			// Dá ao controlador acesso à the main app.
-			DAO controller = loader.getController();
-			controller.setMainApp(this);
-			// DAO dao = new DAO();
-			// dao.getConnection();
+			//DAO controller = loader.getController();
+			//controller.setMainApp(this);
+			DAO dao = new DAO();
+			dao.getConnection();
 
 		} catch (IOException e) {
 			e.printStackTrace();
