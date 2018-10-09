@@ -1,0 +1,5 @@
+CREATE TABLE CARGO(
+	codigo SMALLINT(2) NOT NULL PRIMARY KEY,
+    titulacao VARCHAR(20) NOT NULL);
+    
+    
