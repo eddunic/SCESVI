@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="468.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="55.0" fitWidth="59.0" layoutX="168.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../res/images/etapaEmProcesso.png" />
+         </image>
+      </ImageView>
+      <JFXTextField labelFloat="true" layoutX="164.0" layoutY="185.0" text="Nome de usuário" />
+      <JFXTextField layoutX="401.0" layoutY="185.0" text="E-mail" />
+      <JFXTextField layoutX="164.0" layoutY="259.0" text="Senha" />
+      <JFXTextField layoutX="401.0" layoutY="259.0" text="Senha" />
+      <ImageView fitHeight="55.0" fitWidth="59.0" layoutX="273.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../res/images/etapaEmProcesso.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="55.0" fitWidth="59.0" layoutX="375.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../res/images/etapaEmProcesso.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="55.0" fitWidth="59.0" layoutX="489.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../res/images/etapaEmProcesso.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="bNextStep" layoutX="440.0" layoutY="341.0" text="Próxima etapa" />
+      <JFXButton fx:id="bBackSceneLogin" layoutX="157.0" layoutY="341.0" text="Voltar ao login" />
+   </children>
+</AnchorPane>

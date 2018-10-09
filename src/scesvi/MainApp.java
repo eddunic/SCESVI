@@ -11,48 +11,49 @@ import javafx.stage.Stage;
 import scesvi.model.DAO;
 
 public class MainApp extends Application {
-	
+
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Login");
-		initRootLayout();
+		changeScene("view/RootLayout.fxml");
 		showLoginOverview();
 	}
-	
-    public void initRootLayout() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-	
+
+	public void changeScene(String directory) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource(directory));
+			rootLayout = (BorderPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void showLoginOverview() {
-	    try {
-	        FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(MainApp.class.getResource("view/LoginScreen.fxml"));
-	        AnchorPane loginScreen = (AnchorPane) loader.load();
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/LoginScreen.fxml"));
+			AnchorPane loginScreen = (AnchorPane) loader.load();
 
-	        // Define a overview no centro do root layout.
-	        rootLayout.setCenter(loginScreen);
+			// Define a overview no centro do root layout.
+			rootLayout.setCenter(loginScreen);
 
-	        // Dá ao controlador acesso à the main app.
-	        DAO controller = loader.getController();
-	        controller.setMainApp(this);
+			// Dá ao controlador acesso à the main app.
+			DAO controller = loader.getController();
+			controller.setMainApp(this);
+			// DAO dao = new DAO();
+			// dao.getConnection();
 
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
