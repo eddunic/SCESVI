@@ -1,48 +1,95 @@
 package scesvi.model;
 
-import java.time.LocalDate;
-
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-/**
- * Classe Model para um Servidor
- * 
- * @author Daniela Ferreira
- */
-
 public class Servidor {
+	private Long matricula;
+	private String nomeUsuario;
+	private String senha;
+	private String cnh;
+	private char categoria;
+	private String siape;
+	private String nome;
+	private char autorizadoVeicInstitucional;
+	private String CPF;
+	private String email;
 
-	private final StringProperty nome, senha;
-
-	/**
-	 * Construtor com alguns dados iniciais.
-	 * 
-	 * @param Nome  - nome de usuário do Servidor.
-	 * @param Senha - codigo de entrada.
-	 */
-	public Servidor(String nome, String senha) {
-		this.nome = new SimpleStringProperty(nome);
-		this.senha = new SimpleStringProperty(senha);
+	public Long getMatricula() {
+		return matricula;
 	}
 
-	public String getNome() {
-		return nome.get();
+	public void setMatricula(Long matricula) {
+		this.matricula = matricula;
 	}
 
-	public void setNome(String nome) {
-		this.nome.set(nome);
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
 	public String getSenha() {
-		return senha.get();
+		return senha;
 	}
 
 	public void setSenha(String senha) {
-		this.senha.set(senha);
+		this.senha = senha;
 	}
+
+	public String getCNH() {
+		return cnh;
+	}
+
+	public void setCNH(String cNH) {
+		cnh = cNH;
+	}
+
+	public char getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(char categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getSiape() {
+		return siape;
+	}
+
+	public void setSiape(String siape) {
+		this.siape = siape;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public char getAutorizadoVeicInstitucional() {
+		return autorizadoVeicInstitucional;
+	}
+
+	public void setAutorizadoVeicInstitucional(char autorizadoVeicInstitucional) {
+		this.autorizadoVeicInstitucional = autorizadoVeicInstitucional;
+	}
+
+	public String getCPF() {
+		return CPF;
+	}
+
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

@@ -21,7 +21,7 @@ public class DAO {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scesvi", "root", "");
 			statement = connection.createStatement();
-			System.out.println("Conexão estabelecida");			
+			System.out.println("Conexï¿½o estabelecida");			
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
@@ -43,15 +43,17 @@ public class DAO {
 			System.out.println("Erro: "+ e);
 		}
 	}
+	
+	public static Statement getStatement() {
+		return statement;
+	}
 
-/*	public void setMainApp(MainApp mainApp) {
-		getConnection();
-		if (isConnected()) { 
-			System.out.println("Conexão estabelecida");			
-		} else {
-			System.out.println("Erro ao conectar");
-			disconnection();
-		}
-	}*/
+	public static ResultSet getResultset() {
+		return resultset;
+	}
+
+	public static void setResultset(ResultSet resultset) {
+		DAO.resultset = resultset;
+	}
 		
 }
