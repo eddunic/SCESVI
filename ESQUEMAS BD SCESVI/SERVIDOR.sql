@@ -1,6 +1,7 @@
 CREATE TABLE SERVIDOR(
 	matricula VARCHAR(12) NOT NULL PRIMARY KEY,
-    login VARCHAR(50) NOT NULL,
+    nomeUsuario VARCHAR(50) NOT NULL,
+    dataNasc DATE NOT NULL,
     senha VARCHAR(50) NOT NULL,
     CNH VARCHAR(11) NOT NULL,
     categoria CHAR NOT NULL,

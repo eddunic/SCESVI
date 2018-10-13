@@ -1,8 +1,0 @@
-CREATE TABLE HISTORICOPERCURSO(
-	numeroRegistro INT(4) NOT NULL,
-    histPerc VARCHAR(300) NOT NULL,
-    PRIMARY KEY(numeroRegistro, histPerc),
-    FOREIGN KEY(numeroRegistro) REFERENCES REGISTRO(numero)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
-    

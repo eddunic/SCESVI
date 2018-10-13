@@ -6,8 +6,9 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import scesvi.MainApp;
 	
-public class Login {
+public class LoginScreenController {
 
     @FXML
     private AnchorPane loginScene;
@@ -26,5 +27,11 @@ public class Login {
 
 	@FXML
 	private Label lblRegister;
+	
+	private MainApp mainApp;
 
+	public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+	
 }

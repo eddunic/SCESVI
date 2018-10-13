@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import scesvi.model.DAO;
+import scesvi.model.LoginScreenController;
 
 public class MainApp extends Application {
 
@@ -46,11 +47,10 @@ public class MainApp extends Application {
 			rootLayout.setCenter(loginScreen);
 
 			// Dá ao controlador acesso à the main app.
-			//DAO controller = loader.getController();
-			//controller.setMainApp(this);
-			DAO dao = new DAO();
-			dao.getConnection();
-
+			LoginScreenController controller = loader.getController();
+	        controller.setMainApp(this);
+			
+			DAO.getConnection();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
