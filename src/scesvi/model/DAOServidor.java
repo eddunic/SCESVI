@@ -14,7 +14,7 @@ public class DAOServidor extends DAO {
 	public static void inserir(Servidor servidor) {
 		String query = "insert into servidor values(?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			pst.setLong(1, servidor.getMatricula());
+			pst.setString(1, servidor.getMatricula());
 			pst.setString(2, servidor.getNomeUsuario());
 			pst.setString(3, servidor.getSenha());
 			pst.setString(4, servidor.getCNH());
