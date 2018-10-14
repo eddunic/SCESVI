@@ -16,10 +16,9 @@ public class Servidor {
 	private final StringProperty CPF;
 	private final StringProperty nome;
 	private final StringProperty email;
-	private final StringProperty matSupervisor;
 
 	/**
-	 * Construtor sem parâmetros
+	 * Construtor sem parï¿½metros
 	 */
 	public Servidor() {
 		this.matricula = new SimpleStringProperty("");
@@ -33,15 +32,13 @@ public class Servidor {
 		this.CPF = new SimpleStringProperty("");
 		this.nome = new SimpleStringProperty("");
 		this.email = new SimpleStringProperty("");
-		this.matSupervisor = new SimpleStringProperty("");
 	}
 
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parï¿½metros.
 	 */
 	public Servidor(String matricula, String nomeUsuario, String dataNasc, String senha, String CNH, String categoria,
-			String siape, String autorizadoVeicInstitucional, String CPF, String nome, String email,
-			String matSupervisor) {
+			String siape, String autorizadoVeicInstitucional, String CPF, String nome, String email) {
 		this.matricula = new SimpleStringProperty(matricula);
 		this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
 		this.dataNasc = new SimpleStringProperty(dataNasc);
@@ -53,7 +50,6 @@ public class Servidor {
 		this.CPF = new SimpleStringProperty(CPF);
 		this.nome = new SimpleStringProperty(nome);
 		this.email = new SimpleStringProperty(email);
-		this.matSupervisor = new SimpleStringProperty(matSupervisor);
 	}
 
 	/* Getters & Setters */
@@ -187,18 +183,6 @@ public class Servidor {
 	
 	public StringProperty getEmailProperty() {
 		return email;
-	}
-	
-	public void setMatSupervisor(String matSupervisor) {
-		this.matSupervisor.set(matSupervisor);
-	}
-	
-	public String getMatSupervisor() {
-		return matSupervisor.get();
-	}
-	
-	public StringProperty getMatSupervisorProperty() {
-		return matSupervisor;
 	}
 	
 }

@@ -12,18 +12,19 @@ public class DAOServidor extends DAO {
 	}
 	
 	public static void inserir(Servidor servidor) {
-		String query = "insert into servidor values(?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO SERVIDOR VALUES(?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, servidor.getMatricula());
 			pst.setString(2, servidor.getNomeUsuario());
-			pst.setString(3, servidor.getSenha());
-			pst.setString(4, servidor.getCNH());
-			pst.setString(5, String.valueOf(servidor.getCategoria()));
-			pst.setString(6, servidor.getSiape());
-			pst.setString(7, String.valueOf(servidor.getAutorizadoVeicInstitucional()));
-			pst.setString(8, servidor.getCPF());
-			pst.setString(9, servidor.getNome());
-			pst.setString(10, servidor.getEmail());
+			pst.setString(3, servidor.getDataNasc());
+			pst.setString(4, servidor.getSenha());
+			pst.setString(5, servidor.getCNH());
+			pst.setString(6, String.valueOf(servidor.getCategoria()));
+			pst.setString(7, servidor.getSiape());
+			pst.setString(8, String.valueOf(servidor.getAutorizadoVeicInstitucional()));
+			pst.setString(9, servidor.getCPF());
+			pst.setString(10, servidor.getNome());
+			pst.setString(11, servidor.getEmail());
 
 			pst.executeUpdate();
 			pst.close();

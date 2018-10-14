@@ -1,17 +1,13 @@
 CREATE TABLE SERVIDOR(
 	matricula VARCHAR(12) NOT NULL PRIMARY KEY,
     nomeUsuario VARCHAR(50) NOT NULL,
-    dataNasc DATE NOT NULL,
+    dataNasc VARCHAR(8) NOT NULL,
     senha VARCHAR(50) NOT NULL,
     CNH VARCHAR(11) NOT NULL,
     categoria CHAR NOT NULL,
     SIAPE VARCHAR(11) NOT NULL,
     autorizadoVeicInstitucional CHAR,
-    CPF VARCHAR(11) NOT NULL,
+    CPF CHAR(11) NOT NULL,
     nome VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    matSupervisor VARCHAR(12) NOT NULL,
-    FOREIGN KEY(matSupervisor) REFERENCES SERVIDOR(matricula)
-	ON DELETE CASCADE
-    ON UPDATE CASCADE);
+    email VARCHAR(50) NOT NULL);
 

@@ -2,16 +2,11 @@ package scesvi.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import scesvi.MainApp;
-
 public class DAO {
-
-	private MainApp mainApp;
 	
 	private static Connection connection = null;
 	private static Statement statement = null;
@@ -19,7 +14,7 @@ public class DAO {
 
 	public static Connection getConnection() {
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scesvi", "root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SCESVI", "root", "");
 			statement = connection.createStatement();
 			System.out.println("Conex�o estabelecida");			
 		} catch (SQLException e) {
