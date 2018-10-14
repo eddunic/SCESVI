@@ -38,6 +38,19 @@ public class Servidor {
 
 	/**
 	 * Construtor com parâmetros.
+	 * 
+	 * @param matricula
+	 * @param nomeUsuario
+	 * @param dataNasc
+	 * @param senha
+	 * @param CNH
+	 * @param categoria
+	 * @param siape
+	 * @param autorizadoVeicInstitucional
+	 * @param CPF
+	 * @param nome
+	 * @param email
+	 * @param matSupervisor
 	 */
 	public Servidor(String matricula, String nomeUsuario, String dataNasc, String senha, String CNH, String categoria,
 			String siape, String autorizadoVeicInstitucional, String CPF, String nome, String email,
