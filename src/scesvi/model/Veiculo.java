@@ -55,7 +55,31 @@ public class Veiculo {
 		this.matServSupervisiona = new SimpleStringProperty("");
 		this.matServResponsavel = new SimpleStringProperty("");
 	}
-
+	
+	/**
+	 * Construtor com parâmetros.
+	 * 
+	 * @param codigo
+	 * @param tipo
+	 * @param placa
+	 * @param RENAVAM
+	 * @param autorizado
+	 * @param categoria
+	 * @param institucional
+	 * @param chassi
+	 * @param maxPassageiros
+	 * @param observacao
+	 * @param exercicio
+	 * @param tipoCombustivel
+	 * @param potencia
+	 * @param cor
+	 * @param marcaModelo
+	 * @param anoFabricacao
+	 * @param anoModelo
+	 * @param dataSupervisionado
+	 * @param matServSupervisiona
+	 * @param matServResponsavel
+	 */
 	public Veiculo(String codigo, String tipo, String placa, String RENAVAM, String autorizado, String categoria,
 			String institucional, String chassi, int maxPassageiros, String observacao, String exercicio,
 			String tipoCombustivel, float potencia, String cor, String marcaModelo, String anoFabricacao,
