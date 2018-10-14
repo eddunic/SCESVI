@@ -4,3 +4,11 @@
 /Login.class
 /LoginScreenController.class
 /DAOServidor.class
+/Cargo.class
+/Contratado.class
+/Departamento.class
+/Lotado.class
+/Telefone.class
+/SolicitVeiculo.class
+/Solicitacao.class
+/Registro.class
