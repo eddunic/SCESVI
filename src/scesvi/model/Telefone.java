@@ -17,7 +17,7 @@ public class Telefone {
 	}
 	
 	/**
-	 * Construtor com par‚metros.
+	 * Construtor com par√¢metros.
 	 * 
 	 * @param matServ
 	 * @param telefone

@@ -12,8 +12,7 @@ public class Registro {
 	private final StringProperty codVeiculo;
 	private final StringProperty matServInicia;
 	private final StringProperty matServEncerra;
-	private final StringProperty matServGerencia;
-	private final StringProperty matServConsulta;
+	private final StringProperty matServResponsavel;
 	private final StringProperty horaInicia;
 	private final StringProperty dataInicia;
 	private final StringProperty horaSaida;
@@ -37,8 +36,7 @@ public class Registro {
 		this.codVeiculo = new SimpleStringProperty("");
 		this.matServInicia = new SimpleStringProperty("");
 		this.matServEncerra = new SimpleStringProperty("");
-		this.matServGerencia = new SimpleStringProperty("");
-		this.matServConsulta = new SimpleStringProperty("");
+		this.matServResponsavel = new SimpleStringProperty("");
 		this.horaInicia = new SimpleStringProperty("");
 		this.dataInicia = new SimpleStringProperty("");
 		this.dataSaida = new SimpleStringProperty("");
@@ -55,15 +53,14 @@ public class Registro {
 	}
 
 	/**
-	 * Construtor com par‚metros.
+	 * Construtor com par√¢metros.
 	 * 
 	 * @param numero
 	 * @param observacao
 	 * @param codVeiculo
 	 * @param matServInicia
 	 * @param matServEncerra
-	 * @param matServGerencia
-	 * @param matServConsulta
+	 * @param matServResponsavel
 	 * @param horaInicia
 	 * @param dataInicia
 	 * @param dataSaida
@@ -79,7 +76,7 @@ public class Registro {
 	 * @param dataSupervisionado
 	 */
 	public Registro(int numero, String observacao, String codVeiculo, String matServInicia, String matServEncerra,
-			String matServGerencia, String matServConsulta, String horaInicia, String dataInicia, String dataSaida,
+			String matServResponsavel, String horaInicia, String dataInicia, String dataSaida,
 			String horaSaida, String dataEntrada, String horaEntrada, String horaEncerra, String dataEncerra,
 			String descricao, int kmInicial, int kmFinal, int kmPercorridos, String dataSupervisionado) {
 		this.numero = new SimpleIntegerProperty(numero);
@@ -87,8 +84,7 @@ public class Registro {
 		this.codVeiculo = new SimpleStringProperty(codVeiculo);
 		this.matServInicia = new SimpleStringProperty(matServInicia);
 		this.matServEncerra = new SimpleStringProperty(matServEncerra);
-		this.matServGerencia = new SimpleStringProperty(matServGerencia);
-		this.matServConsulta = new SimpleStringProperty(matServConsulta);
+		this.matServResponsavel = new SimpleStringProperty(matServResponsavel);
 		this.horaInicia = new SimpleStringProperty(horaInicia);
 		this.dataInicia = new SimpleStringProperty(dataInicia);
 		this.dataSaida = new SimpleStringProperty(dataSaida);
@@ -165,28 +161,16 @@ public class Registro {
 		return matServEncerra;
 	}
 
-	public void setMatServGerencia(String matServGerencia) {
-		this.matServGerencia.set(matServGerencia);
+	public void setMatServResponsavel(String matServResponsavel) {
+		this.matServResponsavel.set(matServResponsavel);
 	}
 
-	public String getMatServGerencia() {
-		return matServGerencia.get();
+	public String getMatServResponsavel() {
+		return matServResponsavel.get();
 	}
 
-	public StringProperty getMatServGerenciaProperty() {
-		return matServGerencia;
-	}
-
-	public void setMatServConsulta(String matServConsulta) {
-		this.matServConsulta.set(matServConsulta);
-	}
-
-	public String getMatServConsulta() {
-		return matServConsulta.get();
-	}
-
-	public StringProperty getMatServConsultaProperty() {
-		return matServConsulta;
+	public StringProperty getMatServResponsavelProperty() {
+		return matServResponsavel;
 	}
 
 	public void setHoraInicia(String horaInicia) {

@@ -19,7 +19,7 @@ public class SolicitVeiculo {
 	}
 	
 	/**
-	 * Construtor com par‚metros.
+	 * Construtor com par√¢metros.
 	 * 
 	 * @param numSolicit
 	 * @param codVeic

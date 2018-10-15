@@ -46,7 +46,7 @@ public class MainApp extends Application {
 			// Define a overview no centro do root layout.
 			rootLayout.setCenter(loginScreen);
 
-			// D� ao controlador acesso � the main app.
+			// Dá ao controlador acesso á the main app.
 			//UserRegisterScreenController controller = loader.getController();
 	        //controller.setMainApp(this);
 			

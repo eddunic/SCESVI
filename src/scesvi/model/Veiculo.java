@@ -57,7 +57,7 @@ public class Veiculo {
 	}
 	
 	/**
-	 * Construtor com par‚metros.
+	 * Construtor com par√¢metros.
 	 * 
 	 * @param codigo
 	 * @param tipo
@@ -286,6 +286,30 @@ public class Veiculo {
 	public StringProperty getMarcaModeloProperty() {
 		return marcaModelo;
 	}
+	
+	public void setAnoFabricacao(String anoFabricacao) {
+		this.anoFabricacao.set(anoFabricacao);
+	}
+	
+	public String getAnoFabricacao() {
+		return anoFabricacao.get();
+	}
+	
+	public StringProperty getAnoFabricacaoProperty() {
+		return anoFabricacao;
+	}
+	
+	public void setAnoModelo(String anoModelo) {
+		this.anoModelo.set(anoModelo);
+	}
+	
+	public String getAnoModelo() {
+		return anoModelo.get();
+	}
+	
+	public StringProperty getAnoModeloProperty() {
+		return anoModelo;
+	}
 
 	public void setDataSupervisionado(String dataSupervisionado) {
 		this.dataSupervisionado.set(dataSupervisionado);
@@ -322,7 +346,5 @@ public class Veiculo {
 	public StringProperty getMatServResponsavelProperty() {
 		return matServResponsavel;
 	}
-
-
 
 }

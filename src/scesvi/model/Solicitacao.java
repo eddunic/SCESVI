@@ -45,7 +45,7 @@ public class Solicitacao {
 	}
 	
 	/**
-	 * Construtor com par‚metros.
+	 * Construtor com par√¢metros.
 	 * 
 	 * @param veiculoRequisitado
 	 * @param dataVeiculoConfirmado

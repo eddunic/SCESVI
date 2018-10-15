@@ -23,7 +23,7 @@ public class Contratado {
 	}
 	
 	/**
-	 * Construtor com par‚metros.
+	 * Construtor com par√¢metros.
 	 * 
 	 * @param matServ
 	 * @param codCargo

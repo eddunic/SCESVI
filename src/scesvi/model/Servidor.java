@@ -18,7 +18,7 @@ public class Servidor {
 	private final StringProperty email;
 
 	/**
-	 * Construtor sem parï¿½metros
+	 * Construtor sem parÃ¢metros
 	 */
 	public Servidor() {
 		this.matricula = new SimpleStringProperty("");
@@ -35,7 +35,7 @@ public class Servidor {
 	}
 
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parï¿½metros.
 	 * 
 	 * @param matricula
 	 * @param nomeUsuario

@@ -12,3 +12,8 @@
 /SolicitVeiculo.class
 /Solicitacao.class
 /Registro.class
+/DAOVeiculo.class
+/DAOSolicitacao.class
+/DAORegistro.class
+/DAODepartamento.class
+/DAOCargo.class
