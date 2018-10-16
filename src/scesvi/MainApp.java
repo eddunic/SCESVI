@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import scesvi.model.DAO;
-import scesvi.view.UserRegisterScreenController;
+//import scesvi.view.LoginScreenController;
 
 public class MainApp extends Application {
 
@@ -47,7 +47,7 @@ public class MainApp extends Application {
 			rootLayout.setCenter(loginScreen);
 
 			// Dá ao controlador acesso á the main app.
-			//UserRegisterScreenController controller = loader.getController();
+			//LoginScreenController controller = loader.getController();
 	        //controller.setMainApp(this);
 			
 			DAO.getConnection();
