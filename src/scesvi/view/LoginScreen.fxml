@@ -4,14 +4,13 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.view.LoginScreenController">
    <children>
       <AnchorPane prefHeight="145.0" prefWidth="700.0" styleClass="topPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="370.0" prefWidth="380.0" styleClass="cardPane" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0">
@@ -40,11 +39,7 @@
                </image>
             </ImageView>
             <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#9d9c9c" />
-            <Label fx:id="lblRegister" layoutX="222.0" layoutY="331.0" text="Cadastre-se aqui" textFill="#3196de">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
+            <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff" />
          </children>
       </AnchorPane>
    </children>
