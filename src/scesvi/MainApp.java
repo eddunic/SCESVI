@@ -1,5 +1,7 @@
 package scesvi;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,15 +21,18 @@ public class MainApp extends Application{
 		
 		primaryStage.setTitle("Login");
 		
-		Parent fxmlLogin = FXMLLoader.load(getClass().getResource("./view/LoginScreen.fxml"));	
-		loginScene = new Scene(fxmlLogin, 600, 400);
-		
-		Parent fxmlUserRegister = FXMLLoader.load(getClass().getResource("./view/UserRegisterScreen.fxml"));		
-		userRegisterScene = new Scene(fxmlUserRegister, 600, 400);
-		
+		loaderScreens();		
 		primaryStage.setScene(loginScene);
 		
 		primaryStage.show();
+	}
+	
+	public void loaderScreens() throws IOException {
+		Parent fxmlLogin = FXMLLoader.load(getClass().getResource("./view/LoginScreen.fxml"));	
+		loginScene = new Scene(fxmlLogin, stage.getWidth(), stage.getHeight());
+		
+		Parent fxmlUserRegister = FXMLLoader.load(getClass().getResource("./view/UserRegisterScreen.fxml"));		
+		userRegisterScene = new Scene(fxmlUserRegister, stage.getWidth(), stage.getHeight());
 	}
 	
 	public static void changeScreen(String scr) {
