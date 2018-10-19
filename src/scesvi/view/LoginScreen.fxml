@@ -39,7 +39,7 @@
                </image>
             </ImageView>
             <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#9d9c9c" />
-            <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff" />
+            <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff" />
          </children>
       </AnchorPane>
    </children>

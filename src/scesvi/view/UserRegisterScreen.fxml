@@ -102,6 +102,6 @@
             <Font name="Gretaros Regular" size="24.0" />
          </font>
       </Label>
-      <JFXButton layoutX="548.0" layoutY="581.0" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Cadastrar" textFill="#3196de" />
+      <JFXButton layoutX="548.0" layoutY="581.0" onAction="#btRegisterAction" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Cadastrar" textFill="#3196de" />
    </children>
 </AnchorPane>

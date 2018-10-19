@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import scesvi.model.DAO;
 
 public class MainApp extends Application{
 	
@@ -42,6 +43,7 @@ public class MainApp extends Application{
 				break;
 			case "UserRegister":
 				stage.setScene(userRegisterScene);
+				DAO.getConnection();
 		}
 	}
 
