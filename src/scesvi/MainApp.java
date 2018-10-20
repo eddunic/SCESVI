@@ -43,7 +43,6 @@ public class MainApp extends Application{
 				break;
 			case "UserRegister":
 				stage.setScene(userRegisterScene);
-				DAO.getConnection();
 		}
 	}
 

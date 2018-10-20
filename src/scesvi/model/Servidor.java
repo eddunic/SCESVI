@@ -1,107 +1,97 @@
 package scesvi.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Servidor {
 
-	private final StringProperty matricula;
-	private final StringProperty nomeUsuario;
-	private final StringProperty dataNasc;
-	private final StringProperty senha;
-	private final StringProperty CNH;
-	private final StringProperty categoria;
 	private final StringProperty siape;
-	private final StringProperty autorizadoVeicInstitucional;
-	private final StringProperty CPF;
+	private final StringProperty cpf;
 	private final StringProperty nome;
-	private final StringProperty email;
+	private final StringProperty senha;
+	private final ObjectProperty<LocalDate> dataNasc;
+	private final StringProperty cnh;
+	private final StringProperty categoria;
+	private final StringProperty autorizadoVeicInstitucional;
+	private static String dataNascS;
+
+	private static final String DATE_PATTERN = "ddMMyyyy";
+
+	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
 	/**
-	 * Construtor sem parâmetros
+	 * Construtor sem parametros
 	 */
 	public Servidor() {
-		this.matricula = new SimpleStringProperty("");
-		this.nomeUsuario = new SimpleStringProperty("");
-		this.dataNasc = new SimpleStringProperty("");
-		this.senha = new SimpleStringProperty("");
-		this.CNH = new SimpleStringProperty("");
-		this.categoria = new SimpleStringProperty("");
 		this.siape = new SimpleStringProperty("");
-		this.autorizadoVeicInstitucional = new SimpleStringProperty("");
-		this.CPF = new SimpleStringProperty("");
+		this.cpf = new SimpleStringProperty("");
 		this.nome = new SimpleStringProperty("");
-		this.email = new SimpleStringProperty("");
+		this.senha = new SimpleStringProperty("");
+		this.dataNasc = new SimpleObjectProperty<LocalDate>(LocalDate.of(0, 0, 0));
+		Servidor.dataNascS = new String("");
+		this.cnh = new SimpleStringProperty("");
+		this.categoria = new SimpleStringProperty("");
+		this.autorizadoVeicInstitucional = new SimpleStringProperty("");
 	}
 
 	/**
-	 * Construtor com par�metros.
+	 * Construtor com parametros.
 	 * 
-	 * @param matricula
-	 * @param nomeUsuario
-	 * @param dataNasc
-	 * @param senha
-	 * @param CNH
-	 * @param categoria
 	 * @param siape
-	 * @param autorizadoVeicInstitucional
-	 * @param CPF
+	 * @param cpf
 	 * @param nome
-	 * @param email
-	 * @param matSupervisor
+	 * @param senha
+	 * @param dataNasc
+	 * @param cnh
+	 * @param categoria
+	 * @param autorizadoVeicInstitucional
 	 */
-	public Servidor(String matricula, String nomeUsuario, String dataNasc, String senha, String CNH, String categoria,
-			String siape, String autorizadoVeicInstitucional, String CPF, String nome, String email) {
-		this.matricula = new SimpleStringProperty(matricula);
-		this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
-		this.dataNasc = new SimpleStringProperty(dataNasc);
-		this.senha = new SimpleStringProperty(senha);
-		this.CNH = new SimpleStringProperty(CNH);
-		this.categoria = new SimpleStringProperty(categoria);
+	public Servidor(String siape, String cpf, String nome, String senha, LocalDate dataNasc, String cnh,
+			String categoria, String autorizadoVeicInstitucional) {
+
 		this.siape = new SimpleStringProperty(siape);
-		this.autorizadoVeicInstitucional = new SimpleStringProperty(autorizadoVeicInstitucional);
-		this.CPF = new SimpleStringProperty(CPF);
+		this.cpf = new SimpleStringProperty(cpf);
 		this.nome = new SimpleStringProperty(nome);
-		this.email = new SimpleStringProperty(email);
+		this.senha = new SimpleStringProperty(senha);
+		this.dataNasc = new SimpleObjectProperty<LocalDate>(dataNasc);
+		Servidor.dataNascS = new String(format(getDataNasc()));
+		this.cnh = new SimpleStringProperty(cnh);
+		this.categoria = new SimpleStringProperty(categoria);
+		this.autorizadoVeicInstitucional = new SimpleStringProperty(autorizadoVeicInstitucional);
 	}
 
 	/* Getters & Setters */
-	public void setMatricula(String matricula) {
-		this.matricula.set(matricula);
-	}
 
-	public String getMatricula() {
-		return matricula.get();
-	}
+//	public void setDataNasc(String dataNasc) {
+//		this.dataNasc.set(dataNasc);
+//	}
+//
+//	public String getDataNasc() {
+//		return dataNasc.get();
+//	}
+//
+//	public StringProperty getDataNascProperty() {
+//		return dataNasc;
+//	}
 
-	public StringProperty getMatriculaProperty() {
-		return matricula;
-	}
-
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario.set(nomeUsuario);
-	}
-
-	public String getNomeUsuario() {
-		return nomeUsuario.get();
-	}
-
-	public StringProperty getNomeUsuarioProperty() {
-		return nomeUsuario;
-	}
-
-	public void setDataNasc(String dataNasc) {
-		this.dataNasc.set(dataNasc);
-	}
-
-	public String getDataNasc() {
+	public LocalDate getDataNasc() {
 		return dataNasc.get();
 	}
 
-	public StringProperty getDataNascProperty() {
+	public void setDataNasc(LocalDate dataNasc) {
+		this.dataNasc.set(dataNasc);
+	}
+
+	public ObjectProperty<LocalDate> dataNascProperty() {
 		return dataNasc;
 	}
-	
+
 	public void setSenha(String senha) {
 		this.senha.set(senha);
 	}
@@ -113,19 +103,19 @@ public class Servidor {
 	public StringProperty getSenhaProperty() {
 		return senha;
 	}
-	
-	public void setCnh(String CNH) {
-		this.CNH.set(CNH);
+
+	public void setCnh(String cnh) {
+		this.cnh.set(cnh);
 	}
 
 	public String getCNH() {
-		return CNH.get();
+		return cnh.get();
 	}
 
 	public StringProperty getCNHProperty() {
-		return CNH;
+		return cnh;
 	}
-	
+
 	public void setCategoria(String categoria) {
 		this.categoria.set(categoria);
 	}
@@ -137,7 +127,7 @@ public class Servidor {
 	public StringProperty getCategoriaProperty() {
 		return categoria;
 	}
-	
+
 	public void setSiape(String siape) {
 		this.siape.set(siape);
 	}
@@ -149,7 +139,7 @@ public class Servidor {
 	public StringProperty getSiapeProperty() {
 		return siape;
 	}
-	
+
 	public void setAutorizadoVeicInstitucional(String autorizadoVeicInstitucional) {
 		this.autorizadoVeicInstitucional.set(autorizadoVeicInstitucional);
 	}
@@ -161,41 +151,43 @@ public class Servidor {
 	public StringProperty getAutorizadoVeicInstitucionalProperty() {
 		return autorizadoVeicInstitucional;
 	}
-	
-	public void setCPF(String CPF) {
-		this.CPF.set(CPF);
+
+	public void setCPF(String cpf) {
+		this.cpf.set(cpf);
 	}
-	
+
 	public String getCPF() {
-		return CPF.get();
+		return cpf.get();
 	}
-	
+
 	public StringProperty getCPFProperty() {
-		return CPF;
+		return cpf;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome.set(nome);
 	}
-	
+
 	public String getNome() {
 		return nome.get();
 	}
-	
+
 	public StringProperty getNomeProperty() {
 		return nome;
 	}
-	
-	public void setEmail(String email) {
-		this.email.set(email);
+
+	public String getDataNascS() {
+		return dataNascS;
 	}
-	
-	public String getEmail() {
-		return email.get();
+
+	public static String format(LocalDate date) {
+		if (date == null) {
+			return null;
+		}
+
+		dataNascS = date.format(DateTimeFormatter.BASIC_ISO_DATE);
+		// System.out.println(dataNascS);
+		return dataNascS;
 	}
-	
-	public StringProperty getEmailProperty() {
-		return email;
-	}
-	
+
 }

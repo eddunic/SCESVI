@@ -1,13 +1,10 @@
 CREATE TABLE SERVIDOR(
-	matricula VARCHAR(12) NOT NULL PRIMARY KEY,
-    nomeUsuario VARCHAR(50) NOT NULL,
-    dataNasc VARCHAR(8) NOT NULL,
-    senha VARCHAR(50) NOT NULL,
-    CNH VARCHAR(11) NOT NULL,
-    categoria CHAR NOT NULL,
-    SIAPE VARCHAR(11) NOT NULL,
-    autorizadoVeicInstitucional CHAR,
-    CPF CHAR(11) NOT NULL,
+    siape VARCHAR(11) NOT NULL PRIMARY KEY,
+    cpf CHAR(11) NOT NULL,
     nome VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL);
+    senha VARCHAR(50) NOT NULL,
+    dataNasc VARCHAR(8) NOT NULL,
+    cnh VARCHAR(11),
+    categoria CHAR,
+    autorizadoVeicInstitucional CHAR NOT NULL);
 
