@@ -4,39 +4,42 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.model.DAO">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.view.LoginScreenController">
    <children>
-      <AnchorPane prefHeight="145.0" prefWidth="700.0" styleClass="topPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="370.0" prefWidth="380.0" styleClass="cardPane" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0">
+      <AnchorPane prefHeight="145.0" prefWidth="700.0" styleClass="topPane" />
+      <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="370.0" prefWidth="380.0" styleClass="cardPane">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <children>
-            <JFXTextField fx:id="tNome" labelFloat="true" layoutX="95.0" layoutY="155.0" prefHeight="30.0" prefWidth="197.0" promptText="Nome de usuário" unFocusColor="#9d9c9c" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="88.0">
+            <JFXTextField fx:id="tName" labelFloat="true" layoutX="95.0" layoutY="155.0" prefHeight="30.0" prefWidth="197.0" promptText="Nome de usuário" unFocusColor="#9d9c9c">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField labelFloat="true" layoutX="95.0" layoutY="219.0" prefHeight="30.0" prefWidth="197.0" promptText="Senha" unFocusColor="#908f8f" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="88.0">
+            <JFXPasswordField fx:id="pPassword" labelFloat="true" layoutX="95.0" layoutY="219.0" prefHeight="30.0" prefWidth="197.0" promptText="Senha" unFocusColor="#908f8f">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton buttonType="RAISED" layoutX="165.0" layoutY="298.0" styleClass="topPane" text="Entrar" textFill="WHITE" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="158.0">
+            <JFXButton fx:id="bEnter" buttonType="RAISED" layoutX="165.0" layoutY="278.0" styleClass="topPane" text="Entrar" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="145.0" layoutY="14.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="15.0">
+            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="145.0" layoutY="14.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../res/images/login.png" />
                </image>
             </ImageView>
+            <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#9d9c9c" />
+            <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff" />
          </children>
       </AnchorPane>
    </children>

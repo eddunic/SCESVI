@@ -4,9 +4,21 @@
 
 .cardPane{
 	-fx-background-color: white;
-	-fx-background-radius: 8px; 
+	-fx-background-radius: 8.0px; 
 }
 
 .topPane{
 	-fx-background-color: #3196DE;	
+}
+
+.jfx-date-picker .jfx-text-field{
+    -jfx-unfocus-color: #9d9c9c;
+    -jfx-focus-color:  #4059a9;
+	-jfx-prompt-text-fill:  #4059a9;
+	-fx-font-size: 14px;
+    -jfx-label-float: true;
+}
+
+.colorPattern{
+	-fx-prompt-text-fill: #616060;
 }
