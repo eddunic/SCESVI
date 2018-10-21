@@ -64,10 +64,12 @@ public class UserRegisterScreenController {
 	private Telefone tel;
 
 	private ToggleGroup radioGroup;
+	
+	private JFXRadioButton selectedRadioButton;
 
 	@FXML
 	public void btRegisterAction(ActionEvent event) {
-		JFXRadioButton selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
+		selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
 
 		servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), pfSenha.getText(),
 				dataNasc.getValue(), cnh.getText(), cbCategoria.getSelectionModel().getSelectedItem(),
