@@ -46,8 +46,8 @@ public class UserRegisterScreenController {
 	@FXML
 	private JFXTextField nomeUsuario;
 
-    @FXML
-    private JFXPasswordField pfSenha;
+  @FXML
+  private JFXPasswordField pfSenha;
 
 	@FXML
 	private JFXTextField repitaSenha;

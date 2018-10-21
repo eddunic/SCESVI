@@ -36,7 +36,6 @@ public class Servidor {
 		this.autorizadoVeicInstitucional = new SimpleStringProperty("");
 	}
 
-	/**
 	 * Construtor com parametros.
 	 * 
 	 * @param siape
