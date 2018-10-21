@@ -1,3 +1,7 @@
+CREATE DATABASE SCESVI;
+
+USE SCESVI;
+
 CREATE TABLE SERVIDOR(
     siape VARCHAR(11) NOT NULL PRIMARY KEY,
     cpf CHAR(11) NOT NULL,
@@ -7,4 +11,5 @@ CREATE TABLE SERVIDOR(
     cnh VARCHAR(11),
     categoria CHAR,
     autorizadoVeicInstitucional CHAR NOT NULL);
-
+    
+SELECT * FROM SERVIDOR;

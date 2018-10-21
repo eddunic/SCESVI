@@ -15,7 +15,6 @@ public class DAOServidor extends DAO {
 		String query = "INSERT INTO SERVIDOR VALUES(?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, servidor.getSiape());
-			//System.out.println(servidor.getDataNascS());
 			pst.setString(2, servidor.getCPF());
 			pst.setString(3, servidor.getNome());
 			pst.setString(4, servidor.getSenha());
@@ -26,6 +25,7 @@ public class DAOServidor extends DAO {
 
 			pst.executeUpdate();
 			pst.close();
+			System.out.println("Cadastro realizado com sucesso!");	
 			disconnection();
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
