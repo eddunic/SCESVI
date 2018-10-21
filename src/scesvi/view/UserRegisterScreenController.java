@@ -2,13 +2,13 @@ package scesvi.view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
-import javafx.scene.control.MenuItem;
-
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
 import scesvi.MainApp;
 import scesvi.model.DAOServidor;
@@ -20,22 +20,7 @@ public class UserRegisterScreenController {
 	private JFXTextField cnh;
 
 	@FXML
-	private MenuButton categoria;
-
-	@FXML
-	private MenuItem a;
-
-	@FXML
-	private MenuItem b;
-
-	@FXML
-	private MenuItem c;
-
-	@FXML
-	private MenuItem d;
-
-	@FXML
-	private MenuItem e;
+	private ComboBox<String> cbCategoria;
 
 	@FXML
 	private JFXRadioButton rbSim;
@@ -61,8 +46,8 @@ public class UserRegisterScreenController {
 	@FXML
 	private JFXTextField nomeUsuario;
 
-	@FXML
-	private JFXTextField senha;
+  @FXML
+  private JFXPasswordField pfSenha;
 
 	@FXML
 	private JFXTextField repitaSenha;
@@ -72,12 +57,6 @@ public class UserRegisterScreenController {
 
 	@FXML
 	private JFXButton bCadastrar;
-
-	@FXML
-	private MenuButton depart;
-
-	@FXML
-	private MenuButton cargo;
 
 	private MainApp mainApp;
 
@@ -89,8 +68,9 @@ public class UserRegisterScreenController {
 	void btRegisterAction(ActionEvent event) {
 		JFXRadioButton selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
 
-		Servidor servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), senha.getText(),
-				dataNasc.getValue(), cnh.getText(), categoria.getText(), selectedRadioButton.getText());
+		Servidor servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), pfSenha.getText(),
+				dataNasc.getValue(), cnh.getText(), cbCategoria.getSelectionModel().getSelectedItem(),
+				(selectedRadioButton.getText().equals("Sim"))?"S":"N");
 		DAOServidor.insert(servidor);
 	}
 
@@ -100,7 +80,7 @@ public class UserRegisterScreenController {
 		rbSim.setToggleGroup(radioGroup);
 		rbNao.setToggleGroup(radioGroup);
 
-		categoria.getItems();
+		cbCategoria.setItems(FXCollections.observableArrayList("A", "B", "C", "D", "E"));
 	}
 
 	public void setMainApp(MainApp mainApp) {

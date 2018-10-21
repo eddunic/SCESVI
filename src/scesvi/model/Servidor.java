@@ -21,10 +21,6 @@ public class Servidor {
 	private final StringProperty autorizadoVeicInstitucional;
 	private static String dataNascS;
 
-	private static final String DATE_PATTERN = "ddMMyyyy";
-
-	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
-
 	/**
 	 * Construtor sem parametros
 	 */
@@ -40,7 +36,6 @@ public class Servidor {
 		this.autorizadoVeicInstitucional = new SimpleStringProperty("");
 	}
 
-	/**
 	 * Construtor com parametros.
 	 * 
 	 * @param siape

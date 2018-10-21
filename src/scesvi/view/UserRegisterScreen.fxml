@@ -2,12 +2,12 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -31,15 +31,6 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <MenuButton fx:id="categoria" layoutX="162.0" layoutY="74.0" mnemonicParsing="false" text="Categoria" textFill="#616060">
-              <items>
-                <MenuItem fx:id="a" mnemonicParsing="false" text="A" />
-                <MenuItem fx:id="b" mnemonicParsing="false" text="B" />
-                  <MenuItem fx:id="c" mnemonicParsing="false" text="C" />
-                  <MenuItem fx:id="d" mnemonicParsing="false" text="D" />
-                  <MenuItem fx:id="e" mnemonicParsing="false" text="E" />
-              </items>
-            </MenuButton>
             <HBox layoutX="299.0" layoutY="89.0" prefHeight="25.0" prefWidth="124.0">
                <children>
                   <JFXRadioButton fx:id="rbSim" prefHeight="17.0" prefWidth="51.0" text="Sim" textFill="#5b5a5a">
@@ -50,6 +41,7 @@
                   <JFXRadioButton fx:id="rbNao" text="Não" textFill="#5b5a5a" />
                </children>
             </HBox>
+            <ComboBox fx:id="cbCategoria" editable="true" layoutX="160.0" layoutY="73.0" prefHeight="25.0" prefWidth="95.0" promptText="Categoria" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="82.0" layoutY="53.0" prefHeight="202.0" prefWidth="579.0" styleClass="cardPane" stylesheets="@style.css">
@@ -84,21 +76,21 @@
       </AnchorPane>
       <AnchorPane layoutX="82.0" layoutY="267.0" prefHeight="95.0" prefWidth="579.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
-            <JFXTextField fx:id="senha" labelFloat="true" layoutX="43.0" layoutY="45.0" prefHeight="30.0" prefWidth="197.0" promptText="Senha" unFocusColor="#9d9c9c">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="repitaSenha" labelFloat="true" layoutX="325.0" layoutY="45.0" prefHeight="30.0" prefWidth="197.0" promptText="Repita a senha" unFocusColor="#9d9c9c">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
             <Label layoutX="226.0" layoutY="14.0" text="Acesso ao sistema" textFill="#3196de">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <JFXPasswordField fx:id="pfSenha" labelFloat="true" layoutX="43.0" layoutY="48.0" prefHeight="25.0" prefWidth="197.0" promptText="Senha" unFocusColor="#9d9c9c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField labelFloat="true" layoutX="325.0" layoutY="49.0" prefHeight="25.0" prefWidth="197.0" promptText="Repita a senha" unFocusColor="#9d9c9c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
          </children>
       </AnchorPane>
       <Label layoutX="324.0" text="Cadastro" textFill="WHITE">
@@ -114,18 +106,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <MenuButton fx:id="depart" layoutX="25.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Departamento">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
-            <MenuButton fx:id="cargo" layoutX="312.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Cargo">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
+            <ComboBox layoutX="50.0" layoutY="44.0" prefWidth="150.0" promptText="Departamento" />
+            <ComboBox layoutX="312.0" layoutY="44.0" prefWidth="150.0" promptText="Cargo" />
          </children>
       </AnchorPane>
    </children>
