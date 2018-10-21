@@ -1,8 +1,8 @@
 package scesvi.model.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import scesvi.model.Servidor;
 
 public class DAOServidor extends DAO {
@@ -26,6 +26,48 @@ public class DAOServidor extends DAO {
 			pst.setString(8, servidor.getAutorizadoVeicInstitucional());
 
 			pst.executeUpdate();
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
+	public static void delete(String siape) {
+		String query = "DELETE FROM SERVIDOR WHERE siape = " + siape;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			pst.executeUpdate(query);
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
+	public static void list() {
+		String query = "SELECT * FROM SERVIDOR";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultset = pst.executeQuery(query);
+			while(resultset.next()) {
+				System.out.println(resultset.getString("nome"));
+			}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
+	public static void consultServidor(String siape) {
+		String query = "SELECT * FROM SERVIDOR WHERE siape = " + siape;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultset = pst.executeQuery(query);
+			while(resultset.next()) {
+				System.out.println(resultset.getString("nome"));
+				System.out.println(resultset.getString("senha"));
+			}
+
 			pst.close();
 			disconnection();
 		} catch (SQLException e) {
