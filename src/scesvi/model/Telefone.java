@@ -5,39 +5,39 @@ import javafx.beans.property.StringProperty;
 
 public class Telefone {
 	
-	private final StringProperty matServ;
+	private final StringProperty siapeServ;
 	private final StringProperty telefone;
 	
 	/**
 	 * Construtor vazio.
 	 */
 	public Telefone() {
-		this.matServ = new SimpleStringProperty("");
+		this.siapeServ = new SimpleStringProperty("");
 		this.telefone = new SimpleStringProperty("");
 	}
 	
 	/**
 	 * Construtor com parâmetros.
 	 * 
-	 * @param matServ
+	 * @param siapeServ
 	 * @param telefone
 	 */
-	public Telefone(String matServ, String telefone) {
-		this.matServ = new SimpleStringProperty(matServ);
+	public Telefone(String siapeServ, String telefone) {
+		this.siapeServ = new SimpleStringProperty(siapeServ);
 		this.telefone = new SimpleStringProperty(telefone);
 	}
 	
 	/* Getters & Setters */
-	public void setMatServ(String matServ) {
-		this.matServ.set(matServ);
+	public void setSiapeServ(String siapeServ) {
+		this.siapeServ.set(siapeServ);
 	}
 
-	public String getMatServ() {
-		return matServ.get();
+	public String getSiapeServ() {
+		return siapeServ.get();
 	}
 
-	public StringProperty getMatServProperty() {
-		return matServ;
+	public StringProperty getSiapeServProperty() {
+		return siapeServ;
 	}
 
 	public void setTelefone(String telefone) {

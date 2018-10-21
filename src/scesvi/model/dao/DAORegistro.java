@@ -1,7 +1,9 @@
-package scesvi.model;
+package scesvi.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import scesvi.model.Registro;
 
 public class DAORegistro extends DAO {
 	

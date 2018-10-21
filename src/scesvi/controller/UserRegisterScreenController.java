@@ -1,4 +1,4 @@
-package scesvi.view;
+package scesvi.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -10,9 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
-import scesvi.MainApp;
-import scesvi.model.DAOServidor;
 import scesvi.model.Servidor;
+import scesvi.model.Telefone;
+import scesvi.model.dao.DAOServidor;
+import scesvi.model.dao.DAOTelefone;
 
 public class UserRegisterScreenController {
 
@@ -46,8 +47,8 @@ public class UserRegisterScreenController {
 	@FXML
 	private JFXTextField nomeUsuario;
 
-  @FXML
-  private JFXPasswordField pfSenha;
+	@FXML
+	private JFXPasswordField pfSenha;
 
 	@FXML
 	private JFXTextField repitaSenha;
@@ -58,23 +59,26 @@ public class UserRegisterScreenController {
 	@FXML
 	private JFXButton bCadastrar;
 
-	private MainApp mainApp;
-
 	private Servidor servidor;
+	
+	private Telefone tel;
 
 	private ToggleGroup radioGroup;
 
 	@FXML
-	void btRegisterAction(ActionEvent event) {
+	public void btRegisterAction(ActionEvent event) {
 		JFXRadioButton selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
 
-		Servidor servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), pfSenha.getText(),
+		servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), pfSenha.getText(),
 				dataNasc.getValue(), cnh.getText(), cbCategoria.getSelectionModel().getSelectedItem(),
 				(selectedRadioButton.getText().equals("Sim"))?"S":"N");
 		DAOServidor.insert(servidor);
+		
+		tel = new Telefone(siape.getText(), telefone.getText());
+		DAOTelefone.insert(tel);
 	}
 
-	void group() {
+	public void group() {
 		radioGroup = new ToggleGroup();
 
 		rbSim.setToggleGroup(radioGroup);
@@ -83,12 +87,8 @@ public class UserRegisterScreenController {
 		cbCategoria.setItems(FXCollections.observableArrayList("A", "B", "C", "D", "E"));
 	}
 
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
-	}
-
 	@FXML
-	void initialize() {
+	public void initialize() {
 		group();
 	}
 }

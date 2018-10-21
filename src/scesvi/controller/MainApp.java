@@ -1,4 +1,4 @@
-package scesvi;
+package scesvi.controller;
 
 import java.io.IOException;
 
@@ -28,10 +28,10 @@ public class MainApp extends Application{
 	}
 	
 	public void loaderScreens() throws IOException {
-		Parent fxmlLogin = FXMLLoader.load(getClass().getResource("./view/LoginScreen.fxml"));	
+		Parent fxmlLogin = FXMLLoader.load(getClass().getResource("../view/LoginScreen.fxml"));	
 		loginScene = new Scene(fxmlLogin, stage.getWidth(), stage.getHeight());
 		
-		Parent fxmlUserRegister = FXMLLoader.load(getClass().getResource("./view/UserRegisterScreen.fxml"));		
+		Parent fxmlUserRegister = FXMLLoader.load(getClass().getResource("../view/UserRegisterScreen.fxml"));		
 		userRegisterScene = new Scene(fxmlUserRegister, stage.getWidth(), stage.getHeight());
 	}
 	
