@@ -1,5 +1,7 @@
 package scesvi.controller;
 
+import java.util.ArrayList;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
@@ -10,8 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
+import scesvi.model.Departamento;
 import scesvi.model.Servidor;
 import scesvi.model.Telefone;
+import scesvi.model.dao.DAODepartamento;
 import scesvi.model.dao.DAOServidor;
 import scesvi.model.dao.DAOTelefone;
 
@@ -22,6 +26,12 @@ public class UserRegisterScreenController {
 
 	@FXML
 	private ComboBox<String> cbCategoria;
+	
+    @FXML
+    private ComboBox<String> cbDepart;
+
+    @FXML
+    private ComboBox<String> cbCargo;
 
 	@FXML
 	private JFXRadioButton rbSim;
@@ -62,6 +72,8 @@ public class UserRegisterScreenController {
 	private Servidor servidor;
 	
 	private Telefone tel;
+	
+	private Departamento departamento;
 
 	private ToggleGroup radioGroup;
 	
@@ -78,6 +90,8 @@ public class UserRegisterScreenController {
 		
 		tel = new Telefone(siape.getText(), telefone.getText());
 		DAOTelefone.insert(tel);
+		
+		//DAODepartamento.searchDepart(cbDepart.getSelectionModel().getSelectedItem());
 	}
 
 	public void group() {
@@ -87,6 +101,8 @@ public class UserRegisterScreenController {
 		rbNao.setToggleGroup(radioGroup);
 
 		cbCategoria.setItems(FXCollections.observableArrayList("A", "B", "C", "D", "E"));
+		cbDepart.setItems(FXCollections.observableArrayList("DAIC", "DAINFRA", "DQA", "DGP", "DPI", "DTI"));
+		cbCargo.setItems(FXCollections.observableArrayList("Coordenador", "Guarda", "Motorista", "Servidor comum"));
 	}
 
 	@FXML
