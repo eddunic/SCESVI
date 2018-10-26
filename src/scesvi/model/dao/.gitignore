@@ -6,3 +6,6 @@
 /DAORegistro.class
 /DAODepartamento.class
 /DAOCargo.class
+/DAOLotacao.class
+/DAOLotado.class
+/DAOContratado.class

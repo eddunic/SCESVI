@@ -1,10 +1,10 @@
 CREATE TABLE LOTADO(
-	matServ VARCHAR(12) NOT NULL,
+	siapeServ VARCHAR(12) NOT NULL,
     codDep SMALLINT(2) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8),
-    PRIMARY KEY(matServidor, codDep, dataInicio),
-    FOREIGN KEY (matServ) REFERENCES SERVIDOR(matricula)
+    PRIMARY KEY(siapeServ, codDep, dataInicio),
+    FOREIGN KEY (siapeServ) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
     FOREIGN KEY(codDep) REFERENCES DEPARTAMENTO(codigo)

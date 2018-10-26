@@ -1,7 +1,7 @@
 package scesvi.controller;
 
-import java.util.ArrayList;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
@@ -12,10 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
-import scesvi.model.Departamento;
+import scesvi.model.Contratado;
+import scesvi.model.Lotado;
 import scesvi.model.Servidor;
 import scesvi.model.Telefone;
+import scesvi.model.dao.DAOCargo;
+import scesvi.model.dao.DAOContratado;
 import scesvi.model.dao.DAODepartamento;
+import scesvi.model.dao.DAOLotado;
 import scesvi.model.dao.DAOServidor;
 import scesvi.model.dao.DAOTelefone;
 
@@ -69,16 +73,26 @@ public class UserRegisterScreenController {
 	@FXML
 	private JFXButton bCadastrar;
 
+	private ToggleGroup radioGroup;
+	
+	private JFXRadioButton selectedRadioButton;
+	
 	private Servidor servidor;
 	
 	private Telefone tel;
 	
-	private Departamento departamento;
-
-	private ToggleGroup radioGroup;
+	private Lotado lotado;
 	
-	private JFXRadioButton selectedRadioButton;
+	private Contratado contratado;
+	
+	private int codDep;
+	
+	private int codCargo;
+	
+	private SimpleDateFormat formatar;
 
+	private String dataInicioFormatada;
+	
 	@FXML
 	public void btRegisterAction(ActionEvent event) {
 		selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
@@ -91,7 +105,21 @@ public class UserRegisterScreenController {
 		tel = new Telefone(siape.getText(), telefone.getText());
 		DAOTelefone.insert(tel);
 		
-		//DAODepartamento.searchDepart(cbDepart.getSelectionModel().getSelectedItem());
+		codDep = DAODepartamento.searchDepart(cbDepart.getSelectionModel().getSelectedItem());
+		lotado = new Lotado(siape.getText(), codDep, dateFormat(), "");		
+		DAOLotado.insert(lotado);
+		
+		codCargo = DAOCargo.searchCargo(cbCargo.getSelectionModel().getSelectedItem());
+		contratado = new Contratado(siape.getText(), codCargo, dateFormat(), "");
+		DAOContratado.insert(contratado);
+	}
+	
+	public String dateFormat() {
+		Date dataInicio = new Date();
+		formatar = new SimpleDateFormat("ddMMyyyy");
+		dataInicioFormatada = formatar.format(dataInicio);
+		
+		return dataInicioFormatada;
 	}
 
 	public void group() {

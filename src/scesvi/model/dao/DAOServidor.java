@@ -44,6 +44,22 @@ public class DAOServidor extends DAO {
 		}
 	}
 	
+	public static void consultServidor(String siape) {
+		String query = "SELECT * FROM SERVIDOR WHERE siape = " + siape;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultset = pst.executeQuery(query);
+			while(resultset.next()) {
+				System.out.println(resultset.getString("nome"));
+				System.out.println(resultset.getString("senha"));
+			}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
 	public static void list() {
 		String query = "SELECT * FROM SERVIDOR";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
@@ -59,13 +75,23 @@ public class DAOServidor extends DAO {
 		}
 	}
 	
-	public static void consultServidor(String siape) {
-		String query = "SELECT * FROM SERVIDOR WHERE siape = " + siape;
+	public static void listNomeDepCargo() {
+		String query = "SELECT SERVIDOR.nome, DEPARTAMENTO.sigla, CARGO.titulacao\r\n" + 
+					   "FROM SERVIDOR INNER JOIN LOTADO\r\n" + 
+					   "ON SERVIDOR.siape = LOTADO.siapeServ\r\n" + 
+					   "INNER JOIN DEPARTAMENTO\r\n" + 
+					   "ON DEPARTAMENTO.codigo = LOTADO.codDep\r\n" + 
+					   "INNER JOIN CONTRATADO\r\n" + 
+					   "ON SERVIDOR.siape = CONTRATADO.siapeServ\r\n" + 
+					   "INNER JOIN CARGO\r\n" + 
+					   "ON CARGO.codigo = CONTRATADO.codCargo\r\n" + 
+					   "GROUP BY SERVIDOR.nome;";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultset = pst.executeQuery(query);
 			while(resultset.next()) {
-				System.out.println(resultset.getString("nome"));
-				System.out.println(resultset.getString("senha"));
+				System.out.println(resultset.getString("SERVIDOR.nome"));
+				System.out.println(resultset.getString("DEPARTAMENTO.sigla"));
+				System.out.println(resultset.getString("CARGO.titulacao"));
 			}
 
 			pst.close();
