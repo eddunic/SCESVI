@@ -2,6 +2,8 @@ package scesvi.controller;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXScrollPane;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +30,7 @@ public class MainApp extends Application{
 	}
 	
 	public void loaderScreens() throws IOException {
+		
 		Parent fxmlLogin = FXMLLoader.load(getClass().getResource("../view/LoginScreen.fxml"));	
 		loginScene = new Scene(fxmlLogin, stage.getWidth(), stage.getHeight());
 		

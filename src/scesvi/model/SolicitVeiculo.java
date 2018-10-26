@@ -28,4 +28,31 @@ public class SolicitVeiculo {
 		this.numSolicit = new SimpleIntegerProperty(numSolicit);
 		this.codVeic = new SimpleStringProperty(codVeic);
 	}
+	
+	/* Getters & Setters */
+	public void setNumSolicit(int numSolicit) {
+		this.numSolicit.set(numSolicit);
+	}
+
+	public int getNumSolicit() {
+		return numSolicit.get();
+	}
+
+	public IntegerProperty getNumSolicitProperty() {
+		return numSolicit;
+	}
+
+	public void setCodVeic(String codVeic) {
+		this.codVeic.set(codVeic);
+	}
+
+	public String getCodVeic() {
+		return codVeic.get();
+	}
+
+	public StringProperty getCodVeicProperty() {
+		return codVeic;
+	}
+
+
 }
