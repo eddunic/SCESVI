@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -98,7 +99,10 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <JFXButton fx:id="bCadastrar" layoutX="548.0" layoutY="619.0" onAction="#btRegisterAction" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Cadastrar" textFill="#3196de" />
+      <JFXButton fx:id="bCadastrar" layoutX="548.0" layoutY="619.0" onAction="#btRegisterAction" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Cadastrar" textFill="#3196de">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <AnchorPane layoutX="82.0" layoutY="526.0" prefHeight="88.0" prefWidth="579.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
             <Label layoutX="267.0" layoutY="14.0" text="Serviço" textFill="#3196de">
@@ -106,8 +110,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox layoutX="50.0" layoutY="44.0" prefWidth="150.0" promptText="Departamento" />
-            <ComboBox layoutX="312.0" layoutY="44.0" prefWidth="150.0" promptText="Cargo" />
+            <ComboBox fx:id="cbDepart" editable="true" layoutX="50.0" layoutY="44.0" prefWidth="150.0" promptText="Departamento" />
+            <ComboBox fx:id="cbCargo" editable="true" layoutX="312.0" layoutY="44.0" prefWidth="150.0" promptText="Cargo" />
          </children>
       </AnchorPane>
    </children>

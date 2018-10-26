@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -32,6 +33,9 @@
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="145.0" layoutY="14.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,7 +43,10 @@
                </image>
             </ImageView>
             <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#9d9c9c" />
-            <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff" />
+            <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
          </children>
       </AnchorPane>
    </children>

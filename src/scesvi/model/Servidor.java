@@ -18,7 +18,7 @@ public class Servidor {
 	private final StringProperty cnh;
 	private final StringProperty categoria;
 	private final StringProperty autorizadoVeicInstitucional;
-
+	
 	/**
 	 * Construtor sem parametros
 	 */

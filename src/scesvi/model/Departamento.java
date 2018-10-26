@@ -21,7 +21,7 @@ public class Departamento {
 	}
 	
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parametros.
 	 * 
 	 * @param codigo
 	 * @param nome
