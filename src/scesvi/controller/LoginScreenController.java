@@ -1,6 +1,5 @@
 package scesvi.controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -15,9 +14,6 @@ public class LoginScreenController {
     private JFXPasswordField pPassword;
 
     @FXML
-    private JFXButton bEnter;
-
-    @FXML
     private Label lblCount;
 
     @FXML
@@ -27,6 +23,10 @@ public class LoginScreenController {
     	MainApp.changeScreen("UserRegister");
     }
     
+    public void btOpenContainerAction() {
+    	MainApp.changeScreen("ContainerTelas");
+    }
+  
 }
 
 

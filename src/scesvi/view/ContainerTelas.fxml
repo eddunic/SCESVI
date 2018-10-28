@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="800.0" styleClass="borderPaneBack" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.ContainerTelasController">
+   <top>
+      <HBox prefHeight="31.0" prefWidth="800.0" styleClass="topPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <JFXHamburger fx:id="jfxHamb" prefHeight="8.0" prefWidth="25.0" styleClass="jfx-hamburger" stylesheets="@style.css">
+               <HBox.margin>
+                  <Insets left="24.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXHamburger>
+            <Label text="SCESVI" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="30.0" top="2.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Tw Cen MT Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <JFXDrawer fx:id="jfxDrawerBar" defaultDrawerSize="195.0" prefHeight="440.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
