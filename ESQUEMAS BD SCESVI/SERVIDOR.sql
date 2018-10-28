@@ -7,4 +7,4 @@ CREATE TABLE SERVIDOR(
     cnh VARCHAR(11),
     categoria CHAR,
     autorizadoVeicInstitucional CHAR NOT NULL);
-
+    

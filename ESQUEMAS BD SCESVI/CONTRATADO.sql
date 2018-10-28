@@ -1,10 +1,10 @@
 CREATE TABLE CONTRATADO(
-	matServ VARCHAR(12) NOT NULL,
+	siapeServ VARCHAR(12) NOT NULL,
     codCargo SMALLINT(2) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8),
-    PRIMARY KEY(matServ, codCargo),
-    FOREIGN KEY(matServ) REFERENCES SERVIDOR(matricula)
+    PRIMARY KEY(siapeServ, codCargo),
+    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
     FOREIGN KEY(codCargo) REFERENCES CARGO(codigo)

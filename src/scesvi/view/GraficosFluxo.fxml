@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Fluxo de veículos">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Label>
+      <LineChart fx:id="lineFluxo" prefHeight="176.0" prefWidth="580.0">
+        <xAxis>
+          <CategoryAxis label="Meses" side="BOTTOM" fx:id="xl" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yl" prefWidth="28.0" side="LEFT" />
+        </yAxis>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </LineChart>
+      <BarChart fx:id="barFluxo" prefHeight="174.0" prefWidth="580.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xb" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yb" side="LEFT" />
+        </yAxis>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </BarChart>
+   </children>
+</VBox>

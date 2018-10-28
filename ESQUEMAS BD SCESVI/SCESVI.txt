@@ -45,24 +45,20 @@ DROP TABLE CARGO;
 DROP TABLE CONTRATADO;
 
 CREATE TABLE SERVIDOR(
-	matricula VARCHAR(12) NOT NULL PRIMARY KEY,
-    nomeUsuario VARCHAR(50) NOT NULL,
-    dataNasc VARCHAR(8) NOT NULL,
-    senha VARCHAR(50) NOT NULL,
-    CNH VARCHAR(11) NOT NULL,
-    categoria CHAR NOT NULL,
-    SIAPE VARCHAR(11) NOT NULL,
-    autorizadoVeicInstitucional CHAR,
-    CPF CHAR(11) NOT NULL,
+    siape VARCHAR(11) NOT NULL PRIMARY KEY,
+    cpf CHAR(11) NOT NULL,
     nome VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL);
-
+    senha VARCHAR(50) NOT NULL,
+    dataNasc VARCHAR(8) NOT NULL,
+    cnh VARCHAR(11),
+    categoria CHAR,
+    autorizadoVeicInstitucional CHAR NOT NULL);
 
 CREATE TABLE TELEFONE(
-	matServ VARCHAR(12) NOT NULL,
+	siapeServ VARCHAR(12) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
-    PRIMARY KEY(matServ, telefone),
-    FOREIGN KEY(matServ) REFERENCES SERVIDOR(matricula)
+    PRIMARY KEY(siapeServ, telefone),
+    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(matricula)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
 
@@ -164,17 +160,17 @@ CREATE TABLE HISTORICOPERCURSO(
     ON UPDATE CASCADE);
     
 CREATE TABLE DEPARTAMENTO(
-	codigo SMALLINT(2) NOT NULL PRIMARY KEY,
+	codigo SMALLINT NOT NULL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     sigla VARCHAR(10) NOT NULL);
     
 CREATE TABLE LOTADO(
-	matServ VARCHAR(12) NOT NULL,
+	siapeServ VARCHAR(12) NOT NULL,
     codDep SMALLINT(2) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8),
-    PRIMARY KEY(matServidor, codDep, dataInicio),
-    FOREIGN KEY (matServ) REFERENCES SERVIDOR(matricula)
+    PRIMARY KEY(siapeServ, codDep, dataInicio),
+    FOREIGN KEY (siapeServ) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
     FOREIGN KEY(codDep) REFERENCES DEPARTAMENTO(codigo)
@@ -186,12 +182,12 @@ CREATE TABLE CARGO(
     titulacao VARCHAR(20) NOT NULL);
     
 CREATE TABLE CONTRATADO(
-	matServ VARCHAR(12) NOT NULL,
+	siapeServ VARCHAR(12) NOT NULL,
     codCargo SMALLINT(2) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8),
-    PRIMARY KEY(matServ, codCargo),
-    FOREIGN KEY(matServ) REFERENCES SERVIDOR(matricula)
+    PRIMARY KEY(siapeServ, codCargo),
+    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
     FOREIGN KEY(codCargo) REFERENCES CARGO(codigo)

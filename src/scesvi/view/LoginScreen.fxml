@@ -3,44 +3,97 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.view.LoginScreenController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.LoginScreenController">
    <children>
-      <AnchorPane prefHeight="145.0" prefWidth="700.0" styleClass="topPane" />
-      <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="370.0" prefWidth="380.0" styleClass="cardPane">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <children>
-            <JFXTextField fx:id="tName" labelFloat="true" layoutX="95.0" layoutY="155.0" prefHeight="30.0" prefWidth="197.0" promptText="Nome de usuário" unFocusColor="#9d9c9c">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXPasswordField fx:id="pPassword" labelFloat="true" layoutX="95.0" layoutY="219.0" prefHeight="30.0" prefWidth="197.0" promptText="Senha" unFocusColor="#908f8f">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXPasswordField>
-            <JFXButton fx:id="bEnter" buttonType="RAISED" layoutX="165.0" layoutY="278.0" styleClass="topPane" text="Entrar" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="145.0" layoutY="14.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../res/images/login.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#9d9c9c" />
-            <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff" />
-         </children>
-      </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="248.0" prefWidth="700.0" styleClass="topPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane prefHeight="450.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="60.0" prefWidth="700.0" styleClass="topPane" BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </right>
+         <center>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="370.0" prefWidth="380.0" styleClass="cardPane" BorderPane.alignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <FontAwesomeIconView fill="#757474" glyphName="ADDRESS_CARD_ALT" layoutX="83.0" layoutY="174.0" size="15" x="-60.0" y="-4.0" />
+                  <FontAwesomeIconView fill="#757474" glyphName="KEY" layoutX="77.0" layoutY="238.0" size="15" x="-50.0" y="-5.0" />
+                  <VBox alignment="TOP_CENTER" prefHeight="361.0" prefWidth="380.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="90.0" fitWidth="90.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../res/images/login.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <JFXTextField fx:id="tSiape" labelFloat="true" prefHeight="30.0" prefWidth="197.0" promptText="SIAPE" unFocusColor="#9d9c9c">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" top="30.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </JFXTextField>
+                        <JFXPasswordField fx:id="pPassword" labelFloat="true" prefHeight="30.0" prefWidth="197.0" promptText="Senha" unFocusColor="#908f8f">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" top="30.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </JFXPasswordField>
+                        <JFXButton fx:id="bEnter" buttonType="RAISED" onAction="#btOpenContainerAction" styleClass="topPane" text="Entrar" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#9d9c9c">
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding></Label>
+                  <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+               </children>
+            </AnchorPane>
+         </center>
+         <bottom>
+            <AnchorPane prefHeight="47.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>

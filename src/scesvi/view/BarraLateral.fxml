@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="180.0" styleClass="vBoxStyle" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.BarraLateralController">
+   <children>
+      <ImageView fitHeight="90.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../res/images/ImgPerfil.png" />
+         </image>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label styleClass="fontVbox" stylesheets="@style.css" text="admin" textFill="#2a5082">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Label>
+      <VBox prefHeight="318.0" prefWidth="223.0">
+         <children>
+            <JFXButton accessibleText="Material_One" onAction="#openMenuInicialAction" prefHeight="37.0" prefWidth="181.0" styleClass="fontVbox" stylesheets="@style.css" text="Menu inicial" textFill="#767676">
+               <VBox.margin>
+                  <Insets left="5.0" top="15.0" />
+               </VBox.margin>
+               <graphic>
+                  <MaterialIconView fill="WHITE" glyphName="GRAIN" />
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXButton accessibleText="Material_Two" onMouseClicked="#openSolicitacoes" prefHeight="37.0" prefWidth="179.0" styleClass="fontVbox" stylesheets="@style.css" text="Solicitações" textFill="#767676">
+               <VBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <MaterialIconView fill="WHITE" glyphName="RECORD_VOICE_OVER" />
+               </graphic>
+            </JFXButton>
+            <JFXButton accessibleText="Material_Tree" onMouseClicked="#openRegistros" prefHeight="37.0" prefWidth="177.0" styleClass="fontVbox" stylesheets="@style.css" text="Registros" textFill="#767676">
+               <VBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <MaterialIconView fill="WHITE" glyphName="LIBRARY_BOOKS" />
+               </graphic>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton onMouseClicked="#openVeiculos" prefHeight="37.0" prefWidth="179.0" styleClass="fontVbox" stylesheets="@style.css" text="Veículos" textFill="#767676">
+               <VBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <MaterialIconView fill="WHITE" glyphName="DIRECTIONS_CAR" size="20" />
+               </graphic>
+               <padding>
+                  <Insets right="25.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton onMouseClicked="#openServidores" prefHeight="37.0" prefWidth="186.0" styleClass="fontVbox" stylesheets="@style.css" text="Servidores" textFill="#767676">
+               <VBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <MaterialIconView fill="WHITE" glyphName="PEOPLE" />
+               </graphic>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton onMouseClicked="#openRelatorios" prefHeight="37.0" prefWidth="180.0" styleClass="fontVbox" stylesheets="@style.css" text="Relatórios" textFill="#767676">
+               <VBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <MaterialIconView fill="WHITE" glyphName="LIST" />
+               </graphic>
+               <padding>
+                  <Insets right="15.0" />
+               </padding>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>

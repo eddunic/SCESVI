@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class Contratado {
 	
-	private final StringProperty matServ;
+	private final StringProperty siapeServ;
 	private final IntegerProperty codCargo;
 	private final StringProperty dataInicio;
 	private final StringProperty dataFim;
@@ -16,38 +16,38 @@ public class Contratado {
 	 * Construtor vazio.
 	 */
 	public Contratado() {
-		this.matServ = new SimpleStringProperty("");
+		this.siapeServ = new SimpleStringProperty("");
 		this.codCargo = new SimpleIntegerProperty(0);
 		this.dataInicio = new SimpleStringProperty("");
 		this.dataFim = new SimpleStringProperty("");
 	}
 	
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parametros.
 	 * 
-	 * @param matServ
+	 * @param siapeServ
 	 * @param codCargo
 	 * @param dataInicio
 	 * @param dataFim
 	 */
-	public Contratado(String matServ, int codCargo, String dataInicio, String dataFim) {
-		this.matServ = new SimpleStringProperty(matServ);
+	public Contratado(String siapeServ, int codCargo, String dataInicio, String dataFim) {
+		this.siapeServ = new SimpleStringProperty(siapeServ);
 		this.codCargo = new SimpleIntegerProperty(codCargo);
 		this.dataInicio = new SimpleStringProperty(dataInicio);
 		this.dataFim = new SimpleStringProperty(dataFim);
 	}
 	
 	/* Getters & Setters */
-	public void setMatServ(String matServ) {
-		this.matServ.set(matServ);
+	public void setSiapeServ(String siapeServ) {
+		this.siapeServ.set(siapeServ);
 	}
 
-	public String getMatServ() {
-		return matServ.get();
+	public String getSiapeServ() {
+		return siapeServ.get();
 	}
 
-	public StringProperty getMatServProperty() {
-		return matServ;
+	public StringProperty getSiapeServProperty() {
+		return siapeServ;
 	}
 
 	public void setCodCargo(int codCargo) {

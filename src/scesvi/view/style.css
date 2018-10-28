@@ -12,13 +12,35 @@
 }
 
 .jfx-date-picker .jfx-text-field{
-  -jfx-unfocus-color: #9d9c9c;
-  -jfx-focus-color:  #4059a9;
+    -jfx-unfocus-color: #9d9c9c;
+    -jfx-focus-color:  #4059a9;
 	-jfx-prompt-text-fill:  #4059a9;
 	-fx-font-size: 14px;
-  -jfx-label-float: true;
+    -jfx-label-float: true;
 }
 
 .colorPattern{
 	-fx-prompt-text-fill: #616060;
+}
+
+.fontVbox{
+	-fx-font-family: "tw cen mt";
+	-fx-font-size: 18px;
+}
+
+.vBoxStyle{
+	-fx-background-color: white;
+}
+
+.borderPaneBack{
+	-fx-background-color: #D5D1D1;
+}
+
+.jfx-hamburger StackPane {
+	 -fx-background-color : white;
+}
+
+.button:hover{
+	-fx-background-color: #3196DE;
+	-fx-text-fill: white;
 }

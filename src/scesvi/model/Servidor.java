@@ -2,8 +2,6 @@ package scesvi.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,11 +14,11 @@ public class Servidor {
 	private final StringProperty nome;
 	private final StringProperty senha;
 	private final ObjectProperty<LocalDate> dataNasc;
+	private static String dataNascS;
 	private final StringProperty cnh;
 	private final StringProperty categoria;
 	private final StringProperty autorizadoVeicInstitucional;
-	private static String dataNascS;
-
+	
 	/**
 	 * Construtor sem parametros
 	 */
@@ -36,6 +34,7 @@ public class Servidor {
 		this.autorizadoVeicInstitucional = new SimpleStringProperty("");
 	}
 
+	/*
 	 * Construtor com parametros.
 	 * 
 	 * @param siape
@@ -63,26 +62,14 @@ public class Servidor {
 
 	/* Getters & Setters */
 
-//	public void setDataNasc(String dataNasc) {
-//		this.dataNasc.set(dataNasc);
-//	}
-//
-//	public String getDataNasc() {
-//		return dataNasc.get();
-//	}
-//
-//	public StringProperty getDataNascProperty() {
-//		return dataNasc;
-//	}
-
-	public LocalDate getDataNasc() {
-		return dataNasc.get();
-	}
-
 	public void setDataNasc(LocalDate dataNasc) {
 		this.dataNasc.set(dataNasc);
 	}
 
+	public LocalDate getDataNasc() {
+		return dataNasc.get();
+	}
+	
 	public ObjectProperty<LocalDate> dataNascProperty() {
 		return dataNasc;
 	}
@@ -103,7 +90,7 @@ public class Servidor {
 		this.cnh.set(cnh);
 	}
 
-	public String getCNH() {
+	public String getCnh() {
 		return cnh.get();
 	}
 
@@ -147,11 +134,11 @@ public class Servidor {
 		return autorizadoVeicInstitucional;
 	}
 
-	public void setCPF(String cpf) {
+	public void setCpf(String cpf) {
 		this.cpf.set(cpf);
 	}
 
-	public String getCPF() {
+	public String getCpf() {
 		return cpf.get();
 	}
 
@@ -181,7 +168,6 @@ public class Servidor {
 		}
 
 		dataNascS = date.format(DateTimeFormatter.BASIC_ISO_DATE);
-		// System.out.println(dataNascS);
 		return dataNascS;
 	}
 

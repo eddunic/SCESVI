@@ -19,7 +19,7 @@ public class Cargo {
 	}
  	
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parametros.
 	 * 
 	 * @param codigo
 	 * @param titulacao
