@@ -2,19 +2,18 @@ package scesvi.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import scesvi.model.Registro;
 
-public class DAORegistro extends DAO {
+public class DAORegistroSP extends DAO {
 	
-	private static Registro registro;
+private static Registro registro;
 	
 	public static Registro getRegistro() {
 		return registro;
 	}
 	
 	public static void insert(Registro registro) {
-		String query = "INSERT INTO REGISTRO VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "CALL sp_InsertRegistro(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, String.valueOf(registro.getNumero()));
 			pst.setString(2, registro.getObservacao());

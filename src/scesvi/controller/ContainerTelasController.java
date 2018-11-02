@@ -10,6 +10,7 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -57,19 +58,20 @@ public class ContainerTelasController {
 
 	@FXML
 	private void createComponents() throws IOException {
+		//borderPaneContainer = new BorderPane();
 		menuLateral = FXMLLoader.load(getClass().getResource("../view/BarraLateral.fxml"));
 		graficosFluxo = FXMLLoader.load(getClass().getResource("../view/GraficosFluxo.fxml"));
 	}
-
+	
 	static void loadComponent(String fx) {
 		//borderPaneContainer.setCenter(null);
 
-//		switch (fx) {
-//		case "Menu inicial":
-//			borderPaneContainer.setCenter(graficosFluxo);
-//			graficosFluxo.setAlignment(Pos.CENTER);
-//			break;
-//		}
+		if (fx.equals("Menuinicial")) {
+			borderPaneContainer.setCenter(graficosFluxo);
+			
+			//borderPaneContainer.setBottom(graficosFluxo);
+			//borderPaneContainer.setAlignment(graficosFluxo, Pos.CENTER);
+		}
 	}
 	
 	void nodesButons() {

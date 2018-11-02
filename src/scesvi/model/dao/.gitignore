@@ -9,3 +9,12 @@
 /DAOLotacao.class
 /DAOLotado.class
 /DAOContratado.class
+/DAOServidorSP.class
+/DAOCargoSP.class
+/DAODepartamentoSP.class
+/DAORegistroSP.class
+/DAOSolicitacaoSP.class
+/DAOTelefoneSP.class
+/DAOLotadoSP.class
+/DAOContratadoSP.class
+/DAOVeiculoSP.class

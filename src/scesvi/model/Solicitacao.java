@@ -7,6 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class Solicitacao {
 
+	private final IntegerProperty numero;
 	private final IntegerProperty veiculoRequisitado;
 	private final StringProperty dataVeiculoConfirmado;
 	private final StringProperty dataInicio;
@@ -19,14 +20,15 @@ public class Solicitacao {
 	private final IntegerProperty qtdePassageiros;
 	private final StringProperty tipo;
 	private final StringProperty finalidade;
-	private final StringProperty matServAutoriza;
-	private final StringProperty matServRealiza;
+	private final StringProperty siapeServAutoriza;
+	private final StringProperty siapeServRealiza;
 	private final StringProperty codVeiculoAtende;
 
 	/**
 	 * Construtor vazio.
 	 */
 	public Solicitacao() {
+		this.numero = new SimpleIntegerProperty(0);
 		this.veiculoRequisitado = new SimpleIntegerProperty(0);
 		this.dataVeiculoConfirmado = new SimpleStringProperty("");
 		this.dataInicio = new SimpleStringProperty("");
@@ -39,14 +41,15 @@ public class Solicitacao {
 		this.qtdePassageiros = new SimpleIntegerProperty(0);
 		this.tipo = new SimpleStringProperty("");
 		this.finalidade = new SimpleStringProperty("");
-		this.matServAutoriza = new SimpleStringProperty("");
-		this.matServRealiza = new SimpleStringProperty("");
+		this.siapeServAutoriza = new SimpleStringProperty("");
+		this.siapeServRealiza = new SimpleStringProperty("");
 		this.codVeiculoAtende = new SimpleStringProperty("");
 	}
 	
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parametros.
 	 * 
+	 * @param numero
 	 * @param veiculoRequisitado
 	 * @param dataVeiculoConfirmado
 	 * @param dataInicio
@@ -59,14 +62,15 @@ public class Solicitacao {
 	 * @param qtdePassageiros
 	 * @param tipo
 	 * @param finalidade
-	 * @param matServAutoriza
-	 * @param matServRealiza
+	 * @param siapeServAutoriza
+	 * @param siapeServRealiza
 	 * @param codVeiculoAtende
 	 */
-	public Solicitacao(int veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
+	public Solicitacao(int numero, int veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
 			String horaCriacao, String dataCriacao, String localViagem, String horaAutorizado, String dataAutorizado,
-			int qtdePassageiros, String tipo, String finalidade, String matServAutoriza, String matServRealiza,
+			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza,
 			String codVeiculoAtende) {
+		this.numero = new SimpleIntegerProperty(numero);;
 		this.veiculoRequisitado = new SimpleIntegerProperty(veiculoRequisitado);
 		this.dataVeiculoConfirmado = new SimpleStringProperty(dataVeiculoConfirmado);
 		this.dataInicio = new SimpleStringProperty(dataInicio);
@@ -79,12 +83,24 @@ public class Solicitacao {
 		this.qtdePassageiros = new SimpleIntegerProperty(qtdePassageiros);
 		this.tipo = new SimpleStringProperty(tipo);
 		this.finalidade = new SimpleStringProperty(finalidade);
-		this.matServAutoriza = new SimpleStringProperty(matServAutoriza);
-		this.matServRealiza = new SimpleStringProperty(matServRealiza);
+		this.siapeServAutoriza = new SimpleStringProperty(siapeServAutoriza);
+		this.siapeServRealiza = new SimpleStringProperty(siapeServRealiza);
 		this.codVeiculoAtende = new SimpleStringProperty(codVeiculoAtende);
 	}
 	
 	/* Getters & Setters */
+	public void setNumero(int numero) {
+		this.numero.set(numero);
+	}
+
+	public int getNumero() {
+		return numero.get();
+	}
+
+	public IntegerProperty getNumeroProperty() {
+		return numero;
+	}
+	
 	public void setVeiculoRequisitado(int veiculoRequisitado) {
 		this.veiculoRequisitado.set(veiculoRequisitado);
 	}
@@ -229,28 +245,28 @@ public class Solicitacao {
 		return finalidade;
 	}
 
-	public void setMatServAutoriza(String matServAutoriza) {
-		this.matServAutoriza.set(matServAutoriza);
+	public void setSiapeServAutoriza(String siapeServAutoriza) {
+		this.siapeServAutoriza.set(siapeServAutoriza);
 	}
 
-	public String getMatServAutoriza() {
-		return matServAutoriza.get();
+	public String getSiapeServAutoriza() {
+		return siapeServAutoriza.get();
 	}
 
-	public StringProperty getMatServAutorizaProperty() {
-		return matServAutoriza;
+	public StringProperty getSiapeServAutorizaProperty() {
+		return siapeServAutoriza;
 	}
 
-	public void setMatServRealiza(String matServRealiza) {
-		this.matServRealiza.set(matServRealiza);
+	public void setSiapeServRealiza(String siapeServRealiza) {
+		this.siapeServRealiza.set(siapeServRealiza);
 	}
 
-	public String getMatServRealiza() {
-		return matServRealiza.get();
+	public String getSiapeServRealiza() {
+		return siapeServRealiza.get();
 	}
 
-	public StringProperty getMatServRealizaProperty() {
-		return matServRealiza;
+	public StringProperty getSiapeServRealizaProperty() {
+		return siapeServRealiza;
 	}
 
 	public void setCodVeiculoAtende(String codVeiculoAtende) {

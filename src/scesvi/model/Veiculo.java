@@ -12,7 +12,7 @@ public class Veiculo {
 	private final StringProperty codigo;
 	private final StringProperty tipo;
 	private final StringProperty placa;
-	private final StringProperty RENAVAM;
+	private final StringProperty renavam;
 	private final StringProperty autorizado;
 	private final StringProperty categoria;
 	private final StringProperty institucional;
@@ -27,8 +27,8 @@ public class Veiculo {
 	private final StringProperty anoFabricacao;
 	private final StringProperty anoModelo;
 	private final StringProperty dataSupervisionado;
-	private final StringProperty matServSupervisiona;
-	private final StringProperty matServResponsavel;
+	private final StringProperty siapeServSupervisiona;
+	private final StringProperty siapeServResponsavel;
 
 	/**
 	 * Construtor vazio.
@@ -37,7 +37,7 @@ public class Veiculo {
 		this.codigo = new SimpleStringProperty("");
 		this.tipo = new SimpleStringProperty("");
 		this.placa = new SimpleStringProperty("");
-		this.RENAVAM = new SimpleStringProperty("");
+		this.renavam = new SimpleStringProperty("");
 		this.autorizado = new SimpleStringProperty("");
 		this.categoria = new SimpleStringProperty("");
 		this.institucional = new SimpleStringProperty("");
@@ -52,17 +52,17 @@ public class Veiculo {
 		this.anoFabricacao = new SimpleStringProperty("");
 		this.anoModelo = new SimpleStringProperty("");
 		this.dataSupervisionado = new SimpleStringProperty("");
-		this.matServSupervisiona = new SimpleStringProperty("");
-		this.matServResponsavel = new SimpleStringProperty("");
+		this.siapeServSupervisiona = new SimpleStringProperty("");
+		this.siapeServResponsavel = new SimpleStringProperty("");
 	}
 	
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parametros.
 	 * 
 	 * @param codigo
 	 * @param tipo
 	 * @param placa
-	 * @param RENAVAM
+	 * @param renavam
 	 * @param autorizado
 	 * @param categoria
 	 * @param institucional
@@ -77,17 +77,17 @@ public class Veiculo {
 	 * @param anoFabricacao
 	 * @param anoModelo
 	 * @param dataSupervisionado
-	 * @param matServSupervisiona
-	 * @param matServResponsavel
+	 * @param siapeServSupervisiona
+	 * @param siapeServResponsavel
 	 */
-	public Veiculo(String codigo, String tipo, String placa, String RENAVAM, String autorizado, String categoria,
+	public Veiculo(String codigo, String tipo, String placa, String renavam, String autorizado, String categoria,
 			String institucional, String chassi, int maxPassageiros, String observacao, String exercicio,
 			String tipoCombustivel, float potencia, String cor, String marcaModelo, String anoFabricacao,
-			String anoModelo, String dataSupervisionado, String matServSupervisiona, String matServResponsavel) {
+			String anoModelo, String dataSupervisionado, String siapeServSupervisiona, String siapeServResponsavel) {
 		this.codigo = new SimpleStringProperty(codigo);
 		this.tipo = new SimpleStringProperty(tipo);
 		this.placa = new SimpleStringProperty(placa);
-		this.RENAVAM = new SimpleStringProperty(RENAVAM);
+		this.renavam = new SimpleStringProperty(renavam);
 		this.autorizado = new SimpleStringProperty(autorizado);
 		this.categoria = new SimpleStringProperty(categoria);
 		this.institucional = new SimpleStringProperty(institucional);
@@ -102,8 +102,8 @@ public class Veiculo {
 		this.anoFabricacao = new SimpleStringProperty(anoFabricacao);
 		this.anoModelo = new SimpleStringProperty(anoModelo);
 		this.dataSupervisionado = new SimpleStringProperty(dataSupervisionado);
-		this.matServSupervisiona = new SimpleStringProperty(matServSupervisiona);
-		this.matServResponsavel = new SimpleStringProperty(matServResponsavel);
+		this.siapeServSupervisiona = new SimpleStringProperty(siapeServSupervisiona);
+		this.siapeServResponsavel = new SimpleStringProperty(siapeServResponsavel);
 	}
 	
 	/* Getters & Setters */
@@ -143,16 +143,16 @@ public class Veiculo {
 		return placa;
 	}
 
-	public void setRENAVAM(String RENAVAM) {
-		this.RENAVAM.set(RENAVAM);
+	public void setRenavam(String renavam) {
+		this.renavam.set(renavam);
 	}
 
-	public String getRENAVAM() {
-		return RENAVAM.get();
+	public String getRenavam() {
+		return renavam.get();
 	}
 
-	public StringProperty getRENAVAMProperty() {
-		return RENAVAM;
+	public StringProperty getRenavamProperty() {
+		return renavam;
 	}
 
 	public void setAutorizado(String autorizado) {
@@ -323,28 +323,28 @@ public class Veiculo {
 		return dataSupervisionado;
 	}
 
-	public void setMatServSupervisiona(String matServSupervisiona) {
-		this.matServSupervisiona.set(matServSupervisiona);
+	public void setSiapeServSupervisiona(String siapeServSupervisiona) {
+		this.siapeServSupervisiona.set(siapeServSupervisiona);
 	}
 
-	public String getMatServSupervisiona() {
-		return matServSupervisiona.get();
+	public String getSiapeServSupervisiona() {
+		return siapeServSupervisiona.get();
 	}
 
-	public StringProperty getMatServSupervisionaProperty() {
-		return matServSupervisiona;
+	public StringProperty getSiapeServSupervisionaProperty() {
+		return siapeServSupervisiona;
 	}
 
-	public void setMatServResponsavel(String matServResponsavel) {
-		this.matServResponsavel.set(matServResponsavel);
+	public void setSiapeServResponsavel(String siapeServResponsavel) {
+		this.siapeServResponsavel.set(siapeServResponsavel);
 	}
 
-	public String getMatServResponsavel() {
-		return matServResponsavel.get();
+	public String getSiapeServResponsavel() {
+		return siapeServResponsavel.get();
 	}
 
-	public StringProperty getMatServResponsavelProperty() {
-		return matServResponsavel;
+	public StringProperty getSiapeServResponsavelProperty() {
+		return siapeServResponsavel;
 	}
 
 }

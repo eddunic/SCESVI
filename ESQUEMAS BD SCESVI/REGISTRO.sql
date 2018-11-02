@@ -1,15 +1,14 @@
 CREATE TABLE REGISTRO(
 	numero INT (4) NOT NULL PRIMARY KEY,
     observacao VARCHAR(150),
-    codVeiculo VARCHAR(10) NOT NULL,
-    matServInicia VARCHAR(12) NOT NULL,
-    matServEncerra VARCHAR(12) NOT NULL,
-    matServGerencia VARCHAR(12) NOT NULL,
-    matServConsulta VARCHAR(12) NOT NULL,
+    codVeiculo VARCHAR(7) NOT NULL,
+    siapeServInicia CHAR(8) NOT NULL,
+    siapeServEncerra CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
     horaInicia VARCHAR(4) NOT NULL,
     dataInicia VARCHAR(8) NOT NULL,
     horaSaida VARCHAR(4),
-    dataSaida VARCHAR(4),
+    dataSaida VARCHAR(8),
     dataEntrada VARCHAR(8),
     horaEntrada VARCHAR(4),
     horaEncerra VARCHAR(4),
@@ -22,15 +21,12 @@ CREATE TABLE REGISTRO(
     FOREIGN KEY(codVeiculo) REFERENCES VEICULO(codigo)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-	FOREIGN KEY(matServInicia) REFERENCES SERVIDOR(matricula)
+	FOREIGN KEY(siapeServInicia) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-	FOREIGN KEY(matServEncerra) REFERENCES SERVIDOR(matricula)
+	FOREIGN KEY(siapeServEncerra) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-    FOREIGN KEY(matServGerencia) REFERENCES SERVIDOR(matricula)
-	ON DELETE CASCADE
-    ON UPDATE CASCADE,
-	FOREIGN KEY(matSerbConsulta) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE);

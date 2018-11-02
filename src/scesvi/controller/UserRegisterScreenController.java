@@ -21,6 +21,7 @@ import scesvi.model.dao.DAOContratado;
 import scesvi.model.dao.DAODepartamento;
 import scesvi.model.dao.DAOLotado;
 import scesvi.model.dao.DAOServidor;
+import scesvi.model.dao.DAOServidorSP;
 import scesvi.model.dao.DAOTelefone;
 
 public class UserRegisterScreenController {
@@ -100,7 +101,7 @@ public class UserRegisterScreenController {
 		servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), pfSenha.getText(),
 				dataNasc.getValue(), cnh.getText(), cbCategoria.getSelectionModel().getSelectedItem(),
 				(selectedRadioButton.getText().equals("Sim"))?"S":"N");
-		DAOServidor.insert(servidor);
+		DAOServidorSP.insert(servidor);
 		
 		tel = new Telefone(siape.getText(), telefone.getText());
 		DAOTelefone.insert(tel);
