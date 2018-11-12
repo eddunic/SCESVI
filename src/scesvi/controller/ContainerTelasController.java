@@ -10,10 +10,13 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ContainerTelasController {
 
@@ -27,11 +30,30 @@ public class ContainerTelasController {
 	private JFXDrawer jfxDrawerBar;
 
 	@FXML
-	private VBox menuLateral;
+	private static VBox menuLateral;
 
 	@FXML
 	private static VBox graficosFluxo;
-
+	
+	@FXML 
+	private static AnchorPane fxmlSolicitacoes;
+	
+	@FXML
+	private static Scene containerTelasScene;
+	
+	private static BorderPane fxmlContainerTelas;
+	
+	public static Scene getScene(Stage stage) {
+		try {
+			fxmlContainerTelas = FXMLLoader.load(ContainerTelasController.class.getResource("../view/ContainerTelas.fxml"));
+			containerTelasScene = new Scene(fxmlContainerTelas, stage.getWidth(), stage.getHeight());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return containerTelasScene;
+	}
+	
 	@FXML
 	public void initialize() throws IOException {
 		createComponents();
@@ -59,17 +81,31 @@ public class ContainerTelasController {
 	@FXML
 	private void createComponents() throws IOException {
 		//borderPaneContainer = new BorderPane();
+				
 		menuLateral = FXMLLoader.load(getClass().getResource("../view/BarraLateral.fxml"));
 		graficosFluxo = FXMLLoader.load(getClass().getResource("../view/GraficosFluxo.fxml"));
+		fxmlSolicitacoes = FXMLLoader.load(getClass().getResource("../view/Solicitacoes.fxml"));
 	}
 	
 	static void loadComponent(String fx) {
-		//borderPaneContainer.setCenter(null);
-
-		if (fx.equals("Menuinicial")) {
-			borderPaneContainer.setCenter(graficosFluxo);
-			
-			//borderPaneContainer.setBottom(graficosFluxo);
+		//fxmlContainerTelas.setCenter(null);
+		
+		switch (fx) {
+		case "Menuinicial":
+			fxmlContainerTelas.setCenter(graficosFluxo);
+			break;
+		case "Solicitacoes":
+			fxmlContainerTelas.setCenter(fxmlSolicitacoes);
+			break;
+//		case "Registros":
+//			break;
+//		case "Veiculos":
+//			break;
+//		case "Servidores":
+//			break;
+//		case "Relatorios":
+//			break;
+			//fxmlContainerTelas.setBottom(graficosFluxo);
 			//borderPaneContainer.setAlignment(graficosFluxo, Pos.CENTER);
 		}
 	}

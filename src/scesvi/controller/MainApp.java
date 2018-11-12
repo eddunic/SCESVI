@@ -16,7 +16,7 @@ public class MainApp extends Application {
 
 	private static Scene loginScene;
 	private static Scene userRegisterScene;
-	private static Scene containerTelasScene;
+	private static ContainerTelasController ctc;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -28,6 +28,8 @@ public class MainApp extends Application {
 		primaryStage.setScene(loginScene);
 
 		primaryStage.show();
+
+		ctc = new ContainerTelasController();
 	}
 
 	public void loaderScreens() throws IOException {
@@ -37,9 +39,6 @@ public class MainApp extends Application {
 
 		Parent fxmlUserRegister = FXMLLoader.load(getClass().getResource("../view/UserRegisterScreen.fxml"));
 		userRegisterScene = new Scene(fxmlUserRegister, stage.getWidth(), stage.getHeight());
-
-		Parent fxmlContainerTelas = FXMLLoader.load(getClass().getResource("../view/ContainerTelas.fxml"));
-		containerTelasScene = new Scene(fxmlContainerTelas, stage.getWidth(), stage.getHeight());
 	}
 
 	public static void changeScreen(String scr) {
@@ -51,7 +50,8 @@ public class MainApp extends Application {
 			stage.setScene(userRegisterScene);
 			break;
 		case "ContainerTelas":
-			stage.setScene(containerTelasScene);
+			Scene scene = ContainerTelasController.getScene(stage);
+			stage.setScene(scene);
 			break;
 		}
 	}

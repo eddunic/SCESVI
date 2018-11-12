@@ -8,33 +8,33 @@ public class BarraLateralController {
 	
     @FXML
     public void openMenuInicialAction(ActionEvent a) {
-    	System.out.println("AAAA");
+    	//System.out.println("AAAA");
     	ContainerTelasController.loadComponent("Menuinicial");
     }
 
     @FXML
     void openRegistros(MouseEvent event) {
-
+    	ContainerTelasController.loadComponent("Registros");
     }
 
     @FXML
     void openRelatorios(MouseEvent event) {
-
+    	ContainerTelasController.loadComponent("Relatorios");
     }
 
     @FXML
     void openServidores(MouseEvent event) {
-
+    	ContainerTelasController.loadComponent("Servidores");
     }
 
     @FXML
     void openSolicitacoes(MouseEvent event) {
-
+    	ContainerTelasController.loadComponent("Solicitacoes");
     }
 
     @FXML
     void openVeiculos(MouseEvent event) {
-
+    	ContainerTelasController.loadComponent("Veiculos");
     }
 //	@FXML
 //    private void btnOpenMenus(){
