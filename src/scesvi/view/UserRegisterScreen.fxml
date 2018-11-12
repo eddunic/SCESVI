@@ -135,7 +135,7 @@
                   <Font size="14.0" />
                </font>
             </JFXPasswordField>
-            <JFXPasswordField labelFloat="true" prefHeight="30.0" prefWidth="161.0" promptText="Repita a senha" unFocusColor="#9d9c9c">
+            <JFXPasswordField fx:id="sfSenha" labelFloat="true" prefHeight="30.0" prefWidth="161.0" promptText="Repita a senha" unFocusColor="#9d9c9c">
                <font>
                   <Font size="14.0" />
                </font>
