@@ -15,7 +15,7 @@
     -jfx-unfocus-color: #9d9c9c;
     -jfx-focus-color:  #4059a9;
 	-jfx-prompt-text-fill:  #4059a9;
-	-fx-font-size: 14px;
+	-fx-font-size: 14.0px;
     -jfx-label-float: true;
 }
 
@@ -25,7 +25,7 @@
 
 .fontVbox{
 	-fx-font-family: "tw cen mt";
-	-fx-font-size: 18px;
+	-fx-font-size: 18.0px;
 }
 
 .vBoxStyle{
@@ -43,4 +43,10 @@
 .button:hover{
 	-fx-background-color: #3196DE;
 	-fx-text-fill: white;
+}
+
+.tableViewStyle{
+	-fx-font-family: "tw cen mt";
+	-fx-font-size: 15.0px;
+	
 }

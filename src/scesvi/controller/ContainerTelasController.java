@@ -18,6 +18,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
+//https://www.youtube.com/watch?v=NQQOPy-jmhA CRUD
+//
 public class ContainerTelasController {
 
 	@FXML
@@ -97,14 +100,14 @@ public class ContainerTelasController {
 		case "Solicitacoes":
 			fxmlContainerTelas.setCenter(fxmlSolicitacoes);
 			break;
-//		case "Registros":
-//			break;
-//		case "Veiculos":
-//			break;
-//		case "Servidores":
-//			break;
-//		case "Relatorios":
-//			break;
+		case "Registros":
+			break;
+		case "Veiculos":
+			break;
+		case "Servidores":
+			break;
+		case "Relatorios":
+			break;
 			//fxmlContainerTelas.setBottom(graficosFluxo);
 			//borderPaneContainer.setAlignment(graficosFluxo, Pos.CENTER);
 		}

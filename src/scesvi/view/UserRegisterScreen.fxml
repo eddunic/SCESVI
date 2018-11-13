@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="471.0" prefWidth="800.0" styleClass="topPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.UserRegisterScreenController">
+<AnchorPane prefHeight="471.0" prefWidth="800.0" styleClass="topPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.UserRegisterScreenController">
    <children>
       <Label layoutX="356.0" layoutY="14.0" stylesheets="@style.css" text="Cadastro" textFill="WHITE">
          <font>
