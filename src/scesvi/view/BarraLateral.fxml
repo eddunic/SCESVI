@@ -3,12 +3,13 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="180.0" styleClass="vBoxStyle" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.BarraLateralController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="180.0" styleClass="vBoxStyle" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.BarraLateralController">
    <children>
       <ImageView fitHeight="90.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -35,16 +36,22 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton accessibleText="Material_Two" onMouseClicked="#openSolicitacoes" prefHeight="37.0" prefWidth="179.0" styleClass="fontVbox" stylesheets="@style.css" text="Solicitações" textFill="#767676">
+            <JFXButton accessibleText="Material_Two" onAction="#openSolicitacoes" onMouseClicked="#openSolicitacoes" prefHeight="37.0" prefWidth="179.0" styleClass="fontVbox" stylesheets="@style.css" text="Solicitações" textFill="#767676">
                <VBox.margin>
                   <Insets left="5.0" top="10.0" />
                </VBox.margin>
                <graphic>
                   <MaterialIconView fill="WHITE" glyphName="RECORD_VOICE_OVER" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton accessibleText="Material_Tree" onMouseClicked="#openRegistros" prefHeight="37.0" prefWidth="177.0" styleClass="fontVbox" stylesheets="@style.css" text="Registros" textFill="#767676">
+            <JFXButton accessibleText="Material_Tree" onAction="#openRegistros" onMouseClicked="#openRegistros" prefHeight="37.0" prefWidth="177.0" styleClass="fontVbox" stylesheets="@style.css" text="Registros" textFill="#767676">
                <VBox.margin>
                   <Insets left="5.0" top="10.0" />
                </VBox.margin>
@@ -54,8 +61,11 @@
                <padding>
                   <Insets right="20.0" />
                </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton onMouseClicked="#openVeiculos" prefHeight="37.0" prefWidth="179.0" styleClass="fontVbox" stylesheets="@style.css" text="Veículos" textFill="#767676">
+            <JFXButton onAction="#openVeiculos" onMouseClicked="#openVeiculos" prefHeight="37.0" prefWidth="179.0" styleClass="fontVbox" stylesheets="@style.css" text="Veículos" textFill="#767676">
                <VBox.margin>
                   <Insets left="5.0" top="10.0" />
                </VBox.margin>
@@ -65,8 +75,11 @@
                <padding>
                   <Insets right="25.0" />
                </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton onMouseClicked="#openServidores" prefHeight="37.0" prefWidth="186.0" styleClass="fontVbox" stylesheets="@style.css" text="Servidores" textFill="#767676">
+            <JFXButton onAction="#openServidores" onMouseClicked="#openServidores" prefHeight="37.0" prefWidth="186.0" styleClass="fontVbox" stylesheets="@style.css" text="Servidores" textFill="#767676">
                <VBox.margin>
                   <Insets left="5.0" top="10.0" />
                </VBox.margin>
@@ -76,8 +89,11 @@
                <padding>
                   <Insets right="10.0" />
                </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton onMouseClicked="#openRelatorios" prefHeight="37.0" prefWidth="180.0" styleClass="fontVbox" stylesheets="@style.css" text="Relatórios" textFill="#767676">
+            <JFXButton onAction="#openRelatorios" onMouseClicked="#openRelatorios" prefHeight="37.0" prefWidth="180.0" styleClass="fontVbox" stylesheets="@style.css" text="Relatórios" textFill="#767676">
                <VBox.margin>
                   <Insets left="5.0" top="10.0" />
                </VBox.margin>
@@ -87,6 +103,9 @@
                <padding>
                   <Insets right="15.0" />
                </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </VBox>

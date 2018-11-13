@@ -3,11 +3,10 @@ package scesvi.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import scesvi.model.Departamento;
 
-public class DAODepartamento extends DAO {
-
+public class DAODepartamentoSP extends DAO {
+	
 	private static Departamento departamento;
 	private static int codDep;
 	
@@ -16,7 +15,7 @@ public class DAODepartamento extends DAO {
 	}
 	
 	public static int searchDepart(String departamento) {
-		String query = "SELECT codigo FROM DEPARTAMENTO WHERE sigla = " + "'" + departamento + "'";
+		String query = "CALL sp_SearchDepart(" + departamento + ")";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultset = pst.executeQuery(query);
 			while(resultset.next()) {

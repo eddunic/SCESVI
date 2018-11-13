@@ -1,7 +1,7 @@
 CREATE TABLE SOLICITACAO(
 	numero INT(4) NOT NULL PRIMARY KEY,
     veiculoRequisitado VARCHAR(50) NOT NULL,
-    dataVeiculoConfirmado VARCHAR(8) NULL,
+    dataVeiculoConfirmado VARCHAR(8) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8) NOT NULL,
     horaCriacao VARCHAR(4) NOT NULL,
@@ -12,13 +12,13 @@ CREATE TABLE SOLICITACAO(
     qtdePassageiros SMALLINT(2) NOT NULL,
     tipo CHAR NOT NULL,
     finalidade VARCHAR(150) NOT NULL,
-    matServAutoriza VARCHAR(12) NOT NULL,
-    matServRealiza VARCHAR(12) NOT NULL,
-    codVeiculoAtende VARCHAR(12) NOT NULL,
-    FOREIGN KEY(matServAutoriza) REFERENCES SERVIDOR(matricula)
+    siapeServAutoriza CHAR(8) NOT NULL,
+    siapeServRealiza CHAR(8) NOT NULL,
+    codVeiculoAtende VARCHAR(7) NOT NULL,
+    FOREIGN KEY(siapeServAutoriza) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-    FOREIGN KEY(matServRealiza) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServRealiza) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     

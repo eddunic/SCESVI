@@ -10,49 +10,49 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainApp extends Application{
-	
+public class MainApp extends Application {
+
 	private static Stage stage;
-	
+
 	private static Scene loginScene;
 	private static Scene userRegisterScene;
-	private static Scene containerTelasScene;
-	
+	private static ContainerTelasController ctc;
+
 	@Override
-	public void start(Stage primaryStage) throws Exception {	
+	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-		
+
 		primaryStage.setTitle("Login");
-		
-		loaderScreens();		
+
+		loaderScreens();
 		primaryStage.setScene(loginScene);
-		
+
 		primaryStage.show();
+
+		ctc = new ContainerTelasController();
 	}
-	
+
 	public void loaderScreens() throws IOException {
-		
-		Parent fxmlLogin = FXMLLoader.load(getClass().getResource("../view/LoginScreen.fxml"));	
+
+		Parent fxmlLogin = FXMLLoader.load(getClass().getResource("../view/LoginScreen.fxml"));
 		loginScene = new Scene(fxmlLogin, stage.getWidth(), stage.getHeight());
-		
-		Parent fxmlUserRegister = FXMLLoader.load(getClass().getResource("../view/UserRegisterScreen.fxml"));		
+
+		Parent fxmlUserRegister = FXMLLoader.load(getClass().getResource("../view/UserRegisterScreen.fxml"));
 		userRegisterScene = new Scene(fxmlUserRegister, stage.getWidth(), stage.getHeight());
-		
-		Parent fxmlContainerTelas = FXMLLoader.load(getClass().getResource("../view/ContainerTelas.fxml"));	
-		containerTelasScene = new Scene(fxmlContainerTelas, stage.getWidth(), stage.getHeight());
 	}
-	
+
 	public static void changeScreen(String scr) {
-		switch(scr) {
-			case "Login":
-				stage.setScene(loginScene);
-				break;
-			case "UserRegister":
-				stage.setScene(userRegisterScene);
-				break;
-			case "ContainerTelas":
-				stage.setScene(containerTelasScene);
-				break;
+		switch (scr) {
+		case "Login":
+			stage.setScene(loginScene);
+			break;
+		case "UserRegister":
+			stage.setScene(userRegisterScene);
+			break;
+		case "ContainerTelas":
+			Scene scene = ContainerTelasController.getScene(stage);
+			stage.setScene(scene);
+			break;
 		}
 	}
 
@@ -61,4 +61,3 @@ public class MainApp extends Application{
 	}
 
 }
-

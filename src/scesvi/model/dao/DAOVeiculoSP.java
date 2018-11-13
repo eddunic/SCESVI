@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import scesvi.model.Veiculo;
 
-public class DAOVeiculo extends DAO {
-	
+public class DAOVeiculoSP extends DAO {
+
 	private static Veiculo veiculo;
 	
 	public static Veiculo getVeiculo() {
@@ -14,7 +14,7 @@ public class DAOVeiculo extends DAO {
 	}
 	
 	public static void insert(Veiculo veiculo) {
-		String query = "INSERT INTO VEICULO VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "CALL sp_InsertVeiculo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, veiculo.getCodigo());
 			pst.setString(2, veiculo.getTipo());

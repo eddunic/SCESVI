@@ -1,5 +1,5 @@
 CREATE TABLE LOTADO(
-	siapeServ VARCHAR(12) NOT NULL,
+	siapeServ CHAR(8) NOT NULL,
     codDep SMALLINT(2) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8),

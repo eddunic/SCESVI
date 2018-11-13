@@ -10,9 +10,9 @@ public class Registro {
 	private final IntegerProperty numero;
 	private final StringProperty observacao;
 	private final StringProperty codVeiculo;
-	private final StringProperty matServInicia;
-	private final StringProperty matServEncerra;
-	private final StringProperty matServResponsavel;
+	private final StringProperty siapeServInicia;
+	private final StringProperty siapeServEncerra;
+	private final StringProperty siapeServResponsavel;
 	private final StringProperty horaInicia;
 	private final StringProperty dataInicia;
 	private final StringProperty horaSaida;
@@ -34,9 +34,9 @@ public class Registro {
 		this.numero = new SimpleIntegerProperty(0);
 		this.observacao = new SimpleStringProperty("");
 		this.codVeiculo = new SimpleStringProperty("");
-		this.matServInicia = new SimpleStringProperty("");
-		this.matServEncerra = new SimpleStringProperty("");
-		this.matServResponsavel = new SimpleStringProperty("");
+		this.siapeServInicia = new SimpleStringProperty("");
+		this.siapeServEncerra = new SimpleStringProperty("");
+		this.siapeServResponsavel = new SimpleStringProperty("");
 		this.horaInicia = new SimpleStringProperty("");
 		this.dataInicia = new SimpleStringProperty("");
 		this.dataSaida = new SimpleStringProperty("");
@@ -58,9 +58,9 @@ public class Registro {
 	 * @param numero
 	 * @param observacao
 	 * @param codVeiculo
-	 * @param matServInicia
-	 * @param matServEncerra
-	 * @param matServResponsavel
+	 * @param siapeServInicia
+	 * @param siapeServEncerra
+	 * @param siapeServResponsavel
 	 * @param horaInicia
 	 * @param dataInicia
 	 * @param dataSaida
@@ -75,16 +75,16 @@ public class Registro {
 	 * @param kmPercorridos
 	 * @param dataSupervisionado
 	 */
-	public Registro(int numero, String observacao, String codVeiculo, String matServInicia, String matServEncerra,
-			String matServResponsavel, String horaInicia, String dataInicia, String dataSaida,
+	public Registro(int numero, String observacao, String codVeiculo, String siapeServInicia, String siapeServEncerra,
+			String siapeServResponsavel, String horaInicia, String dataInicia, String dataSaida,
 			String horaSaida, String dataEntrada, String horaEntrada, String horaEncerra, String dataEncerra,
 			String descricao, int kmInicial, int kmFinal, int kmPercorridos, String dataSupervisionado) {
 		this.numero = new SimpleIntegerProperty(numero);
 		this.observacao = new SimpleStringProperty(observacao);
 		this.codVeiculo = new SimpleStringProperty(codVeiculo);
-		this.matServInicia = new SimpleStringProperty(matServInicia);
-		this.matServEncerra = new SimpleStringProperty(matServEncerra);
-		this.matServResponsavel = new SimpleStringProperty(matServResponsavel);
+		this.siapeServInicia = new SimpleStringProperty(siapeServInicia);
+		this.siapeServEncerra = new SimpleStringProperty(siapeServEncerra);
+		this.siapeServResponsavel = new SimpleStringProperty(siapeServResponsavel);
 		this.horaInicia = new SimpleStringProperty(horaInicia);
 		this.dataInicia = new SimpleStringProperty(dataInicia);
 		this.dataSaida = new SimpleStringProperty(dataSaida);
@@ -137,40 +137,40 @@ public class Registro {
 		return codVeiculo;
 	}
 
-	public void setMatServInicia(String matServInicia) {
-		this.matServInicia.set(matServInicia);
+	public void setSiapeServInicia(String siapeServInicia) {
+		this.siapeServInicia.set(siapeServInicia);
 	}
 
-	public String getMatServInicia() {
-		return matServInicia.get();
+	public String getSiapeServInicia() {
+		return siapeServInicia.get();
 	}
 
-	public StringProperty getMatServIniciaProperty() {
-		return matServInicia;
+	public StringProperty getSiapeServIniciaProperty() {
+		return siapeServInicia;
 	}
 
-	public void setMatServEncerra(String matServEncerra) {
-		this.matServEncerra.set(matServEncerra);
+	public void setSiapeServEncerra(String siapeServEncerra) {
+		this.siapeServEncerra.set(siapeServEncerra);
 	}
 
-	public String getMatServEncerra() {
-		return matServEncerra.get();
+	public String getSiapeServEncerra() {
+		return siapeServEncerra.get();
 	}
 
-	public StringProperty getMatServEncerraProperty() {
-		return matServEncerra;
+	public StringProperty getSiapeServEncerraProperty() {
+		return siapeServEncerra;
 	}
 
-	public void setMatServResponsavel(String matServResponsavel) {
-		this.matServResponsavel.set(matServResponsavel);
+	public void setSiapeServResponsavel(String siapeServResponsavel) {
+		this.siapeServResponsavel.set(siapeServResponsavel);
 	}
 
-	public String getMatServResponsavel() {
-		return matServResponsavel.get();
+	public String getSiapeServResponsavel() {
+		return siapeServResponsavel.get();
 	}
 
-	public StringProperty getMatServResponsavelProperty() {
-		return matServResponsavel;
+	public StringProperty getSiapeServResponsavelProperty() {
+		return siapeServResponsavel;
 	}
 
 	public void setHoraInicia(String horaInicia) {

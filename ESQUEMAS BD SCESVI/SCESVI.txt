@@ -45,20 +45,20 @@ DROP TABLE CARGO;
 DROP TABLE CONTRATADO;
 
 CREATE TABLE SERVIDOR(
-    siape VARCHAR(11) NOT NULL PRIMARY KEY,
+    siape CHAR(8) NOT NULL PRIMARY KEY,
     cpf CHAR(11) NOT NULL,
     nome VARCHAR(50) NOT NULL,
     senha VARCHAR(50) NOT NULL,
     dataNasc VARCHAR(8) NOT NULL,
-    cnh VARCHAR(11),
+    cnh CHAR(11),
     categoria CHAR,
     autorizadoVeicInstitucional CHAR NOT NULL);
 
 CREATE TABLE TELEFONE(
-	siapeServ VARCHAR(12) NOT NULL,
+	siapeServ CHAR(8) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     PRIMARY KEY(siapeServ, telefone),
-    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
 
@@ -66,7 +66,7 @@ CREATE TABLE VEICULO(
     codigo VARCHAR(7) NOT NULL PRIMARY KEY,
     tipo VARCHAR(10) NOT NULL,
     placa VARCHAR(7) NOT NULL,
-	RENAVAM VARCHAR(30) NOT NULL UNIQUE,
+	renavam VARCHAR(30) NOT NULL UNIQUE,
     autorizado CHAR,
     categoria CHAR,
     institucional CHAR,
@@ -81,12 +81,12 @@ CREATE TABLE VEICULO(
     anoFabricacao VARCHAR(4) NOT NULL,
     anoModelo VARCHAR(4) NOT NULL,
     dataSupervisionado VARCHAR(8),
-    matServSupervisiona VARCHAR(12) NOT NULL,
-    matServResponsavel VARCHAR(12) NOT NULL,
-	FOREIGN KEY(matServSupervisiona) REFERENCES SERVIDOR(matricula)
+    siapeServSupervisiona CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
+	FOREIGN KEY(siapeServSupervisiona) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-	FOREIGN KEY(matServResponsavel) REFERENCES SERVIDOR(matricula)
+	FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE);
 
@@ -104,28 +104,27 @@ CREATE TABLE SOLICITACAO(
     qtdePassageiros SMALLINT(2) NOT NULL,
     tipo CHAR NOT NULL,
     finalidade VARCHAR(150) NOT NULL,
-    matServAutoriza VARCHAR(12) NOT NULL,
-    matServRealiza VARCHAR(12) NOT NULL,
-    codVeiculoAtende VARCHAR(12) NOT NULL,
-    FOREIGN KEY(matServAutoriza) REFERENCES SERVIDOR(matricula)
+    siapeServAutoriza CHAR(8) NOT NULL,
+    siapeServRealiza CHAR(8) NOT NULL,
+    codVeiculoAtende VARCHAR(7) NOT NULL,
+    FOREIGN KEY(siapeServAutoriza) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-    FOREIGN KEY(matServRealiza) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServRealiza) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     
 CREATE TABLE REGISTRO(
 	numero INT (4) NOT NULL PRIMARY KEY,
     observacao VARCHAR(150),
-    codVeiculo VARCHAR(10) NOT NULL,
-    matServInicia VARCHAR(12) NOT NULL,
-    matServEncerra VARCHAR(12) NOT NULL,
-    matServGerencia VARCHAR(12) NOT NULL,
-    matServConsulta VARCHAR(12) NOT NULL,
+    codVeiculo VARCHAR(7) NOT NULL,
+    siapeServInicia CHAR(8) NOT NULL,
+    siapeServEncerra CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
     horaInicia VARCHAR(4) NOT NULL,
     dataInicia VARCHAR(8) NOT NULL,
     horaSaida VARCHAR(4),
-    dataSaida VARCHAR(4),
+    dataSaida VARCHAR(8),
     dataEntrada VARCHAR(8),
     horaEntrada VARCHAR(4),
     horaEncerra VARCHAR(4),
@@ -138,26 +137,23 @@ CREATE TABLE REGISTRO(
     FOREIGN KEY(codVeiculo) REFERENCES VEICULO(codigo)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-	FOREIGN KEY(matServInicia) REFERENCES SERVIDOR(matricula)
+	FOREIGN KEY(siapeServInicia) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-	FOREIGN KEY(matServEncerra) REFERENCES SERVIDOR(matricula)
+	FOREIGN KEY(siapeServEncerra) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-    FOREIGN KEY(matServGerencia) REFERENCES SERVIDOR(matricula)
-	ON DELETE CASCADE
-    ON UPDATE CASCADE,
-	FOREIGN KEY(matSerbConsulta) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE);
     
-CREATE TABLE HISTORICOPERCURSO(
-	numeroRegistro INT(4) NOT NULL,
-    histPerc VARCHAR(300) NOT NULL,
-    PRIMARY KEY(numeroRegistro, histPerc),
-    FOREIGN KEY(numeroRegistro) REFERENCES REGISTRO(numero)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
+-- CREATE TABLE HISTORICOPERCURSO(
+--	  numeroRegistro INT(4) NOT NULL,
+--    histPerc VARCHAR(300) NOT NULL,
+--    PRIMARY KEY(numeroRegistro, histPerc),
+--    FOREIGN KEY(numeroRegistro) REFERENCES REGISTRO(numero)
+--    ON DELETE CASCADE
+--    ON UPDATE CASCADE);
     
 CREATE TABLE DEPARTAMENTO(
 	codigo SMALLINT NOT NULL PRIMARY KEY,
@@ -165,7 +161,7 @@ CREATE TABLE DEPARTAMENTO(
     sigla VARCHAR(10) NOT NULL);
     
 CREATE TABLE LOTADO(
-	siapeServ VARCHAR(12) NOT NULL,
+	siapeServ CHAR(8) NOT NULL,
     codDep SMALLINT(2) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8),
@@ -182,7 +178,7 @@ CREATE TABLE CARGO(
     titulacao VARCHAR(20) NOT NULL);
     
 CREATE TABLE CONTRATADO(
-	siapeServ VARCHAR(12) NOT NULL,
+	siapeServ CHAR(8) NOT NULL,
     codCargo SMALLINT(2) NOT NULL,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8),

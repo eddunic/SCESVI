@@ -6,8 +6,13 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.layout.VBox;
 
 public class GraficosFluxoController {
+
+    @FXML
+    private VBox vbGraf;
+	
 	@FXML
 	private LineChart<String, Number> lineFluxo;
 

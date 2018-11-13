@@ -2,7 +2,7 @@ CREATE TABLE VEICULO(
     codigo VARCHAR(7) NOT NULL PRIMARY KEY,
     tipo VARCHAR(10) NOT NULL,
     placa VARCHAR(7) NOT NULL,
-	RENAVAM VARCHAR(30) NOT NULL UNIQUE,
+	renavam VARCHAR(30) NOT NULL UNIQUE,
     autorizado CHAR,
     categoria CHAR,
     institucional CHAR,
@@ -17,12 +17,12 @@ CREATE TABLE VEICULO(
     anoFabricacao VARCHAR(4) NOT NULL,
     anoModelo VARCHAR(4) NOT NULL,
     dataSupervisionado VARCHAR(8),
-    matServSupervisiona VARCHAR(12) NOT NULL,
-    matServResponsavel VARCHAR(12) NOT NULL,
-	FOREIGN KEY(matServSupervisiona) REFERENCES SERVIDOR(matricula)
+    siapeServSupervisiona CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
+	FOREIGN KEY(siapeServSupervisiona) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
-	FOREIGN KEY(matServResponsavel) REFERENCES SERVIDOR(matricula)
+	FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE);
 

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import scesvi.model.Contratado;
 
-public class DAOContratado extends DAO {
+public class DAOContratadoSP extends DAO {
 	
 	private static Contratado contratado;
 	
@@ -14,7 +14,7 @@ public class DAOContratado extends DAO {
 	}
 	
 	public static void insert(Contratado contratado) {
-		String query = "INSERT INTO CONTRATADO VALUES(?,?,?,?)";
+		String query = "CALL sp_InsertContratado(?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, contratado.getSiapeServ());
 			pst.setString(2, String.valueOf(contratado.getCodCargo()));
@@ -28,5 +28,5 @@ public class DAOContratado extends DAO {
 			System.out.println("Erro: " + e);
 		}
 	}
-	
+
 }

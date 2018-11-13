@@ -1,8 +1,8 @@
 CREATE TABLE TELEFONE(
-	siapeServ VARCHAR(12) NOT NULL,
+	siapeServ CHAR(8) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     PRIMARY KEY(siapeServ, telefone),
-    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     
