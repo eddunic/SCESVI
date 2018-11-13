@@ -14,7 +14,6 @@ CREATE TABLE SOLICITACAO(
     finalidade VARCHAR(150) NOT NULL,
     siapeServAutoriza CHAR(8) NOT NULL,
     siapeServRealiza CHAR(8) NOT NULL,
-    codVeiculoAtende VARCHAR(7) NOT NULL,
     FOREIGN KEY(siapeServAutoriza) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,

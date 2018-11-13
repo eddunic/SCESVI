@@ -14,7 +14,7 @@ public class DAOSolicitacaoSP extends DAO {
 	}
 	
 	public static void insert(Solicitacao solicitacao) {
-		String query = "CALL sp_InsertSolicitacao(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "CALL sp_InsertSolicitacao(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, String.valueOf(solicitacao.getNumero()));
 			pst.setString(2, String.valueOf(solicitacao.getVeiculoRequisitado()));
@@ -31,7 +31,6 @@ public class DAOSolicitacaoSP extends DAO {
 			pst.setString(13, solicitacao.getFinalidade());
 			pst.setString(14, solicitacao.getSiapeServAutoriza());
 			pst.setString(15, solicitacao.getSiapeServRealiza());
-			pst.setString(16, solicitacao.getCodVeiculoAtende());
 
 			pst.executeUpdate();
 			pst.close();

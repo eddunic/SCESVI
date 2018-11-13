@@ -22,7 +22,6 @@ public class Solicitacao {
 	private final StringProperty finalidade;
 	private final StringProperty siapeServAutoriza;
 	private final StringProperty siapeServRealiza;
-	private final StringProperty codVeiculoAtende;
 
 	/**
 	 * Construtor vazio.
@@ -43,7 +42,6 @@ public class Solicitacao {
 		this.finalidade = new SimpleStringProperty("");
 		this.siapeServAutoriza = new SimpleStringProperty("");
 		this.siapeServRealiza = new SimpleStringProperty("");
-		this.codVeiculoAtende = new SimpleStringProperty("");
 	}
 	
 	/**
@@ -64,12 +62,10 @@ public class Solicitacao {
 	 * @param finalidade
 	 * @param siapeServAutoriza
 	 * @param siapeServRealiza
-	 * @param codVeiculoAtende
 	 */
 	public Solicitacao(int numero, int veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
 			String horaCriacao, String dataCriacao, String localViagem, String horaAutorizado, String dataAutorizado,
-			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza,
-			String codVeiculoAtende) {
+			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza) {
 		this.numero = new SimpleIntegerProperty(numero);;
 		this.veiculoRequisitado = new SimpleIntegerProperty(veiculoRequisitado);
 		this.dataVeiculoConfirmado = new SimpleStringProperty(dataVeiculoConfirmado);
@@ -85,7 +81,6 @@ public class Solicitacao {
 		this.finalidade = new SimpleStringProperty(finalidade);
 		this.siapeServAutoriza = new SimpleStringProperty(siapeServAutoriza);
 		this.siapeServRealiza = new SimpleStringProperty(siapeServRealiza);
-		this.codVeiculoAtende = new SimpleStringProperty(codVeiculoAtende);
 	}
 	
 	/* Getters & Setters */
@@ -268,19 +263,5 @@ public class Solicitacao {
 	public StringProperty getSiapeServRealizaProperty() {
 		return siapeServRealiza;
 	}
-
-	public void setCodVeiculoAtende(String codVeiculoAtende) {
-		this.codVeiculoAtende.set(codVeiculoAtende);
-	}
-
-	public String getCodVeiculoAtende() {
-		return codVeiculoAtende.get();
-	}
-
-	public StringProperty getCodVeiculoAtendeProperty() {
-		return codVeiculoAtende;
-	}
-
-
 	
 }

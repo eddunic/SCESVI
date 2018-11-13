@@ -13,27 +13,27 @@ public class BarraLateralController {
     }
 
     @FXML
-    void openRegistros(MouseEvent event) {
+    void openRegistros(ActionEvent event) {
     	ContainerTelasController.loadComponent("Registros");
     }
 
     @FXML
-    void openRelatorios(MouseEvent event) {
+    void openRelatorios(ActionEvent event) {
     	ContainerTelasController.loadComponent("Relatorios");
     }
 
     @FXML
-    void openServidores(MouseEvent event) {
+    void openServidores(ActionEvent event) {
     	ContainerTelasController.loadComponent("Servidores");
     }
 
     @FXML
-    void openSolicitacoes(MouseEvent event) {
+    void openSolicitacoes(ActionEvent event) {
     	ContainerTelasController.loadComponent("Solicitacoes");
     }
 
     @FXML
-    void openVeiculos(MouseEvent event) {
+    void openVeiculos(ActionEvent event) {
     	ContainerTelasController.loadComponent("Veiculos");
     }
 //	@FXML

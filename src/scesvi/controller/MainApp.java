@@ -28,6 +28,7 @@ public class MainApp extends Application {
 		primaryStage.setScene(loginScene);
 
 		primaryStage.show();
+		//primaryStage.setMaximized(true);
 
 		ctc = new ContainerTelasController();
 	}

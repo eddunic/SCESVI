@@ -1,20 +1,27 @@
 package scesvi.model.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import scesvi.model.Solicitacao;
 
 public class DAOSolicitacao extends DAO {
 	
 	private static Solicitacao solicitacao;
 	
+	@FXML
+	private static ObservableList<Solicitacao> listSolicit;
+	
 	public static Solicitacao getSolicitacao() {
 		return solicitacao;
 	}
 	
 	public static void insert(Solicitacao solicitacao) {
-		String query = "INSERT INTO SOLICITACAO VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO SOLICITACAO VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, String.valueOf(solicitacao.getNumero()));
 			pst.setString(2, String.valueOf(solicitacao.getVeiculoRequisitado()));
@@ -31,7 +38,6 @@ public class DAOSolicitacao extends DAO {
 			pst.setString(13, solicitacao.getFinalidade());
 			pst.setString(14, solicitacao.getSiapeServAutoriza());
 			pst.setString(15, solicitacao.getSiapeServRealiza());
-			pst.setString(16, solicitacao.getCodVeiculoAtende());
 
 			pst.executeUpdate();
 			pst.close();
@@ -39,6 +45,25 @@ public class DAOSolicitacao extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+	}
+	
+	public static ObservableList<Solicitacao> list() {
+		listSolicit = FXCollections.observableArrayList();
+		String query = "SELECT numero FROM SOLICITACAO";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultset = pst.executeQuery(query);
+			while(resultset.next()) {
+				Solicitacao solicit = new Solicitacao();
+				solicit.setNumero(resultset.getInt("numero"));
+				listSolicit.add(solicit);
+			}
+			
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return listSolicit;
 	}
 	
 }
