@@ -29,12 +29,12 @@ CREATE TABLE DEPARTAMENTO(
     
 INSERT INTO DEPARTAMENTO 
 VALUES
-(1, 'Departamento AcadÃªmico de InformaÃ§Ã£o e ComunicaÃ§Ã£o', 'DAIC'),
-(2, 'Departamento AcadÃªmico de Infraestrutura', 'DAINFRA'),
-(3, 'Departamento de QuÃ­mica e Alimentos', 'DQA'),
-(4, 'Departamento de alguma coisa que eu nÃ£o sei', 'DGP'),
+(1, 'Departamento Acadêmico de Informação e Comunicação', 'DAIC'),
+(2, 'Departamento Acadêmico de Infraestrutura', 'DAINFRA'),
+(3, 'Departamento de Química e Alimentos', 'DQA'),
+(4, 'Departamento de alguma coisa que eu não sei', 'DGP'),
 (5, 'Departamento de Processos Industriais','DPI'),
-(6, 'Departamento de Tecnologia da InformaÃ§Ã£o', 'DTI');
+(6, 'Departamento de Tecnologia da Informação', 'DTI');
 
 CREATE TABLE LOTADO(
 	siapeServ CHAR(8) NOT NULL,
@@ -72,6 +72,32 @@ CREATE TABLE CONTRATADO(
     FOREIGN KEY(codCargo) REFERENCES CARGO(codigo)
 	ON DELETE CASCADE
     ON UPDATE CASCADE);
+    
+CREATE TABLE SOLICITACAO(
+	numero INT(4) NOT NULL PRIMARY KEY,
+    veiculoRequisitado VARCHAR(50) NOT NULL,
+    dataVeiculoConfirmado VARCHAR(8),
+    dataInicio VARCHAR(8) NOT NULL,
+    dataFim VARCHAR(8) NOT NULL,
+    horaCriacao VARCHAR(4) NOT NULL,
+    dataCriacao VARCHAR(8) NOT NULL,
+    localViagem VARCHAR(50) NOT NULL,
+    horaAutorizado VARCHAR(4),
+    dataAutorizado VARCHAR(8),
+    qtdePassageiros SMALLINT(2) NOT NULL,
+    tipo CHAR NOT NULL,
+    finalidade VARCHAR(150) NOT NULL,
+    siapeServAutoriza CHAR(8) NOT NULL,
+    siapeServRealiza CHAR(8) NOT NULL,
+    FOREIGN KEY(siapeServAutoriza) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY(siapeServRealiza) REFERENCES SERVIDOR(siape)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+INSERT INTO SOLICITACAO VALUES
+(2017, 'onyx', '111111', '111111', '121212', '1133', '222222', 'seila', '1111', '201020', 20, 'v', 'bla', '321', '321');
     
 SELECT * FROM SERVIDOR;
     
@@ -193,11 +219,11 @@ BEGIN
 END $$
 DELIMITER ;
 
--- SolicitaÃ§Ã£o
+-- Solicitação
 
 DELIMITER $$
 USE SCESVI $$
-DROP PROCEDURE IF EXISTS sp_insertSolicitacao $$
+DROP PROCEDURE IF EXISTS sp_InsertSolicitacao $$
 CREATE PROCEDURE sp_insertSolicitacao (IN numero INT, IN veiculoRequisitado VARCHAR(50), 
 IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
 IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
@@ -208,6 +234,15 @@ BEGIN
     INSERT INTO SOLICITACAO VALUES(numero, veiculoRequisitado, dataVeiculoConfirmado, 
     dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, 
     qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza, codVeiculoAtende);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_ListSolicit $$
+CREATE PROCEDURE sp_ListSolicit ()
+BEGIN
+    SELECT numero, tipo, veiculoRequisitado, dataCriacao, dataAutorizado FROM SOLICITACAO;
 END $$
 DELIMITER ;
 
@@ -263,6 +298,12 @@ BEGIN
     siapeServSupervisiona, siapeServResponsavel);
 END $$
 DELIMITER 
+
+
+
+
+
+
 
 
 

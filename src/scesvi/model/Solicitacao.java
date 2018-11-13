@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 public class Solicitacao {
 
 	private final IntegerProperty numero;
-	private final IntegerProperty veiculoRequisitado;
+	private final StringProperty veiculoRequisitado;
 	private final StringProperty dataVeiculoConfirmado;
 	private final StringProperty dataInicio;
 	private final StringProperty dataFim;
@@ -22,14 +22,13 @@ public class Solicitacao {
 	private final StringProperty finalidade;
 	private final StringProperty siapeServAutoriza;
 	private final StringProperty siapeServRealiza;
-	private final StringProperty codVeiculoAtende;
 
 	/**
 	 * Construtor vazio.
 	 */
 	public Solicitacao() {
 		this.numero = new SimpleIntegerProperty(0);
-		this.veiculoRequisitado = new SimpleIntegerProperty(0);
+		this.veiculoRequisitado = new SimpleStringProperty("");
 		this.dataVeiculoConfirmado = new SimpleStringProperty("");
 		this.dataInicio = new SimpleStringProperty("");
 		this.dataFim = new SimpleStringProperty("");
@@ -43,7 +42,6 @@ public class Solicitacao {
 		this.finalidade = new SimpleStringProperty("");
 		this.siapeServAutoriza = new SimpleStringProperty("");
 		this.siapeServRealiza = new SimpleStringProperty("");
-		this.codVeiculoAtende = new SimpleStringProperty("");
 	}
 	
 	/**
@@ -64,14 +62,12 @@ public class Solicitacao {
 	 * @param finalidade
 	 * @param siapeServAutoriza
 	 * @param siapeServRealiza
-	 * @param codVeiculoAtende
 	 */
-	public Solicitacao(int numero, int veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
+	public Solicitacao(int numero, String veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
 			String horaCriacao, String dataCriacao, String localViagem, String horaAutorizado, String dataAutorizado,
-			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza,
-			String codVeiculoAtende) {
+			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza) {
 		this.numero = new SimpleIntegerProperty(numero);;
-		this.veiculoRequisitado = new SimpleIntegerProperty(veiculoRequisitado);
+		this.veiculoRequisitado = new SimpleStringProperty(veiculoRequisitado);
 		this.dataVeiculoConfirmado = new SimpleStringProperty(dataVeiculoConfirmado);
 		this.dataInicio = new SimpleStringProperty(dataInicio);
 		this.dataFim = new SimpleStringProperty(dataFim);
@@ -85,7 +81,6 @@ public class Solicitacao {
 		this.finalidade = new SimpleStringProperty(finalidade);
 		this.siapeServAutoriza = new SimpleStringProperty(siapeServAutoriza);
 		this.siapeServRealiza = new SimpleStringProperty(siapeServRealiza);
-		this.codVeiculoAtende = new SimpleStringProperty(codVeiculoAtende);
 	}
 	
 	/* Getters & Setters */
@@ -101,15 +96,15 @@ public class Solicitacao {
 		return numero;
 	}
 	
-	public void setVeiculoRequisitado(int veiculoRequisitado) {
+	public void setVeiculoRequisitado(String veiculoRequisitado) {
 		this.veiculoRequisitado.set(veiculoRequisitado);
 	}
 
-	public int getVeiculoRequisitado() {
+	public String getVeiculoRequisitado() {
 		return veiculoRequisitado.get();
 	}
 
-	public IntegerProperty getVeiculoRequisitadoProperty() {
+	public StringProperty getVeiculoRequisitadoProperty() {
 		return veiculoRequisitado;
 	}
 
@@ -268,19 +263,5 @@ public class Solicitacao {
 	public StringProperty getSiapeServRealizaProperty() {
 		return siapeServRealiza;
 	}
-
-	public void setCodVeiculoAtende(String codVeiculoAtende) {
-		this.codVeiculoAtende.set(codVeiculoAtende);
-	}
-
-	public String getCodVeiculoAtende() {
-		return codVeiculoAtende.get();
-	}
-
-	public StringProperty getCodVeiculoAtendeProperty() {
-		return codVeiculoAtende;
-	}
-
-
 	
 }

@@ -9,6 +9,7 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,7 +40,7 @@ public class ContainerTelasController {
 	private static VBox graficosFluxo;
 	
 	@FXML 
-	private static AnchorPane fxmlSolicitacoes;
+	private static BorderPane fxmlSolicitacoes;
 	
 	@FXML
 	private static Scene containerTelasScene;
@@ -73,8 +74,11 @@ public class ContainerTelasController {
 			burgerTask2.play();
 
 			if (jfxDrawerBar.isOpened()) {
+				jfxDrawerBar.setManaged(false);
 				jfxDrawerBar.close();
+				//JFXDrawer.setMargin(menuLateral, new Insets(0, menuLateral.translateXProperty().doubleValue(), 0, 0));
 			} else {
+				jfxDrawerBar.setManaged(true);
 				jfxDrawerBar.open();
 			}
 
