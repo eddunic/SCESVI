@@ -1,7 +1,7 @@
 CREATE TABLE SOLICITACAO(
 	numero INT(4) NOT NULL PRIMARY KEY,
     veiculoRequisitado VARCHAR(50) NOT NULL,
-    dataVeiculoConfirmado VARCHAR(8) NOT NULL,
+    dataVeiculoConfirmado VARCHAR(8),
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8) NOT NULL,
     horaCriacao VARCHAR(4) NOT NULL,
@@ -20,4 +20,3 @@ CREATE TABLE SOLICITACAO(
     FOREIGN KEY(siapeServRealiza) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
-    

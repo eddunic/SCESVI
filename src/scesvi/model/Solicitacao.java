@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 public class Solicitacao {
 
 	private final IntegerProperty numero;
-	private final IntegerProperty veiculoRequisitado;
+	private final StringProperty veiculoRequisitado;
 	private final StringProperty dataVeiculoConfirmado;
 	private final StringProperty dataInicio;
 	private final StringProperty dataFim;
@@ -28,7 +28,7 @@ public class Solicitacao {
 	 */
 	public Solicitacao() {
 		this.numero = new SimpleIntegerProperty(0);
-		this.veiculoRequisitado = new SimpleIntegerProperty(0);
+		this.veiculoRequisitado = new SimpleStringProperty("");
 		this.dataVeiculoConfirmado = new SimpleStringProperty("");
 		this.dataInicio = new SimpleStringProperty("");
 		this.dataFim = new SimpleStringProperty("");
@@ -63,11 +63,11 @@ public class Solicitacao {
 	 * @param siapeServAutoriza
 	 * @param siapeServRealiza
 	 */
-	public Solicitacao(int numero, int veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
+	public Solicitacao(int numero, String veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
 			String horaCriacao, String dataCriacao, String localViagem, String horaAutorizado, String dataAutorizado,
 			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza) {
 		this.numero = new SimpleIntegerProperty(numero);;
-		this.veiculoRequisitado = new SimpleIntegerProperty(veiculoRequisitado);
+		this.veiculoRequisitado = new SimpleStringProperty(veiculoRequisitado);
 		this.dataVeiculoConfirmado = new SimpleStringProperty(dataVeiculoConfirmado);
 		this.dataInicio = new SimpleStringProperty(dataInicio);
 		this.dataFim = new SimpleStringProperty(dataFim);
@@ -96,15 +96,15 @@ public class Solicitacao {
 		return numero;
 	}
 	
-	public void setVeiculoRequisitado(int veiculoRequisitado) {
+	public void setVeiculoRequisitado(String veiculoRequisitado) {
 		this.veiculoRequisitado.set(veiculoRequisitado);
 	}
 
-	public int getVeiculoRequisitado() {
+	public String getVeiculoRequisitado() {
 		return veiculoRequisitado.get();
 	}
 
-	public IntegerProperty getVeiculoRequisitadoProperty() {
+	public StringProperty getVeiculoRequisitadoProperty() {
 		return veiculoRequisitado;
 	}
 

@@ -76,7 +76,7 @@ CREATE TABLE CONTRATADO(
 CREATE TABLE SOLICITACAO(
 	numero INT(4) NOT NULL PRIMARY KEY,
     veiculoRequisitado VARCHAR(50) NOT NULL,
-    dataVeiculoConfirmado VARCHAR(8) NOT NULL,
+    dataVeiculoConfirmado VARCHAR(8),
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8) NOT NULL,
     horaCriacao VARCHAR(4) NOT NULL,
@@ -223,7 +223,7 @@ DELIMITER ;
 
 DELIMITER $$
 USE SCESVI $$
-DROP PROCEDURE IF EXISTS sp_insertSolicitacao $$
+DROP PROCEDURE IF EXISTS sp_InsertSolicitacao $$
 CREATE PROCEDURE sp_insertSolicitacao (IN numero INT, IN veiculoRequisitado VARCHAR(50), 
 IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
 IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
@@ -234,6 +234,15 @@ BEGIN
     INSERT INTO SOLICITACAO VALUES(numero, veiculoRequisitado, dataVeiculoConfirmado, 
     dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, 
     qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza, codVeiculoAtende);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_ListSolicit $$
+CREATE PROCEDURE sp_ListSolicit ()
+BEGIN
+    SELECT numero, tipo, veiculoRequisitado, dataCriacao, dataAutorizado FROM SOLICITACAO;
 END $$
 DELIMITER ;
 
@@ -289,6 +298,12 @@ BEGIN
     siapeServSupervisiona, siapeServResponsavel);
 END $$
 DELIMITER 
+
+
+
+
+
+
 
 
 

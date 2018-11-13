@@ -29,17 +29,17 @@
       </AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.5" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.6356209150326797" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="solicitTable" layoutX="70.0" layoutY="33.0" prefHeight="401.0" prefWidth="467.0" styleClass="tableViewStyle" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="solicitTable" layoutX="70.0" layoutY="33.0" onMouseClicked="#atualizaSelect" prefHeight="362.0" prefWidth="436.0" styleClass="tableViewStyle" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="numCln" prefWidth="56.0" text="Número" />
-                        <TableColumn prefWidth="51.0" text="Tipo" />
-                        <TableColumn prefWidth="67.0" text="Criada" />
-                        <TableColumn prefWidth="98.0" text="Veic. pedido" />
-                        <TableColumn prefWidth="97.0" text="Veic. atendeu" />
+                        <TableColumn fx:id="numCln" prefWidth="73.0" text="Número" />
+                        <TableColumn fx:id="tipoCln" minWidth="3.0" prefWidth="69.0" text="Tipo" />
+                        <TableColumn fx:id="veicCln" prefWidth="72.0" text="Veículo" />
+                        <TableColumn fx:id="criaCln" prefWidth="78.0" text="Criação" />
+                        <TableColumn fx:id="autorCln" prefWidth="92.0" text="Autorização" />
                      </columns>
                      <contextMenu>
                         <ContextMenu>
@@ -67,12 +67,12 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Código" textFill="WHITE" />
-                              <Label text="Label" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label text="Número" textFill="WHITE" />
+                              <Label fx:id="lbNum" text="Label" textFill="WHITE" GridPane.columnIndex="1" />
                               <Label text="Tipo" textFill="WHITE" GridPane.rowIndex="1" />
-                              <Label text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="lbTipo" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label text="Criação" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="lbCria" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>

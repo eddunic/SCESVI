@@ -1,13 +1,20 @@
 package scesvi.model.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import scesvi.model.Solicitacao;
 
 public class DAOSolicitacaoSP extends DAO {
 
 	private static Solicitacao solicitacao;
+	
+	@FXML
+	private static ObservableList<Solicitacao> listSolicit;
 	
 	public static Solicitacao getSolicitacao() {
 		return solicitacao;
@@ -17,7 +24,7 @@ public class DAOSolicitacaoSP extends DAO {
 		String query = "CALL sp_InsertSolicitacao(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, String.valueOf(solicitacao.getNumero()));
-			pst.setString(2, String.valueOf(solicitacao.getVeiculoRequisitado()));
+			pst.setString(2, solicitacao.getVeiculoRequisitado());
 			pst.setString(3, solicitacao.getDataVeiculoConfirmado());
 			pst.setString(4, solicitacao.getDataInicio());
 			pst.setString(5, solicitacao.getDataFim());
@@ -38,6 +45,29 @@ public class DAOSolicitacaoSP extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+	}
+	
+	public static ObservableList<Solicitacao> list() {
+		listSolicit = FXCollections.observableArrayList();
+		String query = "CALL sp_ListSolicit()";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultset = pst.executeQuery(query);
+			while(resultset.next()) {
+				Solicitacao solicit = new Solicitacao();
+				solicit.setNumero(resultset.getInt("numero"));
+				solicit.setTipo(resultset.getString("tipo"));
+				solicit.setVeiculoRequisitado(resultset.getString("veiculoRequisitado"));
+				solicit.setDataCriacao(resultset.getString("dataCriacao"));
+				solicit.setDataAutorizado(resultset.getString("dataAutorizado"));
+				listSolicit.add(solicit);
+			}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return listSolicit;
 	}
 	
 }
