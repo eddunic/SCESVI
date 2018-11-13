@@ -21,10 +21,9 @@
          <children>
             <MaterialIconView fill="#3196de" glyphName="RECORD_VOICE_OVER" layoutX="14.0" layoutY="35.0" size="25" />
             <Label layoutX="46.0" layoutY="14.0" styleClass="fontVbox" stylesheets="@style.css" text="SOLICITAÇÕES" textFill="#3196de" />
-            <JFXButton layoutX="351.0" layoutY="12.0" text="Nova" />
-            <JFXButton layoutX="414.0" layoutY="12.0" text="Editar" />
-            <JFXButton layoutX="472.0" layoutY="12.0" text="Excluir" />
-            <JFXButton layoutX="536.0" layoutY="12.0" text="Alterar" />
+            <JFXButton layoutX="351.0" layoutY="12.0" onAction="#novaSolicit" text="Nova" />
+            <JFXButton layoutX="414.0" layoutY="12.0" onAction="#editarTable" text="Editar" />
+            <JFXButton layoutX="472.0" layoutY="12.0" onAction="#excluiSolicit" text="Excluir" />
          </children>
       </AnchorPane>
    </top>
@@ -33,7 +32,7 @@
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="solicitTable" layoutX="70.0" layoutY="33.0" onMouseClicked="#atualizaSelect" prefHeight="362.0" prefWidth="436.0" styleClass="tableViewStyle" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="solicitTable" editable="true" layoutX="70.0" layoutY="33.0" onMouseClicked="#atualizaSelect" prefHeight="362.0" prefWidth="436.0" styleClass="tableViewStyle" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="numCln" prefWidth="73.0" text="Número" />
                         <TableColumn fx:id="tipoCln" minWidth="3.0" prefWidth="69.0" text="Tipo" />
@@ -68,11 +67,11 @@
                            </rowConstraints>
                            <children>
                               <Label text="Número" textFill="WHITE" />
-                              <Label fx:id="lbNum" text="Label" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label fx:id="lbNum" text=" " textFill="WHITE" GridPane.columnIndex="1" />
                               <Label text="Tipo" textFill="WHITE" GridPane.rowIndex="1" />
-                              <Label fx:id="lbTipo" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="lbTipo" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label text="Criação" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label fx:id="lbCria" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="lbCria" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>

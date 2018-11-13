@@ -70,4 +70,15 @@ public class DAOSolicitacao extends DAO {
 		return listSolicit;
 	}
 	
+	public static void delete(int num) {
+		String query = "DELETE FROM SOLICITACAO WHERE numero = " + num;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			pst.executeUpdate(query);
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
 }
