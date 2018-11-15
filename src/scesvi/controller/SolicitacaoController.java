@@ -18,7 +18,7 @@ public class SolicitacaoController {
 	private TableView<Solicitacao> solicitTable;
 
 	@FXML
-	private TableColumn<Solicitacao, IntegerProperty> numCln;
+	private TableColumn<Solicitacao, Integer> numCln;
 
 	@FXML
 	private TableColumn<Solicitacao, String> tipoCln;
