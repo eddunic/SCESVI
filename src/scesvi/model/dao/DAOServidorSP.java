@@ -34,10 +34,8 @@ public class DAOServidorSP extends DAO {
 	}
 	
 	public static void delete(String siape) {
-		String query = "CALL sp_DeleteServidor(?)";
+		String query = "CALL sp_DeleteServidor(" + siape + ")";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			pst.setString(1, siape);
-			
 			pst.executeUpdate(query);
 			pst.close();
 			disconnection();

@@ -97,7 +97,8 @@ CREATE TABLE SOLICITACAO(
     ON UPDATE CASCADE);
     
 INSERT INTO SOLICITACAO VALUES
-(2017, 'onyx', '111111', '111111', '121212', '1133', '222222', 'seila', '1111', '201020', 20, 'v', 'bla', '321', '321');
+(2100, 'o', '111191', '111711', '121282', '1153', '227222', 'saila', '1011', '241020', 6, 'G', 'çla', '351', '621');
+
     
 SELECT * FROM SERVIDOR;
     
@@ -243,6 +244,15 @@ DROP PROCEDURE IF EXISTS sp_ListSolicit $$
 CREATE PROCEDURE sp_ListSolicit ()
 BEGIN
     SELECT numero, tipo, veiculoRequisitado, dataCriacao, dataAutorizado FROM SOLICITACAO;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_DeleteSolicit $$
+CREATE PROCEDURE sp_DeleteSolicit (IN numero INT(4))
+BEGIN
+	DELETE FROM SOLICITACAO WHERE SOLICITACAO.numero = numero;
 END $$
 DELIMITER ;
 

@@ -70,4 +70,15 @@ public class DAOSolicitacaoSP extends DAO {
 		return listSolicit;
 	}
 	
+	public static void delete(int numero) {
+		String query = "CALL sp_DeleteSolicit(" + numero + ")";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {		
+			pst.executeUpdate(query);
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
 }

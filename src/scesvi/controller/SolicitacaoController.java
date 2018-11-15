@@ -1,7 +1,6 @@
 package scesvi.controller;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,9 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
 import scesvi.model.Solicitacao;
-import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOSolicitacaoSP;
 
 public class SolicitacaoController {
@@ -24,16 +21,16 @@ public class SolicitacaoController {
 	private TableColumn<Solicitacao, IntegerProperty> numCln;
 
 	@FXML
-	private TableColumn<Solicitacao, StringProperty> tipoCln;
+	private TableColumn<Solicitacao, String> tipoCln;
 
 	@FXML
-	private TableColumn<Solicitacao, StringProperty> veicCln;
+	private TableColumn<Solicitacao, String> veicCln;
 
 	@FXML
-	private TableColumn<Solicitacao, StringProperty> criaCln;
+	private TableColumn<Solicitacao, String> criaCln;
 
 	@FXML
-	private TableColumn<Solicitacao, StringProperty> autorCln;
+	private TableColumn<Solicitacao, String> autorCln;
 
 	@FXML
 	private Label lbNum;
@@ -54,12 +51,8 @@ public class SolicitacaoController {
 		criaCln.setCellValueFactory(new PropertyValueFactory<>("dataCriacao"));
 		autorCln.setCellValueFactory(new PropertyValueFactory<>("dataAutorizado"));
 
-		
-		//new Callback<TableColumn<Solicitacao, StringProperty>, TableCell<Track, Track>>() {
-
-		//tipoCln.setCellFactory(new Callback <> TextFieldTableCell.forTableColumn());
-		//solicitTable.getColumns().get(0).setVisible(true);
-
+		tipoCln.setCellFactory(TextFieldTableCell.forTableColumn());
+        
 		solicitTable.setItems(DAOSolicitacaoSP.list());
 
 		solicitTable.getSelectionModel().selectFirst();
@@ -72,13 +65,14 @@ public class SolicitacaoController {
 
 	@FXML
 	void excluiSolicit(ActionEvent event) {
-		DAOSolicitacao.delete(solicitTable.getSelectionModel().getSelectedItem().getNumero());
+		DAOSolicitacaoSP.delete(solicitTable.getSelectionModel().getSelectedItem().getNumero());
 		refreshTable();
 	}
 
 	@FXML
 	void editarTable(ActionEvent event) {
-
+		// numCln.setCellValueFactory(data -> new
+		// ReadOnlyObjectWrapper<Solicitacoes>(solicitTable.getValue(), null));
 	}
 
 	@FXML
@@ -91,4 +85,5 @@ public class SolicitacaoController {
 		solicitTable.setItems(DAOSolicitacaoSP.list());
 		lbNum.setText("");
 	}
+	
 }
