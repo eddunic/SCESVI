@@ -18,9 +18,9 @@ public class DAODepartamento extends DAO {
 	public static int searchDepart(String departamento) {
 		String query = "SELECT codigo FROM DEPARTAMENTO WHERE sigla = " + "'" + departamento + "'";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				codDep = resultset.getInt("codigo");
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				codDep = resultSet.getInt("codigo");
 			}
 			pst.close();
 			disconnection();

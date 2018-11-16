@@ -1,6 +1,5 @@
 package scesvi.controller;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import scesvi.model.Solicitacao;
+import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOSolicitacaoSP;
 
 public class SolicitacaoController {
@@ -40,6 +40,8 @@ public class SolicitacaoController {
 
 	@FXML
 	private Label lbCria;
+	
+	private Solicitacao solicitacao;
 
 	@FXML
 	void initialize() {
@@ -56,6 +58,9 @@ public class SolicitacaoController {
 		solicitTable.setItems(DAOSolicitacaoSP.list());
 
 		solicitTable.getSelectionModel().selectFirst();
+		
+		//Demorei 6 horas pra achar essa solução que altera o valor da célula. #Eddunic
+		tipoCln.setCellValueFactory(cellData -> cellData.getValue().getTipoProperty());
 	}
 
 	@FXML
@@ -71,13 +76,18 @@ public class SolicitacaoController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		// numCln.setCellValueFactory(data -> new
-		// ReadOnlyObjectWrapper<Solicitacoes>(solicitTable.getValue(), null));
+		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(), "blanck", "132332",
+				"122212", "121414", "1213", "903212", "lo3a", "1224", "321312", 4,
+				solicitTable.getSelectionModel().getSelectedItem().getTipo(), "nad", "23", "32");
+		DAOSolicitacao.update(solicitacao);
+		refreshTable();
 	}
 
 	@FXML
 	void novaSolicit(ActionEvent event) {
-
+//		solicitacao = new Solicitacao();
+//		DAOSolicitacaoSP.insert(solicitacao);
+//		refreshTable();
 	}
 
 	void refreshTable() {

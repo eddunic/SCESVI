@@ -22,7 +22,7 @@
             <MaterialIconView fill="#3196de" glyphName="RECORD_VOICE_OVER" layoutX="14.0" layoutY="35.0" size="25" />
             <Label layoutX="46.0" layoutY="14.0" styleClass="fontVbox" stylesheets="@style.css" text="SOLICITAÇÕES" textFill="#3196de" />
             <JFXButton layoutX="351.0" layoutY="12.0" onAction="#novaSolicit" text="Nova" />
-            <JFXButton layoutX="414.0" layoutY="12.0" onAction="#editarTable" text="Editar" />
+            <JFXButton layoutX="402.0" layoutY="12.0" onAction="#editarTable" text="Atualizar" />
             <JFXButton layoutX="472.0" layoutY="12.0" onAction="#excluiSolicit" text="Excluir" />
          </children>
       </AnchorPane>

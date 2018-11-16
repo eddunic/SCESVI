@@ -47,10 +47,10 @@ public class DAOServidor extends DAO {
 	public static void consultServidor(String siape) {
 		String query = "SELECT * FROM SERVIDOR WHERE siape = " + siape;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				System.out.println(resultset.getString("nome"));
-				System.out.println(resultset.getString("senha"));
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("nome"));
+				System.out.println(resultSet.getString("senha"));
 			}
 
 			pst.close();
@@ -63,9 +63,9 @@ public class DAOServidor extends DAO {
 	public static void list() {
 		String query = "SELECT * FROM SERVIDOR";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				System.out.println(resultset.getString("nome"));
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("nome"));
 			}
 
 			pst.close();
@@ -87,11 +87,11 @@ public class DAOServidor extends DAO {
 					   "ON CARGO.codigo = CONTRATADO.codCargo\r\n" + 
 					   "GROUP BY SERVIDOR.nome;";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				System.out.println(resultset.getString("SERVIDOR.nome"));
-				System.out.println(resultset.getString("DEPARTAMENTO.sigla"));
-				System.out.println(resultset.getString("CARGO.titulacao"));
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("SERVIDOR.nome"));
+				System.out.println(resultSet.getString("DEPARTAMENTO.sigla"));
+				System.out.println(resultSet.getString("CARGO.titulacao"));
 			}
 
 			pst.close();

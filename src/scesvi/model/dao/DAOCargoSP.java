@@ -17,9 +17,9 @@ public class DAOCargoSP extends DAO {
 	public static int searchCargo(String cargo) {
 		String query = "CALL sp_SearchCargo(" + cargo + ")";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				codCargo = resultset.getInt("codigo");
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				codCargo = resultSet.getInt("codigo");
 			}
 			pst.close();
 			disconnection();

@@ -97,8 +97,10 @@ CREATE TABLE SOLICITACAO(
     ON UPDATE CASCADE);
     
 INSERT INTO SOLICITACAO VALUES
-(2100, 'o', '111191', '111711', '121282', '1153', '227222', 'saila', '1011', '241020', 6, 'G', 'çla', '351', '621');
+(2412, 'iiAa', '112391', '321711', '124242', '1563', '637222', 'sdgif', '3411', '231020', 0, 'w', 'sla', '321', '371'),
+(2112, 'Mua', '115191', '112711', '124282', '1163', '627222', 'sagia', '1411', '251020', 7, 'p', 'dla', '331', '321');
 
+SELECT * FROM SOLICITACAO;
     
 SELECT * FROM SERVIDOR;
     
@@ -230,11 +232,11 @@ IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHA
 IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
 IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
 IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza VARCHAR(12), 
-IN siapeServRealiza VARCHAR(12), IN codVeiculoAtende VARCHAR(12))
+IN siapeServRealiza VARCHAR(12))
 BEGIN
     INSERT INTO SOLICITACAO VALUES(numero, veiculoRequisitado, dataVeiculoConfirmado, 
     dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, 
-    qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza, codVeiculoAtende);
+    qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza);
 END $$
 DELIMITER ;
 
@@ -253,6 +255,24 @@ DROP PROCEDURE IF EXISTS sp_DeleteSolicit $$
 CREATE PROCEDURE sp_DeleteSolicit (IN numero INT(4))
 BEGIN
 	DELETE FROM SOLICITACAO WHERE SOLICITACAO.numero = numero;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_UpdateSolicit $$
+CREATE PROCEDURE sp_UpdateSolicit (IN veiculoRequisitado VARCHAR(50), 
+IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
+IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
+IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
+IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza VARCHAR(12), 
+IN siapeServRealiza VARCHAR(12), IN numero INT(4))
+BEGIN
+    UPDATE SOLICITACAO SET SOLICITACAO.veiculoRequisitado = veiculoRequisitado, SOLICITACAO.dataVeiculoConfirmado = dataVeiculoConfirmado, 
+    SOLICITACAO.dataInicio = dataInicio, SOLICITACAO.dataFim = dataFim, SOLICITACAO.horaCriacao = horaCriacao, SOLICITACAO.dataCriacao = dataCriacao,
+    SOLICITACAO.localViagem = localViagem, SOLICITACAO.horaAutorizado = horaAutorizado, SOLICITACAO.dataAutorizado = dataAutorizado,
+	SOLICITACAO.qtdePassageiros = qtdePassageiros, SOLICITACAO.tipo = tipo, SOLICITACAO.finalidade = finalidade, 
+    SOLICITACAO.siapeServAutoriza = siapeServAutoriza, SOLICITACAO.siapeServRealiza = siapeServRealiza WHERE SOLICITACAO.numero = numero;
 END $$
 DELIMITER ;
 
