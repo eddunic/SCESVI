@@ -36,10 +36,43 @@ public class SolicitacaoController {
 	private Label lbNum;
 
 	@FXML
-	private Label lbTipo;
+    private Label lbVeic;
 
 	@FXML
-	private Label lbCria;
+	private Label lbTipo;
+	
+    @FXML
+    private Label lbConfirm;
+    
+    @FXML
+    private Label lbDataCria;
+    
+    @FXML
+    private Label lbHoraCria;
+
+    @FXML
+    private Label lbInicio;
+
+    @FXML
+    private Label lbFim;
+
+    @FXML
+    private Label lbDest;
+    
+    @FXML
+    private Label lbFinalid;
+
+    @FXML
+    private Label lbAutoriz;
+
+    @FXML
+    private Label lbPassag;
+    
+    @FXML
+    private Label lbAutor;
+
+    @FXML
+    private Label lbOutor;    
 	
 	private Solicitacao solicitacao;
 
@@ -54,18 +87,37 @@ public class SolicitacaoController {
 		autorCln.setCellValueFactory(new PropertyValueFactory<>("dataAutorizado"));
 
 		tipoCln.setCellFactory(TextFieldTableCell.forTableColumn());
-        
+		veicCln.setCellFactory(TextFieldTableCell.forTableColumn());
+		criaCln.setCellFactory(TextFieldTableCell.forTableColumn());
+		autorCln.setCellFactory(TextFieldTableCell.forTableColumn());
+		
 		solicitTable.setItems(DAOSolicitacaoSP.list());
 
 		solicitTable.getSelectionModel().selectFirst();
 		
 		//Demorei 6 horas pra achar essa solução que altera o valor da célula. #Eddunic
 		tipoCln.setCellValueFactory(cellData -> cellData.getValue().getTipoProperty());
+		veicCln.setCellValueFactory(cellData -> cellData.getValue().getVeiculoRequisitadoProperty());
+		criaCln.setCellValueFactory(cellData -> cellData.getValue().getDataCriacaoProperty());
+		autorCln.setCellValueFactory(cellData -> cellData.getValue().getDataAutorizadoProperty());
 	}
 
 	@FXML
 	void atualizaSelect(MouseEvent event) {
 		lbNum.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbVeic.setText(solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado());
+		lbTipo.setText(solicitTable.getSelectionModel().getSelectedItem().getTipo());
+		lbConfirm.setText(solicitTable.getSelectionModel().getSelectedItem().getDataVeiculoConfirmado());
+		lbDataCria.setText(solicitTable.getSelectionModel().getSelectedItem().getDataCriacao());
+		lbHoraCria.setText(solicitTable.getSelectionModel().getSelectedItem().getHoraCriacao());
+		lbInicio.setText(solicitTable.getSelectionModel().getSelectedItem().getDataInicio());
+		lbFim.setText(solicitTable.getSelectionModel().getSelectedItem().getDataFim());
+		lbDest.setText(solicitTable.getSelectionModel().getSelectedItem().getLocalViagem());
+		lbFinalid.setText(solicitTable.getSelectionModel().getSelectedItem().getFinalidade());
+		lbAutoriz.setText(solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado());
+		lbPassag.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getQtdePassageiros()));
+		lbAutor.setText(solicitTable.getSelectionModel().getSelectedItem().getSiapeServRealiza());
+		lbOutor.setText(solicitTable.getSelectionModel().getSelectedItem().getSiapeServAutoriza());
 	}
 
 	@FXML
@@ -76,8 +128,10 @@ public class SolicitacaoController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(), "blanck", "132332",
-				"122212", "121414", "1213", "903212", "lo3a", "1224", "321312", 4,
+		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(), 
+				solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado(),"133932", "122212", "121414", "1213", 
+				solicitTable.getSelectionModel().getSelectedItem().getDataCriacao(), "lo3a", "1224", 
+				solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado(), 4, 
 				solicitTable.getSelectionModel().getSelectedItem().getTipo(), "nad", "23", "32");
 		DAOSolicitacao.update(solicitacao);
 		refreshTable();
@@ -94,6 +148,19 @@ public class SolicitacaoController {
 		solicitTable.getItems().clear();
 		solicitTable.setItems(DAOSolicitacaoSP.list());
 		lbNum.setText("");
+		lbVeic.setText("");
+		lbTipo.setText("");
+		lbConfirm.setText("");
+		lbDataCria.setText("");
+		lbHoraCria.setText("");
+		lbInicio.setText("");
+		lbFim.setText("");
+		lbDest.setText("");
+		lbFinalid.setText("");
+		lbAutoriz.setText("");
+		lbPassag.setText("");
+		lbAutor.setText("");
+		lbOutor.setText("");
 	}
 	
 }
