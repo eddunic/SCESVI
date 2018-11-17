@@ -109,4 +109,21 @@ public class DAOSolicitacao extends DAO {
 		}
 	}
 	
+	public static String consultParam(String var, int numero) {
+		String query = "SELECT " + var + " FROM SOLICITACAO WHERE SOLICITACAO.numero = " + numero;
+		String lblText = null;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				lblText = resultSet.getString(var);
+			}
+			
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lblText;
+	}
+	
 }

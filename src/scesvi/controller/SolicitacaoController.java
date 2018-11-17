@@ -104,20 +104,7 @@ public class SolicitacaoController {
 
 	@FXML
 	void atualizaSelect(MouseEvent event) {
-		lbNum.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbVeic.setText(solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado());
-		lbTipo.setText(solicitTable.getSelectionModel().getSelectedItem().getTipo());
-		lbConfirm.setText(solicitTable.getSelectionModel().getSelectedItem().getDataVeiculoConfirmado());
-		lbDataCria.setText(solicitTable.getSelectionModel().getSelectedItem().getDataCriacao());
-		lbHoraCria.setText(solicitTable.getSelectionModel().getSelectedItem().getHoraCriacao());
-		lbInicio.setText(solicitTable.getSelectionModel().getSelectedItem().getDataInicio());
-		lbFim.setText(solicitTable.getSelectionModel().getSelectedItem().getDataFim());
-		lbDest.setText(solicitTable.getSelectionModel().getSelectedItem().getLocalViagem());
-		lbFinalid.setText(solicitTable.getSelectionModel().getSelectedItem().getFinalidade());
-		lbAutoriz.setText(solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado());
-		lbPassag.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getQtdePassageiros()));
-		lbAutor.setText(solicitTable.getSelectionModel().getSelectedItem().getSiapeServRealiza());
-		lbOutor.setText(solicitTable.getSelectionModel().getSelectedItem().getSiapeServAutoriza());
+		refreshTable();
 	}
 
 	@FXML
@@ -145,22 +132,21 @@ public class SolicitacaoController {
 	}
 
 	void refreshTable() {
-		solicitTable.getItems().clear();
-		solicitTable.setItems(DAOSolicitacaoSP.list());
-		lbNum.setText("");
-		lbVeic.setText("");
-		lbTipo.setText("");
-		lbConfirm.setText("");
-		lbDataCria.setText("");
-		lbHoraCria.setText("");
-		lbInicio.setText("");
-		lbFim.setText("");
-		lbDest.setText("");
-		lbFinalid.setText("");
-		lbAutoriz.setText("");
-		lbPassag.setText("");
-		lbAutor.setText("");
-		lbOutor.setText("");
+		//solicitTable.getItems().clear();
+		lbNum.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbVeic.setText(solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado());
+		lbTipo.setText(solicitTable.getSelectionModel().getSelectedItem().getTipo());
+		lbConfirm.setText(DAOSolicitacao.consultParam("dataVeiculoConfirmado", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbDataCria.setText(solicitTable.getSelectionModel().getSelectedItem().getDataCriacao());
+		lbHoraCria.setText(DAOSolicitacao.consultParam("horaCriacao", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbInicio.setText(DAOSolicitacao.consultParam("dataInicio", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbFim.setText(DAOSolicitacao.consultParam("dataFim", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbDest.setText(DAOSolicitacao.consultParam("localViagem", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbFinalid.setText(DAOSolicitacao.consultParam("finalidade", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbAutoriz.setText(solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado());
+		lbPassag.setText(DAOSolicitacao.consultParam("qtdePassageiros", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbAutor.setText(DAOSolicitacao.consultParam("siapeServRealiza", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbOutor.setText(DAOSolicitacao.consultParam("siapeServAutoriza", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 	}
 	
 }

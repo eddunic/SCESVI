@@ -70,22 +70,6 @@ public class DAOSolicitacaoSP extends DAO {
 		return listSolicit;
 	}
 	
-//	public static void update(String veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
-//			String horaCriacao, String dataCriacao, String localViagem, String horaAutorizado, String dataAutorizado,
-//			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza, int numero) {
-//        String query = "CALL sp_UpdateSolicit(" + veiculoRequisitado + ", " + dataVeiculoConfirmado + ", " + dataInicio + ", " + dataFim 
-//        		+ ", " + horaCriacao + ", " + dataCriacao + ", " + localViagem + ", " + horaAutorizado + ", " + dataAutorizado + ", " 
-//        		+ qtdePassageiros + ", " + tipo + ", " + finalidade + ", " + siapeServAutoriza + ", " + siapeServRealiza + ", " + numero 
-//        		+ ")";
-//        try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-//            pst.executeUpdate();
-//            pst.close();
-//            disconnection();
-//        } catch (SQLException e) {
-//            System.out.println("Erro: " + e);
-//        }
-//    }
-	
 	public static void delete(int numero) {
 		String query = "CALL sp_DeleteSolicit(" + numero + ")";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {		
