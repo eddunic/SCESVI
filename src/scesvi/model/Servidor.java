@@ -94,7 +94,7 @@ public class Servidor {
 		return cnh.get();
 	}
 
-	public StringProperty getCNHProperty() {
+	public StringProperty getCnhProperty() {
 		return cnh;
 	}
 
@@ -142,7 +142,7 @@ public class Servidor {
 		return cpf.get();
 	}
 
-	public StringProperty getCPFProperty() {
+	public StringProperty getCpfProperty() {
 		return cpf;
 	}
 

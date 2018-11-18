@@ -1,9 +1,6 @@
 package scesvi.controller;
 
 import java.io.IOException;
-
-import com.jfoenix.controls.JFXScrollPane;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +13,6 @@ public class MainApp extends Application {
 
 	private static Scene loginScene;
 	private static Scene userRegisterScene;
-	private static ContainerTelasController ctc;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -29,8 +25,6 @@ public class MainApp extends Application {
 
 		primaryStage.show();
 		primaryStage.setMaximized(true);
-
-		ctc = new ContainerTelasController();
 	}
 
 	public void loaderScreens() throws IOException {

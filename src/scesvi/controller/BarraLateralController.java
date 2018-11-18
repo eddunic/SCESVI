@@ -8,8 +8,7 @@ public class BarraLateralController {
 	
     @FXML
     public void openMenuInicialAction(ActionEvent a) {
-    	//System.out.println("AAAA");
-    	ContainerTelasController.loadComponent("Menuinicial");
+    	ContainerTelasController.loadComponent("MenuInicial");
     }
 
     @FXML

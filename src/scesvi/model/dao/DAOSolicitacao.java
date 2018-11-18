@@ -71,8 +71,8 @@ public class DAOSolicitacao extends DAO {
 	
 	public static void update(Solicitacao solicitacao) {
         String query = "UPDATE SOLICITACAO SET veiculoRequisitado = ?, dataVeiculoConfirmado = ?, dataInicio = ?, " 
-        			 + "dataFim = ?, horaCriacao = ?, dataCriacao = ?, localViagem = ?, horaAutorizado = ?, dataAutorizado = ?, "
-        			 + "qtdePassageiros = ?, tipo = ?, finalidade  = ?, siapeServAutoriza = ?, siapeServRealiza = ? WHERE numero = ?";
+        				+ "dataFim = ?, horaCriacao = ?, dataCriacao = ?, localViagem = ?, horaAutorizado = ?, dataAutorizado = ?, "
+        				+ "qtdePassageiros = ?, tipo = ?, finalidade  = ?, siapeServAutoriza = ?, siapeServRealiza = ? WHERE numero = ?";
         try (PreparedStatement pst = getConnection().prepareStatement(query)) {
             pst.setString(1, solicitacao.getVeiculoRequisitado());
             pst.setString(2, solicitacao.getDataVeiculoConfirmado());

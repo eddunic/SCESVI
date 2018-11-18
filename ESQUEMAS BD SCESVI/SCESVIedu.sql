@@ -102,6 +102,77 @@ INSERT INTO SOLICITACAO VALUES
 (2412, 'iiAa', '112391', '321711', '124242', '1563', '637222', 'sdgif', '3411', '231020', 0, 'w', 'sla', '321', '371'),
 (2112, 'Mua', '115191', '112711', '124282', '1163', '627222', 'sagia', '1411', '251020', 7, 'p', 'dla', '331', '321');
 
+CREATE TABLE VEICULO(
+    codigo VARCHAR(7) NOT NULL PRIMARY KEY,
+    tipo VARCHAR(10) NOT NULL,
+    placa VARCHAR(7) NOT NULL,
+	renavam VARCHAR(30) NOT NULL UNIQUE,
+    autorizado CHAR,
+    categoria CHAR,
+    institucional CHAR,
+    chassi VARCHAR(10) NOT NULL,
+    maxPassageiros SMALLINT(2) NOT NULL,
+    observacao VARCHAR(150),
+    exercicio VARCHAR(4) NOT NULL,
+    tipoCombustivel CHAR NOT NULL,
+    potencia FLOAT(8) NOT NULL,
+    cor VARCHAR(15) NOT NULL,
+    marcaModelo VARCHAR(10) NOT NULL,
+    anoFabricacao VARCHAR(4) NOT NULL,
+    anoModelo VARCHAR(4) NOT NULL,
+    dataSupervisionado VARCHAR(8),
+    siapeServSupervisiona CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
+	FOREIGN KEY(siapeServSupervisiona) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+	FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+INSERT INTO VEICULO VALUES
+('1', 'a', 's', 'er', 'd', 'c', 'n', 'wer', 12, 'nda', '1234', 'g', 13, 'verde', 'eila', '1954', '2003', '1212', '123', '321');
+
+CREATE TABLE REGISTRO(
+	numero INT (4) NOT NULL PRIMARY KEY,
+    observacao VARCHAR(150),
+    codVeiculo VARCHAR(7) NOT NULL,
+    siapeServInicia CHAR(8) NOT NULL,
+    siapeServEncerra CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
+    horaInicia VARCHAR(4) NOT NULL,
+    dataInicia VARCHAR(8) NOT NULL,
+    horaSaida VARCHAR(4),
+    dataSaida VARCHAR(8),
+    dataEntrada VARCHAR(8),
+    horaEntrada VARCHAR(4),
+    horaEncerra VARCHAR(4),
+    dataEncerra VARCHAR(8),
+    descricao VARCHAR(150) NOT NULL,
+    kmInicial SMALLINT(2),
+    kmFinal SMALLINT(2),
+    kmPercorridos SMALLINT(2),
+    dataSupervisionado VARCHAR(8),
+    FOREIGN KEY(codVeiculo) REFERENCES VEICULO(codigo)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+	FOREIGN KEY(siapeServInicia) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+	FOREIGN KEY(siapeServEncerra) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+INSERT INTO REGISTRO VALUES
+(2, 'sla', 'cod', '111', '222', '333', '1234', '123121', '1231', '131212', '121315', '1019', '0918', '463728', 'ndaq', 14, 12, 18, '131313');
+
+SELECT * FROM REGISTRO;
+
+SELECT * FROM VEICULO;
+
 SELECT * FROM SOLICITACAO;
     
 SELECT * FROM SERVIDOR;

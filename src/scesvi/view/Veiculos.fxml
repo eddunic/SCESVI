@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="409.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.VeiculoController">
+   <top>
+      <AnchorPane prefHeight="45.0" prefWidth="748.0" styleClass="cardPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <MaterialIconView fill="#3196de" glyphName="RECORD_VOICE_OVER" layoutX="14.0" layoutY="35.0" size="25" />
+            <Label layoutX="46.0" layoutY="14.0" styleClass="fontVbox" stylesheets="@style.css" text="VEÍCULOS" textFill="#3196de" />
+            <JFXButton layoutX="350.0" layoutY="12.0" onAction="#novoVeic" text="Novo" />
+            <JFXButton layoutX="402.0" layoutY="12.0" onAction="#editarTable" text="Atualizar" />
+            <JFXButton layoutX="472.0" layoutY="12.0" onAction="#excluiVeic" text="Excluir" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.6356209150326797" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="veicTable" editable="true" layoutX="70.0" layoutY="33.0" onMouseClicked="#atualizaSelect" prefHeight="362.0" prefWidth="436.0" styleClass="tableViewStyle" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="codCln" prefWidth="73.0" text="Código" />
+                        <TableColumn fx:id="modCln" minWidth="3.0" prefWidth="69.0" text="Modelo" />
+                        <TableColumn fx:id="anoCln" prefWidth="72.0" text="Ano" />
+                        <TableColumn fx:id="respCln" prefWidth="78.0" text="Responsável" />
+                        <TableColumn fx:id="placaCln" prefWidth="92.0" text="Placa" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="46.0" prefHeight="401.0" prefWidth="196.0" styleClass="topPane" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label styleClass="tableViewStyle" stylesheets="@style.css" text="Solicitação" textFill="WHITE" />
+                        <GridPane prefWidth="220.0" styleClass="tableViewStyle" stylesheets="@style.css">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Código" textFill="WHITE" />
+                              <Label fx:id="lbCod" prefHeight="18.0" prefWidth="93.0" text=" " textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label text="Placa" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label fx:id="lbPlaca" prefHeight="24.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Autorizado" textFill="WHITE" GridPane.rowIndex="4" />
+                              <Label text="Tipo" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label text="RENAVAM" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label text="Institucional" textFill="WHITE" GridPane.rowIndex="6" />
+                              <Label text="Chassi" textFill="WHITE" GridPane.rowIndex="7" />
+                              <Label text="Max Passageiros" textFill="WHITE" GridPane.rowIndex="8" />
+                              <Label text="Exercício" textFill="WHITE" GridPane.rowIndex="10" />
+                              <Label text="Combustível" textFill="WHITE" GridPane.rowIndex="11" />
+                              <Label text="Observação" textFill="WHITE" GridPane.rowIndex="9" />
+                              <Label text="Potência" textFill="WHITE" GridPane.rowIndex="12" />
+                              <Label text="Categoria" textFill="WHITE" GridPane.rowIndex="5" />
+                              <Label fx:id="lbTipo" prefHeight="18.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="lbRen" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="lbAutoriz" prefHeight="18.0" prefWidth="109.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="lbCat" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="lbInst" layoutX="120.0" layoutY="133.0" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label fx:id="lbChassi" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Label fx:id="lbMaxP" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <Label fx:id="lbObs" prefHeight="18.0" prefWidth="110.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <Label fx:id="lbExe" prefHeight="18.0" prefWidth="102.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                              <Label fx:id="lbCombs" prefHeight="18.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                              <Label fx:id="lbPot" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                              <Label fx:id="lbCor" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                              <Label text="Cor" textFill="WHITE" GridPane.rowIndex="13" />
+                              <Label text="Marca/Modelo" textFill="WHITE" GridPane.rowIndex="14" />
+                              <Label text="Fabricação" textFill="WHITE" GridPane.rowIndex="15" />
+                              <Label text="AnoModelo" textFill="WHITE" GridPane.rowIndex="16" />
+                              <Label text="Supervisionado" textFill="WHITE" GridPane.rowIndex="17" />
+                              <Label text="Supervisor" textFill="WHITE" GridPane.rowIndex="18" />
+                              <Label text="Responsável" textFill="WHITE" GridPane.rowIndex="19" />
+                              <Label fx:id="lbMarcaMod" prefHeight="18.0" prefWidth="84.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                              <Label fx:id="lbFabric" prefHeight="18.0" prefWidth="77.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                              <Label fx:id="lbAnoMod" prefHeight="18.0" prefWidth="91.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                              <Label fx:id="lbDataSuperv" prefHeight="18.0" prefWidth="73.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+                              <Label fx:id="lbSupervisor" prefHeight="18.0" prefWidth="82.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                              <Label fx:id="lbResp" prefHeight="18.0" prefWidth="79.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="19" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

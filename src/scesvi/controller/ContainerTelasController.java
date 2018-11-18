@@ -42,6 +42,15 @@ public class ContainerTelasController {
 	@FXML 
 	private static BorderPane fxmlSolicitacoes;
 	
+	@FXML 
+	private static BorderPane fxmlVeiculos;
+	
+	@FXML 
+	private static BorderPane fxmlRegistros;
+	
+	@FXML 
+	private static BorderPane fxmlServidores;
+	
 	@FXML
 	private static Scene containerTelasScene;
 	
@@ -52,7 +61,6 @@ public class ContainerTelasController {
 			fxmlContainerTelas = FXMLLoader.load(ContainerTelasController.class.getResource("../view/ContainerTelas.fxml"));
 			containerTelasScene = new Scene(fxmlContainerTelas, stage.getWidth(), stage.getHeight());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return containerTelasScene;
@@ -92,23 +100,29 @@ public class ContainerTelasController {
 		menuLateral = FXMLLoader.load(getClass().getResource("../view/BarraLateral.fxml"));
 		graficosFluxo = FXMLLoader.load(getClass().getResource("../view/GraficosFluxo.fxml"));
 		fxmlSolicitacoes = FXMLLoader.load(getClass().getResource("../view/Solicitacoes.fxml"));
+		fxmlVeiculos = FXMLLoader.load(getClass().getResource("../view/Veiculos.fxml"));
+		fxmlRegistros = FXMLLoader.load(getClass().getResource("../view/Registros.fxml"));
+		fxmlServidores = FXMLLoader.load(getClass().getResource("../view/Servidores.fxml"));
 	}
 	
 	static void loadComponent(String fx) {
 		//fxmlContainerTelas.setCenter(null);
 		
 		switch (fx) {
-		case "Menuinicial":
+		case "MenuInicial":
 			fxmlContainerTelas.setCenter(graficosFluxo);
 			break;
 		case "Solicitacoes":
 			fxmlContainerTelas.setCenter(fxmlSolicitacoes);
 			break;
 		case "Registros":
+			fxmlContainerTelas.setCenter(fxmlRegistros);
 			break;
 		case "Veiculos":
+			fxmlContainerTelas.setCenter(fxmlVeiculos);
 			break;
 		case "Servidores":
+			fxmlContainerTelas.setCenter(fxmlServidores);
 			break;
 		case "Relatorios":
 			break;
