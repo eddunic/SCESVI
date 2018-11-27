@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import scesvi.model.Contratado;
 import scesvi.model.Lotado;
 import scesvi.model.Servidor;
@@ -71,7 +73,7 @@ public class UserRegisterScreenController {
 	private JFXTextField email;
 
 	@FXML
-	private JFXButton bCadastrar;
+	private JFXButton bCadastrar, bVoltar;
 
 	private ToggleGroup radioGroup;
 
@@ -94,12 +96,36 @@ public class UserRegisterScreenController {
 	private String dataInicioFormatada;
 
 	@FXML
+	private VBox vServico;
+
+	@FXML
+	private VBox vAcesso;
+
+	@FXML
+	private FlowPane fMotorista;
+
+	@FXML
+	private VBox vDados;
+
+	@FXML
+	private VBox vDadosIcons;
+
+	@FXML
 	public void btRegisterAction(ActionEvent event) {
 
-		if (!nome.getText().equals("") && !cpf.getText().equals("") && !siape.getText().equals("")
-				&& !cnh.getText().equals("") && !pfSenha.getText().equals("")
-				&& !sfSenha.getText().equals("") && !cbCategoria.getSelectionModel().isEmpty()
-				&& !cbDepart.getSelectionModel().isEmpty() && !cbCargo.getSelectionModel().isEmpty()) {
+		if (bCadastrar.getText().equals("Próximo") && !nome.getText().equals("") && !cpf.getText().equals("")
+				&& !siape.getText().equals("")) {
+			vDadosIcons.setVisible(false);
+			vDados.setVisible(false);
+
+			fMotorista.setVisible(true);
+			vAcesso.setVisible(true);
+			vServico.setVisible(true);
+
+			bCadastrar.setText("Cadastrar");
+		}
+		if (bCadastrar.getText().equals("Cadastrar") && !pfSenha.getText().equals("")
+				&& !sfSenha.getText().equals("") && !cbDepart.getSelectionModel().isEmpty() && !cbCargo.getSelectionModel().isEmpty()) {
 			selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
 
 			servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), pfSenha.getText(),
@@ -118,8 +144,22 @@ public class UserRegisterScreenController {
 			contratado = new Contratado(siape.getText(), codCargo, dateFormat(), "");
 			DAOContratado.insert(contratado);
 
+			// backAction(event);
 		}
+	}
 
+	@FXML
+	void backAction(ActionEvent event) {
+		if (bCadastrar.getText().equals("Cadastrar")) {
+			vDadosIcons.setVisible(true);
+			vDados.setVisible(true);
+
+			fMotorista.setVisible(false);
+			vAcesso.setVisible(false);
+			vServico.setVisible(false);
+
+			bCadastrar.setText("Próximo");
+		}
 	}
 
 	public String dateFormat() {

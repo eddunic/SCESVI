@@ -14,21 +14,22 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="409.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.ServidorController">
    <top>
       <AnchorPane prefHeight="45.0" prefWidth="748.0" styleClass="cardPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <MaterialIconView fill="#3196de" glyphName="RECORD_VOICE_OVER" layoutX="14.0" layoutY="35.0" size="25" />
-            <Label layoutX="46.0" layoutY="14.0" styleClass="fontVbox" stylesheets="@style.css" text="SERVIDORES" textFill="#3196de" />
-            <JFXButton layoutX="350.0" layoutY="12.0" onAction="#novoServ" text="Novo" />
-            <JFXButton layoutX="402.0" layoutY="12.0" onAction="#editarTable" text="Atualizar" />
-            <JFXButton layoutX="472.0" layoutY="12.0" onAction="#excluiServ" text="Excluir" />
+            <MaterialIconView fill="#3196de" glyphName="PEOPLE" layoutX="14.0" layoutY="35.0" size="25" />
+            <Label layoutX="46.0" layoutY="14.0" styleClass="fontSection" stylesheets="@style.css" text="SERVIDORES" textFill="#3196de" />
+            <JFXButton layoutX="393.0" layoutY="10.0" onAction="#novoServ" styleClass="buttonsCRUD" stylesheets="@style.css" text="Novo" />
+            <JFXButton layoutX="464.0" layoutY="10.0" onAction="#editarTable" styleClass="buttonsCRUD" stylesheets="@style.css" text="Atualizar" />
+            <JFXButton layoutX="548.0" layoutY="10.0" onAction="#excluiServ" styleClass="buttonsCRUD" stylesheets="@style.css" text="Excluir" />
          </children>
       </AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.6356209150326797" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.6258169934640523" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -54,7 +55,10 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="46.0" prefHeight="401.0" prefWidth="196.0" styleClass="topPane" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label styleClass="tableViewStyle" stylesheets="@style.css" text="Solicitação" textFill="WHITE" />
+                        <Label stylesheets="@style.css" text="Servidores" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Black" size="14.0" />
+                           </font></Label>
                         <GridPane prefWidth="220.0" styleClass="tableViewStyle" stylesheets="@style.css">
                            <columnConstraints>
                               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

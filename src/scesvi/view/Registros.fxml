@@ -19,11 +19,11 @@
    <top>
       <AnchorPane prefHeight="45.0" prefWidth="748.0" styleClass="cardPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <MaterialIconView fill="#3196de" glyphName="RECORD_VOICE_OVER" layoutX="14.0" layoutY="35.0" size="25" />
-            <Label layoutX="46.0" layoutY="14.0" styleClass="fontVbox" stylesheets="@style.css" text="REGISTROS" textFill="#3196de" />
-            <JFXButton layoutX="350.0" layoutY="12.0" onAction="#novoReg" text="Novo" />
-            <JFXButton layoutX="402.0" layoutY="12.0" onAction="#editarTable" text="Atualizar" />
-            <JFXButton layoutX="472.0" layoutY="12.0" onAction="#excluiReg" text="Excluir" />
+            <MaterialIconView fill="#3196de" glyphName="LIBRARY_BOOKS" layoutX="14.0" layoutY="35.0" size="25" />
+            <Label layoutX="46.0" layoutY="14.0" styleClass="fontSection" stylesheets="@style.css" text="REGISTROS" textFill="#3196de" />
+            <JFXButton layoutX="392.0" layoutY="10.0" onAction="#novoReg" styleClass="buttonsCRUD" stylesheets="@style.css" text="Novo" />
+            <JFXButton layoutX="463.0" layoutY="10.0" onAction="#editarTable" styleClass="buttonsCRUD" stylesheets="@style.css" text="Atualizar" />
+            <JFXButton layoutX="548.0" layoutY="10.0" onAction="#excluiReg" styleClass="buttonsCRUD" stylesheets="@style.css" text="Excluir" />
          </children>
       </AnchorPane>
    </top>
@@ -54,7 +54,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="46.0" prefHeight="401.0" prefWidth="196.0" styleClass="topPane" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label styleClass="tableViewStyle" stylesheets="@style.css" text="Solicitação" textFill="WHITE" />
+                        <Label styleClass="tableViewStyle" stylesheets="@style.css" text="Registros" textFill="WHITE" />
                         <GridPane prefWidth="220.0" styleClass="tableViewStyle" stylesheets="@style.css">
                            <columnConstraints>
                               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -11,40 +11,48 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.LoginScreenController">
+<AnchorPane fx:id="anchor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="876.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.LoginScreenController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="248.0" prefWidth="700.0" styleClass="topPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <BorderPane prefHeight="450.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <top>
-            <AnchorPane prefHeight="60.0" prefWidth="700.0" styleClass="topPane" BorderPane.alignment="CENTER" />
-         </top>
+      <Polygon fill="DODGERBLUE" points="0.0, 526.0, 876.0, 526.0, 0.0, 0.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+      <StackPane fx:id="stackPane" prefHeight="526.0" prefWidth="876.0" />
+      <BorderPane fx:id="bp" layoutY="-6.0" prefHeight="532.0" prefWidth="876.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets left="50.0" />
+         </padding>
          <left>
-            <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-         </right>
-         <center>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="370.0" prefWidth="380.0" styleClass="cardPane" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="anchorLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="388.0" prefWidth="347.0" styleClass="cardPane" BorderPane.alignment="CENTER">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <children>
-                  <FontAwesomeIconView fill="#757474" glyphName="ADDRESS_CARD_ALT" layoutX="83.0" layoutY="174.0" size="15" x="-60.0" y="-4.0" />
-                  <FontAwesomeIconView fill="#757474" glyphName="KEY" layoutX="77.0" layoutY="238.0" size="15" x="-50.0" y="-5.0" />
-                  <VBox alignment="TOP_CENTER" prefHeight="361.0" prefWidth="380.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <FontAwesomeIconView fill="#757474" glyphName="ADDRESS_CARD_ALT" layoutX="83.0" layoutY="235.0" size="15" x="-60.0" y="-4.0" />
+                  <FontAwesomeIconView fill="#757474" glyphName="KEY" layoutX="77.0" layoutY="295.0" size="15" x="-50.0" y="-5.0" />
+                  <VBox alignment="TOP_CENTER" layoutY="-4.0" prefHeight="408.0" prefWidth="347.0" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
                      <children>
-                        <ImageView fitHeight="90.0" fitWidth="90.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                        <Label text="ENTRADA">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Line endX="-13.707107543945312" endY="-0.707099199295044" startX="-100.0" stroke="#2dc0e5" />
+                        <ImageView fitHeight="101.0" fitWidth="113.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../res/images/login.png" />
+                              <Image url="@../../../res/images/ImgPerfil.png" />
                            </image>
                            <VBox.margin>
                               <Insets top="30.0" />
                            </VBox.margin>
                         </ImageView>
+                        <Label text="Usuário" />
                         <JFXTextField fx:id="tSiape" labelFloat="true" prefHeight="30.0" prefWidth="197.0" promptText="SIAPE" unFocusColor="#9d9c9c">
                            <font>
                               <Font size="14.0" />
@@ -80,20 +88,23 @@
                         </JFXButton>
                      </children>
                   </VBox>
-                  <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#9d9c9c">
-                     <padding>
-                        <Insets bottom="15.0" />
-                     </padding></Label>
-                  <JFXButton layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4400ff">
+                  <Label fx:id="lblCount" layoutX="57.0" layoutY="329.0" text="Ainda não tem uma conta?" textFill="#908f8f" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="370.0" />
+                  <JFXButton fx:id="bCad" layoutX="206.0" layoutY="325.0" onAction="#btOpenRegisterAction" ripplerFill="TRANSPARENT" text="Cadastre-se" textFill="#4059a9" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="375.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></JFXButton>
+                     </cursor>
+                  </JFXButton>
                </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </AnchorPane>
-         </center>
-         <bottom>
-            <AnchorPane prefHeight="47.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
-         </bottom>
+         </left>
       </BorderPane>
+      <ImageView fx:id="vBar" fitHeight="526.0" fitWidth="468.0">
+         <image>
+            <Image url="@../../../res/images/blueAbstract.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
