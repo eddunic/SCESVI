@@ -10,6 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import scesvi.model.Servidor;
 import scesvi.model.dao.DAOServidor;
+import scesvi.model.dao.DAOSolicitacaoSP;
 
 public class ServidorController {
 
@@ -91,6 +92,8 @@ public class ServidorController {
 	@FXML
 	void excluiServ(ActionEvent event) {
 		DAOServidor.delete(servTable.getSelectionModel().getSelectedItem().getSiape());
+		servTable.setItems(DAOServidor.list());
+		servTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 

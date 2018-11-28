@@ -10,6 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import scesvi.model.Registro;
 import scesvi.model.dao.DAORegistro;
+import scesvi.model.dao.DAOSolicitacaoSP;
 
 public class RegistroController {
 
@@ -123,6 +124,8 @@ public class RegistroController {
 	@FXML
 	void excluiReg(ActionEvent event) {
 		DAORegistro.delete(regTable.getSelectionModel().getSelectedItem().getNumero());
+		regTable.setItems(DAORegistro.list());
+		regTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 

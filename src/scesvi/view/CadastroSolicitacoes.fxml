@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+
+<FlowPane prefHeight="442.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label styleClass="fontSection" stylesheets="@style.css" text="Nova solicitação">
+         <FlowPane.margin>
+            <Insets left="300.0" right="300.0" top="25.0" />
+         </FlowPane.margin></Label>
+      <JFXTextField labelFloat="true" prefHeight="25.0" prefWidth="167.0" promptText="Veículo" stylesheets="@style.css">
+         <FlowPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </FlowPane.margin></JFXTextField>
+      <JFXTextField labelFloat="true" prefHeight="25.0" prefWidth="178.0" promptText="Tipo" stylesheets="@style.css">
+         <FlowPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </FlowPane.margin>
+      </JFXTextField>
+      <JFXDatePicker overLay="true" prefHeight="30.0" prefWidth="193.0" promptText="Em vigor a partir de" stylesheets="@style.css">
+         <FlowPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </FlowPane.margin>
+      </JFXDatePicker>
+      <JFXDatePicker promptText="Até" stylesheets="@style.css">
+         <FlowPane.margin>
+            <Insets left="20.0" top="30.0" />
+         </FlowPane.margin>
+      </JFXDatePicker>
+      <JFXDatePicker overLay="true" promptText="Data Confirmada" stylesheets="@style.css">
+         <FlowPane.margin>
+            <Insets left="20.0" top="30.0" />
+         </FlowPane.margin>
+      </JFXDatePicker>
+      <JFXTextField labelFloat="true" promptText="Destino" stylesheets="@style.css">
+         <FlowPane.margin>
+            <Insets left="20.0" top="30.0" />
+         </FlowPane.margin>
+      </JFXTextField>
+      <JFXButton>
+         <FlowPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </FlowPane.margin></JFXButton>
+   </children>
+</FlowPane>

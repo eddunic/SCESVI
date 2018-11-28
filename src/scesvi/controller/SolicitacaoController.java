@@ -1,13 +1,21 @@
 package scesvi.controller;
 
+import java.io.IOException;
+
+import br.com.supremeforever.suprememdiwindow.MDICanvas;
+import br.com.supremeforever.suprememdiwindow.MDIWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import scesvi.model.Solicitacao;
 import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOSolicitacaoSP;
@@ -36,48 +44,52 @@ public class SolicitacaoController {
 	private Label lbNum;
 
 	@FXML
-    private Label lbVeic;
+	private Label lbVeic;
 
 	@FXML
 	private Label lbTipo;
-	
-    @FXML
-    private Label lbConfirm;
-    
-    @FXML
-    private Label lbDataCria;
-    
-    @FXML
-    private Label lbHoraCria;
-
-    @FXML
-    private Label lbInicio;
-
-    @FXML
-    private Label lbFim;
-
-    @FXML
-    private Label lbDest;
-    
-    @FXML
-    private Label lbFinalid;
-
-    @FXML
-    private Label lbAutoriz;
-
-    @FXML
-    private Label lbPassag;
-    
-    @FXML
-    private Label lbAutor;
-
-    @FXML
-    private Label lbOutor;    
-	
-	private Solicitacao solicitacao;
 
 	@FXML
-	void initialize() {
+	private Label lbConfirm;
+
+	@FXML
+	private Label lbDataCria;
+
+	@FXML
+	private Label lbHoraCria;
+
+	@FXML
+	private Label lbInicio;
+
+	@FXML
+	private Label lbFim;
+
+	@FXML
+	private Label lbDest;
+
+	@FXML
+	private Label lbFinalid;
+
+	@FXML
+	private Label lbAutoriz;
+
+	@FXML
+	private Label lbPassag;
+
+	@FXML
+	private Label lbAutor;
+
+	@FXML
+	private Label lbOutor;
+
+	private Solicitacao solicitacao;
+
+	private int i = 0;
+
+	private AnchorPane novaSolic;
+
+	@FXML
+	void initialize() throws IOException {
 		solicitTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		numCln.setCellValueFactory(new PropertyValueFactory<>("numero"));
@@ -90,12 +102,12 @@ public class SolicitacaoController {
 		veicCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		criaCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		autorCln.setCellFactory(TextFieldTableCell.forTableColumn());
-		
+
 		solicitTable.setItems(DAOSolicitacaoSP.list());
 
 		solicitTable.getSelectionModel().selectFirst();
-		
-		//Demorei 6 horas pra achar essa solução que altera o valor da célula. #Eddunic
+
+		// Demorei 6 horas pra achar essa solução que altera o valor da célula. #Eddunic
 		tipoCln.setCellValueFactory(cellData -> cellData.getValue().getTipoProperty());
 		veicCln.setCellValueFactory(cellData -> cellData.getValue().getVeiculoRequisitadoProperty());
 		criaCln.setCellValueFactory(cellData -> cellData.getValue().getDataCriacaoProperty());
@@ -110,43 +122,59 @@ public class SolicitacaoController {
 	@FXML
 	void excluiSolicit(ActionEvent event) {
 		DAOSolicitacaoSP.delete(solicitTable.getSelectionModel().getSelectedItem().getNumero());
+		solicitTable.setItems(DAOSolicitacaoSP.list());
+		solicitTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(), 
-				solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado(),"133932", "122212", "121414", "1213", 
-				solicitTable.getSelectionModel().getSelectedItem().getDataCriacao(), "lo3a", "1224", 
-				solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado(), 4, 
+		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(),
+				solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado(), "133932", "122212",
+				"121414", "1213", solicitTable.getSelectionModel().getSelectedItem().getDataCriacao(), "lo3a", "1224",
+				solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado(), 4,
 				solicitTable.getSelectionModel().getSelectedItem().getTipo(), "nad", "23", "32");
 		DAOSolicitacao.update(solicitacao);
 		refreshTable();
 	}
 
 	@FXML
-	void novaSolicit(ActionEvent event) {
+	void novaSolicit(ActionEvent event) throws Exception {
 //		solicitacao = new Solicitacao();
 //		DAOSolicitacaoSP.insert(solicitacao);
 //		refreshTable();
+		
+		novaSolic = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
+		MDIWindow cadMDI = new MDIWindow("mdiID", new ImageView(new Image("file:logotipoSCESVI.png")), "Cadastro " + i, novaSolic);
+		ContainerTelasController.canvas.addMDIWindow(cadMDI);
+		i++;
+		System.out.println(i);
 	}
 
 	void refreshTable() {
-		//solicitTable.getItems().clear();
 		lbNum.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbVeic.setText(solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado());
 		lbTipo.setText(solicitTable.getSelectionModel().getSelectedItem().getTipo());
-		lbConfirm.setText(DAOSolicitacao.consultParam("dataVeiculoConfirmado", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbConfirm.setText(DAOSolicitacao.consultParam("dataVeiculoConfirmado",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbDataCria.setText(solicitTable.getSelectionModel().getSelectedItem().getDataCriacao());
-		lbHoraCria.setText(DAOSolicitacao.consultParam("horaCriacao", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbInicio.setText(DAOSolicitacao.consultParam("dataInicio", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbFim.setText(DAOSolicitacao.consultParam("dataFim", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbDest.setText(DAOSolicitacao.consultParam("localViagem", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbFinalid.setText(DAOSolicitacao.consultParam("finalidade", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbHoraCria.setText(DAOSolicitacao.consultParam("horaCriacao",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbInicio.setText(DAOSolicitacao.consultParam("dataInicio",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbFim.setText(
+				DAOSolicitacao.consultParam("dataFim", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbDest.setText(DAOSolicitacao.consultParam("localViagem",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbFinalid.setText(DAOSolicitacao.consultParam("finalidade",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbAutoriz.setText(solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado());
-		lbPassag.setText(DAOSolicitacao.consultParam("qtdePassageiros", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbAutor.setText(DAOSolicitacao.consultParam("siapeServRealiza", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbOutor.setText(DAOSolicitacao.consultParam("siapeServAutoriza", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbPassag.setText(DAOSolicitacao.consultParam("qtdePassageiros",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbAutor.setText(DAOSolicitacao.consultParam("siapeServRealiza",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbOutor.setText(DAOSolicitacao.consultParam("siapeServAutoriza",
+				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 	}
-	
+
 }

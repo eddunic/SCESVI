@@ -7,25 +7,17 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
+import br.com.supremeforever.suprememdiwindow.MDICanvas;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 
 //https://www.youtube.com/watch?v=NQQOPy-jmhA CRUD
 //
 public class ContainerTelasController {
-
-	@FXML
-	private static BorderPane borderPaneContainer;
 
 	@FXML
 	private JFXHamburger jfxHamb;
@@ -35,36 +27,12 @@ public class ContainerTelasController {
 
 	@FXML
 	private static VBox menuLateral;
-
-	@FXML
-	private static VBox graficosFluxo;
-	
-	@FXML 
-	private static BorderPane fxmlSolicitacoes;
-	
-	@FXML 
-	private static BorderPane fxmlVeiculos;
-	
-	@FXML 
-	private static BorderPane fxmlRegistros;
-	
-	@FXML 
-	private static BorderPane fxmlServidores;
-	
-	@FXML
-	private static Scene containerTelasScene;
-	
-	private static BorderPane fxmlContainerTelas;
-	
-	public static Scene getScene(Stage stage) {
-		try {
-			fxmlContainerTelas = FXMLLoader.load(ContainerTelasController.class.getResource("../view/ContainerTelas.fxml"));
-			containerTelasScene = new Scene(fxmlContainerTelas, stage.getWidth(), stage.getHeight());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return containerTelasScene;
-	}
+    
+    @FXML 
+    protected static MDICanvas canvas;
+    
+    @FXML
+    private VBox contemGuias;
 	
 	@FXML
 	public void initialize() throws IOException {
@@ -89,20 +57,26 @@ public class ContainerTelasController {
 				jfxDrawerBar.setManaged(true);
 				jfxDrawerBar.open();
 			}
-
 		});
 	}
 
 	@FXML
 	private void createComponents() throws IOException {
-		//borderPaneContainer = new BorderPane();
-				
+		
+		canvas = new MDICanvas();
+		canvas.setPrefSize(200,200);
+		
+		contemGuias = new VBox (canvas);
+
 		menuLateral = FXMLLoader.load(getClass().getResource("../view/BarraLateral.fxml"));
-		graficosFluxo = FXMLLoader.load(getClass().getResource("../view/GraficosFluxo.fxml"));
-		fxmlSolicitacoes = FXMLLoader.load(getClass().getResource("../view/Solicitacoes.fxml"));
-		fxmlVeiculos = FXMLLoader.load(getClass().getResource("../view/Veiculos.fxml"));
-		fxmlRegistros = FXMLLoader.load(getClass().getResource("../view/Registros.fxml"));
-		fxmlServidores = FXMLLoader.load(getClass().getResource("../view/Servidores.fxml"));
+		
+		AnchorPane.setBottomAnchor(contemGuias, 0d);
+		AnchorPane.setTopAnchor(contemGuias, 0d);
+		AnchorPane.setLeftAnchor(contemGuias, 0d);
+		AnchorPane.setRightAnchor(contemGuias, 0d);
+		
+		
+
 	}
 	
 	static void loadComponent(String fx) {
@@ -110,19 +84,19 @@ public class ContainerTelasController {
 		
 		switch (fx) {
 		case "MenuInicial":
-			fxmlContainerTelas.setCenter(graficosFluxo);
+			MainApp.fxmlContainerTelas.setCenter(MainApp.graficosFluxo);
 			break;
 		case "Solicitacoes":
-			fxmlContainerTelas.setCenter(fxmlSolicitacoes);
+			MainApp.fxmlContainerTelas.setCenter(MainApp.fxmlSolicitacoes);
 			break;
 		case "Registros":
-			fxmlContainerTelas.setCenter(fxmlRegistros);
+			MainApp.fxmlContainerTelas.setCenter(MainApp.fxmlRegistros);
 			break;
 		case "Veiculos":
-			fxmlContainerTelas.setCenter(fxmlVeiculos);
+			MainApp.fxmlContainerTelas.setCenter(MainApp.fxmlVeiculos);
 			break;
 		case "Servidores":
-			fxmlContainerTelas.setCenter(fxmlServidores);
+			MainApp.fxmlContainerTelas.setCenter(MainApp.fxmlServidores);
 			break;
 		case "Relatorios":
 			break;
@@ -134,7 +108,7 @@ public class ContainerTelasController {
 	void nodesButons() {
 		JFXButton nr = new JFXButton("A");
 		nr.setButtonType(JFXButton.ButtonType.RAISED);
-		borderPaneContainer.setRight(nr);
+		//borderPaneContainer.setRight(nr);
 		//nr.getStyleClass().add
 	}
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import scesvi.model.Veiculo;
+import scesvi.model.dao.DAOSolicitacaoSP;
 import scesvi.model.dao.DAOVeiculo;
 
 public class VeiculoController {
@@ -126,6 +127,8 @@ public class VeiculoController {
 	@FXML
 	void excluiVeic(ActionEvent event) {
 		DAOVeiculo.delete(veicTable.getSelectionModel().getSelectedItem().getCodigo());
+		veicTable.setItems(DAOVeiculo.list());
+		veicTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 

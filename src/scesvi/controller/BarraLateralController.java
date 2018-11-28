@@ -1,7 +1,6 @@
 package scesvi.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 
 public class BarraLateralController {

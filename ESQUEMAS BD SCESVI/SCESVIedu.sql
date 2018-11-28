@@ -18,7 +18,7 @@ CREATE TABLE TELEFONE(
 	siapeServ CHAR(8) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     PRIMARY KEY(siapeServ, telefone),
-    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     
@@ -29,12 +29,12 @@ CREATE TABLE DEPARTAMENTO(
     
 INSERT INTO DEPARTAMENTO 
 VALUES
-(1, 'Departamento Acadêmico de Informação e Comunicação', 'DAIC'),
-(2, 'Departamento Acadêmico de Infraestrutura', 'DAINFRA'),
-(3, 'Departamento de Química e Alimentos', 'DQA'),
-(4, 'Departamento de alguma coisa que eu não sei', 'DGP'),
+(1, 'Departamento AcadÃªmico de InformaÃ§Ã£o e ComunicaÃ§Ã£o', 'DAIC'),
+(2, 'Departamento AcadÃªmico de Infraestrutura', 'DAINFRA'),
+(3, 'Departamento de QuÃ­mica e Alimentos', 'DQA'),
+(4, 'Departamento de alguma coisa que eu nÃ£o sei', 'DGP'),
 (5, 'Departamento de Processos Industriais','DPI'),
-(6, 'Departamento de Tecnologia da Informação', 'DTI');
+(6, 'Departamento de Tecnologia da InformaÃ§Ã£o', 'DTI');
 
 CREATE TABLE LOTADO(
 	siapeServ CHAR(8) NOT NULL,
@@ -295,7 +295,7 @@ BEGIN
 END $$
 DELIMITER ;
 
--- Solicitação
+-- SolicitaÃ§Ã£o
 
 DELIMITER $$
 USE SCESVI $$
