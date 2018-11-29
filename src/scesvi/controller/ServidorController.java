@@ -72,9 +72,8 @@ public class ServidorController {
 		cnhCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		catCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		instCln.setCellFactory(TextFieldTableCell.forTableColumn());
-		
-		//Linha Com erro por causa do LocalDate
-//		servTable.setItems(DAOServidor.list());
+	
+		servTable.setItems(DAOServidor.list());
 
 		servTable.getSelectionModel().selectFirst();
 		

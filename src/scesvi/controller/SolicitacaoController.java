@@ -84,9 +84,9 @@ public class SolicitacaoController {
 
 	private Solicitacao solicitacao;
 
-	private int i = 0;
+	//private int i = 0;
 
-	private AnchorPane novaSolic;
+	//private AnchorPane novaSolic;
 
 	@FXML
 	void initialize() throws IOException {
@@ -144,11 +144,11 @@ public class SolicitacaoController {
 //		DAOSolicitacaoSP.insert(solicitacao);
 //		refreshTable();
 		
-		novaSolic = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
-		MDIWindow cadMDI = new MDIWindow("mdiID", new ImageView(new Image("file:logotipoSCESVI.png")), "Cadastro " + i, novaSolic);
-		ContainerTelasController.canvas.addMDIWindow(cadMDI);
-		i++;
-		System.out.println(i);
+//		novaSolic = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
+//		MDIWindow cadMDI = new MDIWindow("mdiID", new ImageView(new Image("file:logotipoSCESVI.png")), "Cadastro " + i, novaSolic);
+//		ContainerTelasController.canvas.addMDIWindow(cadMDI);
+//		i++;
+//		System.out.println(i);
 	}
 
 	void refreshTable() {
