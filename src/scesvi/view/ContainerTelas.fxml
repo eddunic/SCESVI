@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
@@ -9,11 +8,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-<BorderPane fx:id="borderPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="982.0" styleClass="borderPaneBack" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.ContainerTelasController">
+<BorderPane fx:id="borderPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1041.0" styleClass="borderPaneBack" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.ContainerTelasController">
 	<top>
 		<HBox prefHeight="38.0" prefWidth="983.0" styleClass="topPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
 			<children>
@@ -68,14 +66,4 @@
 	<left>
 		<JFXDrawer fx:id="jfxDrawerBar" defaultDrawerSize="195.0" prefHeight="440.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
 	</left>
-	<right>
-		<JFXButton alignment="TOP_CENTER" styleClass="arredonda" stylesheets="@style.css" text="+" BorderPane.alignment="TOP_CENTER">
-			<BorderPane.margin>
-				<Insets right="10.0" top="10.0" />
-			</BorderPane.margin>
-		</JFXButton>
-	</right>
-   <bottom>
-      <VBox fx:id="contemGuias" prefHeight="30.0" prefWidth="982.0" BorderPane.alignment="CENTER" />
-   </bottom>
 </BorderPane>

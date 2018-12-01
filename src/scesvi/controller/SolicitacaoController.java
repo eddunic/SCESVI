@@ -2,20 +2,20 @@ package scesvi.controller;
 
 import java.io.IOException;
 
-import br.com.supremeforever.suprememdiwindow.MDICanvas;
-import br.com.supremeforever.suprememdiwindow.MDIWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
+import scesvi.model.SingletonStage;
 import scesvi.model.Solicitacao;
 import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOSolicitacaoSP;
@@ -83,7 +83,10 @@ public class SolicitacaoController {
 	private Label lbOutor;
 
 	private Solicitacao solicitacao;
-
+	
+	@FXML
+    private FlowPane fxmlAdd;
+	
 	//private int i = 0;
 
 	//private AnchorPane novaSolic;
@@ -149,7 +152,17 @@ public class SolicitacaoController {
 //		ContainerTelasController.canvas.addMDIWindow(cadMDI);
 //		i++;
 //		System.out.println(i);
+		
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
+		changeScreen(fxmlAdd);
+		//addScene = new Scene(fxmlAdd);
+		//stage.setScene(addScene);
+		//stage.show();
 	}
+	
+	private void changeScreen(FlowPane fxmlAdd) {
+        SingletonStage.instance(null).loadNewStage(fxmlAdd);
+    }
 
 	void refreshTable() {
 		lbNum.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero()));
@@ -162,8 +175,7 @@ public class SolicitacaoController {
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbInicio.setText(DAOSolicitacao.consultParam("dataInicio",
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbFim.setText(
-				DAOSolicitacao.consultParam("dataFim", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbFim.setText(DAOSolicitacao.consultParam("dataFim", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbDest.setText(DAOSolicitacao.consultParam("localViagem",
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbFinalid.setText(DAOSolicitacao.consultParam("finalidade",
