@@ -46,19 +46,19 @@ public class DAOSolicitacaoSP extends DAO {
 			System.out.println("Erro: " + e);
 		}
 	}
-	
+	 	
 	public static ObservableList<Solicitacao> list() {
 		listSolicit = FXCollections.observableArrayList();
 		String query = "CALL sp_ListSolicit()";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
 				Solicitacao solicit = new Solicitacao();
-				solicit.setNumero(resultset.getInt("numero"));
-				solicit.setTipo(resultset.getString("tipo"));
-				solicit.setVeiculoRequisitado(resultset.getString("veiculoRequisitado"));
-				solicit.setDataCriacao(resultset.getString("dataCriacao"));
-				solicit.setDataAutorizado(resultset.getString("dataAutorizado"));
+				solicit.setNumero(resultSet.getInt("numero"));
+				solicit.setTipo(resultSet.getString("tipo"));
+				solicit.setVeiculoRequisitado(resultSet.getString("veiculoRequisitado"));
+				solicit.setDataCriacao(resultSet.getString("dataCriacao"));
+				solicit.setDataAutorizado(resultSet.getString("dataAutorizado"));
 				listSolicit.add(solicit);
 			}
 
@@ -68,6 +68,17 @@ public class DAOSolicitacaoSP extends DAO {
 			System.out.println("Erro: " + e);
 		}
 		return listSolicit;
+	}
+	
+	public static void delete(int numero) {
+		String query = "CALL sp_DeleteSolicit(" + numero + ")";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {		
+			pst.executeUpdate(query);
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
 	}
 	
 }

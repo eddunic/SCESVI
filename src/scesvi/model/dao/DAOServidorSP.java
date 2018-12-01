@@ -20,7 +20,7 @@ public class DAOServidorSP extends DAO {
 			pst.setString(2, servidor.getCpf());
 			pst.setString(3, servidor.getNome());
 			pst.setString(4, servidor.getSenha());
-			pst.setString(5, servidor.getDataNascS());
+			pst.setString(5, String.valueOf(servidor.getDataNascS()));
 			pst.setString(6, servidor.getCnh());
 			pst.setString(7, servidor.getCategoria());
 			pst.setString(8, servidor.getAutorizadoVeicInstitucional());
@@ -34,10 +34,8 @@ public class DAOServidorSP extends DAO {
 	}
 	
 	public static void delete(String siape) {
-		String query = "CALL sp_DeleteServidor(?)";
+		String query = "CALL sp_DeleteServidor(" + siape + ")";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			pst.setString(1, siape);
-			
 			pst.executeUpdate(query);
 			pst.close();
 			disconnection();
@@ -49,10 +47,10 @@ public class DAOServidorSP extends DAO {
 	public static void consultServidor(String siape) {
 		String query = "CALL sp_ConsultServidor(" + siape + ")";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				System.out.println(resultset.getString("nome"));
-				System.out.println(resultset.getString("senha"));
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("nome"));
+				System.out.println(resultSet.getString("senha"));
 			}
 
 			pst.close();
@@ -65,9 +63,9 @@ public class DAOServidorSP extends DAO {
 	public static void list() {
 		String query = "CALL sp_ListServidor()";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				System.out.println(resultset.getString("nome"));
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("nome"));
 			}
 
 			pst.close();
@@ -80,11 +78,11 @@ public class DAOServidorSP extends DAO {
 	public static void listNomeDepCargo() {
 		String query = "CALL sp_ListNomeDepCargo()";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				System.out.println(resultset.getString("SERVIDOR.nome"));
-				System.out.println(resultset.getString("DEPARTAMENTO.sigla"));
-				System.out.println(resultset.getString("CARGO.titulacao"));
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("SERVIDOR.nome"));
+				System.out.println(resultSet.getString("DEPARTAMENTO.sigla"));
+				System.out.println(resultSet.getString("CARGO.titulacao"));
 			}
 
 			pst.close();

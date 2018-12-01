@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="409.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.ServidorController">
+   <top>
+      <AnchorPane prefHeight="45.0" prefWidth="748.0" styleClass="cardPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <MaterialIconView fill="#3196de" glyphName="PEOPLE" layoutX="14.0" layoutY="35.0" size="25" />
+            <Label layoutX="46.0" layoutY="14.0" styleClass="fontSection" stylesheets="@style.css" text="SERVIDORES" textFill="#3196de" />
+            <JFXButton layoutX="393.0" layoutY="10.0" onAction="#novoServ" styleClass="buttonsCRUD" stylesheets="@style.css" text="Novo" />
+            <JFXButton layoutX="464.0" layoutY="10.0" onAction="#editarTable" styleClass="buttonsCRUD" stylesheets="@style.css" text="Atualizar" />
+            <JFXButton layoutX="548.0" layoutY="10.0" onAction="#excluiServ" styleClass="buttonsCRUD" stylesheets="@style.css" text="Excluir" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.6258169934640523" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="servTable" editable="true" layoutX="70.0" layoutY="33.0" onMouseClicked="#atualizaSelect" prefHeight="362.0" prefWidth="436.0" styleClass="tableViewStyle" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="siapeCln" prefWidth="73.0" text="SIAPE" />
+                        <TableColumn fx:id="nomeCln" minWidth="3.0" prefWidth="69.0" text="Nome" />
+                        <TableColumn fx:id="cnhCln" prefWidth="72.0" text="CNH" />
+                        <TableColumn fx:id="catCln" prefWidth="78.0" text="Categoria" />
+                        <TableColumn fx:id="instCln" prefWidth="92.0" text="Institucional" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="46.0" prefHeight="401.0" prefWidth="196.0" styleClass="topPane" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label stylesheets="@style.css" text="Servidores" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Black" size="14.0" />
+                           </font></Label>
+                        <GridPane prefWidth="220.0" styleClass="tableViewStyle" stylesheets="@style.css">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="SIAPE" textFill="WHITE" />
+                              <Label fx:id="lbSiape" prefHeight="18.0" prefWidth="93.0" text=" " textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label text="Nome" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label fx:id="lbNome" prefHeight="24.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Nascimento" textFill="WHITE" GridPane.rowIndex="4" />
+                              <Label text="CPF" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label text="Senha" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label text="Categoria" textFill="WHITE" GridPane.rowIndex="6" />
+                              <Label text="Institucional" textFill="WHITE" GridPane.rowIndex="7" />
+                              <Label text="CNH" textFill="WHITE" GridPane.rowIndex="5" />
+                              <Label fx:id="lbCpf" prefHeight="18.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="lbSenha" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="lbNasc" prefHeight="18.0" prefWidth="109.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="lbCnh" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="lbCat" layoutX="120.0" layoutY="133.0" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label fx:id="lbInst" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

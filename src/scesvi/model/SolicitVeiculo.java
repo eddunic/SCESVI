@@ -19,7 +19,7 @@ public class SolicitVeiculo {
 	}
 	
 	/**
-	 * Construtor com parâmetros.
+	 * Construtor com parametros.
 	 * 
 	 * @param numSolicit
 	 * @param codVeic

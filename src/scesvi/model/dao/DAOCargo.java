@@ -18,9 +18,9 @@ public class DAOCargo extends DAO {
 	public static int searchCargo(String cargo) {
 		String query = "SELECT codigo FROM CARGO WHERE titulacao = " + "'" + cargo + "'";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultset = pst.executeQuery(query);
-			while(resultset.next()) {
-				codCargo = resultset.getInt("codigo");
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				codCargo = resultSet.getInt("codigo");
 			}
 			pst.close();
 			disconnection();

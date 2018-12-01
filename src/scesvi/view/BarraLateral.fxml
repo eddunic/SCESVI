@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="180.0" styleClass="vBoxStyle" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.BarraLateralController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="180.0" styleClass="vBoxStyle" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.BarraLateralController">
    <children>
       <ImageView fitHeight="90.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,7 +24,7 @@
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <VBox prefHeight="318.0" prefWidth="223.0">
+      <VBox prefHeight="305.0" prefWidth="180.0">
          <children>
             <JFXButton accessibleText="Material_One" onAction="#openMenuInicialAction" prefHeight="37.0" prefWidth="181.0" styleClass="fontVbox" stylesheets="@style.css" text="Menu inicial" textFill="#767676">
                <VBox.margin>
@@ -109,6 +109,11 @@
             </JFXButton>
          </children>
       </VBox>
+      <ImageView fitHeight="92.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../res/images/logotipoSCESVI.png" />
+         </image>
+      </ImageView>
    </children>
    <opaqueInsets>
       <Insets />

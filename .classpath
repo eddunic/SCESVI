@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="lib/fontawesomefx-materialicons-2.2.0-5.jar"/>
 	<classpathentry kind="lib" path="lib/fontawesomefx-octicons-4.3.0-5.jar"/>
 	<classpathentry kind="lib" path="lib/fontawesomefx-weathericons-2.0.10-5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eduardo Nicolas/Documents/SCESVI/lib/SupremeMdiWindow-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="src"/>
 </classpath>

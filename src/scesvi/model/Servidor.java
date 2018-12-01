@@ -14,7 +14,7 @@ public class Servidor {
 	private final StringProperty nome;
 	private final StringProperty senha;
 	private final ObjectProperty<LocalDate> dataNasc;
-	private static String dataNascS;
+	private static StringProperty dataNascS;
 	private final StringProperty cnh;
 	private final StringProperty categoria;
 	private final StringProperty autorizadoVeicInstitucional;
@@ -27,8 +27,8 @@ public class Servidor {
 		this.cpf = new SimpleStringProperty("");
 		this.nome = new SimpleStringProperty("");
 		this.senha = new SimpleStringProperty("");
-		this.dataNasc = new SimpleObjectProperty<LocalDate>(LocalDate.of(0, 0, 0));
-		Servidor.dataNascS = new String("");
+		this.dataNasc = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+		Servidor.dataNascS = new SimpleStringProperty("");
 		this.cnh = new SimpleStringProperty("");
 		this.categoria = new SimpleStringProperty("");
 		this.autorizadoVeicInstitucional = new SimpleStringProperty("");
@@ -54,7 +54,7 @@ public class Servidor {
 		this.nome = new SimpleStringProperty(nome);
 		this.senha = new SimpleStringProperty(senha);
 		this.dataNasc = new SimpleObjectProperty<LocalDate>(dataNasc);
-		Servidor.dataNascS = new String(format(getDataNasc()));
+		Servidor.dataNascS = format(getDataNasc());
 		this.cnh = new SimpleStringProperty(cnh);
 		this.categoria = new SimpleStringProperty(categoria);
 		this.autorizadoVeicInstitucional = new SimpleStringProperty(autorizadoVeicInstitucional);
@@ -94,7 +94,7 @@ public class Servidor {
 		return cnh.get();
 	}
 
-	public StringProperty getCNHProperty() {
+	public StringProperty getCnhProperty() {
 		return cnh;
 	}
 
@@ -142,7 +142,7 @@ public class Servidor {
 		return cpf.get();
 	}
 
-	public StringProperty getCPFProperty() {
+	public StringProperty getCpfProperty() {
 		return cpf;
 	}
 
@@ -158,17 +158,21 @@ public class Servidor {
 		return nome;
 	}
 
-	public String getDataNascS() {
+	public StringProperty getDataNascS() {
+		return dataNascS;
+	}
+	
+	public String setDataNascS(String dataNascS){
 		return dataNascS;
 	}
 
-	public static String format(LocalDate date) {
+	public static StringProperty format(LocalDate date) {
 		if (date == null) {
 			return null;
+		} else {
+			dataNascS = new SimpleStringProperty((String) date.format(DateTimeFormatter.BASIC_ISO_DATE));
+			return dataNascS;
 		}
-
-		dataNascS = date.format(DateTimeFormatter.BASIC_ISO_DATE);
-		return dataNascS;
 	}
 
 }

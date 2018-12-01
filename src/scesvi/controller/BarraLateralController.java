@@ -1,15 +1,13 @@
 package scesvi.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 
 public class BarraLateralController {
 	
     @FXML
     public void openMenuInicialAction(ActionEvent a) {
-    	//System.out.println("AAAA");
-    	ContainerTelasController.loadComponent("Menuinicial");
+    	ContainerTelasController.loadComponent("MenuInicial");
     }
 
     @FXML

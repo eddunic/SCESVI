@@ -18,7 +18,7 @@ CREATE TABLE TELEFONE(
 	siapeServ CHAR(8) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     PRIMARY KEY(siapeServ, telefone),
-    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(matricula)
+    FOREIGN KEY(siapeServ) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     
@@ -29,12 +29,12 @@ CREATE TABLE DEPARTAMENTO(
     
 INSERT INTO DEPARTAMENTO 
 VALUES
-(1, 'Departamento Acadêmico de Informação e Comunicação', 'DAIC'),
-(2, 'Departamento Acadêmico de Infraestrutura', 'DAINFRA'),
-(3, 'Departamento de Química e Alimentos', 'DQA'),
-(4, 'Departamento de alguma coisa que eu não sei', 'DGP'),
+(1, 'Departamento AcadÃªmico de InformaÃ§Ã£o e ComunicaÃ§Ã£o', 'DAIC'),
+(2, 'Departamento AcadÃªmico de Infraestrutura', 'DAINFRA'),
+(3, 'Departamento de QuÃ­mica e Alimentos', 'DQA'),
+(4, 'Departamento de alguma coisa que eu nÃ£o sei', 'DGP'),
 (5, 'Departamento de Processos Industriais','DPI'),
-(6, 'Departamento de Tecnologia da Informação', 'DTI');
+(6, 'Departamento de Tecnologia da InformaÃ§Ã£o', 'DTI');
 
 CREATE TABLE LOTADO(
 	siapeServ CHAR(8) NOT NULL,
@@ -96,8 +96,84 @@ CREATE TABLE SOLICITACAO(
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     
+DROP TABLE SOLICITACAO;
+    
 INSERT INTO SOLICITACAO VALUES
-(2017, 'onyx', '111111', '111111', '121212', '1133', '222222', 'seila', '1111', '201020', 20, 'v', 'bla', '321', '321');
+(2412, 'iiAa', '112391', '321711', '124242', '1563', '637222', 'sdgif', '3411', '231020', 0, 'w', 'sla', '321', '371'),
+(2112, 'Mua', '115191', '112711', '124282', '1163', '627222', 'sagia', '1411', '251020', 7, 'p', 'dla', '331', '321');
+
+CREATE TABLE VEICULO(
+    codigo VARCHAR(7) NOT NULL PRIMARY KEY,
+    tipo VARCHAR(10) NOT NULL,
+    placa VARCHAR(7) NOT NULL,
+	renavam VARCHAR(30) NOT NULL UNIQUE,
+    autorizado CHAR,
+    categoria CHAR,
+    institucional CHAR,
+    chassi VARCHAR(10) NOT NULL,
+    maxPassageiros SMALLINT(2) NOT NULL,
+    observacao VARCHAR(150),
+    exercicio VARCHAR(4) NOT NULL,
+    tipoCombustivel CHAR NOT NULL,
+    potencia FLOAT(8) NOT NULL,
+    cor VARCHAR(15) NOT NULL,
+    marcaModelo VARCHAR(10) NOT NULL,
+    anoFabricacao VARCHAR(4) NOT NULL,
+    anoModelo VARCHAR(4) NOT NULL,
+    dataSupervisionado VARCHAR(8),
+    siapeServSupervisiona CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
+	FOREIGN KEY(siapeServSupervisiona) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+	FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+INSERT INTO VEICULO VALUES
+('1', 'a', 's', 'er', 'd', 'c', 'n', 'wer', 12, 'nda', '1234', 'g', 13, 'verde', 'eila', '1954', '2003', '1212', '123', '321');
+
+CREATE TABLE REGISTRO(
+	numero INT (4) NOT NULL PRIMARY KEY,
+    observacao VARCHAR(150),
+    codVeiculo VARCHAR(7) NOT NULL,
+    siapeServInicia CHAR(8) NOT NULL,
+    siapeServEncerra CHAR(8) NOT NULL,
+    siapeServResponsavel CHAR(8) NOT NULL,
+    horaInicia VARCHAR(4) NOT NULL,
+    dataInicia VARCHAR(8) NOT NULL,
+    horaSaida VARCHAR(4),
+    dataSaida VARCHAR(8),
+    dataEntrada VARCHAR(8),
+    horaEntrada VARCHAR(4),
+    horaEncerra VARCHAR(4),
+    dataEncerra VARCHAR(8),
+    descricao VARCHAR(150) NOT NULL,
+    kmInicial SMALLINT(2),
+    kmFinal SMALLINT(2),
+    kmPercorridos SMALLINT(2),
+    dataSupervisionado VARCHAR(8),
+    FOREIGN KEY(codVeiculo) REFERENCES VEICULO(codigo)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+	FOREIGN KEY(siapeServInicia) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+	FOREIGN KEY(siapeServEncerra) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY(siapeServResponsavel) REFERENCES SERVIDOR(siape)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+INSERT INTO REGISTRO VALUES
+(2, 'sla', 'cod', '111', '222', '333', '1234', '123121', '1231', '131212', '121315', '1019', '0918', '463728', 'ndaq', 14, 12, 18, '131313');
+
+SELECT * FROM REGISTRO;
+
+SELECT * FROM VEICULO;
+
+SELECT * FROM SOLICITACAO;
     
 SELECT * FROM SERVIDOR;
     
@@ -219,7 +295,7 @@ BEGIN
 END $$
 DELIMITER ;
 
--- Solicitação
+-- SolicitaÃ§Ã£o
 
 DELIMITER $$
 USE SCESVI $$
@@ -229,11 +305,11 @@ IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHA
 IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
 IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
 IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza VARCHAR(12), 
-IN siapeServRealiza VARCHAR(12), IN codVeiculoAtende VARCHAR(12))
+IN siapeServRealiza VARCHAR(12))
 BEGIN
     INSERT INTO SOLICITACAO VALUES(numero, veiculoRequisitado, dataVeiculoConfirmado, 
     dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, 
-    qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza, codVeiculoAtende);
+    qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza);
 END $$
 DELIMITER ;
 
@@ -243,6 +319,33 @@ DROP PROCEDURE IF EXISTS sp_ListSolicit $$
 CREATE PROCEDURE sp_ListSolicit ()
 BEGIN
     SELECT numero, tipo, veiculoRequisitado, dataCriacao, dataAutorizado FROM SOLICITACAO;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_DeleteSolicit $$
+CREATE PROCEDURE sp_DeleteSolicit (IN numero INT(4))
+BEGIN
+	DELETE FROM SOLICITACAO WHERE SOLICITACAO.numero = numero;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_UpdateSolicit $$
+CREATE PROCEDURE sp_UpdateSolicit (IN veiculoRequisitado VARCHAR(50), 
+IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
+IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
+IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
+IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza VARCHAR(12), 
+IN siapeServRealiza VARCHAR(12), IN numero INT(4))
+BEGIN
+    UPDATE SOLICITACAO SET SOLICITACAO.veiculoRequisitado = veiculoRequisitado, SOLICITACAO.dataVeiculoConfirmado = dataVeiculoConfirmado, 
+    SOLICITACAO.dataInicio = dataInicio, SOLICITACAO.dataFim = dataFim, SOLICITACAO.horaCriacao = horaCriacao, SOLICITACAO.dataCriacao = dataCriacao,
+    SOLICITACAO.localViagem = localViagem, SOLICITACAO.horaAutorizado = horaAutorizado, SOLICITACAO.dataAutorizado = dataAutorizado,
+	SOLICITACAO.qtdePassageiros = qtdePassageiros, SOLICITACAO.tipo = tipo, SOLICITACAO.finalidade = finalidade, 
+    SOLICITACAO.siapeServAutoriza = siapeServAutoriza, SOLICITACAO.siapeServRealiza = siapeServRealiza WHERE SOLICITACAO.numero = numero;
 END $$
 DELIMITER ;
 

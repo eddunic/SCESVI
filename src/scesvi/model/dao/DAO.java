@@ -10,7 +10,7 @@ public class DAO {
 	
 	private static Connection connection = null;
 	private static Statement statement = null;
-	private static ResultSet resultset = null;
+	private static ResultSet resultSet = null;
 
 	public static Connection getConnection() {
 		try {
@@ -42,12 +42,12 @@ public class DAO {
 		return statement;
 	}
 
-	public static ResultSet getResultset() {
-		return resultset;
+	public static ResultSet getResultSet() {
+		return resultSet;
 	}
 
-	public static void setResultset(ResultSet resultset) {
-		DAO.resultset = resultset;
+	public static void setResultSet(ResultSet resultSet) {
+		DAO.resultSet = resultSet;
 	}
 		
 }
