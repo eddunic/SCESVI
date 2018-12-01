@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<FlowPane fx:id="fxmlAdd" prefHeight="393.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane fx:id="fxmlAdd" prefHeight="393.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.CadastroSolicitacoesController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" styleClass="fontSection" stylesheets="@style.css" text="Nova solicitação de número">
          <FlowPane.margin>
@@ -30,7 +30,7 @@
                   </Label>
                </children>
             </VBox>
-            <ComboBox layoutX="77.0" layoutY="46.0" prefHeight="25.0" prefWidth="116.0" />
+            <ComboBox fx:id="cbSiapeSolicit" layoutX="77.0" layoutY="46.0" prefHeight="25.0" prefWidth="116.0" />
             <JFXTextField labelFloat="true" layoutX="221.0" layoutY="46.0" prefHeight="25.0" prefWidth="178.0" promptText="Tipo da solicitação" stylesheets="@style.css" />
             <JFXTextField labelFloat="true" layoutX="433.0" layoutY="46.0" prefHeight="25.0" prefWidth="185.0" promptText="Destino" stylesheets="@style.css" />
             <Label layoutX="101.0" layoutY="81.0" prefHeight="17.0" prefWidth="69.0" text="Quantidade" />

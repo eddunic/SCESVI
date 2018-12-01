@@ -3,9 +3,12 @@ package scesvi.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import scesvi.model.Servidor;
 
 public class DAOServidor extends DAO {
@@ -14,6 +17,12 @@ public class DAOServidor extends DAO {
 	
 	@FXML
 	private static ObservableList<Servidor> listServ;
+	
+	@FXML
+	public static ArrayList<String> siapes;
+	
+	@FXML
+	private static ComboBox<Servidor> cbSiapeSolicit;
 	
 	public static Servidor getServidor() {
 		return servidor;
@@ -38,30 +47,7 @@ public class DAOServidor extends DAO {
 			System.out.println("Erro: " + e);
 		}
 	}
-	
-	public static ObservableList<Servidor> list() {
-		listServ = FXCollections.observableArrayList();
-		String query = "SELECT siape, nome, cnh, categoria, autorizadoVeicInstitucional FROM SERVIDOR";
-		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultSet = pst.executeQuery(query);
-			while(resultSet.next()) {
-				Servidor serv = new Servidor();
-				serv.setSiape(resultSet.getString("siape"));
-				serv.setNome(resultSet.getString("nome"));
-				serv.setCnh(resultSet.getString("cnh"));
-				serv.setCategoria(resultSet.getString("categoria"));
-				serv.setAutorizadoVeicInstitucional(resultSet.getString("autorizadoVeicInstitucional"));
-				listServ.add(serv);
-			}
-			
-			pst.close();
-			disconnection();
-		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
-		}
-		return listServ;
-	}
-	
+		
 	public static void delete(String siape) {
 		String query = "DELETE FROM SERVIDOR WHERE siape = " + siape;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
@@ -110,6 +96,51 @@ public class DAOServidor extends DAO {
             System.out.println("Erro: " + e);
         }
     }
+	
+	public static ObservableList<Servidor> list() {
+		listServ = FXCollections.observableArrayList();
+		String query = "SELECT siape, nome, cnh, categoria, autorizadoVeicInstitucional FROM SERVIDOR";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				Servidor serv = new Servidor();
+				serv.setSiape(resultSet.getString("siape"));
+				serv.setNome(resultSet.getString("nome"));
+				serv.setCnh(resultSet.getString("cnh"));
+				serv.setCategoria(resultSet.getString("categoria"));
+				serv.setAutorizadoVeicInstitucional(resultSet.getString("autorizadoVeicInstitucional"));
+				listServ.add(serv);
+			}
+			
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return listServ;
+	}
+	
+	public static ArrayList<String> siapeList() {
+		siapes = new ArrayList<String>();
+		String query = "SELECT siape FROM SERVIDOR";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				//Servidor serv = new Servidor();
+				//serv.setSiape(resultSet.getString("siape"));	
+	//			cbSiapeSolicit = new ComboBox<Servidor>();
+	//			cbSiapeSolicit.addItem(resultSet.getString("siape"));
+				//siapes.add(serv);		
+				 siapes.add(resultSet.getString("siape"));
+			}
+			
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return siapes;
+	} 
 
 //	public static void listNomeDepCargo() {
 //		String query = "SELECT SERVIDOR.nome, DEPARTAMENTO.sigla, CARGO.titulacao\r\n" + 

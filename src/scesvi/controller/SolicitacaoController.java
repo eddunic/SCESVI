@@ -84,7 +84,6 @@ public class SolicitacaoController {
 
 	private Solicitacao solicitacao;
 	
-	@FXML
     private FlowPane fxmlAdd;
 	
 	//private int i = 0;

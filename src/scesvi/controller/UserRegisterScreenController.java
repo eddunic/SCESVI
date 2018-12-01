@@ -175,7 +175,7 @@ public class UserRegisterScreenController {
 
 		rbSim.setToggleGroup(radioGroup);
 		rbNao.setToggleGroup(radioGroup);
-		rbNao.setSelected(true); // Deixa o não selecionado por default.
+		rbNao.setSelected(true); // Deixa o nao selecionado por default.
 
 		cbCategoria.setItems(FXCollections.observableArrayList("A", "B", "C", "D", "E"));
 		cbDepart.setItems(FXCollections.observableArrayList("DAIC", "DAINFRA", "DQA", "DGP", "DPI", "DTI"));
@@ -186,4 +186,5 @@ public class UserRegisterScreenController {
 	public void initialize() {
 		group();
 	}
+	
 }
