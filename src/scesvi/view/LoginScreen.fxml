@@ -35,7 +35,7 @@
                   <FontAwesomeIconView fill="#757474" glyphName="KEY" layoutX="77.0" layoutY="295.0" size="15" x="-50.0" y="-5.0" />
                   <VBox alignment="TOP_CENTER" layoutY="-4.0" prefHeight="408.0" prefWidth="347.0" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
                      <children>
-                        <Label text="ENTRADA">
+                        <Label styleClass="login" stylesheets="@style.css" text="ENTRADA">
                            <font>
                               <Font name="Tw Cen MT Bold" size="20.0" />
                            </font>

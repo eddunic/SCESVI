@@ -8,12 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import scesvi.model.SingletonStage;
 import scesvi.model.Solicitacao;
@@ -83,12 +86,18 @@ public class SolicitacaoController {
 	private Label lbOutor;
 
 	private Solicitacao solicitacao;
-	
-    private FlowPane fxmlAdd;
-	
-	//private int i = 0;
 
-	//private AnchorPane novaSolic;
+	private AnchorPane fxmlAdd;
+
+	@FXML
+	private SplitPane split;
+
+	@FXML
+	private AnchorPane lateral;
+
+	// private int i = 0;
+
+	// private AnchorPane novaSolic;
 
 	@FXML
 	void initialize() throws IOException {
@@ -114,6 +123,8 @@ public class SolicitacaoController {
 		veicCln.setCellValueFactory(cellData -> cellData.getValue().getVeiculoRequisitadoProperty());
 		criaCln.setCellValueFactory(cellData -> cellData.getValue().getDataCriacaoProperty());
 		autorCln.setCellValueFactory(cellData -> cellData.getValue().getDataAutorizadoProperty());
+
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
 	}
 
 	@FXML
@@ -142,26 +153,9 @@ public class SolicitacaoController {
 
 	@FXML
 	void novaSolicit(ActionEvent event) throws Exception {
-//		solicitacao = new Solicitacao();
-//		DAOSolicitacaoSP.insert(solicitacao);
-//		refreshTable();
-		
-//		novaSolic = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
-//		MDIWindow cadMDI = new MDIWindow("mdiID", new ImageView(new Image("file:logotipoSCESVI.png")), "Cadastro " + i, novaSolic);
-//		ContainerTelasController.canvas.addMDIWindow(cadMDI);
-//		i++;
-//		System.out.println(i);
-		
-		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
-		changeScreen(fxmlAdd);
-		//addScene = new Scene(fxmlAdd);
-		//stage.setScene(addScene);
-		//stage.show();
+		split.getItems().remove(1);
+		split.getItems().add(1, fxmlAdd);
 	}
-	
-	private void changeScreen(FlowPane fxmlAdd) {
-        SingletonStage.instance(null).loadNewStage(fxmlAdd);
-    }
 
 	void refreshTable() {
 		lbNum.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero()));
@@ -174,7 +168,8 @@ public class SolicitacaoController {
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbInicio.setText(DAOSolicitacao.consultParam("dataInicio",
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbFim.setText(DAOSolicitacao.consultParam("dataFim", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbFim.setText(
+				DAOSolicitacao.consultParam("dataFim", solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbDest.setText(DAOSolicitacao.consultParam("localViagem",
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbFinalid.setText(DAOSolicitacao.consultParam("finalidade",
@@ -188,4 +183,9 @@ public class SolicitacaoController {
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 	}
 
+	@FXML
+	private void back(ActionEvent event) {
+		split.getItems().remove(1);
+		split.getItems().add(1, lateral);
+	}
 }

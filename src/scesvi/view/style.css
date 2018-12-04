@@ -23,7 +23,7 @@
     -jfx-unfocus-color: #9d9c9c;
     -jfx-focus-color:  #4059a9;
 	-jfx-prompt-text-fill:  #4059a9;
-	-fx-font-size: 14.0px;
+	-fx-font-size: 13.0px;
     -jfx-label-float: true;
 }
 
@@ -51,17 +51,16 @@
 .button:hover{
 	-fx-background-color: #3196DE; /*ROXO #990099*/
 	-fx-text-fill: white;
-	-fx-border-radius: 15px;
+	-fx-border-radius: 15.0px;
 }
 
 .tableViewStyle{
 	-fx-font-family: "segoe ui";
-	-fx-font-size: 12.0px;
-	
+	-fx-font-size: 13.0px;
 }
 
 .arredonda{
-	-fx-background-radius: 15px;
+	-fx-background-radius: 15.0px;
 }
 
 .fontSection{
@@ -71,7 +70,7 @@
 }
 
 .buttonsCRUD{
-	-fx-border-radius: 15px;
+	-fx-border-radius: 15.0px;
 	-fx-background-color: Transparent;
 	-fx-border-color: #236B8E;
 	-fx-text-fill: #236B8E /*desativado: #828282*/ ;
@@ -83,8 +82,8 @@
 
 
 .table-view{
-    -fx-tree-table-color: rgba(0, 150, 0, 0.8);
-    -fx-tree-table-rippler-color : rgba(255, 0, 0, 0.9);
+    -fx-tree-table-color: rgba(0.0, 150.0, 0.0, 0.8);
+    -fx-tree-table-rippler-color : rgba(255.0, 0.0, 0.0, 0.9);
 }
 .table-view:focused .tree-table-row-cell:selected {
     -fx-background-color: -fx-tree-table-color  ;
@@ -106,13 +105,13 @@
 }
 
 .table-view .column-header{
-    -fx-border-width : 0 1 0 1;
+    -fx-border-width : 0.0 1.0 0.0 1.0;
     -fx-border-color: #F3F3F3;
 }
 
 .table-view .column-header .label {
     -fx-text-fill : #949494;
-    -fx-padding : 16 0 16 0 ;
+    -fx-padding : 16.0 0.0 16.0 0.0 ;
 }
 
 .table-view .column-header .arrow, .tree-table-view .column-header .sort-order-dot{ 
@@ -120,17 +119,17 @@
 }
 
 .table-view .column-header:last-visible {
-    -fx-border-width: 0 2 0 1;
+    -fx-border-width: 0.0 2.0 0.0 1.0;
 }
 
 .table-view .column-header-background{
-    -fx-border-width : 0 0.0 1 0;
+    -fx-border-width : 0.0 0.0 1.0 0.0;
     -fx-border-color:#F3F3F3;
 }
 
 .table-view .tree-table-cell{
-    -fx-border-width:0 0 0 0;
-    -fx-padding : 16 0 16 0 ;
+    -fx-border-width:0.0 0.0 0.0 0.0;
+    -fx-padding : 16.0 0.0 16.0 0.0 ;
 }
 
 .table-view .column-overlay{
@@ -143,10 +142,10 @@
 
 .table-view:focused {
     -fx-background-color: -fx-tree-table-color,-fx-box-border,-fx-control-inner-background;
-    -fx-background-insets: -1.4, 0, 1;
-    -fx-background-radius: 1.4, 0, 0;
+    -fx-background-insets: -1.4, 0.0, 1.0;
+    -fx-background-radius: 1.4, 0.0, 0.0;
     /*....*/
-    -fx-padding: 1; /* 0.083333em; */
+    -fx-padding: 1.0; /* 0.083333em; */
 }
 
 .table-row-cell > .tree-disclosure-node > .arrow {
@@ -155,5 +154,30 @@
     -fx-shape: "M 0 -3.5 L 4 0 L 0 3.5 z";
 }
 .table-row-cell .jfx-text-field{
-    -fx-focus-color: rgba(240,40,40);
+    -fx-focus-color: rgba(240.0,40.0,40.0);
+}
+
+.padraoFonts{
+	-fx-font-family: "segoe ui";
+	-fx-font-size: 13.0px;
+}
+
+.jtextfield {
+	-fx-font-size: 14.0px;
+	-jfx-unfocus-color: #9d9c9c;
+    -jfx-focus-color:  #4059a9;
+	-jfx-prompt-text-fill:  #4059a9;
+}
+
+.scevi {
+	-fx-font-size: 30.0px;
+	-fx-font-family: "tw cen mt";
+	-fx-font-weight: bold;
+}
+
+.login{
+	-fx-fill-color: #757474;
+	-fx-font-family: "tw cen mt";
+	-fx-font-weight: bold;
+	-fx-font-size: 20.0px;
 }

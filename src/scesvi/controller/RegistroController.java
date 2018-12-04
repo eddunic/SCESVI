@@ -3,6 +3,7 @@ package scesvi.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -88,6 +89,9 @@ public class RegistroController {
 
     @FXML
     private Label lbSupervisao;
+    
+    @FXML
+    private SplitPane split;
 	
 	private Registro registro;
 
@@ -167,6 +171,11 @@ public class RegistroController {
 		lbKmPerc.setText(DAORegistro.consultParam("kmPercorridos", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbSupervisao.setText(DAORegistro.consultParam("dataSupervisionado", regTable.getSelectionModel().getSelectedItem().getNumero()));
 	}
+	
+    @FXML
+    private void back(ActionEvent event) {
+
+    }
 	
 }
 

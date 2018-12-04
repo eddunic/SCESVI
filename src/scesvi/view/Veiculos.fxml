@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,33 +13,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="409.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.VeiculoController">
-   <top>
-      <AnchorPane prefHeight="45.0" prefWidth="748.0" styleClass="cardPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
-         <children>
-            <MaterialIconView fill="#3196de" glyphName="DIRECTIONS_CAR" layoutX="14.0" layoutY="35.0" size="25" />
-            <Label layoutX="46.0" layoutY="14.0" styleClass="fontSection" stylesheets="@style.css" text="VEÍCULOS" textFill="#3196de" />
-            <JFXButton layoutX="392.0" layoutY="11.0" onAction="#novoVeic" styleClass="buttonsCRUD" stylesheets="@style.css" text="Novo" />
-            <JFXButton layoutX="467.0" layoutY="11.0" onAction="#editarTable" styleClass="buttonsCRUD" stylesheets="@style.css" text="Atualizar" />
-            <JFXButton layoutX="550.0" layoutY="11.0" onAction="#excluiVeic" styleClass="buttonsCRUD" stylesheets="@style.css" text="Excluir" />
-         </children>
-      </AnchorPane>
-   </top>
    <center>
-      <SplitPane dividerPositions="0.6356209150326797" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.6029411764705882" prefHeight="451.0" prefWidth="748.0" BorderPane.alignment="CENTER">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <TableView fx:id="veicTable" editable="true" layoutX="70.0" layoutY="33.0" onMouseClicked="#atualizaSelect" prefHeight="362.0" prefWidth="436.0" styleClass="tableViewStyle" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="codCln" prefWidth="73.0" text="Código" />
-                        <TableColumn fx:id="modCln" minWidth="3.0" prefWidth="69.0" text="Modelo" />
-                        <TableColumn fx:id="anoCln" prefWidth="72.0" text="Ano" />
-                        <TableColumn fx:id="respCln" prefWidth="78.0" text="Responsável" />
-                        <TableColumn fx:id="placaCln" prefWidth="92.0" text="Placa" />
+                        <TableColumn fx:id="codCln" prefWidth="53.0" text="Código" />
+                        <TableColumn fx:id="modCln" minWidth="3.0" prefWidth="89.0" text="Modelo" />
+                        <TableColumn fx:id="anoCln" prefWidth="52.0" text="Ano" />
+                        <TableColumn fx:id="respCln" prefWidth="98.0" text="Responsável" />
+                        <TableColumn fx:id="placaCln" prefWidth="73.0" text="Placa" />
                      </columns>
                      <contextMenu>
                         <ContextMenu>
@@ -50,11 +41,14 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <AnchorPane fx:id="lateral" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="46.0" prefHeight="401.0" prefWidth="196.0" styleClass="topPane" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label styleClass="tableViewStyle" stylesheets="@style.css" text="Veículo" textFill="WHITE" />
+                        <Label styleClass="tableViewStyle" stylesheets="@style.css" text="Veículo" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin></Label>
                         <GridPane prefWidth="220.0" styleClass="tableViewStyle" stylesheets="@style.css">
                            <columnConstraints>
                               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -124,6 +118,9 @@
                               <Label fx:id="lbSupervisor" prefHeight="18.0" prefWidth="82.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="18" />
                               <Label fx:id="lbResp" prefHeight="18.0" prefWidth="79.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="19" />
                            </children>
+                           <VBox.margin>
+                              <Insets left="20.0" right="15.0" />
+                           </VBox.margin>
                         </GridPane>
                      </children>
                   </VBox>
@@ -132,4 +129,47 @@
          </items>
       </SplitPane>
    </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MaterialIconView fill="#3196de" glyphName="DIRECTIONS_CAR" size="25">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></MaterialIconView>
+            <Label styleClass="fontSection" stylesheets="@style.css" text="VEÍCULOS" textFill="#3196de">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Label>
+            <JFXButton layoutX="538.0" layoutY="17.0" onAction="#back" styleClass="buttonsCRUD" stylesheets="@style.css" text="Voltar">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <graphic>
+                  <MaterialIconView fill="#236b8e" glyphName="ARROW_BACK" size="13" />
+               </graphic>
+            </JFXButton>
+            <JFXButton onAction="#novoVeic" styleClass="buttonsCRUD" stylesheets="@style.css" text="Novo">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <graphic>
+                  <MaterialIconView fill="#236b8e" glyphName="RV_HOOKUP" size="15" />
+               </graphic></JFXButton>
+            <JFXButton onAction="#editarTable" styleClass="buttonsCRUD" stylesheets="@style.css" text="Atualizar">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <graphic>
+                  <MaterialIconView fill="#236b8e" glyphName="REPLAY" size="13" />
+               </graphic></JFXButton>
+            <JFXButton onAction="#excluiVeic" styleClass="buttonsCRUD" stylesheets="@style.css" text="Excluir">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <graphic>
+                  <MaterialIconView fill="#236b8e" glyphName="CLOSE" size="13" />
+               </graphic></JFXButton>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

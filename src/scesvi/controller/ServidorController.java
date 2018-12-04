@@ -3,65 +3,85 @@ package scesvi.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import scesvi.model.Servidor;
+import scesvi.model.dao.DAOCargoSP;
 import scesvi.model.dao.DAOServidor;
 import scesvi.model.dao.DAOSolicitacaoSP;
+import scesvi.model.dao.DAOTelefoneSP;
 
 public class ServidorController {
 
 	@FXML
-    private TableView<Servidor> servTable;
+	private TableView<Servidor> servTable;
 
-    @FXML
-    private TableColumn<Servidor, String> siapeCln;
+	@FXML
+	private TableColumn<Servidor, String> siapeCln;
 
-    @FXML
-    private TableColumn<Servidor, String> nomeCln;
+	@FXML
+	private TableColumn<Servidor, String> nomeCln;
 
-    @FXML
-    private TableColumn<Servidor, String> cnhCln;
+	@FXML
+	private TableColumn<Servidor, String> cnhCln;
 
-    @FXML
-    private TableColumn<Servidor, String> catCln;
+	@FXML
+	private TableColumn<Servidor, String> catCln;
 
-    @FXML
-    private TableColumn<Servidor, String> instCln;
+	@FXML
+	private TableColumn<Servidor, String> instCln;
 
-    @FXML
-    private Label lbSiape;
+	@FXML
+	private Label lbSiape;
 
-    @FXML
-    private Label lbNome;
+	@FXML
+	private Label lbNome;
 
-    @FXML
-    private Label lbCpf;
+	@FXML
+	private Label lbCpf;
 
-    @FXML
-    private Label lbSenha;
+	@FXML
+	private Label lbSenha;
 
-    @FXML
-    private Label lbNasc;
+	@FXML
+	private Label lbNasc;
 
-    @FXML
-    private Label lbCnh;
+	@FXML
+	private Label lbCnh;
 
-    @FXML
-    private Label lbCat;
+	@FXML
+	private Label lbCat;
 
-    @FXML
-    private Label lbInst;
-	
+	@FXML
+	private Label lbInst;
+
 	private Servidor servidor;
+
+	@FXML
+	private Label lbCarg;
+
+	@FXML
+	private Label lbDep;
+
+	@FXML
+	private Label lbTel;
+
+	@FXML
+	private AnchorPane lateral;
+
+	@FXML
+	private SplitPane split;
 
 	@FXML
 	void initialize() {
 		servTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+		// campos table
 		siapeCln.setCellValueFactory(new PropertyValueFactory<>("siape"));
 		nomeCln.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		cnhCln.setCellValueFactory(new PropertyValueFactory<>("cnh"));
@@ -72,11 +92,11 @@ public class ServidorController {
 		cnhCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		catCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		instCln.setCellFactory(TextFieldTableCell.forTableColumn());
-	
+
 		servTable.setItems(DAOServidor.list());
 
 		servTable.getSelectionModel().selectFirst();
-		
+
 		nomeCln.setCellValueFactory(cellData -> cellData.getValue().getNomeProperty());
 		cnhCln.setCellValueFactory(cellData -> cellData.getValue().getCnhProperty());
 		catCln.setCellValueFactory(cellData -> cellData.getValue().getCategoriaProperty());
@@ -98,7 +118,7 @@ public class ServidorController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		//Com inconsistência LocalDate - String
+		// Com inconsistência LocalDate - String
 //		servidor = new Servidor(servTable.getSelectionModel().getSelectedItem().getSiape(), "453", 
 //				servTable.getSelectionModel().getSelectedItem().getNome(), "1133", "112211", 
 //				servTable.getSelectionModel().getSelectedItem().getCnh(), servTable.getSelectionModel().getSelectedItem().getCategoria(),
@@ -109,19 +129,29 @@ public class ServidorController {
 
 	@FXML
 	void novoServ(ActionEvent event) {
-		
+		split.getItems().remove(1);
+		split.getItems().add(1, MainApp.fxmlUserRegister);
 	}
 
 	void refreshTable() {
 		lbSiape.setText(servTable.getSelectionModel().getSelectedItem().getSiape());
 		lbCpf.setText(DAOServidor.consultParam("cpf", servTable.getSelectionModel().getSelectedItem().getSiape()));
 		lbNome.setText(servTable.getSelectionModel().getSelectedItem().getNome());
-		lbSenha.setText(DAOServidor.consultParam("senha", servTable.getSelectionModel().getSelectedItem().getSiape()));
-		lbNasc.setText(DAOServidor.consultParam("dataNasc", servTable.getSelectionModel().getSelectedItem().getSiape()));
+		lbNasc.setText(
+				DAOServidor.consultParam("dataNasc", servTable.getSelectionModel().getSelectedItem().getSiape()));
 		lbCnh.setText(servTable.getSelectionModel().getSelectedItem().getCnh());
 		lbCat.setText(servTable.getSelectionModel().getSelectedItem().getCategoria());
-		lbInst.setText(servTable.getSelectionModel().getSelectedItem().getAutorizadoVeicInstitucional());
+		lbInst.setText(
+				(servTable.getSelectionModel().getSelectedItem().getAutorizadoVeicInstitucional().equals("S") ? "Sim"
+						: "Não"));
+		lbTel.setText(DAOTelefoneSP.consultTel(servTable.getSelectionModel().getSelectedItem().getSiape()));
+		lbCarg.setText(DAOCargoSP.consultCargo(servTable.getSelectionModel().getSelectedItem().getSiape()));
 	}
-	
-}
 
+	@FXML
+	private void back(ActionEvent event) {
+		split.getItems().remove(1);
+		split.getItems().add(1, lateral);
+	}
+
+}

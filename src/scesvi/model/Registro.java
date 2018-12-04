@@ -8,24 +8,28 @@ import javafx.beans.property.StringProperty;
 public class Registro {
 
 	private final IntegerProperty numero;
-	private final StringProperty observacao;
 	private final StringProperty codVeiculo;
 	private final StringProperty siapeServInicia;
 	private final StringProperty siapeServEncerra;
 	private final StringProperty siapeServResponsavel;
-	private final StringProperty horaInicia;
-	private final StringProperty dataInicia;
-	private final StringProperty horaSaida;
-	private final StringProperty dataSaida;
-	private final StringProperty dataEntrada;
-	private final StringProperty horaEntrada;
-	private final StringProperty dataEncerra;
-	private final StringProperty horaEncerra;
+
+	private final StringProperty observacao;
 	private final StringProperty descricao;
 	private final IntegerProperty kmInicial;
 	private final IntegerProperty kmFinal;
 	private final IntegerProperty kmPercorridos;
+	
+	private final StringProperty horaInicia;
+	private final StringProperty horaSaida;
+	private final StringProperty horaEntrada;
+	private final StringProperty horaEncerra;
+	
+	private final StringProperty dataInicia;
+	private final StringProperty dataSaida;
+	private final StringProperty dataEntrada;
+	private final StringProperty dataEncerra;
 	private final StringProperty dataSupervisionado;
+	
 
 	/**
 	 * Construtor vazio.

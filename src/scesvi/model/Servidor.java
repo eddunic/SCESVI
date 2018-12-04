@@ -18,7 +18,7 @@ public class Servidor {
 	private final StringProperty cnh;
 	private final StringProperty categoria;
 	private final StringProperty autorizadoVeicInstitucional;
-	
+
 	/**
 	 * Construtor sem parametros
 	 */
@@ -38,12 +38,19 @@ public class Servidor {
 	 * Construtor com parametros.
 	 * 
 	 * @param siape
+	 * 
 	 * @param cpf
+	 * 
 	 * @param nome
+	 * 
 	 * @param senha
+	 * 
 	 * @param dataNasc
+	 * 
 	 * @param cnh
+	 * 
 	 * @param categoria
+	 * 
 	 * @param autorizadoVeicInstitucional
 	 */
 	public Servidor(String siape, String cpf, String nome, String senha, LocalDate dataNasc, String cnh,
@@ -70,6 +77,14 @@ public class Servidor {
 		return dataNasc.get();
 	}
 	
+	public String getDataN(){
+		return dataNascS.get();
+	}
+	
+	public void setDataN(String dataNascS) {
+		this.dataNascS.set(dataNascS);
+	}
+
 	public ObjectProperty<LocalDate> dataNascProperty() {
 		return dataNasc;
 	}
@@ -161,18 +176,17 @@ public class Servidor {
 	public StringProperty getDataNascS() {
 		return dataNascS;
 	}
-	
-	public String setDataNascS(String dataNascS){
+
+	public String setDataNascS(String dataNascS) {
 		return dataNascS;
 	}
 
 	public static StringProperty format(LocalDate date) {
 		if (date == null) {
 			return null;
-		} else {
-			dataNascS = new SimpleStringProperty((String) date.format(DateTimeFormatter.BASIC_ISO_DATE));
-			return dataNascS;
 		}
+		dataNascS = new SimpleStringProperty((String) date.format(DateTimeFormatter.BASIC_ISO_DATE));
+		return dataNascS;
 	}
 
 }

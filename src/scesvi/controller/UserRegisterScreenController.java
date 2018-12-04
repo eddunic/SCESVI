@@ -79,7 +79,7 @@ public class UserRegisterScreenController {
 
 	private JFXRadioButton selectedRadioButton;
 
-	private Servidor servidor;
+	static Servidor servidor;
 
 	private Telefone tel;
 

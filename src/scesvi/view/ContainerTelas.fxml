@@ -13,7 +13,7 @@
 
 <BorderPane fx:id="borderPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1041.0" styleClass="borderPaneBack" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.ContainerTelasController">
 	<top>
-		<HBox prefHeight="38.0" prefWidth="983.0" styleClass="topPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+		<HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="983.0" styleClass="topPane" stylesheets="@style.css" BorderPane.alignment="CENTER">
 			<children>
 				<JFXHamburger fx:id="jfxHamb" prefHeight="8.0" prefWidth="25.0" styleClass="jfx-hamburger" stylesheets="@style.css">
 					<HBox.margin>
@@ -25,7 +25,7 @@
 				</JFXHamburger>
 				<Label text="SCESVI" textFill="WHITE">
 					<HBox.margin>
-						<Insets left="30.0" top="2.0" />
+						<Insets left="30.0" />
 					</HBox.margin>
 					<font>
 						<Font name="Tw Cen MT Bold" size="30.0" />
@@ -33,7 +33,7 @@
 				</Label>
 				<CustomTextField prefHeight="25.0" prefWidth="179.0" styleClass="arredonda" stylesheets="@style.css">
 					<HBox.margin>
-						<Insets left="500.0" top="10.0" />
+						<Insets left="500.0" />
 					</HBox.margin>
 
 					<left>
@@ -46,7 +46,7 @@
 				</CustomTextField>
 				<MaterialIconView fill="WHITE" glyphName="PERSON" size="22">
 					<HBox.margin>
-						<Insets left="20.0" top="9.0" />
+						<Insets left="20.0" />
 					</HBox.margin>
 					<cursor>
 						<Cursor fx:constant="HAND" />
@@ -54,7 +54,7 @@
 				</MaterialIconView>
 				<MaterialIconView fill="WHITE" glyphName="NOTIFICATIONS" size="22">
 					<HBox.margin>
-						<Insets left="20.0" top="9.0" />
+						<Insets left="20.0" />
 					</HBox.margin>
 					<cursor>
 						<Cursor fx:constant="HAND" />

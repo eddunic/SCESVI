@@ -3,6 +3,7 @@ package scesvi.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,83 +17,86 @@ public class VeiculoController {
 
 	@FXML
 	private TableView<Veiculo> veicTable;
-	
+
 	@FXML
-    private TableColumn<Veiculo, String> codCln;
+	private TableColumn<Veiculo, String> codCln;
 
-    @FXML
-    private TableColumn<Veiculo, String> modCln;
+	@FXML
+	private TableColumn<Veiculo, String> modCln;
 
-    @FXML
-    private TableColumn<Veiculo, String> anoCln;
+	@FXML
+	private TableColumn<Veiculo, String> anoCln;
 
-    @FXML
-    private TableColumn<Veiculo, String> respCln;
+	@FXML
+	private TableColumn<Veiculo, String> respCln;
 
-    @FXML
-    private TableColumn<Veiculo, String> placaCln;
+	@FXML
+	private TableColumn<Veiculo, String> placaCln;
 
-    @FXML
-    private Label lbCod;
+	@FXML
+	private Label lbCod;
 
-    @FXML
-    private Label lbPlaca;
+	@FXML
+	private Label lbPlaca;
 
-    @FXML
-    private Label lbTipo;
+	@FXML
+	private Label lbTipo;
 
-    @FXML
-    private Label lbRen;
+	@FXML
+	private Label lbRen;
 
-    @FXML
-    private Label lbAutoriz;
+	@FXML
+	private Label lbAutoriz;
 
-    @FXML
-    private Label lbCat;
+	@FXML
+	private Label lbCat;
 
-    @FXML
-    private Label lbInst;
+	@FXML
+	private Label lbInst;
 
-    @FXML
-    private Label lbChassi;
+	@FXML
+	private Label lbChassi;
 
-    @FXML
-    private Label lbMaxP;
+	@FXML
+	private Label lbMaxP;
 
-    @FXML
-    private Label lbObs;
+	@FXML
+	private Label lbObs;
 
-    @FXML
-    private Label lbExe;
+	@FXML
+	private Label lbExe;
 
-    @FXML
-    private Label lbCombs;
+	@FXML
+	private Label lbCombs;
 
-    @FXML
-    private Label lbPot;
+	@FXML
+	private Label lbPot;
 
-    @FXML
-    private Label lbCor;
+	@FXML
+	private Label lbCor;
 
-    @FXML
-    private Label lbMarcaMod;
+	@FXML
+	private Label lbMarcaMod;
 
-    @FXML
-    private Label lbFabric;
+	@FXML
+	private Label lbFabric;
 
-    @FXML
-    private Label lbAnoMod;
+	@FXML
+	private Label lbAnoMod;
 
-    @FXML
-    private Label lbDataSuperv;
+	@FXML
+	private Label lbDataSuperv;
 
-    @FXML
-    private Label lbSupervisor;
+	@FXML
+	private Label lbSupervisor;
 
-    @FXML
-    private Label lbResp;
-	
+	@FXML
+	private Label lbResp;
+
 	private Veiculo veiculo;
+
+	@FXML
+	private SplitPane split;
 
 	@FXML
 	void initialize() {
@@ -108,11 +112,11 @@ public class VeiculoController {
 		anoCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		respCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		placaCln.setCellFactory(TextFieldTableCell.forTableColumn());
-		
+
 		veicTable.setItems(DAOVeiculo.list());
 
 		veicTable.getSelectionModel().selectFirst();
-		
+
 		modCln.setCellValueFactory(cellData -> cellData.getValue().getMarcaModeloProperty());
 		anoCln.setCellValueFactory(cellData -> cellData.getValue().getAnoModeloProperty());
 		respCln.setCellValueFactory(cellData -> cellData.getValue().getSiapeServResponsavelProperty());
@@ -134,10 +138,10 @@ public class VeiculoController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		veiculo = new Veiculo(veicTable.getSelectionModel().getSelectedItem().getCodigo(), "a", 
-				veicTable.getSelectionModel().getSelectedItem().getPlaca(), "q", "n", "c", "s", "123", 4, 
-				"nda", "nenh", "g", 12, "verde", veicTable.getSelectionModel().getSelectedItem().getMarcaModelo(),
-				"2012", veicTable.getSelectionModel().getSelectedItem().getAnoModelo(), "121314", "12341", 
+		veiculo = new Veiculo(veicTable.getSelectionModel().getSelectedItem().getCodigo(), "a",
+				veicTable.getSelectionModel().getSelectedItem().getPlaca(), "q", "n", "c", "s", "123", 4, "nda", "nenh",
+				"g", 12, "verde", veicTable.getSelectionModel().getSelectedItem().getMarcaModelo(), "2012",
+				veicTable.getSelectionModel().getSelectedItem().getAnoModelo(), "121314", "12341",
 				veicTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel());
 		DAOVeiculo.update(veiculo);
 		refreshTable();
@@ -145,7 +149,7 @@ public class VeiculoController {
 
 	@FXML
 	void novoVeic(ActionEvent event) {
-		
+
 	}
 
 	void refreshTable() {
@@ -153,23 +157,38 @@ public class VeiculoController {
 		lbTipo.setText(DAOVeiculo.consultParam("tipo", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbPlaca.setText(veicTable.getSelectionModel().getSelectedItem().getPlaca());
 		lbRen.setText(DAOVeiculo.consultParam("renavam", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbAutoriz.setText(DAOVeiculo.consultParam("autorizado", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbCat.setText(DAOVeiculo.consultParam("categoria", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbInst.setText(DAOVeiculo.consultParam("institucional", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbChassi.setText(DAOVeiculo.consultParam("chassi", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbMaxP.setText(DAOVeiculo.consultParam("maxPassageiros", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbObs.setText(DAOVeiculo.consultParam("observacao", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbExe.setText(DAOVeiculo.consultParam("exercicio", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbCombs.setText(DAOVeiculo.consultParam("tipoCombustivel", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbAutoriz.setText(
+				DAOVeiculo.consultParam("autorizado", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbCat.setText(
+				DAOVeiculo.consultParam("categoria", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbInst.setText(
+				DAOVeiculo.consultParam("institucional", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbChassi.setText(
+				DAOVeiculo.consultParam("chassi", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbMaxP.setText(
+				DAOVeiculo.consultParam("maxPassageiros", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbObs.setText(
+				DAOVeiculo.consultParam("observacao", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbExe.setText(
+				DAOVeiculo.consultParam("exercicio", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbCombs.setText(DAOVeiculo.consultParam("tipoCombustivel",
+				veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbPot.setText(DAOVeiculo.consultParam("potencia", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbCor.setText(DAOVeiculo.consultParam("cor", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbMarcaMod.setText(veicTable.getSelectionModel().getSelectedItem().getMarcaModelo());
-		lbFabric.setText(DAOVeiculo.consultParam("anoFabricacao", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbFabric.setText(
+				DAOVeiculo.consultParam("anoFabricacao", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbAnoMod.setText(veicTable.getSelectionModel().getSelectedItem().getAnoModelo());
-		lbDataSuperv.setText(DAOVeiculo.consultParam("dataSupervisionado", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbSupervisor.setText(DAOVeiculo.consultParam("siapeServSupervisiona", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbDataSuperv.setText(DAOVeiculo.consultParam("dataSupervisionado",
+				veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbSupervisor.setText(DAOVeiculo.consultParam("siapeServSupervisiona",
+				veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbResp.setText(veicTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel());
 	}
-	
-}
 
+	@FXML
+	private void back(ActionEvent event) {
+
+	}
+
+}

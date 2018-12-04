@@ -40,9 +40,76 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </JFXDatePicker>
-            <VBox prefHeight="49.0" prefWidth="141.0">
+            <Label styleClass="padraoFonts" stylesheets="@style.css" text="Data de criação da solicitação:">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="33.0" prefHeight="507.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="52.0" prefWidth="218.0" styleClass="topPane" stylesheets="@style.css">
                <children>
-                  <Label prefHeight="27.0" prefWidth="140.0" styleClass="padraoFonts" stylesheets="@style.css" text="Solicitação autorizada?">
+                  <MaterialIconView fill="WHITE" glyphName="DASHBOARD" size="30" />
+                  <Label text="Geral" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <Label prefHeight="17.0" prefWidth="93.0" styleClass="padraoFonts" stylesheets="@style.css" text="Tipo do veículo">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="cbSiapeSolicit" prefHeight="25.0" prefWidth="116.0" />
+            <JFXTextField labelFloat="true" prefHeight="25.0" prefWidth="185.0" promptText="Placa" styleClass="jtextfield" stylesheets="@style.css">
+               <VBox.margin>
+                  <Insets left="90.0" right="90.0" top="30.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField labelFloat="true" layoutX="100.0" layoutY="164.0" prefHeight="25.0" prefWidth="185.0" promptText="Placa" styleClass="jtextfield" stylesheets="@style.css">
+               <VBox.margin>
+                  <Insets left="90.0" right="90.0" top="30.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <VBox alignment="TOP_CENTER" prefHeight="49.0" prefWidth="158.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="206.0" styleClass="padraoFonts" stylesheets="@style.css" text="Autorizado para o estacionamento?">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <HBox prefHeight="17.0" prefWidth="128.0">
+                     <children>
+                        <JFXRadioButton styleClass="padraoFonts" stylesheets="@style.css" text="Sim">
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton styleClass="padraoFonts" stylesheets="@style.css" text="Não">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </JFXRadioButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="60.0" right="60.0" top="30.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="110.0" layoutY="284.0" prefHeight="49.0" prefWidth="136.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="80.0" styleClass="padraoFonts" stylesheets="@style.css" text="Institucional?">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
@@ -66,43 +133,13 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets left="50.0" right="70.0" top="30.0" />
+                  <Insets left="100.0" right="90.0" top="30.0" />
                </VBox.margin>
             </VBox>
-            <Label styleClass="padraoFonts" stylesheets="@style.css" text="Data de criação da solicitação:">
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="20.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="33.0" prefHeight="507.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
-         <children>
-            <VBox alignment="CENTER" prefHeight="52.0" prefWidth="218.0" styleClass="topPane" stylesheets="@style.css">
-               <children>
-                  <MaterialIconView fill="WHITE" glyphName="DASHBOARD" size="30" />
-                  <Label text="Geral" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
-            <Label prefHeight="17.0" prefWidth="116.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE do solicitante">
+            <Label styleClass="padraoFonts" stylesheets="@style.css" text="Categoria">
                <VBox.margin>
                   <Insets top="30.0" />
-               </VBox.margin>
-            </Label>
-            <ComboBox fx:id="cbSiapeSolicit" prefHeight="25.0" prefWidth="116.0" />
-            <Label prefHeight="17.0" prefWidth="69.0" styleClass="padraoFonts" stylesheets="@style.css" text="Quantidade">
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label styleClass="padraoFonts" stylesheets="@style.css" text="de passageiros" />
+               </VBox.margin></Label>
             <ComboBox prefHeight="25.0" prefWidth="69.0" />
             <Label layoutX="10.0" layoutY="121.0" styleClass="padraoFonts" stylesheets="@style.css" text="Tipo de solicitação">
                <VBox.margin>
@@ -116,11 +153,6 @@
                </VBox.margin>
             </Label>
             <ComboBox prefHeight="25.0" prefWidth="185.0" />
-            <JFXTextField labelFloat="true" prefHeight="25.0" prefWidth="185.0" promptText="Destino" styleClass="jtextfield" stylesheets="@style.css">
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="30.0" />
-               </VBox.margin>
-            </JFXTextField>
             <Label styleClass="padraoFonts" stylesheets="@style.css" text="Modelo do veículo">
                <VBox.margin>
                   <Insets top="30.0" />
@@ -129,6 +161,6 @@
             <ComboBox prefHeight="25.0" prefWidth="150.0" />
          </children>
       </VBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="4.0" styleClass="fontSection" stylesheets="@style.css" text="CADASTRO DE SOLICITAÇÃO Nº" textFill="#236b8e" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="241.0" layoutY="5.0" styleClass="fontSection" stylesheets="@style.css" text="CADASTRO DE VEÍCULO CÓD." textFill="#236b8e" />
    </children>
 </AnchorPane>

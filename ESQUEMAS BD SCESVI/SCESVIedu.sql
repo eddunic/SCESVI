@@ -26,15 +26,6 @@ CREATE TABLE DEPARTAMENTO(
 	codigo SMALLINT NOT NULL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     sigla VARCHAR(10) NOT NULL);
-    
-INSERT INTO DEPARTAMENTO 
-VALUES
-(1, 'Departamento Acadêmico de Informação e Comunicação', 'DAIC'),
-(2, 'Departamento Acadêmico de Infraestrutura', 'DAINFRA'),
-(3, 'Departamento de Química e Alimentos', 'DQA'),
-(4, 'Departamento de alguma coisa que eu não sei', 'DGP'),
-(5, 'Departamento de Processos Industriais','DPI'),
-(6, 'Departamento de Tecnologia da Informação', 'DTI');
 
 CREATE TABLE LOTADO(
 	siapeServ CHAR(8) NOT NULL,
@@ -52,13 +43,6 @@ CREATE TABLE LOTADO(
 CREATE TABLE CARGO(
 	codigo SMALLINT(2) NOT NULL PRIMARY KEY,
     titulacao VARCHAR(20) NOT NULL);
-    
-INSERT INTO CARGO
-VALUES
-(1, 'Coordenador'),
-(2, 'Guarda'),
-(3, 'Motorista'),
-(4, 'Servidor comum');
 
 CREATE TABLE CONTRATADO(
 	siapeServ CHAR(8) NOT NULL,
@@ -214,7 +198,7 @@ DELIMITER ;
 DELIMITER $$
 USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_DeleteServidor $$
-CREATE PROCEDURE sp_DeleteServidor (IN siape CHAR(11))
+CREATE PROCEDURE sp_DeleteServidor (IN siape CHAR(8))
 BEGIN
 	DELETE FROM SERVIDOR WHERE SERVIDOR.siape = siape;
 END $$
@@ -223,7 +207,7 @@ DELIMITER ;
 DELIMITER $$
 USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_ConsultServidor $$
-CREATE PROCEDURE sp_ConsultServidor (IN siape CHAR(11))
+CREATE PROCEDURE sp_ConsultServidor (IN siape CHAR(8))
 BEGIN
 	SELECT * FROM SERVIDOR WHERE SERVIDOR.siape = siape;
 END $$
@@ -235,6 +219,36 @@ DROP PROCEDURE IF EXISTS sp_ListServidor $$
 CREATE PROCEDURE sp_ListServidor ()
 BEGIN
 	SELECT * FROM SERVIDOR;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_InsertCargo $$
+CREATE PROCEDURE sp_InsertCargo ()
+BEGIN
+	INSERT INTO CARGO
+	VALUES
+	(1, 'Coordenador'),
+	(2, 'Guarda'),
+	(3, 'Motorista'),
+	(4, 'Servidor comum');
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_InsertDep $$
+CREATE PROCEDURE sp_InsertDep ()
+BEGIN
+	INSERT INTO DEPARTAMENTO 
+	VALUES
+	(1, 'Departamento Acadêmico de Informação e Comunicação', 'DAIC'),
+	(2, 'Departamento Acadêmico de Infraestrutura', 'DAINFRA'),
+	(3, 'Departamento de Química e Alimentos', 'DQA'),
+	(4, 'Departamento de alguma coisa que eu não sei', 'DGP'),
+	(5, 'Departamento de Processos Industriais','DPI'),
+	(6, 'Departamento de Tecnologia da Informação', 'DTI');
 END $$
 DELIMITER ;
 
@@ -267,6 +281,16 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_NomeCargo $$
+CREATE PROCEDURE sp_NomeCargo (IN siape CHAR(8), OUT titul VARCHAR(20))
+BEGIN
+	-- DECLARE CONTINUE HANDLER FOR NOT FOUND SET titul = 1;
+    SELECT titulacao INTO titul FROM CARGO, CONTRATADO, SERVIDOR WHERE codigo = codCargo AND siapeServ = siape = SERVIDOR.siape AND dataFim is null;
+END $$
+DELIMITER ;
+
 -- Departamento
 
 DELIMITER $$
@@ -284,8 +308,8 @@ DELIMITER $$
 USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_InsertRegistro $$
 CREATE PROCEDURE sp_InsertRegistro (IN numero INT(4), IN observacao VARCHAR(150), 
-IN codVeiculo VARCHAR(10), IN siapeServInicia VARCHAR(12), IN siapeServEncerra VARCHAR(12),
-IN siapeServResponsavel VARCHAR(12), IN horaInicia VARCHAR(4), IN dataInicia VARCHAR(8), 
+IN codVeiculo VARCHAR(10), IN siapeServInicia CHAR(8), IN siapeServEncerra CHAR(8),
+IN siapeServResponsavel CHAR(8), IN horaInicia VARCHAR(4), IN dataInicia VARCHAR(8), 
 IN horaSaida VARCHAR(4), IN dataSaida VARCHAR(8), IN dataEntrada VARCHAR(8), 
 IN horaEntrada VARCHAR(4), IN horaEncerra VARCHAR(4), IN dataEncerra VARCHAR(8), 
 IN descricao VARCHAR(150), IN kmInicial SMALLINT(2), IN kmFinal SMALLINT(2), 
@@ -304,8 +328,8 @@ CREATE PROCEDURE sp_insertSolicitacao (IN numero INT, IN veiculoRequisitado VARC
 IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
 IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
 IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
-IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza VARCHAR(12), 
-IN siapeServRealiza VARCHAR(12))
+IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza CHAR(8), 
+IN siapeServRealiza CHAR(8))
 BEGIN
     INSERT INTO SOLICITACAO VALUES(numero, veiculoRequisitado, dataVeiculoConfirmado, 
     dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, 
@@ -338,8 +362,8 @@ CREATE PROCEDURE sp_UpdateSolicit (IN veiculoRequisitado VARCHAR(50),
 IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
 IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
 IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
-IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza VARCHAR(12), 
-IN siapeServRealiza VARCHAR(12), IN numero INT(4))
+IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza CHAR(8), 
+IN siapeServRealiza CHAR(8), IN numero INT(4))
 BEGIN
     UPDATE SOLICITACAO SET SOLICITACAO.veiculoRequisitado = veiculoRequisitado, SOLICITACAO.dataVeiculoConfirmado = dataVeiculoConfirmado, 
     SOLICITACAO.dataInicio = dataInicio, SOLICITACAO.dataFim = dataFim, SOLICITACAO.horaCriacao = horaCriacao, SOLICITACAO.dataCriacao = dataCriacao,
@@ -354,9 +378,18 @@ DELIMITER ;
 DELIMITER $$
 USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_InsertTelefone $$
-CREATE PROCEDURE sp_InsertTelefone (IN siapeServ VARCHAR(12), IN telefone VARCHAR(11))
+CREATE PROCEDURE sp_InsertTelefone (IN siapeServ CHAR(8), IN telefone VARCHAR(11))
 BEGIN
 	INSERT INTO TELEFONE VALUES(siapeServ, telefone);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+USE SCESVI $$
+DROP PROCEDURE IF EXISTS sp_listTelefone$$
+CREATE PROCEDURE sp_listTelefone (IN siapeServ CHAR(8), OUT telefoneList VARCHAR(11))
+BEGIN
+    SELECT telefone INTO telefoneList FROM TELEFONE WHERE siapeServ =  TELEFONE.siapeServ;
 END $$
 DELIMITER ;
 
@@ -365,7 +398,7 @@ DELIMITER ;
 DELIMITER $$
 USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_InsertLotado $$
-CREATE PROCEDURE sp_InsertLotado (IN siapeServ VARCHAR(12), IN codDep SMALLINT(2), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8))
+CREATE PROCEDURE sp_InsertLotado (IN siapeServ CHAR(8), IN codDep SMALLINT(2), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8))
 BEGIN
 	INSERT INTO LOTADO VALUES(siapeServ, codDep, dataInicio, dataFim);
 END $$
@@ -376,7 +409,7 @@ DELIMITER ;
 DELIMITER $$
 USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_InsertContratado $$
-CREATE PROCEDURE sp_InsertContratado (IN siapeServ VARCHAR(12), IN codCargo SMALLINT(2), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8))
+CREATE PROCEDURE sp_InsertContratado (IN siapeServ CHAR(8), IN codCargo SMALLINT(2), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8))
 BEGIN
 	INSERT INTO CONTRATADO VALUES(siapeServ, codCargo, dataInicio, dataFim);
 END $$

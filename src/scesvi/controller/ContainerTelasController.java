@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
-import br.com.supremeforever.suprememdiwindow.MDICanvas;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
@@ -27,10 +26,7 @@ public class ContainerTelasController {
 
 	@FXML
 	private static VBox menuLateral;
-    
-    @FXML 
-    protected static MDICanvas canvas;
-    
+        
     @FXML
     private VBox contemGuias;
 	
@@ -62,21 +58,8 @@ public class ContainerTelasController {
 
 	@FXML
 	private void createComponents() throws IOException {
-		
-		canvas = new MDICanvas();
-		canvas.setPrefSize(200,200);
-		
-		contemGuias = new VBox (canvas);
 
 		menuLateral = FXMLLoader.load(getClass().getResource("../view/BarraLateral.fxml"));
-		
-		AnchorPane.setBottomAnchor(contemGuias, 0d);
-		AnchorPane.setTopAnchor(contemGuias, 0d);
-		AnchorPane.setLeftAnchor(contemGuias, 0d);
-		AnchorPane.setRightAnchor(contemGuias, 0d);
-		
-		
-
 	}
 	
 	static void loadComponent(String fx) {
