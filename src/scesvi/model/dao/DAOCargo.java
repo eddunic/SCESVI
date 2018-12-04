@@ -30,4 +30,21 @@ public class DAOCargo extends DAO {
 		return codCargo;
 	}
 	
+	public static String consultCargo(String codCargo) {
+		String lblText = null;
+		String query = "SELECT titulacao FROM CARGO WHERE codigo = " + codCargo;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				lblText = resultSet.getString("titulacao");
+	     	}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lblText;
+	}
+		
 }

@@ -139,6 +139,7 @@ public class DAOServidor extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+		System.out.println(siapes);
 		return siapes;
 	} 
 

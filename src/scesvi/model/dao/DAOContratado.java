@@ -1,6 +1,7 @@
 package scesvi.model.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import scesvi.model.Contratado;
@@ -27,6 +28,23 @@ public class DAOContratado extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+	}
+	
+	public static String consultContratado(String siape) {
+		String codCargo = null;
+		String query = "SELECT codCargo FROM CONTRATADO WHERE siapeServ = " + siape;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				codCargo = resultSet.getString("codCargo");
+	     	}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return codCargo;
 	}
 	
 }

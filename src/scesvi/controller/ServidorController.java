@@ -11,9 +11,14 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import scesvi.model.Servidor;
+import scesvi.model.dao.DAOCargo;
 import scesvi.model.dao.DAOCargoSP;
+import scesvi.model.dao.DAOContratado;
+import scesvi.model.dao.DAODepartamento;
+import scesvi.model.dao.DAOLotado;
 import scesvi.model.dao.DAOServidor;
 import scesvi.model.dao.DAOSolicitacaoSP;
+import scesvi.model.dao.DAOTelefone;
 import scesvi.model.dao.DAOTelefoneSP;
 
 public class ServidorController {
@@ -77,6 +82,10 @@ public class ServidorController {
 	@FXML
 	private SplitPane split;
 
+	private String codDep;
+	
+	private String codCargo;
+	
 	@FXML
 	void initialize() {
 		servTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -145,7 +154,10 @@ public class ServidorController {
 				(servTable.getSelectionModel().getSelectedItem().getAutorizadoVeicInstitucional().equals("S") ? "Sim"
 						: "Não"));
 		lbTel.setText(DAOTelefoneSP.consultTel(servTable.getSelectionModel().getSelectedItem().getSiape()));
-		lbCarg.setText(DAOCargoSP.consultCargo(servTable.getSelectionModel().getSelectedItem().getSiape()));
+		codDep = DAOLotado.consultLotado(servTable.getSelectionModel().getSelectedItem().getSiape());
+		lbDep.setText(DAODepartamento.consultDep(codDep));
+		codCargo = DAOContratado.consultContratado(servTable.getSelectionModel().getSelectedItem().getSiape());
+		lbCarg.setText(DAOCargo.consultCargo(codCargo));
 	}
 
 	@FXML

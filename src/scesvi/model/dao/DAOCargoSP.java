@@ -39,8 +39,8 @@ public class DAOCargoSP extends DAO {
 			call.setString(1, siape);
 			call.registerOutParameter(2, Types.VARCHAR);
 			call.execute();
-			lblText = call.getString(2);
-			System.out.println(lblText);
+			lblText = String.valueOf(call.getString(2));
+			//System.out.println(lblText);
 			call.close();
 			disconnection();
 		} catch (SQLException e) {

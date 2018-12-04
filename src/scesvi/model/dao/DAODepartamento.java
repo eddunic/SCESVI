@@ -30,4 +30,21 @@ public class DAODepartamento extends DAO {
 		return codDep;
 	}
 	
+	public static String consultDep(String codDep) {
+		String lblText = null;
+		String query = "SELECT sigla FROM DEPARTAMENTO WHERE codigo = " + codDep;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				lblText = resultSet.getString("sigla");
+	     	}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lblText;
+	}
+	
 }

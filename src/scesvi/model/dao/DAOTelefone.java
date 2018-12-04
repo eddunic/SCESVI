@@ -1,7 +1,10 @@
 package scesvi.model.dao;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import scesvi.model.Telefone;
 
@@ -25,6 +28,23 @@ public class DAOTelefone extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+	}
+	
+	public static String consultTel(String siape) {
+		String lblText = null;
+		String query = "SELECT telefone FROM TELEFONE WHERE " + siape + " = siapeServ";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				lblText = resultSet.getString("telefone");
+	     	}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lblText;
 	}
 	
 }
