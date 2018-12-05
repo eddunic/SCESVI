@@ -16,6 +16,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import scesvi.model.SingletonStage;
@@ -87,7 +88,7 @@ public class SolicitacaoController {
 
 	private Solicitacao solicitacao;
 
-	private AnchorPane fxmlAdd;
+	private StackPane fxmlAdd;
 
 	@FXML
 	private SplitPane split;
@@ -142,12 +143,12 @@ public class SolicitacaoController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(),
-				solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado(), "133932", "122212",
-				"121414", "1213", solicitTable.getSelectionModel().getSelectedItem().getDataCriacao(), "lo3a", "1224",
-				solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado(), 4,
-				solicitTable.getSelectionModel().getSelectedItem().getTipo(), "nad", "23", "32");
-		DAOSolicitacao.update(solicitacao);
+//		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(),
+//				solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado(), "133932", "122212",
+//				"121414", "1213", solicitTable.getSelectionModel().getSelectedItem().getDataCriacao(), "lo3a", "1224",
+//				solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado(), 4,
+//				solicitTable.getSelectionModel().getSelectedItem().getTipo(), "nad", "23", "32");
+		
 		refreshTable();
 	}
 

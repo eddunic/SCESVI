@@ -19,7 +19,7 @@ public class DAOServidor extends DAO {
 	private static ObservableList<Servidor> listServ;
 	
 	@FXML
-	public static ArrayList<String> siapes;
+	public static  ObservableList<String> siapes;
 	
 	@FXML
 	private static ComboBox<Servidor> cbSiapeSolicit;
@@ -120,8 +120,8 @@ public class DAOServidor extends DAO {
 		return listServ;
 	}
 	
-	public static ArrayList<String> siapeList() {
-		siapes = new ArrayList<String>();
+	public static ObservableList<String> siapeList() {
+		siapes = FXCollections.observableArrayList();
 		String query = "SELECT siape FROM SERVIDOR";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultSet = pst.executeQuery(query);
@@ -139,7 +139,6 @@ public class DAOServidor extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
-		System.out.println(siapes);
 		return siapes;
 	} 
 

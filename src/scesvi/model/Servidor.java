@@ -89,6 +89,22 @@ public class Servidor {
 		return dataNasc;
 	}
 
+	public StringProperty getDataNascS() {
+		return dataNascS;
+	}
+
+	public String setDataNascS(String dataNascS) {
+		return dataNascS;
+	}
+
+	public static StringProperty format(LocalDate date) {
+		if (date == null) {
+			return null;
+		}
+		dataNascS = new SimpleStringProperty((String) date.format(DateTimeFormatter.BASIC_ISO_DATE));
+		return dataNascS;
+	}
+	
 	public void setSenha(String senha) {
 		this.senha.set(senha);
 	}
@@ -171,22 +187,6 @@ public class Servidor {
 
 	public StringProperty getNomeProperty() {
 		return nome;
-	}
-
-	public StringProperty getDataNascS() {
-		return dataNascS;
-	}
-
-	public String setDataNascS(String dataNascS) {
-		return dataNascS;
-	}
-
-	public static StringProperty format(LocalDate date) {
-		if (date == null) {
-			return null;
-		}
-		dataNascS = new SimpleStringProperty((String) date.format(DateTimeFormatter.BASIC_ISO_DATE));
-		return dataNascS;
 	}
 
 }

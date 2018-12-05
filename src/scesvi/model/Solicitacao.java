@@ -1,7 +1,13 @@
 package scesvi.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,19 +15,24 @@ public class Solicitacao {
 
 	private final IntegerProperty numero;
 	private final StringProperty veiculoRequisitado;
-	private final StringProperty dataVeiculoConfirmado;
-	private final StringProperty dataInicio;
-	private final StringProperty dataFim;
+
 	private final StringProperty horaCriacao;
-	private final StringProperty dataCriacao;
 	private final StringProperty localViagem;
 	private final StringProperty horaAutorizado;
-	private final StringProperty dataAutorizado;
+
 	private final IntegerProperty qtdePassageiros;
 	private final StringProperty tipo;
 	private final StringProperty finalidade;
 	private final StringProperty siapeServAutoriza;
 	private final StringProperty siapeServRealiza;
+
+	private final StringProperty dataVeiculoConfirmado;
+	private final StringProperty dataInicio;
+	private final StringProperty dataFim;
+	private final StringProperty dataAutorizado;
+	private final StringProperty dataCriacao;
+
+	private ObjectProperty<LocalDate> dataLocalDate;
 
 	/**
 	 * Construtor vazio.
@@ -42,8 +53,10 @@ public class Solicitacao {
 		this.finalidade = new SimpleStringProperty("");
 		this.siapeServAutoriza = new SimpleStringProperty("");
 		this.siapeServRealiza = new SimpleStringProperty("");
+
+		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
 	}
-	
+
 	/**
 	 * Construtor com parametros.
 	 * 
@@ -63,26 +76,64 @@ public class Solicitacao {
 	 * @param siapeServAutoriza
 	 * @param siapeServRealiza
 	 */
-	public Solicitacao(int numero, String veiculoRequisitado, String dataVeiculoConfirmado, String dataInicio, String dataFim,
-			String horaCriacao, String dataCriacao, String localViagem, String horaAutorizado, String dataAutorizado,
+
+	public Solicitacao(int numero, LocalDate dataVeiculoConfirma, LocalDate dataIni, LocalDate dataF, LocalDate dataAut,
+			String horaAuto, String dataC, String horaCriacao, String veiculoRequisitado, String localViagem,
 			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza) {
-		this.numero = new SimpleIntegerProperty(numero);;
+		this.numero = new SimpleIntegerProperty(numero);
 		this.veiculoRequisitado = new SimpleStringProperty(veiculoRequisitado);
-		this.dataVeiculoConfirmado = new SimpleStringProperty(dataVeiculoConfirmado);
-		this.dataInicio = new SimpleStringProperty(dataInicio);
-		this.dataFim = new SimpleStringProperty(dataFim);
 		this.horaCriacao = new SimpleStringProperty(horaCriacao);
-		this.dataCriacao = new SimpleStringProperty(dataCriacao);
 		this.localViagem = new SimpleStringProperty(localViagem);
-		this.horaAutorizado = new SimpleStringProperty(horaAutorizado);
-		this.dataAutorizado = new SimpleStringProperty(dataAutorizado);
 		this.qtdePassageiros = new SimpleIntegerProperty(qtdePassageiros);
 		this.tipo = new SimpleStringProperty(tipo);
 		this.finalidade = new SimpleStringProperty(finalidade);
 		this.siapeServAutoriza = new SimpleStringProperty(siapeServAutoriza);
 		this.siapeServRealiza = new SimpleStringProperty(siapeServRealiza);
+		this.dataCriacao = new SimpleStringProperty(dataC);
+
+		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataVeiculoConfirma);
+		this.dataVeiculoConfirmado = format(getData());
+		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataIni);
+		this.dataInicio = format(getData());
+		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataF);
+		this.dataFim = format(getData());
+		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataAut);
+		this.dataAutorizado = format(getData());
+
+		horaAutorizado = new SimpleStringProperty(horaAuto);
 	}
-	
+
+	public void setDataNasc(LocalDate data) {
+		this.dataLocalDate.set(data);
+	}
+
+	public LocalDate getData() {
+		return dataLocalDate.get();
+	}
+
+	public String getDataString(String TipoData) {
+		switch (TipoData) {
+		case "dataInicio":
+			return dataInicio.get();
+		case "dataFim":
+			return dataFim.get();
+		case "dataAutorizado":
+			return dataAutorizado.get();
+		case "dataVeiculoConfirmado":
+			return dataVeiculoConfirmado.get();
+		}
+		return TipoData;
+	}
+
+	// String Property formatada a partir de localDate para armazenar em alguma das
+	// datas
+	public static StringProperty format(LocalDate date) {
+		if (date == null) {
+			return null;
+		}
+		return new SimpleStringProperty((String) date.format(DateTimeFormatter.BASIC_ISO_DATE));
+	}
+
 	/* Getters & Setters */
 	public void setNumero(int numero) {
 		this.numero.set(numero);
@@ -95,7 +146,7 @@ public class Solicitacao {
 	public IntegerProperty getNumeroProperty() {
 		return numero;
 	}
-	
+
 	public void setVeiculoRequisitado(String veiculoRequisitado) {
 		this.veiculoRequisitado.set(veiculoRequisitado);
 	}
@@ -263,5 +314,5 @@ public class Solicitacao {
 	public StringProperty getSiapeServRealizaProperty() {
 		return siapeServRealiza;
 	}
-	
+
 }
