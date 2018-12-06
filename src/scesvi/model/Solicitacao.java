@@ -14,7 +14,6 @@ import javafx.beans.property.StringProperty;
 public class Solicitacao {
 
 	private final IntegerProperty numero;
-	private final StringProperty veiculoRequisitado;
 
 	private final StringProperty horaCriacao;
 	private final StringProperty localViagem;
@@ -26,11 +25,10 @@ public class Solicitacao {
 	private final StringProperty siapeServAutoriza;
 	private final StringProperty siapeServRealiza;
 
-	private final StringProperty dataVeiculoConfirmado;
 	private final StringProperty dataInicio;
 	private final StringProperty dataFim;
 	private final StringProperty dataAutorizado;
-	private final StringProperty dataCriacao;
+	private StringProperty dataCriacao;
 
 	private ObjectProperty<LocalDate> dataLocalDate;
 
@@ -39,8 +37,6 @@ public class Solicitacao {
 	 */
 	public Solicitacao() {
 		this.numero = new SimpleIntegerProperty(0);
-		this.veiculoRequisitado = new SimpleStringProperty("");
-		this.dataVeiculoConfirmado = new SimpleStringProperty("");
 		this.dataInicio = new SimpleStringProperty("");
 		this.dataFim = new SimpleStringProperty("");
 		this.horaCriacao = new SimpleStringProperty("");
@@ -77,11 +73,10 @@ public class Solicitacao {
 	 * @param siapeServRealiza
 	 */
 
-	public Solicitacao(int numero, LocalDate dataVeiculoConfirma, LocalDate dataIni, LocalDate dataF, LocalDate dataAut,
-			String horaAuto, String dataC, String horaCriacao, String veiculoRequisitado, String localViagem,
+	public Solicitacao(int numero, String dataIni, String dataF, String dataAut,
+			String horaAuto, String dataC, String horaCriacao, String localViagem,
 			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza) {
 		this.numero = new SimpleIntegerProperty(numero);
-		this.veiculoRequisitado = new SimpleStringProperty(veiculoRequisitado);
 		this.horaCriacao = new SimpleStringProperty(horaCriacao);
 		this.localViagem = new SimpleStringProperty(localViagem);
 		this.qtdePassageiros = new SimpleIntegerProperty(qtdePassageiros);
@@ -91,15 +86,11 @@ public class Solicitacao {
 		this.siapeServRealiza = new SimpleStringProperty(siapeServRealiza);
 		this.dataCriacao = new SimpleStringProperty(dataC);
 
-		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataVeiculoConfirma);
-		this.dataVeiculoConfirmado = format(getData());
-		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataIni);
-		this.dataInicio = format(getData());
-		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataF);
-		this.dataFim = format(getData());
-		this.dataLocalDate = new SimpleObjectProperty<LocalDate>(dataAut);
-		this.dataAutorizado = format(getData());
-
+		this.dataInicio = new SimpleStringProperty(dataIni);
+		this.dataFim = new SimpleStringProperty(dataF);
+		this.dataCriacao = new SimpleStringProperty(dataC);
+		this.dataAutorizado = new SimpleStringProperty(dataAut);
+		
 		horaAutorizado = new SimpleStringProperty(horaAuto);
 	}
 
@@ -119,8 +110,6 @@ public class Solicitacao {
 			return dataFim.get();
 		case "dataAutorizado":
 			return dataAutorizado.get();
-		case "dataVeiculoConfirmado":
-			return dataVeiculoConfirmado.get();
 		}
 		return TipoData;
 	}
@@ -145,30 +134,6 @@ public class Solicitacao {
 
 	public IntegerProperty getNumeroProperty() {
 		return numero;
-	}
-
-	public void setVeiculoRequisitado(String veiculoRequisitado) {
-		this.veiculoRequisitado.set(veiculoRequisitado);
-	}
-
-	public String getVeiculoRequisitado() {
-		return veiculoRequisitado.get();
-	}
-
-	public StringProperty getVeiculoRequisitadoProperty() {
-		return veiculoRequisitado;
-	}
-
-	public void setDataVeiculoConfirmado(String dataVeiculoConfirmado) {
-		this.dataVeiculoConfirmado.set(dataVeiculoConfirmado);
-	}
-
-	public String getDataVeiculoConfirmado() {
-		return dataVeiculoConfirmado.get();
-	}
-
-	public StringProperty getDataVeiculoConfirmadoProperty() {
-		return dataVeiculoConfirmado;
 	}
 
 	public void setDataInicio(String dataInicio) {

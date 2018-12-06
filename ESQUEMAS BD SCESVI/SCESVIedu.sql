@@ -59,7 +59,7 @@ CREATE TABLE CONTRATADO(
     
 CREATE TABLE SOLICITACAO(
 	numero INT(4) NOT NULL PRIMARY KEY,
-    veiculoRequisitado VARCHAR(50) NOT NULL,
+    veiculoRequisitado VARCHAR(10) NOT NULL,
     dataVeiculoConfirmado VARCHAR(8),
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8) NOT NULL,

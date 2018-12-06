@@ -133,6 +133,8 @@ public class ServidorController {
 //				servTable.getSelectionModel().getSelectedItem().getCnh(), servTable.getSelectionModel().getSelectedItem().getCategoria(),
 //				servTable.getSelectionModel().getSelectedItem().getAutorizadoVeicInstitucional());
 //		DAOServidor.update(servidor);
+		servTable.setItems(DAOServidor.list());
+		servTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 

@@ -27,6 +27,7 @@ public class Veiculo {
 	private final StringProperty anoFabricacao;
 	private final StringProperty anoModelo;
 	private final StringProperty dataSupervisionado;
+	private final StringProperty situacao;
 	private final StringProperty siapeServSupervisiona;
 	private final StringProperty siapeServResponsavel;
 
@@ -54,6 +55,7 @@ public class Veiculo {
 		this.dataSupervisionado = new SimpleStringProperty("");
 		this.siapeServSupervisiona = new SimpleStringProperty("");
 		this.siapeServResponsavel = new SimpleStringProperty("");
+		this.situacao = new SimpleStringProperty("");
 	}
 	
 	/**
@@ -83,7 +85,7 @@ public class Veiculo {
 	public Veiculo(String codigo, String tipo, String placa, String renavam, String autorizado, String categoria,
 			String institucional, String chassi, int maxPassageiros, String observacao, String exercicio,
 			String tipoCombustivel, float potencia, String cor, String marcaModelo, String anoFabricacao,
-			String anoModelo, String dataSupervisionado, String siapeServSupervisiona, String siapeServResponsavel) {
+			String anoModelo, String dataSupervisionado, String siapeServSupervisiona, String siapeServResponsavel, String situ) {
 		this.codigo = new SimpleStringProperty(codigo);
 		this.tipo = new SimpleStringProperty(tipo);
 		this.placa = new SimpleStringProperty(placa);
@@ -104,6 +106,7 @@ public class Veiculo {
 		this.dataSupervisionado = new SimpleStringProperty(dataSupervisionado);
 		this.siapeServSupervisiona = new SimpleStringProperty(siapeServSupervisiona);
 		this.siapeServResponsavel = new SimpleStringProperty(siapeServResponsavel);
+		this.situacao = new SimpleStringProperty(situ);
 	}
 	
 	/* Getters & Setters */
@@ -114,7 +117,19 @@ public class Veiculo {
 	public String getCodigo() {
 		return codigo.get();
 	}
-
+	
+	public String getSituacao() {
+		return situacao.get();
+	}
+	
+	public void setSituacao(String situ) {
+		this.situacao.set(situ);
+	}
+	
+	public StringProperty getSituacaoProperty() {
+		return situacao;
+	}
+	
 	public StringProperty getCodigoProperty() {
 		return codigo;
 	}

@@ -9,6 +9,7 @@ public class SolicitVeiculo {
 	
 	private final IntegerProperty numSolicit;
 	private final StringProperty codVeic;
+	private final StringProperty situacao;
 	
 	/**
 	 * Construtor vazio.
@@ -16,6 +17,7 @@ public class SolicitVeiculo {
 	public SolicitVeiculo() {
 		this.numSolicit = new SimpleIntegerProperty(0);
 		this.codVeic = new SimpleStringProperty("");
+		this.situacao = new SimpleStringProperty("");
 	}
 	
 	/**
@@ -24,9 +26,10 @@ public class SolicitVeiculo {
 	 * @param numSolicit
 	 * @param codVeic
 	 */
-	public SolicitVeiculo(int numSolicit, String codVeic) {
+	public SolicitVeiculo(int numSolicit, String codVeic, String situ) {
 		this.numSolicit = new SimpleIntegerProperty(numSolicit);
 		this.codVeic = new SimpleStringProperty(codVeic);
+		this.situacao = new SimpleStringProperty(situ);
 	}
 	
 	/* Getters & Setters */
@@ -53,6 +56,17 @@ public class SolicitVeiculo {
 	public StringProperty getCodVeicProperty() {
 		return codVeic;
 	}
+	
+	public void setSituacao (String situ) {
+		this.situacao.set(situ);
+	}
 
+	public String getSituacao() {
+		return situacao.get();
+	}
+
+	public StringProperty getSituacaoProperty() {
+		return situacao;
+	}
 
 }

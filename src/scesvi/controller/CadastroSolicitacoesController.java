@@ -1,6 +1,9 @@
 package scesvi.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.jfoenix.controls.JFXDatePicker;
@@ -8,6 +11,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,28 +22,31 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import scesvi.model.Servidor;
 import scesvi.model.Solicitacao;
+import scesvi.model.dao.DAOCargo;
+import scesvi.model.dao.DAOContratado;
+import scesvi.model.dao.DAODepartamento;
+import scesvi.model.dao.DAOLotado;
 import scesvi.model.dao.DAOServidor;
+import scesvi.model.dao.DAOSolicitVeiculo;
 import scesvi.model.dao.DAOSolicitacao;
+import scesvi.model.dao.DAOVeiculo;
 
 public class CadastroSolicitacoesController {
 
 	@FXML
-	private JFXDatePicker dataInicio;
+	private JFXTextField dataInicio;
 
 	@FXML
-	private JFXDatePicker dataFim;
-
-	@FXML
-	private JFXDatePicker dataVeicConf;
+	private JFXTextField dataFim;
 
 	@FXML
 	private JFXTextField horaAuto;
 
 	@FXML
-	private JFXDatePicker dataSolicitAuto;
+	private JFXTextField dataSolicitAuto;
 
 	@FXML
-	private Label dataCriacao;
+	private JFXTextField dataC;
 
 	@FXML
 	private ComboBox<String> cbSiapeSolicit;
@@ -66,17 +73,36 @@ public class CadastroSolicitacoesController {
 	private Solicitacao solicitacao;
 
 	@FXML
+	private Label num;
+
+	private ObservableList<String> qtde;
+
+	@FXML
 	public void initialize() {
+		num.setText(num.getText() + " " + DAOSolicitacao.numSolic());
 		group();
 	}
 
 	public void group() {
-		cbSiapeSolicit.setItems(DAOServidor.siapeList());
-		cbTipoSolic.setItems(FXCollections.observableArrayList("Visita técnica", "Visita social",
-				"Entrega de documento e/ou material", "Transporte de servidor ou aluno"));
-		modelVeic.setItems(FXCollections.observableArrayList("Ônibus", "Carro comum", "Microônibus"));
 
-//    	siapesServs = FXCollections.observableArrayList();
+		qtde = FXCollections.observableArrayList();
+
+		cbSiapeSolicit.setItems(DAOServidor.siapeList());
+		cbFin.setItems(FXCollections.observableArrayList("Visita técnica", "Visita social",
+				"Entrega de documento e/ou material", "Transporte de servidor ou aluno"));
+
+		modelVeic.setItems(DAOVeiculo.listMarcaModelox());
+
+		for (int i = 1; i <= 40; i++) {
+			qtde.add("" + i);
+		}
+
+		cbQTDEpass.setItems(qtde);
+
+		cbTipoSolic.setItems(FXCollections.observableArrayList("Ativ. administrativas", "Ativ. de pesquisa ou extensão",
+				"Ativ. cultural ou esportiva"));
+
+		// siapesServs = FXCollections.observableArrayList();
 //    	servidores = new DAOServidor.siapeList(); //Aqui você tem uma lista de todos seu produtos
 //    	servidores.forEach(p ->{ siapesServs.add(p.getNome());}); // Aqui estamos os nomes do seus Produtos.
 //    	//Agora é so adicionar esta lista ao ComboBox
@@ -85,29 +111,29 @@ public class CadastroSolicitacoesController {
 
 	@FXML
 	void cadastrarSolic(ActionEvent event) {
-		// Para armazenar o tipo no banco
-		String tipo = "a";
-		String modelV = "veículo";
-		if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Visita técnica")) {
-			tipo = "T";
-		} else if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Visita social")) {
-			tipo = "S";
-		} else if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Entrega de documento e/ou material")) {
-			tipo = "E";
-		} else {
-			tipo = "D";
-		}
-		
-		if(modelVeic.getSelectionModel().getSelectedItem().equals("Ônibus")) {
+		if (!modelVeic.getItems().isEmpty()) {
+			// Para armazenar o tipo no banco
+			String tipo = "a";
+			if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Visita técnica")) {
+				tipo = "T";
+			} else if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Visita social")) {
+				tipo = "S";
+			} else if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Entrega de documento e/ou material")) {
+				tipo = "E";
+			} else {
+				tipo = "D";
+			}
+
+			solicitacao = new Solicitacao(Integer.parseInt(DAOSolicitacao.numSolic()), dataInicio.getText(),
+					dataFim.getText(), dataSolicitAuto.getText(), horaAuto.getText(), dataC.getText(), "10h",
+					tDestino.getText(), Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
+					cbFin.getSelectionModel().getSelectedItem(), "44444444"/* pegar siape do login */,
+					cbSiapeSolicit.getSelectionModel().getSelectedItem());
+
+			DAOSolicitacao.insert(solicitacao);
+			modelVeic.setItems(DAOVeiculo.listMarcaModelox());
 			
 		}
-
-		solicitacao = new Solicitacao(1, dataVeicConf.getValue(), dataInicio.getValue(), dataFim.getValue(), dataSolicitAuto.getValue(), 
-				 horaAuto.getText(), dataCriacao.getText(), "10h", modelVeic.getSelectionModel().getSelectedItem(), tDestino.getText(), Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
-				cbFin.getSelectionModel().getSelectedItem(), "12345678"/* pegar siape do login */,
-				cbSiapeSolicit.getSelectionModel().getSelectedItem());
-
-		DAOSolicitacao.insert(solicitacao);
-
 	}
+
 }

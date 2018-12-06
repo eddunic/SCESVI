@@ -1,7 +1,10 @@
 package scesvi.controller;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -9,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import scesvi.model.Veiculo;
 import scesvi.model.dao.DAOSolicitacaoSP;
 import scesvi.model.dao.DAOVeiculo;
@@ -97,9 +101,14 @@ public class VeiculoController {
 
 	@FXML
 	private SplitPane split;
+	
+	private AnchorPane fxmlAdd;
+	
+    @FXML
+    private AnchorPane lateral;
 
 	@FXML
-	void initialize() {
+	void initialize() throws IOException {
 		veicTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		codCln.setCellValueFactory(new PropertyValueFactory<>("codigo"));
@@ -121,6 +130,8 @@ public class VeiculoController {
 		anoCln.setCellValueFactory(cellData -> cellData.getValue().getAnoModeloProperty());
 		respCln.setCellValueFactory(cellData -> cellData.getValue().getSiapeServResponsavelProperty());
 		placaCln.setCellValueFactory(cellData -> cellData.getValue().getPlacaProperty());
+		
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroVeiculos.fxml"));
 	}
 
 	@FXML
@@ -142,14 +153,15 @@ public class VeiculoController {
 				veicTable.getSelectionModel().getSelectedItem().getPlaca(), "q", "n", "c", "s", "123", 4, "nda", "nenh",
 				"g", 12, "verde", veicTable.getSelectionModel().getSelectedItem().getMarcaModelo(), "2012",
 				veicTable.getSelectionModel().getSelectedItem().getAnoModelo(), "121314", "12341",
-				veicTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel());
+				veicTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel(), "L");
 		DAOVeiculo.update(veiculo);
 		refreshTable();
 	}
 
 	@FXML
 	void novoVeic(ActionEvent event) {
-
+		split.getItems().remove(1);
+		split.getItems().add(1, fxmlAdd);
 	}
 
 	void refreshTable() {
@@ -187,8 +199,11 @@ public class VeiculoController {
 	}
 
 	@FXML
-	private void back(ActionEvent event) {
-
+	private void back(ActionEvent event) throws IOException {
+		split.getItems().remove(1);
+		split.getItems().add(1, lateral);
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroVeiculos.fxml"));	
+		
 	}
 
 }

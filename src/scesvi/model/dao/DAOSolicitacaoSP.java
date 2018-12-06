@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import scesvi.model.SolicitVeiculo;
 import scesvi.model.Solicitacao;
 
 public class DAOSolicitacaoSP extends DAO {
@@ -21,23 +22,21 @@ public class DAOSolicitacaoSP extends DAO {
 	}
 	
 	public static void insert(Solicitacao solicitacao) {
-		String query = "CALL sp_InsertSolicitacao(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "CALL sp_InsertSolicitacao(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, String.valueOf(solicitacao.getNumero()));
-			pst.setString(2, solicitacao.getVeiculoRequisitado());
-			pst.setString(3, solicitacao.getDataVeiculoConfirmado());
-			pst.setString(4, solicitacao.getDataInicio());
-			pst.setString(5, solicitacao.getDataFim());
-			pst.setString(6, solicitacao.getHoraCriacao());
-			pst.setString(7, solicitacao.getDataCriacao());
-			pst.setString(8, solicitacao.getLocalViagem());
-			pst.setString(9, solicitacao.getHoraAutorizado());
-			pst.setString(10, solicitacao.getDataAutorizado());
-			pst.setString(11, String.valueOf(solicitacao.getQtdePassageiros()));
-			pst.setString(12, solicitacao.getTipo());
-			pst.setString(13, solicitacao.getFinalidade());
-			pst.setString(14, solicitacao.getSiapeServAutoriza());
-			pst.setString(15, solicitacao.getSiapeServRealiza());
+			pst.setString(2, solicitacao.getDataInicio());
+			pst.setString(3, solicitacao.getDataFim());
+			pst.setString(4, solicitacao.getHoraCriacao());
+			pst.setString(5, solicitacao.getDataCriacao());
+			pst.setString(6, solicitacao.getLocalViagem());
+			pst.setString(7, solicitacao.getHoraAutorizado());
+			pst.setString(8, solicitacao.getDataAutorizado());
+			pst.setString(9, String.valueOf(solicitacao.getQtdePassageiros()));
+			pst.setString(10, solicitacao.getTipo());
+			pst.setString(11, solicitacao.getFinalidade());
+			pst.setString(12, solicitacao.getSiapeServAutoriza());
+			pst.setString(13, solicitacao.getSiapeServRealiza());
 
 			pst.executeUpdate();
 			pst.close();
@@ -54,9 +53,12 @@ public class DAOSolicitacaoSP extends DAO {
 			ResultSet resultSet = pst.executeQuery(query);
 			while(resultSet.next()) {
 				Solicitacao solicit = new Solicitacao();
+				SolicitVeiculo solicVeic = new SolicitVeiculo();
 				solicit.setNumero(resultSet.getInt("numero"));
 				solicit.setTipo(resultSet.getString("tipo"));
-				solicit.setVeiculoRequisitado(resultSet.getString("veiculoRequisitado"));
+				solicVeic.setSituacao(resultSet.getString("situacao"));
+				solicVeic.setNumSolicit(resultSet.getInt("numero"));
+				//solicVeic.setCodVeic(codVeic);
 				solicit.setDataCriacao(resultSet.getString("dataCriacao"));
 				solicit.setDataAutorizado(resultSet.getString("dataAutorizado"));
 				listSolicit.add(solicit);

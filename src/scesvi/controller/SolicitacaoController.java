@@ -20,7 +20,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import scesvi.model.SingletonStage;
+import scesvi.model.SolicitVeiculo;
 import scesvi.model.Solicitacao;
+import scesvi.model.dao.DAOSolicitVeiculo;
 import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOSolicitacaoSP;
 
@@ -34,9 +36,6 @@ public class SolicitacaoController {
 
 	@FXML
 	private TableColumn<Solicitacao, String> tipoCln;
-
-	@FXML
-	private TableColumn<Solicitacao, String> veicCln;
 
 	@FXML
 	private TableColumn<Solicitacao, String> criaCln;
@@ -54,7 +53,7 @@ public class SolicitacaoController {
 	private Label lbTipo;
 
 	@FXML
-	private Label lbConfirm;
+	private Label lbSitu;
 
 	@FXML
 	private Label lbDataCria;
@@ -88,7 +87,7 @@ public class SolicitacaoController {
 
 	private Solicitacao solicitacao;
 
-	private StackPane fxmlAdd;
+	private AnchorPane fxmlAdd;
 
 	@FXML
 	private SplitPane split;
@@ -106,22 +105,19 @@ public class SolicitacaoController {
 
 		numCln.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		tipoCln.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-		veicCln.setCellValueFactory(new PropertyValueFactory<>("veiculoRequisitado"));
 		criaCln.setCellValueFactory(new PropertyValueFactory<>("dataCriacao"));
 		autorCln.setCellValueFactory(new PropertyValueFactory<>("dataAutorizado"));
 
 		tipoCln.setCellFactory(TextFieldTableCell.forTableColumn());
-		veicCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		criaCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		autorCln.setCellFactory(TextFieldTableCell.forTableColumn());
 
-		solicitTable.setItems(DAOSolicitacaoSP.list());
+		solicitTable.setItems(DAOSolicitacao.list());
 
 		solicitTable.getSelectionModel().selectFirst();
 
 		// Demorei 6 horas pra achar essa solução que altera o valor da célula. #Eddunic
 		tipoCln.setCellValueFactory(cellData -> cellData.getValue().getTipoProperty());
-		veicCln.setCellValueFactory(cellData -> cellData.getValue().getVeiculoRequisitadoProperty());
 		criaCln.setCellValueFactory(cellData -> cellData.getValue().getDataCriacaoProperty());
 		autorCln.setCellValueFactory(cellData -> cellData.getValue().getDataAutorizadoProperty());
 
@@ -148,7 +144,8 @@ public class SolicitacaoController {
 //				"121414", "1213", solicitTable.getSelectionModel().getSelectedItem().getDataCriacao(), "lo3a", "1224",
 //				solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado(), 4,
 //				solicitTable.getSelectionModel().getSelectedItem().getTipo(), "nad", "23", "32");
-		
+		solicitTable.setItems(DAOSolicitacao.list());
+		solicitTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 
@@ -160,10 +157,8 @@ public class SolicitacaoController {
 
 	void refreshTable() {
 		lbNum.setText(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbVeic.setText(solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado());
 		lbTipo.setText(solicitTable.getSelectionModel().getSelectedItem().getTipo());
-		lbConfirm.setText(DAOSolicitacao.consultParam("dataVeiculoConfirmado",
-				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
+		lbSitu.setText(DAOSolicitVeiculo.listSituacao(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero())));
 		lbDataCria.setText(solicitTable.getSelectionModel().getSelectedItem().getDataCriacao());
 		lbHoraCria.setText(DAOSolicitacao.consultParam("horaCriacao",
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
@@ -185,8 +180,9 @@ public class SolicitacaoController {
 	}
 
 	@FXML
-	private void back(ActionEvent event) {
+	private void back(ActionEvent event) throws IOException {
 		split.getItems().remove(1);
 		split.getItems().add(1, lateral);
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));		
 	}
 }

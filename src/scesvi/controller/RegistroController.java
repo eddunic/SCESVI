@@ -1,7 +1,10 @@
 package scesvi.controller;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -9,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import scesvi.model.Registro;
 import scesvi.model.dao.DAORegistro;
 import scesvi.model.dao.DAOSolicitacaoSP;
@@ -94,9 +98,14 @@ public class RegistroController {
     private SplitPane split;
 	
 	private Registro registro;
+	
+	private AnchorPane fxmlAdd;
+	
+    @FXML
+    private AnchorPane lateral;
 
 	@FXML
-	void initialize() {
+	void initialize() throws IOException {
 		regTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		numCln.setCellValueFactory(new PropertyValueFactory<>("numero"));
@@ -118,6 +127,8 @@ public class RegistroController {
 		respCln.setCellValueFactory(cellData -> cellData.getValue().getSiapeServResponsavelProperty());
 		horaEntCln.setCellValueFactory(cellData -> cellData.getValue().getHoraEntradaProperty());
 		horaSaidaCln.setCellValueFactory(cellData -> cellData.getValue().getHoraSaidaProperty());
+		
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroRegistros.fxml"));	
 	}
 
 	@FXML
@@ -147,7 +158,8 @@ public class RegistroController {
 
 	@FXML
 	void novoReg(ActionEvent event) {
-		
+		split.getItems().remove(1);
+		split.getItems().add(1, fxmlAdd);
 	}
 
 	void refreshTable() {
@@ -173,7 +185,10 @@ public class RegistroController {
 	}
 	
     @FXML
-    private void back(ActionEvent event) {
+    private void back(ActionEvent event) throws IOException {
+		split.getItems().remove(1);
+		split.getItems().add(1, lateral);
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroRegistros.fxml"));	
 
     }
 	
