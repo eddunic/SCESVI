@@ -141,6 +141,27 @@ public class DAOServidor extends DAO {
 		}
 		return siapes;
 	} 
+	
+	public static boolean consultAdminLogin(String siape, String senha) {
+		String pass = null;
+		String query = "SELECT senha FROM SERVIDOR WHERE SERVIDOR.siape = " + siape + " AND SERVIDOR.senha = " + "'" + senha + "'";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				pass = resultSet.getString("senha");
+	     	}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		if(pass != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 //	public static void listNomeDepCargo() {
 //		String query = "SELECT SERVIDOR.nome, DEPARTAMENTO.sigla, CARGO.titulacao\r\n" + 

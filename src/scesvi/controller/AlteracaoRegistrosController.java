@@ -8,13 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import scesvi.model.Registro;
-import scesvi.model.Solicitacao;
 import scesvi.model.dao.DAORegistro;
-import scesvi.model.dao.DAOServidor;
-import scesvi.model.dao.DAOSolicitacao;
-import scesvi.model.dao.DAOVeiculo;
 
-public class CadastroRegistrosController {
+public class AlteracaoRegistrosController {
 	
 	@FXML
     private JFXTextField dataInicio;
@@ -65,33 +61,20 @@ public class CadastroRegistrosController {
     private Label num;
     
     private Registro registro;
-	
-	@FXML
+    
+    @FXML
 	public void initialize() {
-		num.setText(num.getText() + " " + DAORegistro.numReg());
+		//num.setText(num.getText() + " " + DAORegistro.numReg());
 		group();
 	}
-	
-	public void group() {
-		
-		codVeic.setItems(DAOVeiculo.listCod());
-		servResp.setItems(DAOServidor.siapeList());
-		servidorIni.setItems(DAOServidor.siapeList());
-		servidorEncerra.setItems(DAOServidor.siapeList());
-		
-	}
-	
-	@FXML
-    void cadastrarRegistro(ActionEvent event) {
-		
-		registro = new Registro(Integer.parseInt(DAORegistro.numReg()), obs.getText(),
-				codVeic.getSelectionModel().getSelectedItem(), servidorIni.getSelectionModel().getSelectedItem(), 
-				servidorEncerra.getSelectionModel().getSelectedItem(), servResp.getSelectionModel().getSelectedItem(), dataInicio.getText(),
-				dataSaida.getText(), horaSaida.getText(), dataEntrada.getText(), horaEntrada.getText(), dataFim.getText(), 
-				desc.getText(), Integer.parseInt(kmInic.getText()), Integer.parseInt(kmFinal.getText()), dataSupervis.getText());
-
-		DAORegistro.insert(registro);
-
+    
+    public void group() {
+    	dataInicio.setText("");
     }
-
+    
+    @FXML
+    void atualizarRegistro(ActionEvent event) {
+		
+    }
+    
 }

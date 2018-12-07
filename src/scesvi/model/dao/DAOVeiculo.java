@@ -20,6 +20,9 @@ public class DAOVeiculo extends DAO {
 	@FXML
 	private static ObservableList<String> listMarcaM;
 	
+	@FXML
+	private static ObservableList<String> listCod;
+	
 	public static Veiculo getVeiculo() {
 		return veiculo;
 	}
@@ -115,6 +118,23 @@ public class DAOVeiculo extends DAO {
 		return listMarcaM;
 	}
 /////////////////////////////////////
+	public static ObservableList<String> listCod() {
+		listCod = FXCollections.observableArrayList();
+		String query = "SELECT codigo FROM VEICULO";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery();
+			while (resultSet.next()) {
+				listCod.add(resultSet.getString("listCod"));
+			}
+			
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return listCod;
+	}
+	
 	public static void delete(String codigo) {
 		String query = "DELETE FROM VEICULO WHERE VEICULO.codigo = " + codigo;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {

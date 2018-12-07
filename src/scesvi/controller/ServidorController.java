@@ -127,12 +127,6 @@ public class ServidorController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		// Com inconsistência LocalDate - String
-//		servidor = new Servidor(servTable.getSelectionModel().getSelectedItem().getSiape(), "453", 
-//				servTable.getSelectionModel().getSelectedItem().getNome(), "1133", "112211", 
-//				servTable.getSelectionModel().getSelectedItem().getCnh(), servTable.getSelectionModel().getSelectedItem().getCategoria(),
-//				servTable.getSelectionModel().getSelectedItem().getAutorizadoVeicInstitucional());
-//		DAOServidor.update(servidor);
 		servTable.setItems(DAOServidor.list());
 		servTable.getSelectionModel().selectFirst();
 		refreshTable();

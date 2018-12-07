@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
+import scesvi.model.dao.DAOContratado;
+import scesvi.model.dao.DAOServidor;
 
 public class LoginScreenController {
 
@@ -59,10 +61,13 @@ public class LoginScreenController {
 	}
 
 	public void btOpenContainerAction() {
-
-		//if (!tSiape.equals("") && !pPassword.equals("")) {
-			MainApp.changeScreen("ContainerTelas");
-		//}
+		
+		if (DAOContratado.consultContratadoAdmin(tSiape.getText()).equals(tSiape.getText())) {
+			if(DAOServidor.consultAdminLogin(tSiape.getText(), pPassword.getText())) {
+				MainApp.changeScreen("ContainerTelas");
+			}
+		}
+		
 	}
 
 //	public void loadDialog(ActionEvent event) {

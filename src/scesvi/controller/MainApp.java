@@ -64,7 +64,6 @@ public class MainApp extends Application {
 		getStage().setScene(loginScene);
 
 		getStage().show();
-		//stage.setMaximized(true);
 		
 		singStage.getStage().setScene(loginScene);
         singStage.getStage().show();
@@ -94,6 +93,7 @@ public class MainApp extends Application {
 			break;
 		case "ContainerTelas":
 			getStage().setScene(containerTelasScene);
+			stage.setMaximized(true);
 			break;
 		}
 	}

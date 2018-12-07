@@ -17,12 +17,9 @@ public class Registro {
 	private final StringProperty descricao;
 	private final IntegerProperty kmInicial;
 	private final IntegerProperty kmFinal;
-	private final IntegerProperty kmPercorridos;
 	
-	private final StringProperty horaInicia;
 	private final StringProperty horaSaida;
 	private final StringProperty horaEntrada;
-	private final StringProperty horaEncerra;
 	
 	private final StringProperty dataInicia;
 	private final StringProperty dataSaida;
@@ -41,18 +38,15 @@ public class Registro {
 		this.siapeServInicia = new SimpleStringProperty("");
 		this.siapeServEncerra = new SimpleStringProperty("");
 		this.siapeServResponsavel = new SimpleStringProperty("");
-		this.horaInicia = new SimpleStringProperty("");
 		this.dataInicia = new SimpleStringProperty("");
 		this.dataSaida = new SimpleStringProperty("");
 		this.horaSaida = new SimpleStringProperty("");
 		this.dataEntrada = new SimpleStringProperty("");
 		this.horaEntrada = new SimpleStringProperty("");
-		this.horaEncerra = new SimpleStringProperty("");
 		this.dataEncerra = new SimpleStringProperty("");
 		this.descricao = new SimpleStringProperty("");
 		this.kmInicial = new SimpleIntegerProperty(0);
 		this.kmFinal = new SimpleIntegerProperty(0);
-		this.kmPercorridos = new SimpleIntegerProperty(0);
 		this.dataSupervisionado = new SimpleStringProperty("");
 	}
 
@@ -80,27 +74,24 @@ public class Registro {
 	 * @param dataSupervisionado
 	 */
 	public Registro(int numero, String observacao, String codVeiculo, String siapeServInicia, String siapeServEncerra,
-			String siapeServResponsavel, String horaInicia, String dataInicia, String dataSaida,
-			String horaSaida, String dataEntrada, String horaEntrada, String horaEncerra, String dataEncerra,
-			String descricao, int kmInicial, int kmFinal, int kmPercorridos, String dataSupervisionado) {
+			String siapeServResponsavel, String dataInicia, String dataSaida,
+			String horaSaida, String dataEntrada, String horaEntrada, String dataEncerra,
+			String descricao, int kmInicial, int kmFinal, String dataSupervisionado) {
 		this.numero = new SimpleIntegerProperty(numero);
 		this.observacao = new SimpleStringProperty(observacao);
 		this.codVeiculo = new SimpleStringProperty(codVeiculo);
 		this.siapeServInicia = new SimpleStringProperty(siapeServInicia);
 		this.siapeServEncerra = new SimpleStringProperty(siapeServEncerra);
 		this.siapeServResponsavel = new SimpleStringProperty(siapeServResponsavel);
-		this.horaInicia = new SimpleStringProperty(horaInicia);
 		this.dataInicia = new SimpleStringProperty(dataInicia);
 		this.dataSaida = new SimpleStringProperty(dataSaida);
 		this.horaSaida = new SimpleStringProperty(horaSaida);
 		this.dataEntrada = new SimpleStringProperty(dataEntrada);
 		this.horaEntrada = new SimpleStringProperty(horaEntrada);
-		this.horaEncerra = new SimpleStringProperty(horaEncerra);
 		this.dataEncerra = new SimpleStringProperty(dataEncerra);
 		this.descricao = new SimpleStringProperty(descricao);
 		this.kmInicial = new SimpleIntegerProperty(kmInicial);
 		this.kmFinal = new SimpleIntegerProperty(kmFinal);
-		this.kmPercorridos = new SimpleIntegerProperty(kmPercorridos);
 		this.dataSupervisionado = new SimpleStringProperty(dataSupervisionado);
 	}
 	
@@ -177,18 +168,6 @@ public class Registro {
 		return siapeServResponsavel;
 	}
 
-	public void setHoraInicia(String horaInicia) {
-		this.horaInicia.set(horaInicia);
-	}
-
-	public String getHoraInicia() {
-		return horaInicia.get();
-	}
-
-	public StringProperty getHoraIniciaProperty() {
-		return horaInicia;
-	}
-
 	public void setDataInicia(String dataInicia) {
 		this.dataInicia.set(dataInicia);
 	}
@@ -261,18 +240,6 @@ public class Registro {
 		return dataEncerra;
 	}
 
-	public void setHoraEncerra(String horaEncerra) {
-		this.horaEncerra.set(horaEncerra);
-	}
-
-	public String getHoraEncerra() {
-		return horaEncerra.get();
-	}
-
-	public StringProperty getHoraEncerraProperty() {
-		return horaEncerra;
-	}
-
 	public void setDescricao(String descricao) {
 		this.descricao.set(descricao);
 	}
@@ -307,18 +274,6 @@ public class Registro {
 
 	public IntegerProperty getKmFinalProperty() {
 		return kmFinal;
-	}
-
-	public void setKmPercorridos(int kmPercorridos) {
-		this.kmPercorridos.set(kmPercorridos);
-	}
-
-	public int getKmPercorridos() {
-		return kmPercorridos.get();
-	}
-
-	public IntegerProperty getKmPercorridosProperty() {
-		return kmPercorridos;
 	}
 
 	public void setDataSupervisionado(String dataSupervisionado) {

@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import scesvi.model.Registro;
 import scesvi.model.dao.DAORegistro;
+import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOSolicitacaoSP;
 
 public class RegistroController {
@@ -56,12 +57,6 @@ public class RegistroController {
     private Label lbSiapeResp;
 
     @FXML
-    private Label lbHoraInicia;
-
-    @FXML
-    private Label lbHoraEncerra;
-
-    @FXML
     private Label lbDataInicia;
 
     @FXML
@@ -89,9 +84,6 @@ public class RegistroController {
     private Label lbKmFin;
 
     @FXML
-    private Label lbKmPerc;
-
-    @FXML
     private Label lbSupervisao;
     
     @FXML
@@ -99,7 +91,7 @@ public class RegistroController {
 	
 	private Registro registro;
 	
-	private AnchorPane fxmlAdd;
+	private AnchorPane fxmlAdd, fxmlAdd2;
 	
     @FXML
     private AnchorPane lateral;
@@ -128,12 +120,16 @@ public class RegistroController {
 		horaEntCln.setCellValueFactory(cellData -> cellData.getValue().getHoraEntradaProperty());
 		horaSaidaCln.setCellValueFactory(cellData -> cellData.getValue().getHoraSaidaProperty());
 		
-		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroRegistros.fxml"));	
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroRegistros.fxml"));
+		//fxmlAdd2 = FXMLLoader.load(getClass().getResource("../view/AlteracaoRegistros.fxml"));
+
 	}
 
 	@FXML
-	void atualizaSelect(MouseEvent event) {
+	void atualizaSelect(MouseEvent event) throws IOException {
 		refreshTable();
+//		split.getItems().remove(1);
+//		split.getItems().add(1, fxmlAdd2);
 	}
 
 	@FXML
@@ -146,13 +142,16 @@ public class RegistroController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		registro = new Registro(regTable.getSelectionModel().getSelectedItem().getNumero(), "a", 
-				regTable.getSelectionModel().getSelectedItem().getCodVeiculo(), "q", "n", 
-				regTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel(), "s", "123", "4", 
-				regTable.getSelectionModel().getSelectedItem().getHoraSaida(), "nenh", 
-				regTable.getSelectionModel().getSelectedItem().getHoraEntrada(), "12", "vere", "d", 12, 13, 
-				17, "14");
-		DAORegistro.update(registro);
+//		registro = new Registro(regTable.getSelectionModel().getSelectedItem().getNumero(), "a", 
+//				regTable.getSelectionModel().getSelectedItem().getCodVeiculo(), "q", "n", 
+//				regTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel(), "s", "123", "4", 
+//				regTable.getSelectionModel().getSelectedItem().getHoraSaida(), "nenh", 
+//				regTable.getSelectionModel().getSelectedItem().getHoraEntrada(), "12", "vere", "d", 12, 13, 
+//				17, "14");
+//		DAORegistro.update(registro);
+		
+		regTable.setItems(DAORegistro.list());
+		regTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 
@@ -169,8 +168,6 @@ public class RegistroController {
 		lbSiapeInicia.setText(DAORegistro.consultParam("siapeServInicia", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbSiapeEncerra.setText(DAORegistro.consultParam("siapeServEncerra", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbSiapeResp.setText(regTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel());
-		lbHoraInicia.setText(DAORegistro.consultParam("horaInicia", regTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbHoraEncerra.setText(DAORegistro.consultParam("horaEncerra", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbDataInicia.setText(DAORegistro.consultParam("dataInicia", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbDataEncerra.setText(DAORegistro.consultParam("dataEncerra", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbHoraSaida.setText(regTable.getSelectionModel().getSelectedItem().getHoraSaida());
@@ -180,7 +177,6 @@ public class RegistroController {
 		lbDesc.setText(DAORegistro.consultParam("descricao", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbKmIni.setText(DAORegistro.consultParam("kmInicial", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbKmFin.setText(DAORegistro.consultParam("kmFinal", regTable.getSelectionModel().getSelectedItem().getNumero()));
-		lbKmPerc.setText(DAORegistro.consultParam("kmPercorridos", regTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbSupervisao.setText(DAORegistro.consultParam("dataSupervisionado", regTable.getSelectionModel().getSelectedItem().getNumero()));
 	}
 	

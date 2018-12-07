@@ -47,4 +47,21 @@ public class DAOContratado extends DAO {
 		return codCargo;
 	}
 	
+	public static String consultContratadoAdmin(String siape) {
+		String siapeServ = null;
+		String query = "SELECT siapeServ FROM CONTRATADO WHERE codCargo = 1 AND siapeServ = " + siape;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				siapeServ = resultSet.getString("siapeServ");
+	     	}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return siapeServ;
+	}
+	
 }

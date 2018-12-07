@@ -2,6 +2,18 @@ DROP DATABASE SCESVI;
 
 CREATE DATABASE SCESVI;
 
+-- DROP'S TABELAS
+DROP TABLE SERVIDOR;
+DROP TABLE TELEFONE;
+DROP TABLE VEICULO;
+DROP TABLE SOLICITACAO;
+DROP TABLE REGISTRO;
+DROP TABLE SOLICITVEICULO;
+DROP TABLE DEPARTAMENTO;
+DROP TABLE LOTADO;
+DROP TABLE CARGO;
+DROP TABLE CONTRATADO;
+
 USE SCESVI;
 
 CREATE TABLE SERVIDOR(
@@ -13,6 +25,9 @@ CREATE TABLE SERVIDOR(
     cnh CHAR(11),
     categoria CHAR,
     autorizadoVeicInstitucional CHAR NOT NULL);
+    
+    insert into servidor values('32379365', '12345678901', 'Eduardo', '1133', '17082001', '09876543211', 'A', 'N');
+    select * from servidor;
 
 CREATE TABLE TELEFONE(
 	siapeServ CHAR(8) NOT NULL,
@@ -43,6 +58,8 @@ CREATE TABLE LOTADO(
 CREATE TABLE CARGO(
 	codigo SMALLINT(2) NOT NULL PRIMARY KEY,
     titulacao VARCHAR(20) NOT NULL);
+    
+    select * from cargo;
 
 CREATE TABLE CONTRATADO(
 	siapeServ CHAR(8) NOT NULL,
@@ -55,12 +72,19 @@ CREATE TABLE CONTRATADO(
     ON UPDATE CASCADE,
     FOREIGN KEY(codCargo) REFERENCES CARGO(codigo)
 	ON DELETE CASCADE
-    ON UPDATE CASCADE);
+    ON UPDATE CASCADE);    
     
+drop table solicitacao;
+
+INSERT INTO SOLICITACAO (dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, qtdePassageiros,
+tipo, finalidade, siapeServAutoriza, siapeServRealiza)
+VALUES ('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 10, 'A', 'Visita técnica', '32112312', '32714444'),
+('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 7, 'E', 'Visita técnica', '33113212', '3216666');
+
+select * from solicitacao;
+
 CREATE TABLE SOLICITACAO(
-	numero INT(4) NOT NULL PRIMARY KEY,
-    veiculoRequisitado VARCHAR(10) NOT NULL,
-    dataVeiculoConfirmado VARCHAR(8),
+	numero INT PRIMARY KEY auto_increment,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8) NOT NULL,
     horaCriacao VARCHAR(4) NOT NULL,
@@ -79,34 +103,49 @@ CREATE TABLE SOLICITACAO(
     FOREIGN KEY(siapeServRealiza) REFERENCES SERVIDOR(siape)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
+
+    
+CREATE TABLE SOLICITVEICULO(
+	numSolicit INT NOT NULL,
+	codVeic INT NOT NULL,
+    situacao CHAR NOT NULL,
+	PRIMARY KEY(numSolicit, codVeic),
+	FOREIGN KEY(numSolicit) REFERENCES SOLICITACAO(numero)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY(codVeic) REFERENCES VEICULO(codigo)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
     
 DROP TABLE SOLICITACAO;
-    
-INSERT INTO SOLICITACAO VALUES
-(2412, 'iiAa', '112391', '321711', '124242', '1563', '637222', 'sdgif', '3411', '231020', 0, 'w', 'sla', '321', '371'),
-(2112, 'Mua', '115191', '112711', '124282', '1163', '627222', 'sagia', '1411', '251020', 7, 'p', 'dla', '331', '321');
+
+INSERT INTO VEICULO (tipo, placa, renavam, autorizado, categoria, institucional, chassi, maxPassageiros, observacao, exercicio,
+	tipoCombustivel, potencia, cor, marcaModelo, anoFabricacao, anoModelo, dataSupervisionado, siapeServSupervisiona,
+    siapeServResponsavel, situacao) VALUES
+('comum', 'phw1234', 'renvai8765', 'S', 'D', 'N', 'chassi2a', 11, 'nenhuma obs', '2010', 'A', 
+12, 'azul', 'che gueva', '1999', '1999', '12112011', '122', '322', 'L');
+
+select * from veiculo;
+
+drop table veiculo;
+
+-- SELECT veiculoRequisitado FROM SOLICITACAO WHERE dataFim is not null AND veiculoRequisitado = 'eila';
 
 CREATE TABLE VEICULO(
-    codigo VARCHAR(7) NOT NULL PRIMARY KEY,
-    tipo VARCHAR(10) NOT NULL,
+    codigo INT PRIMARY KEY auto_increment,
     placa VARCHAR(7) NOT NULL,
 	renavam VARCHAR(30) NOT NULL UNIQUE,
     autorizado CHAR,
     categoria CHAR,
     institucional CHAR,
-    chassi VARCHAR(10) NOT NULL,
     maxPassageiros SMALLINT(2) NOT NULL,
     observacao VARCHAR(150),
-    exercicio VARCHAR(4) NOT NULL,
-    tipoCombustivel CHAR NOT NULL,
-    potencia FLOAT(8) NOT NULL,
     cor VARCHAR(15) NOT NULL,
     marcaModelo VARCHAR(10) NOT NULL,
-    anoFabricacao VARCHAR(4) NOT NULL,
-    anoModelo VARCHAR(4) NOT NULL,
     dataSupervisionado VARCHAR(8),
     siapeServSupervisiona CHAR(8) NOT NULL,
     siapeServResponsavel CHAR(8) NOT NULL,
+    situacao CHAR NOT NULL,
 	FOREIGN KEY(siapeServSupervisiona) REFERENCES SERVIDOR(siape)
 	ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -115,27 +154,33 @@ CREATE TABLE VEICULO(
     ON UPDATE CASCADE);
     
 INSERT INTO VEICULO VALUES
-('1', 'a', 's', 'er', 'd', 'c', 'n', 'wer', 12, 'nda', '1234', 'g', 13, 'verde', 'eila', '1954', '2003', '1212', '123', '321');
+(1, 'a', 's', 'er', 'd', 'c', 'n', 'wer', 12, 'nda', '1234', 'g', 13, 'verde', 'eila', '1954', '2003', '1212', '123', '321', 'L');
+
+INSERT INTO SolicitVeiculo VALUES (1, 1, 'A');
+
+INSERT INTO REGISTRO (observacao, codVeiculo, siapeServInicia, siapeServEncerra, siapeServResponsavel, dataInicia,
+    horaSaida, dataSaida, dataEntrada, horaEntrada, dataEncerra, descricao, kmInicial, kmFinal, dataSupervisionado) VALUES
+    ('nda', '3', '12', '32', '23', '2', '2', '1', '12', '23', '2', 'd', '23', '12', 'n');
 
 CREATE TABLE REGISTRO(
-	numero INT (4) NOT NULL PRIMARY KEY,
+	numero INT PRIMARY KEY auto_increment,
     observacao VARCHAR(150),
     codVeiculo VARCHAR(7) NOT NULL,
     siapeServInicia CHAR(8) NOT NULL,
     siapeServEncerra CHAR(8) NOT NULL,
     siapeServResponsavel CHAR(8) NOT NULL,
-    horaInicia VARCHAR(4) NOT NULL,
+ --   horaInicia VARCHAR(4) NOT NULL,
     dataInicia VARCHAR(8) NOT NULL,
     horaSaida VARCHAR(4),
     dataSaida VARCHAR(8),
     dataEntrada VARCHAR(8),
     horaEntrada VARCHAR(4),
-    horaEncerra VARCHAR(4),
+--    horaEncerra VARCHAR(4),
     dataEncerra VARCHAR(8),
     descricao VARCHAR(150) NOT NULL,
     kmInicial SMALLINT(2),
     kmFinal SMALLINT(2),
-    kmPercorridos SMALLINT(2),
+ --   kmPercorridos SMALLINT(2),
     dataSupervisionado VARCHAR(8),
     FOREIGN KEY(codVeiculo) REFERENCES VEICULO(codigo)
 	ON DELETE CASCADE
@@ -150,8 +195,9 @@ CREATE TABLE REGISTRO(
 	ON DELETE CASCADE
     ON UPDATE CASCADE);
     
-INSERT INTO REGISTRO VALUES
-(2, 'sla', 'cod', '111', '222', '333', '1234', '123121', '1231', '131212', '121315', '1019', '0918', '463728', 'ndaq', 14, 12, 18, '131313');
+
+
+drop table registro;
 
 SELECT * FROM REGISTRO;
 
@@ -166,6 +212,8 @@ SELECT * FROM DEPARTAMENTO;
 SELECT * FROM LOTADO;
 
 SELECT * FROM CONTRATADO;
+
+SELECT * FROM SOLICITVEICULO;
 
 SELECT siapeServ, codDep
 FROM LOTADO;
@@ -386,12 +434,14 @@ DELIMITER ;
 
 DELIMITER $$
 USE SCESVI $$
-DROP PROCEDURE IF EXISTS sp_listTelefone$$
-CREATE PROCEDURE sp_listTelefone (IN siapeServ CHAR(8), OUT telefoneList VARCHAR(11))
+DROP PROCEDURE IF EXISTS sp_ListTelefone$$
+CREATE PROCEDURE sp_ListTelefone (IN siape CHAR(8), OUT telefoneList VARCHAR(11))
 BEGIN
-    SELECT telefone INTO telefoneList FROM TELEFONE WHERE siapeServ =  TELEFONE.siapeServ;
+    SELECT telefone INTO telefoneList FROM TELEFONE WHERE siape =  siapeServ;
 END $$
 DELIMITER ;
+
+INSERT INTO TELEFONE VALUES(12345678, '99999999');
 
 -- Lotado
 

@@ -21,27 +21,25 @@ public class DAORegistro extends DAO {
 	}
 	
 	public static void insert(Registro registro) {
-		String query = "INSERT INTO REGISTRO VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO REGISTRO (observacao, codVeiculo, siapeServInicia, siapeServEncerra, siapeServResponsavel, "
+				+ "dataInicia, horaSaida, dataSaida, dataEntrada, horaEntrada, dataEncerra, descricao, "
+				+ "kmInicial, kmFinal, dataSupervisionado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			pst.setString(1, String.valueOf(registro.getNumero()));
-			pst.setString(2, registro.getObservacao());
-			pst.setString(3, registro.getCodVeiculo());
-			pst.setString(4, registro.getSiapeServInicia());
-			pst.setString(5, registro.getSiapeServEncerra());
-			pst.setString(6, registro.getSiapeServResponsavel());
-			pst.setString(7, registro.getHoraInicia());
-			pst.setString(8, registro.getDataInicia());
-			pst.setString(9, registro.getHoraSaida());
-			pst.setString(10, registro.getDataSaida());
-			pst.setString(11, registro.getDataEntrada());
-			pst.setString(12, registro.getHoraEntrada());
-			pst.setString(13, registro.getDataEncerra());
-			pst.setString(14, registro.getHoraEncerra());
-			pst.setString(15, registro.getDescricao());
-			pst.setString(16, String.valueOf(registro.getKmInicial()));
-			pst.setString(17, String.valueOf(registro.getKmFinal()));
-			pst.setString(18, String.valueOf(registro.getKmPercorridos()));
-			pst.setString(19, registro.getDataSupervisionado());
+			pst.setString(1, registro.getObservacao());
+			pst.setString(2, registro.getCodVeiculo());
+			pst.setString(3, registro.getSiapeServInicia());
+			pst.setString(4, registro.getSiapeServEncerra());
+			pst.setString(5, registro.getSiapeServResponsavel());
+			pst.setString(6, registro.getDataInicia());
+			pst.setString(7, registro.getHoraSaida());
+			pst.setString(8, registro.getDataSaida());
+			pst.setString(9, registro.getDataEntrada());
+			pst.setString(10, registro.getHoraEntrada());
+			pst.setString(11, registro.getDataEncerra());
+			pst.setString(12, registro.getDescricao());
+			pst.setString(13, String.valueOf(registro.getKmInicial()));
+			pst.setString(14, String.valueOf(registro.getKmFinal()));
+			pst.setString(15, registro.getDataSupervisionado());
 
 			pst.executeUpdate();
 			pst.close();
@@ -104,29 +102,26 @@ public class DAORegistro extends DAO {
 	
 	public static void update(Registro registro) {
         String query = "UPDATE REGISTRO SET observacao = ?, codVeiculo = ?, siapeServInicia = ?, siapeServEncerra = ?, "
-        				+ "siapeServResponsavel = ?, horaInicia = ?, DataInicia = ?, HoraSaida = ?, dataSaida = ?, dataEntrada = ?, "
-        				+ "horaEntrada = ?, dataEncerra = ?, horaEncerra = ?, descricao = ?, kmInicial = ?, kmFinal = ?, "
-        				+ "kmPercorridos = ?, dataSupervisionado = ? WHERE numero = ?";
+        				+ "siapeServResponsavel = ?, DataInicia = ?, HoraSaida = ?, dataSaida = ?, dataEntrada = ?, "
+        				+ "horaEntrada = ?, dataEncerra = ?, descricao = ?, kmInicial = ?, kmFinal = ?, "
+        				+ "dataSupervisionado = ? WHERE numero = ?";
         try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, registro.getObservacao());
 			pst.setString(2, registro.getCodVeiculo());
 			pst.setString(3, registro.getSiapeServInicia());
 			pst.setString(4, registro.getSiapeServEncerra());
 			pst.setString(5, registro.getSiapeServResponsavel());
-			pst.setString(6, registro.getHoraInicia());
-			pst.setString(7, registro.getDataInicia());
-			pst.setString(8, registro.getHoraSaida());
-			pst.setString(9, registro.getDataSaida());
-			pst.setString(10, registro.getDataEntrada());
-			pst.setString(11, registro.getHoraEntrada());
-			pst.setString(12, registro.getDataEncerra());
-			pst.setString(13, registro.getHoraEncerra());
-			pst.setString(14, registro.getDescricao());
-			pst.setString(15, String.valueOf(registro.getKmInicial()));
-			pst.setString(16, String.valueOf(registro.getKmFinal()));
-			pst.setString(17, String.valueOf(registro.getKmPercorridos()));
-			pst.setString(18, registro.getDataSupervisionado());
-			pst.setString(19, String.valueOf(registro.getNumero()));
+			pst.setString(6, registro.getDataInicia());
+			pst.setString(7, registro.getHoraSaida());
+			pst.setString(8, registro.getDataSaida());
+			pst.setString(9, registro.getDataEntrada());
+			pst.setString(10, registro.getHoraEntrada());
+			pst.setString(11, registro.getDataEncerra());
+			pst.setString(12, registro.getDescricao());
+			pst.setString(13, String.valueOf(registro.getKmInicial()));
+			pst.setString(14, String.valueOf(registro.getKmFinal()));
+			pst.setString(15, registro.getDataSupervisionado());
+			pst.setString(16, String.valueOf(registro.getNumero()));
 
             pst.executeUpdate();
             pst.close();
@@ -135,5 +130,21 @@ public class DAORegistro extends DAO {
             System.out.println("Erro: " + e);
         }
     }
+	
+	public static String numReg() {
+		String query = "SELECT max(numero) FROM REGISTRO";
+		String lblText = null;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				lblText = String.valueOf(Integer.parseInt(resultSet.getString("max(numero)")) + 1);
+			}
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lblText;
+	}
 	
 }

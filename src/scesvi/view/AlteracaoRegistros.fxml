@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="621.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.CadastroRegistrosController">
+<AnchorPane prefHeight="621.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.AlteracaoRegistrosController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="363.0" layoutY="24.0" prefHeight="489.0" prefWidth="256.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
@@ -122,7 +122,7 @@
             </JFXTextArea>
          </children>
       </VBox>
-      <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="5.0" styleClass="fontSection" stylesheets="@style.css" text="CADASTRO DE REGISTRO Nº" textFill="#236b8e" />
-      <JFXButton layoutX="534.0" layoutY="580.0" onAction="#cadastrarRegistro" styleClass="buttonsCRUD" stylesheets="@style.css" text="Cadastrar" />
+      <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="5.0" styleClass="fontSection" stylesheets="@style.css" text="ALTERAÇÃO DE REGISTRO Nº" textFill="#236b8e" />
+      <JFXButton layoutX="534.0" layoutY="580.0" onAction="#atualizarRegistro" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar" />
    </children>
 </AnchorPane>
