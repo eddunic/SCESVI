@@ -73,6 +73,12 @@
                   </Label>
                </children>
             </VBox>
+            <Label layoutX="122.0" layoutY="77.0" prefHeight="17.0" prefWidth="114.0" styleClass="padraoFonts" stylesheets="@style.css" text="Número do registro">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="codigos" layoutX="118.0" layoutY="94.0" prefHeight="25.0" prefWidth="116.0" />
             <Label prefHeight="17.0" prefWidth="108.0" styleClass="padraoFonts" stylesheets="@style.css" text="Código do veículo">
                <VBox.margin>
                   <Insets top="15.0" />
@@ -122,7 +128,7 @@
             </JFXTextArea>
          </children>
       </VBox>
-      <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="5.0" styleClass="fontSection" stylesheets="@style.css" text="ALTERAÇÃO DE REGISTRO Nº" textFill="#236b8e" />
-      <JFXButton layoutX="534.0" layoutY="580.0" onAction="#atualizarRegistro" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar" />
+      <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="5.0" styleClass="fontSection" stylesheets="@style.css" text="ALTERAÇÃO DE REGISTRO" textFill="#236b8e" />
+      <JFXButton layoutX="534.0" layoutY="580.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar" />
    </children>
 </AnchorPane>

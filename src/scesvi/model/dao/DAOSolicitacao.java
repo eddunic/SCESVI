@@ -10,22 +10,37 @@ import scesvi.model.Solicitacao;
 import scesvi.model.Veiculo;
 
 public class DAOSolicitacao extends DAO {
-	
+
 	private static Solicitacao solicitacao;
-	
+
 	@FXML
 	private static ObservableList<Solicitacao> listSolicit;
 
 	@FXML
-	private static ObservableList<String> listMarcaM;
-	
+	private static ObservableList<String> listMarcaM, codAll;
+
 	public static Solicitacao getSolicitacao() {
 		return solicitacao;
 	}
-	
+
+	public static ObservableList<String> codAll() {
+		String query = "SELECT numero FROM SOLICITACAO";
+		codAll = FXCollections.observableArrayList();
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while (resultSet.next()) {
+				codAll.add(resultSet.getString("numero"));
+			}
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return codAll;
+	}
+
 	public static void insert(Solicitacao solicitacao) {
-		String query = "INSERT INTO SOLICITACAO (dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, qtdePassageiros,\n" + 
-				"tipo, finalidade, siapeServAutoriza, siapeServRealiza) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO SOLICITACAO (dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, solicitacao.getDataInicio());
 			pst.setString(2, solicitacao.getDataFim());
@@ -47,13 +62,13 @@ public class DAOSolicitacao extends DAO {
 			System.out.println("Erro: " + e);
 		}
 	}
-	
+
 	public static ObservableList<Solicitacao> list() {
 		listSolicit = FXCollections.observableArrayList();
 		String query = "SELECT numero, tipo, dataCriacao, dataAutorizado FROM SOLICITACAO";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultSet = pst.executeQuery(query);
-			while(resultSet.next()) {
+			while (resultSet.next()) {
 				Solicitacao solicit = new Solicitacao();
 				solicit.setNumero(resultSet.getInt("numero"));
 				solicit.setTipo(resultSet.getString("tipo"));
@@ -61,7 +76,7 @@ public class DAOSolicitacao extends DAO {
 				solicit.setDataAutorizado(resultSet.getString("dataAutorizado"));
 				listSolicit.add(solicit);
 			}
-			
+
 			pst.close();
 			disconnection();
 		} catch (SQLException e) {
@@ -69,34 +84,34 @@ public class DAOSolicitacao extends DAO {
 		}
 		return listSolicit;
 	}
-	
-	public static void update(Solicitacao solicitacao) {
-        String query = "UPDATE SOLICITACAO SET dataInicio = ?, " 
-        				+ "dataFim = ?, horaCriacao = ?, dataCriacao = ?, localViagem = ?, horaAutorizado = ?, dataAutorizado = ?, "
-        				+ "qtdePassageiros = ?, tipo = ?, finalidade  = ?, siapeServAutoriza = ?, siapeServRealiza = ? WHERE numero = ?";
-        try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-            pst.setString(1, solicitacao.getDataInicio());
-            pst.setString(2, solicitacao.getDataFim());
-            pst.setString(3, solicitacao.getHoraCriacao());
-            pst.setString(4, solicitacao.getDataCriacao());
-            pst.setString(5, solicitacao.getLocalViagem());
-            pst.setString(6, solicitacao.getHoraAutorizado());
-            pst.setString(7, solicitacao.getDataAutorizado());
-            pst.setString(8, String.valueOf(solicitacao.getQtdePassageiros()));
-            pst.setString(9, solicitacao.getTipo());
-            pst.setString(10, solicitacao.getFinalidade());
-            pst.setString(11, solicitacao.getSiapeServAutoriza());
-            pst.setString(12, solicitacao.getSiapeServRealiza());
-            pst.setString(13, String.valueOf(solicitacao.getNumero()));
 
-            pst.executeUpdate();
-            pst.close();
-            disconnection();
-        } catch (SQLException e) {
-            System.out.println("Erro: " + e);
-        }
-    }
-	
+	public static void update(Solicitacao solicitacao) {
+		String query = "UPDATE SOLICITACAO SET dataInicio = ?, "
+				+ "dataFim = ?, horaCriacao = ?, dataCriacao = ?, localViagem = ?, horaAutorizado = ?, dataAutorizado = ?, "
+				+ "qtdePassageiros = ?, tipo = ?, finalidade  = ?, siapeServAutoriza = ?, siapeServRealiza = ? WHERE numero = ?";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			pst.setString(1, solicitacao.getDataInicio());
+			pst.setString(2, solicitacao.getDataFim());
+			pst.setString(3, solicitacao.getHoraCriacao());
+			pst.setString(4, solicitacao.getDataCriacao());
+			pst.setString(5, solicitacao.getLocalViagem());
+			pst.setString(6, solicitacao.getHoraAutorizado());
+			pst.setString(7, solicitacao.getDataAutorizado());
+			pst.setString(8, String.valueOf(solicitacao.getQtdePassageiros()));
+			pst.setString(9, solicitacao.getTipo());
+			pst.setString(10, solicitacao.getFinalidade());
+			pst.setString(11, solicitacao.getSiapeServAutoriza());
+			pst.setString(12, solicitacao.getSiapeServRealiza());
+			pst.setString(13, String.valueOf(solicitacao.getNumero()));
+
+			pst.executeUpdate();
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+
 //	public static ObservableList<String> listMarcaModelo(ObservableList<String> listCodVeic) {
 //		listMarcaM = FXCollections.observableArrayList();
 //	    newListCodVeic = listCodVeic;
@@ -136,7 +151,7 @@ public class DAOSolicitacao extends DAO {
 //		}
 //		return listMarcaM;
 //	}
-	
+
 ///////////////////////////////////
 	public static void delete(int numero) {
 		String query = "DELETE FROM SOLICITACAO WHERE numero = " + numero;
@@ -148,13 +163,13 @@ public class DAOSolicitacao extends DAO {
 			System.out.println("Erro: " + e);
 		}
 	}
-	
+
 	public static String consultParam(String var, int numero) {
 		String query = "SELECT " + var + " FROM SOLICITACAO WHERE SOLICITACAO.numero = " + numero;
 		String lblText = null;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultSet = pst.executeQuery(query);
-			while(resultSet.next()) {
+			while (resultSet.next()) {
 				lblText = resultSet.getString(var);
 			}
 			pst.close();
@@ -164,13 +179,13 @@ public class DAOSolicitacao extends DAO {
 		}
 		return lblText;
 	}
-	
+
 	public static String numSolic() {
 		String query = "SELECT max(numero) FROM SOLICITACAO";
 		String lblText = null;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultSet = pst.executeQuery(query);
-			while(resultSet.next()) {
+			while (resultSet.next()) {
 				lblText = String.valueOf(Integer.parseInt(resultSet.getString("max(numero)")) + 1);
 			}
 			pst.close();
@@ -180,5 +195,5 @@ public class DAOSolicitacao extends DAO {
 		}
 		return lblText;
 	}
-	
+
 }

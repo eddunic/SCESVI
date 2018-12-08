@@ -42,6 +42,8 @@ public class SolicitacaoController {
 
 	@FXML
 	private TableColumn<Solicitacao, String> autorCln;
+	
+	private AnchorPane fxmlAlterar;
 
 	@FXML
 	private Label lbNum;
@@ -122,6 +124,9 @@ public class SolicitacaoController {
 		autorCln.setCellValueFactory(cellData -> cellData.getValue().getDataAutorizadoProperty());
 
 		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));
+		
+
+		fxmlAlterar = FXMLLoader.load(getClass().getResource("../view/AlteracaoSolicitacao.fxml"));
 	}
 
 	@FXML
@@ -184,5 +189,11 @@ public class SolicitacaoController {
 		split.getItems().remove(1);
 		split.getItems().add(1, lateral);
 		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroSolicitacoes.fxml"));		
+	}
+	
+	@FXML
+	void alterar(ActionEvent event) {
+		split.getItems().remove(1);
+		split.getItems().add(1, fxmlAlterar);
 	}
 }

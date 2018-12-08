@@ -9,23 +9,16 @@ import javafx.beans.property.StringProperty;
 
 public class Veiculo {
 
-	private final StringProperty codigo;
-	private final StringProperty tipo;
+	private final IntegerProperty codigo;
 	private final StringProperty placa;
 	private final StringProperty renavam;
 	private final StringProperty autorizado;
 	private final StringProperty categoria;
 	private final StringProperty institucional;
-	private final StringProperty chassi;
 	private final IntegerProperty maxPassageiros;
 	private final StringProperty observacao;
-	private final StringProperty exercicio;
-	private final StringProperty tipoCombustivel;
-	private final FloatProperty potencia;
 	private final StringProperty cor;
 	private final StringProperty marcaModelo;
-	private final StringProperty anoFabricacao;
-	private final StringProperty anoModelo;
 	private final StringProperty dataSupervisionado;
 	private final StringProperty situacao;
 	private final StringProperty siapeServSupervisiona;
@@ -35,29 +28,22 @@ public class Veiculo {
 	 * Construtor vazio.
 	 */
 	public Veiculo() {
-		this.codigo = new SimpleStringProperty("");
-		this.tipo = new SimpleStringProperty("");
+		this.codigo = new SimpleIntegerProperty(0);
 		this.placa = new SimpleStringProperty("");
 		this.renavam = new SimpleStringProperty("");
 		this.autorizado = new SimpleStringProperty("");
 		this.categoria = new SimpleStringProperty("");
 		this.institucional = new SimpleStringProperty("");
-		this.chassi = new SimpleStringProperty("");
 		this.maxPassageiros = new SimpleIntegerProperty(0);
 		this.observacao = new SimpleStringProperty("");
-		this.exercicio = new SimpleStringProperty("");
-		this.tipoCombustivel = new SimpleStringProperty("");
-		this.potencia = new SimpleFloatProperty(0.0f);
 		this.cor = new SimpleStringProperty("");
 		this.marcaModelo = new SimpleStringProperty("");
-		this.anoFabricacao = new SimpleStringProperty("");
-		this.anoModelo = new SimpleStringProperty("");
 		this.dataSupervisionado = new SimpleStringProperty("");
 		this.siapeServSupervisiona = new SimpleStringProperty("");
 		this.siapeServResponsavel = new SimpleStringProperty("");
 		this.situacao = new SimpleStringProperty("");
 	}
-	
+
 	/**
 	 * Construtor com parametros.
 	 * 
@@ -82,68 +68,48 @@ public class Veiculo {
 	 * @param siapeServSupervisiona
 	 * @param siapeServResponsavel
 	 */
-	public Veiculo(String codigo, String tipo, String placa, String renavam, String autorizado, String categoria,
-			String institucional, String chassi, int maxPassageiros, String observacao, String exercicio,
-			String tipoCombustivel, float potencia, String cor, String marcaModelo, String anoFabricacao,
-			String anoModelo, String dataSupervisionado, String siapeServSupervisiona, String siapeServResponsavel, String situ) {
-		this.codigo = new SimpleStringProperty(codigo);
-		this.tipo = new SimpleStringProperty(tipo);
+	public Veiculo(int codigo, String placa, String renavam, String autorizado, String categoria,
+			String institucional, int maxPassageiros, String observacao, String cor, String marcaModelo,
+			String dataSupervisionado, String siapeServSupervisiona, String siapeServResponsavel, String situ) {
+		this.codigo = new SimpleIntegerProperty(codigo);
 		this.placa = new SimpleStringProperty(placa);
 		this.renavam = new SimpleStringProperty(renavam);
 		this.autorizado = new SimpleStringProperty(autorizado);
 		this.categoria = new SimpleStringProperty(categoria);
 		this.institucional = new SimpleStringProperty(institucional);
-		this.chassi = new SimpleStringProperty(chassi);
 		this.maxPassageiros = new SimpleIntegerProperty(maxPassageiros);
 		this.observacao = new SimpleStringProperty(observacao);
-		this.exercicio = new SimpleStringProperty(exercicio);
-		this.tipoCombustivel = new SimpleStringProperty(tipoCombustivel);
-		this.potencia = new SimpleFloatProperty(potencia);
 		this.cor = new SimpleStringProperty(cor);
 		this.marcaModelo = new SimpleStringProperty(marcaModelo);
-		this.anoFabricacao = new SimpleStringProperty(anoFabricacao);
-		this.anoModelo = new SimpleStringProperty(anoModelo);
 		this.dataSupervisionado = new SimpleStringProperty(dataSupervisionado);
 		this.siapeServSupervisiona = new SimpleStringProperty(siapeServSupervisiona);
 		this.siapeServResponsavel = new SimpleStringProperty(siapeServResponsavel);
 		this.situacao = new SimpleStringProperty(situ);
 	}
-	
+
 	/* Getters & Setters */
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo.set(codigo);
 	}
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo.get();
 	}
-	
+
 	public String getSituacao() {
 		return situacao.get();
 	}
-	
+
 	public void setSituacao(String situ) {
 		this.situacao.set(situ);
 	}
-	
+
 	public StringProperty getSituacaoProperty() {
 		return situacao;
 	}
-	
-	public StringProperty getCodigoProperty() {
+
+	public IntegerProperty getCodigoProperty() {
 		return codigo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo.set(tipo);
-	}
-
-	public String getTipo() {
-		return tipo.get();
-	}
-
-	public StringProperty getTipoProperty() {
-		return tipo;
 	}
 
 	public void setPlaca(String placa) {
@@ -206,18 +172,6 @@ public class Veiculo {
 		return institucional;
 	}
 
-	public void setChassi(String chassi) {
-		this.chassi.set(chassi);
-	}
-
-	public String getChassi() {
-		return chassi.get();
-	}
-
-	public StringProperty getChassiProperty() {
-		return chassi;
-	}
-
 	public void setMaxPassageiros(int maxPassageiros) {
 		this.maxPassageiros.set(maxPassageiros);
 	}
@@ -242,42 +196,6 @@ public class Veiculo {
 		return observacao;
 	}
 
-	public void setExercicio(String exercicio) {
-		this.exercicio.set(exercicio);
-	}
-
-	public String getExercicio() {
-		return exercicio.get();
-	}
-
-	public StringProperty getExercicioProperty() {
-		return exercicio;
-	}
-
-	public void setTipoCombustivel(String tipoCombustivel) {
-		this.tipoCombustivel.set(tipoCombustivel);
-	}
-
-	public String getTipoCombustivel() {
-		return tipoCombustivel.get();
-	}
-
-	public StringProperty getTipoCombustivelProperty() {
-		return tipoCombustivel;
-	}
-
-	public void setPotencia(float potencia) {
-		this.potencia.set(potencia);
-	}
-
-	public float getPotencia() {
-		return potencia.get();
-	}
-
-	public FloatProperty getPotenciaProperty() {
-		return potencia;
-	}
-
 	public void setCor(String cor) {
 		this.cor.set(cor);
 	}
@@ -300,30 +218,6 @@ public class Veiculo {
 
 	public StringProperty getMarcaModeloProperty() {
 		return marcaModelo;
-	}
-	
-	public void setAnoFabricacao(String anoFabricacao) {
-		this.anoFabricacao.set(anoFabricacao);
-	}
-	
-	public String getAnoFabricacao() {
-		return anoFabricacao.get();
-	}
-	
-	public StringProperty getAnoFabricacaoProperty() {
-		return anoFabricacao;
-	}
-	
-	public void setAnoModelo(String anoModelo) {
-		this.anoModelo.set(anoModelo);
-	}
-	
-	public String getAnoModelo() {
-		return anoModelo.get();
-	}
-	
-	public StringProperty getAnoModeloProperty() {
-		return anoModelo;
 	}
 
 	public void setDataSupervisionado(String dataSupervisionado) {

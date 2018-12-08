@@ -1,7 +1,10 @@
 package scesvi.controller;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -72,6 +75,9 @@ public class ServidorController {
 
 	@FXML
 	private Label lbDep;
+	
+
+	private AnchorPane fxmlAlterar;
 
 	@FXML
 	private Label lbTel;
@@ -87,7 +93,7 @@ public class ServidorController {
 	private String codCargo;
 	
 	@FXML
-	void initialize() {
+	void initialize() throws IOException {
 		servTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		// campos table
@@ -110,6 +116,9 @@ public class ServidorController {
 		cnhCln.setCellValueFactory(cellData -> cellData.getValue().getCnhProperty());
 		catCln.setCellValueFactory(cellData -> cellData.getValue().getCategoriaProperty());
 		instCln.setCellValueFactory(cellData -> cellData.getValue().getAutorizadoVeicInstitucionalProperty());
+		
+
+		fxmlAlterar = FXMLLoader.load(getClass().getResource("../view/AlteracaoServidor.fxml"));
 	}
 
 	@FXML
@@ -160,6 +169,12 @@ public class ServidorController {
 	private void back(ActionEvent event) {
 		split.getItems().remove(1);
 		split.getItems().add(1, lateral);
+	}
+	
+	@FXML
+	void alterar(ActionEvent event) {
+		split.getItems().remove(1);
+		split.getItems().add(1, fxmlAlterar);
 	}
 
 }

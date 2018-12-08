@@ -38,6 +38,9 @@ public class RegistroController {
     @FXML
     private TableColumn<Registro, String> horaSaidaCln;
 
+
+	private AnchorPane fxmlAlterar;
+	
     @FXML
     private Label lbNum;
 
@@ -123,6 +126,8 @@ public class RegistroController {
 		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroRegistros.fxml"));
 		//fxmlAdd2 = FXMLLoader.load(getClass().getResource("../view/AlteracaoRegistros.fxml"));
 
+		fxmlAlterar = FXMLLoader.load(getClass().getResource("../view/AlteracaoRegistros.fxml"));
+
 	}
 
 	@FXML
@@ -187,6 +192,11 @@ public class RegistroController {
 		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroRegistros.fxml"));	
 
     }
-	
+    
+	@FXML
+	void alterar(ActionEvent event) {
+		split.getItems().remove(1);
+		split.getItems().add(1, fxmlAlterar);
+	}
 }
 

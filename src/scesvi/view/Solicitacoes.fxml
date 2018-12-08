@@ -147,6 +147,14 @@
                <graphic>
                   <MaterialIconView fill="#236b8e" glyphName="CLOSE" size="13" />
                </graphic></JFXButton>
+            <JFXButton layoutX="458.0" layoutY="17.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar">
+               <graphic>
+                  <MaterialIconView fill="#236b8e" glyphName="BORDER_COLOR" size="13" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </JFXButton>
          </children>
       </HBox>
    </top>

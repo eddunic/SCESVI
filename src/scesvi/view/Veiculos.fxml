@@ -27,8 +27,8 @@
                      <columns>
                         <TableColumn fx:id="codCln" prefWidth="53.0" text="Código" />
                         <TableColumn fx:id="modCln" minWidth="3.0" prefWidth="89.0" text="Modelo" />
-                        <TableColumn fx:id="anoCln" prefWidth="52.0" text="Ano" />
-                        <TableColumn fx:id="respCln" prefWidth="98.0" text="Responsável" />
+                        <TableColumn fx:id="situacaoCln" prefWidth="78.0" text="Situação" />
+                        <TableColumn fx:id="respCln" prefWidth="72.0" text="Responsável" />
                         <TableColumn fx:id="placaCln" prefWidth="73.0" text="Placa" />
                      </columns>
                      <contextMenu>
@@ -68,55 +68,34 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <Label text="Código" textFill="WHITE" />
                               <Label fx:id="lbCod" prefHeight="18.0" prefWidth="93.0" text=" " textFill="WHITE" GridPane.columnIndex="1" />
-                              <Label text="Placa" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label fx:id="lbPlaca" prefHeight="24.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="Autorizado" textFill="WHITE" GridPane.rowIndex="4" />
-                              <Label text="Tipo" textFill="WHITE" GridPane.rowIndex="1" />
-                              <Label text="RENAVAM" textFill="WHITE" GridPane.rowIndex="3" />
-                              <Label text="Institucional" textFill="WHITE" GridPane.rowIndex="6" />
-                              <Label text="Chassi" textFill="WHITE" GridPane.rowIndex="7" />
-                              <Label text="Max Passageiros" textFill="WHITE" GridPane.rowIndex="8" />
-                              <Label text="Exercício" textFill="WHITE" GridPane.rowIndex="10" />
-                              <Label text="Combustível" textFill="WHITE" GridPane.rowIndex="11" />
-                              <Label text="Observação" textFill="WHITE" GridPane.rowIndex="9" />
-                              <Label text="Potência" textFill="WHITE" GridPane.rowIndex="12" />
-                              <Label text="Categoria" textFill="WHITE" GridPane.rowIndex="5" />
-                              <Label fx:id="lbTipo" prefHeight="18.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="lbRen" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label fx:id="lbAutoriz" prefHeight="18.0" prefWidth="109.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label fx:id="lbCat" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label fx:id="lbInst" layoutX="120.0" layoutY="133.0" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Label fx:id="lbChassi" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <Label fx:id="lbMaxP" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                              <Label fx:id="lbObs" prefHeight="18.0" prefWidth="110.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                              <Label fx:id="lbExe" prefHeight="18.0" prefWidth="102.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                              <Label fx:id="lbCombs" prefHeight="18.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                              <Label fx:id="lbPot" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                              <Label fx:id="lbCor" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                              <Label text="Cor" textFill="WHITE" GridPane.rowIndex="13" />
-                              <Label text="Marca/Modelo" textFill="WHITE" GridPane.rowIndex="14" />
-                              <Label text="Fabricação" textFill="WHITE" GridPane.rowIndex="15" />
-                              <Label text="AnoModelo" textFill="WHITE" GridPane.rowIndex="16" />
-                              <Label text="Supervisionado" textFill="WHITE" GridPane.rowIndex="17" />
-                              <Label text="Supervisor" textFill="WHITE" GridPane.rowIndex="18" />
-                              <Label text="Responsável" textFill="WHITE" GridPane.rowIndex="19" />
-                              <Label fx:id="lbMarcaMod" prefHeight="18.0" prefWidth="84.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                              <Label fx:id="lbFabric" prefHeight="18.0" prefWidth="77.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-                              <Label fx:id="lbAnoMod" prefHeight="18.0" prefWidth="91.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                              <Label fx:id="lbDataSuperv" prefHeight="18.0" prefWidth="73.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="17" />
-                              <Label fx:id="lbSupervisor" prefHeight="18.0" prefWidth="82.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="18" />
-                              <Label fx:id="lbResp" prefHeight="18.0" prefWidth="79.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="19" />
+                              <Label text="Placa" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label fx:id="lbPlaca" prefHeight="24.0" prefWidth="105.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Autorizado" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label text="RENAVAM" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label text="Institucional" textFill="WHITE" GridPane.rowIndex="5" />
+                              <Label text="Max Passageiros" textFill="WHITE" GridPane.rowIndex="6" />
+                              <Label text="Observação" textFill="WHITE" GridPane.rowIndex="7" />
+                              <Label text="Categoria" textFill="WHITE" GridPane.rowIndex="4" />
+                              <Label fx:id="lbRen" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="lbAutoriz" prefHeight="18.0" prefWidth="109.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="lbCat" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="lbInst" layoutX="120.0" layoutY="133.0" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="lbMaxP" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label fx:id="lbObs" prefHeight="18.0" prefWidth="110.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Label fx:id="lbCor" prefHeight="18.0" prefWidth="106.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <Label text="Cor" textFill="WHITE" GridPane.rowIndex="8" />
+                              <Label text="Marca/Modelo" textFill="WHITE" GridPane.rowIndex="9" />
+                              <Label text="Supervisionado" textFill="WHITE" GridPane.rowIndex="10" />
+                              <Label text="Supervisor" textFill="WHITE" GridPane.rowIndex="11" />
+                              <Label text="Responsável" textFill="WHITE" GridPane.rowIndex="12" />
+                              <Label fx:id="lbMarcaMod" prefHeight="18.0" prefWidth="84.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <Label fx:id="lbDataSuperv" prefHeight="18.0" prefWidth="97.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                              <Label fx:id="lbSupervisor" prefHeight="18.0" prefWidth="102.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                              <Label fx:id="lbResp" prefHeight="18.0" prefWidth="100.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" right="15.0" />
@@ -169,6 +148,14 @@
                <graphic>
                   <MaterialIconView fill="#236b8e" glyphName="CLOSE" size="13" />
                </graphic></JFXButton>
+            <JFXButton layoutX="431.0" layoutY="17.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar">
+               <graphic>
+                  <MaterialIconView fill="#236b8e" glyphName="BORDER_COLOR" size="13" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </JFXButton>
          </children>
       </HBox>
    </top>

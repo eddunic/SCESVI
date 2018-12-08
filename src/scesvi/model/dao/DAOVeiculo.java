@@ -18,39 +18,28 @@ public class DAOVeiculo extends DAO {
 	private static ObservableList<Veiculo> listVeic;
 	
 	@FXML
-	private static ObservableList<String> listMarcaM;
-	
-	@FXML
-	private static ObservableList<String> listCod;
+	private static ObservableList<String> listMarcaM, list, listCod, codAll;
 	
 	public static Veiculo getVeiculo() {
 		return veiculo;
 	}
 
 	public static void insert(Veiculo veiculo) {
-		String query = "INSERT INTO VEICULO VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO VEICULO (placa, renavam, autorizado, categoria, institucional, maxPassageiros, observacao, cor, marcaModelo, dataSupervisionado, siapeServSupervisiona, siapeServResponsavel, situacao) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			pst.setString(1, veiculo.getCodigo());
-			pst.setString(2, veiculo.getTipo());
-			pst.setString(3, veiculo.getPlaca());
-			pst.setString(4, veiculo.getRenavam());
-			pst.setString(5, veiculo.getAutorizado());
-			pst.setString(6, veiculo.getCategoria());
-			pst.setString(7, veiculo.getInstitucional());
-			pst.setString(8, veiculo.getChassi());
-			pst.setString(9, String.valueOf(veiculo.getMaxPassageiros()));
-			pst.setString(10, veiculo.getObservacao());
-			pst.setString(11, veiculo.getExercicio());
-			pst.setString(12, veiculo.getTipoCombustivel());
-			pst.setString(13, String.valueOf(veiculo.getPotencia()));
-			pst.setString(14, veiculo.getCor());
-			pst.setString(15, veiculo.getMarcaModelo());
-			pst.setString(16, veiculo.getAnoFabricacao());
-			pst.setString(17, veiculo.getAnoModelo());
-			pst.setString(18, veiculo.getDataSupervisionado());
-			pst.setString(19, veiculo.getSiapeServSupervisiona());
-			pst.setString(20, veiculo.getSiapeServResponsavel());
-			pst.setString(21, veiculo.getSituacao());
+			pst.setString(1, veiculo.getPlaca());
+			pst.setString(2, veiculo.getRenavam());
+			pst.setString(3, veiculo.getAutorizado());
+			pst.setString(4, veiculo.getCategoria());
+			pst.setString(5, veiculo.getInstitucional());
+			pst.setString(6, String.valueOf(veiculo.getMaxPassageiros()));
+			pst.setString(7, veiculo.getObservacao());
+			pst.setString(8, veiculo.getCor());
+			pst.setString(9, veiculo.getMarcaModelo());
+			pst.setString(10, veiculo.getDataSupervisionado());
+			pst.setString(11, veiculo.getSiapeServSupervisiona());
+			pst.setString(12, veiculo.getSiapeServResponsavel());
+			pst.setString(13, veiculo.getSituacao());
 
 			pst.executeUpdate();
 			pst.close();
@@ -67,9 +56,9 @@ public class DAOVeiculo extends DAO {
 			ResultSet resultSet = pst.executeQuery(query);
 			while (resultSet.next()) {
 				Veiculo veic = new Veiculo();
-				veic.setCodigo(resultSet.getString("codigo"));
+				veic.setCodigo(Integer.parseInt(resultSet.getString("codigo")));
 				veic.setMarcaModelo(resultSet.getString("marcaModelo"));
-				veic.setAnoModelo(resultSet.getString("situacao"));
+				veic.setSituacao(resultSet.getString("situacao"));
 				veic.setSiapeServResponsavel(resultSet.getString("siapeServResponsavel"));
 				veic.setPlaca(resultSet.getString("placa"));
 				listVeic.add(veic);
@@ -100,6 +89,23 @@ public class DAOVeiculo extends DAO {
 		return listMarcaM;
 	}
 	
+	public static ObservableList<String> listAll() {
+		list = FXCollections.observableArrayList();
+		String query = "SELECT * FROM VEICULO WHERE";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while (resultSet.next()) {
+				listMarcaM.add(resultSet.getString(""));
+			}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return list;
+	}
+	
 	public static ObservableList<String> listMarcaModelox() {
 		ResultSet resultSet;
 		listMarcaM = FXCollections.observableArrayList();
@@ -118,24 +124,7 @@ public class DAOVeiculo extends DAO {
 		return listMarcaM;
 	}
 /////////////////////////////////////
-	public static ObservableList<String> listCod() {
-		listCod = FXCollections.observableArrayList();
-		String query = "SELECT codigo FROM VEICULO";
-		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			ResultSet resultSet = pst.executeQuery();
-			while (resultSet.next()) {
-				listCod.add(resultSet.getString("listCod"));
-			}
-			
-			pst.close();
-			disconnection();
-		} catch (SQLException e) {
-			System.out.println("Erro: " + e);
-		}
-		return listCod;
-	}
-	
-	public static void delete(String codigo) {
+	public static void delete(int codigo) {
 		String query = "DELETE FROM VEICULO WHERE VEICULO.codigo = " + codigo;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.executeUpdate(query);
@@ -146,7 +135,7 @@ public class DAOVeiculo extends DAO {
 		}
 	}
 
-	public static String consultParam(String var, String codigo) {
+	public static String consultParam(String var, int codigo) {
 		String query = "SELECT " + var + " FROM VEICULO WHERE VEICULO.codigo = " + codigo;
 		String lblText = null;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
@@ -164,32 +153,26 @@ public class DAOVeiculo extends DAO {
 	}
 
 	public static void update(Veiculo veiculo) {
-		String query = "UPDATE VEICULO SET tipo = ?, placa = ?, renavam = ?, autorizado = ?, categoria = ?, institucional = ?, "
-				+ "chassi = ?, maxPassageiros = ?, observacao = ?, exercicio = ?, tipoCombustivel = ?, potencia  = ?, "
-				+ "cor = ?, marcaModelo = ?, anoFabricacao = ?, anoModelo = ?, dataSupervisionado = ?, siapeServSupervisiona = ?, "
+		String query = "UPDATE VEICULO SET placa = ?, renavam = ?, autorizado = ?, categoria = ?, institucional = ?, maxPassageiros = ?, observacao = ?, "
+				+ "cor = ?, marcaModelo = ?, dataSupervisionado = ?, siapeServSupervisiona = ?, "
 				+ "siapeServResponsavel = ?, situacao = ? WHERE codigo = ?";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
-			pst.setString(1, veiculo.getTipo());
-			pst.setString(2, veiculo.getPlaca());
-			pst.setString(3, veiculo.getRenavam());
-			pst.setString(4, veiculo.getAutorizado());
-			pst.setString(5, veiculo.getCategoria());
-			pst.setString(6, veiculo.getInstitucional());
-			pst.setString(7, veiculo.getChassi());
-			pst.setString(8, String.valueOf(veiculo.getMaxPassageiros()));
-			pst.setString(9, veiculo.getObservacao());
-			pst.setString(10, veiculo.getExercicio());
-			pst.setString(11, veiculo.getTipoCombustivel());
-			pst.setString(12, String.valueOf(veiculo.getPotencia()));
-			pst.setString(13, veiculo.getCor());
-			pst.setString(14, veiculo.getMarcaModelo());
-			pst.setString(15, veiculo.getAnoFabricacao());
-			pst.setString(16, veiculo.getAnoModelo());
-			pst.setString(17, veiculo.getDataSupervisionado());
-			pst.setString(18, veiculo.getSiapeServSupervisiona());
-			pst.setString(19, veiculo.getSiapeServResponsavel());
-			pst.setString(20, veiculo.getCodigo());
-			pst.setString(21, veiculo.getSituacao());
+			pst.setString(1, veiculo.getPlaca());
+			pst.setString(2, veiculo.getRenavam());
+			pst.setString(3, veiculo.getAutorizado());
+			pst.setString(4, veiculo.getCategoria());
+			pst.setString(5, veiculo.getInstitucional());
+			pst.setString(6, String.valueOf(veiculo.getMaxPassageiros()));
+			pst.setString(7, veiculo.getObservacao());
+			pst.setString(8, veiculo.getCor());
+			pst.setString(9, veiculo.getMarcaModelo());
+			pst.setString(10, veiculo.getDataSupervisionado());
+			pst.setString(11, veiculo.getSiapeServSupervisiona());
+			pst.setString(12, veiculo.getSiapeServResponsavel());
+			pst.setInt(14, veiculo.getCodigo());
+			pst.setString(13, veiculo.getSituacao());
+			
+			
 			
 			pst.executeUpdate();
 			pst.close();
@@ -197,6 +180,56 @@ public class DAOVeiculo extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+	}
+	
+	public static String codVeic() {
+		String query = "SELECT max(codigo) FROM VEICULO";
+		String lblText = null;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				lblText = String.valueOf(Integer.parseInt(resultSet.getString("max(codigo)")) + 1);
+			}
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lblText;
+	}
+	
+	public static ObservableList<String> codAll() {
+		String query = "SELECT codigo FROM VEICULO";
+		codAll = FXCollections.observableArrayList();;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				codAll.add(resultSet.getString("codigo"));
+			}
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return codAll;
+	}
+	
+	public static ObservableList<String> listCod() {
+		ResultSet resultSet;
+		listCod = FXCollections.observableArrayList();
+		String query = "SELECT codigo FROM VEICULO";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			resultSet = pst.executeQuery();
+			while (resultSet.next()) {
+				listCod.add(resultSet.getString("codigo"));
+			}
+			
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return listCod;
 	}
 
 }

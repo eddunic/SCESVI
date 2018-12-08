@@ -78,10 +78,12 @@ drop table solicitacao;
 
 INSERT INTO SOLICITACAO (dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, qtdePassageiros,
 tipo, finalidade, siapeServAutoriza, siapeServRealiza)
-VALUES ('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 10, 'A', 'Visita t�cnica', '32112312', '32714444'),
-('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 7, 'E', 'Visita t�cnica', '33113212', '3216666');
+VALUES ('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 10, 'A', 'Visita técnica', '32112312', '32714444'),
+('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 7, 'E', 'Visita técnica', '33113212', '3216666');
 
-select * from solicitacao;
+-- select count(numero) from solicitacao;
+
+desc solicitacao;
 
 CREATE TABLE SOLICITACAO(
 	numero INT PRIMARY KEY auto_increment,
@@ -153,9 +155,13 @@ CREATE TABLE VEICULO(
 	ON DELETE CASCADE
     ON UPDATE CASCADE);
     
-INSERT INTO VEICULO VALUES
-(1, 'a', 's', 'er', 'd', 'c', 'n', 'wer', 12, 'nda', '1234', 'g', 13, 'verde', 'eila', '1954', '2003', '1212', '123', '321', 'L');
+INSERT INTO VEICULO (placa, renavam, autorizado, categoria, institucional, maxPassageiros, observacao, cor, marcaModelo, dataSupervisionado, siapeServSupervisiona, siapeServResponsavel, situacao) VALUES
+('adm-123', '837846', 's', 'D', 'n', 12, 'nda', 'azul', 'chevrolet', '12082018', '32379365', '32379365', 'L');
 
+
+select * from veiculo;
+
+select * from servidor;
 INSERT INTO SolicitVeiculo VALUES (1, 1, 'A');
 
 INSERT INTO REGISTRO (observacao, codVeiculo, siapeServInicia, siapeServEncerra, siapeServResponsavel, dataInicia,
@@ -291,12 +297,12 @@ CREATE PROCEDURE sp_InsertDep ()
 BEGIN
 	INSERT INTO DEPARTAMENTO 
 	VALUES
-	(1, 'Departamento Acadêmico de Informação e Comunicação', 'DAIC'),
-	(2, 'Departamento Acadêmico de Infraestrutura', 'DAINFRA'),
-	(3, 'Departamento de Química e Alimentos', 'DQA'),
-	(4, 'Departamento de alguma coisa que eu não sei', 'DGP'),
+	(1, 'Departamento AcadÃªmico de InformaÃ§Ã£o e ComunicaÃ§Ã£o', 'DAIC'),
+	(2, 'Departamento AcadÃªmico de Infraestrutura', 'DAINFRA'),
+	(3, 'Departamento de QuÃ­mica e Alimentos', 'DQA'),
+	(4, 'Departamento de alguma coisa que eu nÃ£o sei', 'DGP'),
 	(5, 'Departamento de Processos Industriais','DPI'),
-	(6, 'Departamento de Tecnologia da Informação', 'DTI');
+	(6, 'Departamento de Tecnologia da InformaÃ§Ã£o', 'DTI');
 END $$
 DELIMITER ;
 
@@ -367,7 +373,7 @@ BEGIN
 END $$
 DELIMITER ;
 
--- Solicitação
+-- SolicitaÃ§Ã£o
 
 DELIMITER $$
 USE SCESVI $$

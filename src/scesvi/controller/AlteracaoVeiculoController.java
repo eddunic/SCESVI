@@ -11,13 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import scesvi.model.Veiculo;
 import scesvi.model.dao.DAOServidor;
-import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOVeiculo;
 
-public class CadastroVeiculosController {
+public class AlteracaoVeiculoController {
 
 	@FXML
 	private JFXTextArea obs;
@@ -61,25 +59,28 @@ public class CadastroVeiculosController {
 	@FXML
 	private ComboBox<String> siapeSupervisor;
 
+	@FXML
+	private ComboBox<String> codigos;
+	
 	private ToggleGroup autoEst, instituc;
 
 	private ObservableList<String> qtde;
 
-	private Veiculo veiculo;
+	Veiculo veiculo;
+	
+	int cod;
 
 	private JFXRadioButton selectedRadioButton, selectedRadioButton2;
-
     @FXML
     private Label codV;
 	
 	@FXML
 	private void initialize() {
-		codV.setText(codV.getText() + " " + DAOVeiculo.codVeic());
 		group();
 	}
+	
 
 	public void group() {
-		veiculo = new Veiculo();
 
 		autoEst = new ToggleGroup();
 		instituc = new ToggleGroup();
@@ -107,14 +108,28 @@ public class CadastroVeiculosController {
 
 		cor.setItems(FXCollections.observableArrayList("Preto", "Azul", "Amarelo", "Padrão instituc.", "Vermelho",
 				"Verde", "Cinza", "Branco"));
+		
+		codigos.setItems(DAOVeiculo.codAll());
+		codigos.getSelectionModel().select(1);
+		
+		placa.setText(DAOVeiculo.consultParam("placa", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+		renavam.setText(DAOVeiculo.consultParam("renavam", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		categoria.getSelectionModel().select(DAOVeiculo.consultParam("categoria", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cor.getSelectionModel().select(DAOVeiculo.consultParam("cor", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		siapeResp.getSelectionModel().select(DAOVeiculo.consultParam("siapeServResponsavel", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		siapeSupervisor.getSelectionModel().select(DAOVeiculo.consultParam("siapeServSupervisiona", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		maxPassag.getSelectionModel().select(DAOVeiculo.consultParam("maxPassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		obs.setText(DAOVeiculo.consultParam("observacao", Integer.parseInt(DAOVeiculo.codVeic())));
+		dataSuperv.setText(DAOVeiculo.consultParam("dataSupervisionado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		marcaModelo.setText(DAOVeiculo.consultParam("marcaModelo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 	}
 
 	@FXML
-	void cadastrarVeic(ActionEvent event) {
+	void alterar(ActionEvent event) {
 		selectedRadioButton = (JFXRadioButton) instituc.getSelectedToggle();
 		selectedRadioButton2 = (JFXRadioButton) autoEst.getSelectedToggle();
 
-		veiculo = new Veiculo(Integer.parseInt(DAOVeiculo.codVeic()), placa.getText(), renavam.getText(),
+		veiculo = new Veiculo(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()), placa.getText(), renavam.getText(),
 				(selectedRadioButton2.getText().equals("Sim")) ? "S" : "N",
 				categoria.getSelectionModel().getSelectedItem(),
 				(selectedRadioButton.getText().equals("Sim")) ? "S" : "N",
@@ -123,6 +138,7 @@ public class CadastroVeiculosController {
 				siapeResp.getSelectionModel().getSelectedItem(), siapeSupervisor.getSelectionModel().getSelectedItem(),
 				"L");
 
-		DAOVeiculo.insert(veiculo);
+		DAOVeiculo.update(veiculo);
 	}
 }
+

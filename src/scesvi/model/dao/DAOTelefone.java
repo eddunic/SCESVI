@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import scesvi.model.Contratado;
 import scesvi.model.Telefone;
 
 public class DAOTelefone extends DAO {
@@ -22,6 +23,20 @@ public class DAOTelefone extends DAO {
 			pst.setString(1, telefone.getSiapeServ());
 			pst.setString(2, telefone.getTelefone());
 
+			pst.executeUpdate();
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
+	public static void update(Telefone telefone) {
+		String query = "UPDATE TELEFONE SET siapeServ = ?, telefone = ? WHERE siapeServ = ?";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			pst.setString(1, telefone.getSiapeServ());
+			pst.setString(2, telefone.getTelefone());
+			pst.setString(3, telefone.getSiapeServ());
 			pst.executeUpdate();
 			pst.close();
 			disconnection();

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import scesvi.model.Contratado;
+import scesvi.model.Departamento;
 import scesvi.model.Lotado;
 
 public class DAOLotado extends DAO {
@@ -22,6 +24,20 @@ public class DAOLotado extends DAO {
 			pst.setString(3, lotado.getDataInicio());
 			pst.setString(4, lotado.getDataFim());
 
+			pst.executeUpdate();
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
+	public static void update(Lotado lotado) {
+		String query = "UPDATE LOTADO SET siapeServ = ?, codDep = ? WHERE siapeServ = ?";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			pst.setString(1, lotado.getSiapeServ());
+			pst.setInt(2, lotado.getCodDep());
+			pst.setString(3, lotado.getSiapeServ());
 			pst.executeUpdate();
 			pst.close();
 			disconnection();

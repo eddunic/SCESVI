@@ -16,8 +16,27 @@ public class DAORegistro extends DAO {
 	@FXML
 	private static ObservableList<Registro> listReg;
 	
+	@FXML
+	private static ObservableList<String> codAll;
+	
 	public static Registro getRegistro() {
 		return registro;
+	}
+	
+	public static ObservableList<String> codAll() {
+		String query = "SELECT numero FROM REGISTRO";
+		codAll = FXCollections.observableArrayList();;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {
+				codAll.add(resultSet.getString("numero"));
+			}
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return codAll;
 	}
 	
 	public static void insert(Registro registro) {

@@ -14,6 +14,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import scesvi.model.Veiculo;
+import scesvi.model.dao.DAOServidor;
 import scesvi.model.dao.DAOSolicitacaoSP;
 import scesvi.model.dao.DAOVeiculo;
 
@@ -29,7 +30,7 @@ public class VeiculoController {
 	private TableColumn<Veiculo, String> modCln;
 
 	@FXML
-	private TableColumn<Veiculo, String> anoCln;
+	private TableColumn<Veiculo, String> situacaoCln;
 
 	@FXML
 	private TableColumn<Veiculo, String> respCln;
@@ -44,9 +45,6 @@ public class VeiculoController {
 	private Label lbPlaca;
 
 	@FXML
-	private Label lbTipo;
-
-	@FXML
 	private Label lbRen;
 
 	@FXML
@@ -59,34 +57,16 @@ public class VeiculoController {
 	private Label lbInst;
 
 	@FXML
-	private Label lbChassi;
-
-	@FXML
 	private Label lbMaxP;
 
 	@FXML
 	private Label lbObs;
 
 	@FXML
-	private Label lbExe;
-
-	@FXML
-	private Label lbCombs;
-
-	@FXML
-	private Label lbPot;
-
-	@FXML
 	private Label lbCor;
 
 	@FXML
 	private Label lbMarcaMod;
-
-	@FXML
-	private Label lbFabric;
-
-	@FXML
-	private Label lbAnoMod;
 
 	@FXML
 	private Label lbDataSuperv;
@@ -101,11 +81,13 @@ public class VeiculoController {
 
 	@FXML
 	private SplitPane split;
-	
+
 	private AnchorPane fxmlAdd;
-	
-    @FXML
-    private AnchorPane lateral;
+
+	private AnchorPane fxmlAlterar;
+
+	@FXML
+	private AnchorPane lateral;
 
 	@FXML
 	void initialize() throws IOException {
@@ -113,12 +95,12 @@ public class VeiculoController {
 
 		codCln.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		modCln.setCellValueFactory(new PropertyValueFactory<>("marcaModelo"));
-		anoCln.setCellValueFactory(new PropertyValueFactory<>("anoModelo"));
+		situacaoCln.setCellValueFactory(new PropertyValueFactory<>("situacao"));
 		respCln.setCellValueFactory(new PropertyValueFactory<>("siapeServResponsavel"));
 		placaCln.setCellValueFactory(new PropertyValueFactory<>("placa"));
 
 		modCln.setCellFactory(TextFieldTableCell.forTableColumn());
-		anoCln.setCellFactory(TextFieldTableCell.forTableColumn());
+		situacaoCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		respCln.setCellFactory(TextFieldTableCell.forTableColumn());
 		placaCln.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -127,11 +109,13 @@ public class VeiculoController {
 		veicTable.getSelectionModel().selectFirst();
 
 		modCln.setCellValueFactory(cellData -> cellData.getValue().getMarcaModeloProperty());
-		anoCln.setCellValueFactory(cellData -> cellData.getValue().getAnoModeloProperty());
 		respCln.setCellValueFactory(cellData -> cellData.getValue().getSiapeServResponsavelProperty());
 		placaCln.setCellValueFactory(cellData -> cellData.getValue().getPlacaProperty());
-		
+		situacaoCln.setCellValueFactory(cellData -> cellData.getValue().getSituacaoProperty());
+
 		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroVeiculos.fxml"));
+
+		fxmlAlterar = FXMLLoader.load(getClass().getResource("../view/AlteracaoVeiculo.fxml"));
 	}
 
 	@FXML
@@ -149,12 +133,8 @@ public class VeiculoController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-		veiculo = new Veiculo(veicTable.getSelectionModel().getSelectedItem().getCodigo(), "a",
-				veicTable.getSelectionModel().getSelectedItem().getPlaca(), "q", "n", "c", "s", "123", 4, "nda", "nenh",
-				"g", 12, "verde", veicTable.getSelectionModel().getSelectedItem().getMarcaModelo(), "2012",
-				veicTable.getSelectionModel().getSelectedItem().getAnoModelo(), "121314", "12341",
-				veicTable.getSelectionModel().getSelectedItem().getSiapeServResponsavel(), "L");
-		DAOVeiculo.update(veiculo);
+		veicTable.setItems(DAOVeiculo.list());
+		veicTable.getSelectionModel().selectFirst();
 		refreshTable();
 	}
 
@@ -165,8 +145,7 @@ public class VeiculoController {
 	}
 
 	void refreshTable() {
-		lbCod.setText(veicTable.getSelectionModel().getSelectedItem().getCodigo());
-		lbTipo.setText(DAOVeiculo.consultParam("tipo", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
+		lbCod.setText(String.valueOf(veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbPlaca.setText(veicTable.getSelectionModel().getSelectedItem().getPlaca());
 		lbRen.setText(DAOVeiculo.consultParam("renavam", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbAutoriz.setText(
@@ -175,22 +154,12 @@ public class VeiculoController {
 				DAOVeiculo.consultParam("categoria", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbInst.setText(
 				DAOVeiculo.consultParam("institucional", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbChassi.setText(
-				DAOVeiculo.consultParam("chassi", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbMaxP.setText(
 				DAOVeiculo.consultParam("maxPassageiros", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbObs.setText(
 				DAOVeiculo.consultParam("observacao", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbExe.setText(
-				DAOVeiculo.consultParam("exercicio", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbCombs.setText(DAOVeiculo.consultParam("tipoCombustivel",
-				veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbPot.setText(DAOVeiculo.consultParam("potencia", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbCor.setText(DAOVeiculo.consultParam("cor", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbMarcaMod.setText(veicTable.getSelectionModel().getSelectedItem().getMarcaModelo());
-		lbFabric.setText(
-				DAOVeiculo.consultParam("anoFabricacao", veicTable.getSelectionModel().getSelectedItem().getCodigo()));
-		lbAnoMod.setText(veicTable.getSelectionModel().getSelectedItem().getAnoModelo());
 		lbDataSuperv.setText(DAOVeiculo.consultParam("dataSupervisionado",
 				veicTable.getSelectionModel().getSelectedItem().getCodigo()));
 		lbSupervisor.setText(DAOVeiculo.consultParam("siapeServSupervisiona",
@@ -202,8 +171,14 @@ public class VeiculoController {
 	private void back(ActionEvent event) throws IOException {
 		split.getItems().remove(1);
 		split.getItems().add(1, lateral);
-		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroVeiculos.fxml"));	
-		
+		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroVeiculos.fxml"));
+
+	}
+
+	@FXML
+	void alterar(ActionEvent event) {
+		split.getItems().remove(1);
+		split.getItems().add(1, fxmlAlterar);
 	}
 
 }
