@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,7 +27,7 @@
             </VBox>
             <JFXTextField fx:id="dataInicio" labelFloat="true" prefHeight="30.0" prefWidth="219.0" promptText="Data início do registro" styleClass="jtextfield" stylesheets="@style.css">
                <VBox.margin>
-                  <Insets left="40.0" right="40.0" top="15.0" />
+                  <Insets left="40.0" right="40.0" top="20.0" />
                </VBox.margin>
             </JFXTextField>
             <JFXTextField fx:id="dataFim" labelFloat="true" layoutX="50.0" layoutY="151.0" prefHeight="30.0" prefWidth="219.0" promptText="Data fim" styleClass="jtextfield" stylesheets="@style.css">
@@ -61,7 +62,7 @@
             </JFXTextField>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="23.0" prefHeight="597.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="23.0" prefHeight="591.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
             <VBox alignment="CENTER" prefHeight="52.0" prefWidth="218.0" styleClass="topPane" stylesheets="@style.css">
                <children>
@@ -79,32 +80,37 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="codigos" layoutX="118.0" layoutY="94.0" prefHeight="25.0" prefWidth="116.0" />
+            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" text="Carregar Dados" textFill="#3196de">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXButton>
             <Label prefHeight="17.0" prefWidth="108.0" styleClass="padraoFonts" stylesheets="@style.css" text="Código do veículo">
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </Label>
             <ComboBox fx:id="codVeic" prefHeight="25.0" prefWidth="116.0" />
-            <Label prefHeight="17.0" prefWidth="55.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE do">
+            <Label prefHeight="17.0" prefWidth="105.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE responsável">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="padraoFonts" stylesheets="@style.css" text="servidor responsável" />
             <ComboBox fx:id="servResp" prefHeight="25.0" prefWidth="69.0" />
-            <Label layoutX="149.0" layoutY="164.0" prefHeight="17.0" prefWidth="55.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE do">
+            <Label layoutX="149.0" layoutY="164.0" prefHeight="17.0" prefWidth="67.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE inicia">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <Label layoutX="117.0" layoutY="181.0" styleClass="padraoFonts" stylesheets="@style.css" text="servidor que inicia" />
             <ComboBox fx:id="servidorIni" layoutX="142.0" layoutY="198.0" prefHeight="25.0" prefWidth="69.0" />
-            <Label layoutX="149.0" layoutY="253.0" prefHeight="17.0" prefWidth="55.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE do">
+            <Label layoutX="149.0" layoutY="253.0" prefHeight="17.0" prefWidth="79.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE encerra">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <Label layoutX="137.0" layoutY="270.0" styleClass="padraoFonts" stylesheets="@style.css" text="servidor que encerra" />
             <ComboBox fx:id="servidorEncerra" layoutX="142.0" layoutY="287.0" prefHeight="25.0" prefWidth="69.0" />
             <JFXTextField fx:id="kmInic" labelFloat="true" prefHeight="30.0" prefWidth="245.0" promptText="Km inicial" styleClass="jtextfield" stylesheets="@style.css">
                <VBox.margin>
@@ -118,17 +124,20 @@
             </JFXTextField>
             <JFXTextArea fx:id="desc" labelFloat="true" prefHeight="45.0" prefWidth="272.0" promptText="Descrição" unFocusColor="#9d9c9c">
                <VBox.margin>
-                  <Insets left="30.0" right="30.0" top="30.0" />
+                  <Insets left="30.0" right="30.0" top="15.0" />
                </VBox.margin>
             </JFXTextArea>
             <JFXTextArea fx:id="obs" labelFloat="true" layoutX="40.0" layoutY="551.0" prefHeight="42.0" prefWidth="272.0" promptText="Observação" unFocusColor="#9d9c9c">
                <VBox.margin>
-                  <Insets left="30.0" right="30.0" top="20.0" />
+                  <Insets left="30.0" right="30.0" top="15.0" />
                </VBox.margin>
             </JFXTextArea>
          </children>
       </VBox>
       <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="5.0" styleClass="fontSection" stylesheets="@style.css" text="ALTERAÇÃO DE REGISTRO" textFill="#236b8e" />
-      <JFXButton layoutX="534.0" layoutY="580.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar" />
+      <JFXButton layoutX="534.0" layoutY="580.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
    </children>
 </AnchorPane>

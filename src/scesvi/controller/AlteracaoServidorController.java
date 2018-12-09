@@ -112,6 +112,9 @@ public class AlteracaoServidorController {
 	
 	@FXML
     private ComboBox<String> cbSiape;
+	
+	@FXML
+	private JFXButton bCarregaDados;
 
 	@FXML
 	void backAction(ActionEvent event) {
@@ -125,6 +128,9 @@ public class AlteracaoServidorController {
 
 			bCadastrar.setText("Próximo");
 		}
+		if (bCadastrar.getText().equals("Próximo")) {
+			bVoltar.setVisible(false);
+		}
 	}
 
 	public String dateFormat() {
@@ -136,6 +142,7 @@ public class AlteracaoServidorController {
 	}
 
 	public void group() {
+		bVoltar.setVisible(false);
 		radioGroup = new ToggleGroup();
 
 		rbSim.setToggleGroup(radioGroup);
@@ -159,6 +166,7 @@ public class AlteracaoServidorController {
 		cbDepart.getSelectionModel().select(DAODepartamento.consultDep(codDep));
 		String codCargo = DAOContratado.consultContratado(cbSiape.getSelectionModel().getSelectedItem());
 		cbCargo.getSelectionModel().select(DAOCargo.consultCargo(codCargo));
+		pfSenha.setText(DAOServidor.consultParam("senha", cbSiape.getSelectionModel().getSelectedItem())); 
 	}
 
 	@FXML
@@ -168,7 +176,8 @@ public class AlteracaoServidorController {
 	
 	@FXML
 	private void alterar(ActionEvent e) {
-		if (bCadastrar.getText().equals("Próximo")) {
+		if (bCadastrar.getText().equals("Próximo") && !nome.getText().equals("") && !cpf.getText().equals("")
+				&& !cbSiape.getSelectionModel().getSelectedItem().equals("")) {
 			vDadosIcons.setVisible(false);
 			vDados.setVisible(false);
 
@@ -177,8 +186,11 @@ public class AlteracaoServidorController {
 			vServico.setVisible(true);
 
 			bCadastrar.setText("Alterar");
+			bVoltar.setVisible(true);
 		}
-		if (bCadastrar.getText().equals("Alterar")) {
+		if (bCadastrar.getText().equals("Alterar")  && !pfSenha.getText().equals("")
+				&& !sfSenha.getText().equals("") && !cbDepart.getSelectionModel().isEmpty() && !cbCargo.getSelectionModel().isEmpty()
+				&& pfSenha.getText().equals(sfSenha.getText())) {
 			selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
 
 			servidor = new Servidor(cbSiape.getSelectionModel().getSelectedItem(), cpf.getText(), nome.getText(), pfSenha.getText(),
@@ -196,8 +208,22 @@ public class AlteracaoServidorController {
 			codCargo = DAOCargo.searchCargo(cbCargo.getSelectionModel().getSelectedItem());
 			contratado = new Contratado(cbSiape.getSelectionModel().getSelectedItem(), codCargo, dateFormat(), "");
 			DAOContratado.update(contratado);
-			//System.out.println(dataNasc);
 		}
 	}
+	
+	@FXML
+    void carregarDados(ActionEvent event) {
+		cpf.setText(DAOServidor.consultParam("cpf", cbSiape.getSelectionModel().getSelectedItem())); 
+		nome.setText(DAOServidor.consultParam("nome", cbSiape.getSelectionModel().getSelectedItem())); 
+		telefone.setText(DAOTelefone.consultTel(cbSiape.getSelectionModel().getSelectedItem())); 
+		dataNasc.setValue(DAOServidor.consultDataNasc(cbSiape.getSelectionModel().getSelectedItem()));
+		cnh.setText(DAOServidor.consultParam("cnh", cbSiape.getSelectionModel().getSelectedItem())); 
+		cbCategoria.getSelectionModel().select(DAOServidor.consultParam("categoria", cbSiape.getSelectionModel().getSelectedItem()));	
+		String codDep = DAOLotado.consultLotado(cbSiape.getSelectionModel().getSelectedItem());
+		cbDepart.getSelectionModel().select(DAODepartamento.consultDep(codDep));
+		String codCargo = DAOContratado.consultContratado(cbSiape.getSelectionModel().getSelectedItem());
+		cbCargo.getSelectionModel().select(DAOCargo.consultCargo(codCargo));
+		pfSenha.setText(DAOServidor.consultParam("senha", cbSiape.getSelectionModel().getSelectedItem())); 
+    }	
 
 }

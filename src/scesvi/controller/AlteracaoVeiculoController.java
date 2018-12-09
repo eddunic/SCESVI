@@ -1,5 +1,6 @@
 package scesvi.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -75,6 +76,9 @@ public class AlteracaoVeiculoController {
     @FXML
     private Label codV;
 	
+    @FXML
+    private JFXButton bCarregaDados;
+    
 	@FXML
 	private void initialize() {
 		group();
@@ -119,7 +123,7 @@ public class AlteracaoVeiculoController {
 		siapeResp.getSelectionModel().select(DAOVeiculo.consultParam("siapeServResponsavel", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		siapeSupervisor.getSelectionModel().select(DAOVeiculo.consultParam("siapeServSupervisiona", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		maxPassag.getSelectionModel().select(DAOVeiculo.consultParam("maxPassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		obs.setText(DAOVeiculo.consultParam("observacao", Integer.parseInt(DAOVeiculo.codVeic())));
+		obs.setText(DAOVeiculo.consultParam("observacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		dataSuperv.setText(DAOVeiculo.consultParam("dataSupervisionado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		marcaModelo.setText(DAOVeiculo.consultParam("marcaModelo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 	}
@@ -140,5 +144,20 @@ public class AlteracaoVeiculoController {
 
 		DAOVeiculo.update(veiculo);
 	}
+	
+	@FXML
+    void CarregarDados(ActionEvent event) {
+		placa.setText(DAOVeiculo.consultParam("placa", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+		renavam.setText(DAOVeiculo.consultParam("renavam", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		categoria.getSelectionModel().select(DAOVeiculo.consultParam("categoria", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cor.getSelectionModel().select(DAOVeiculo.consultParam("cor", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		siapeResp.getSelectionModel().select(DAOVeiculo.consultParam("siapeServResponsavel", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		siapeSupervisor.getSelectionModel().select(DAOVeiculo.consultParam("siapeServSupervisiona", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		maxPassag.getSelectionModel().select(DAOVeiculo.consultParam("maxPassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		obs.setText(DAOVeiculo.consultParam("observacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		dataSuperv.setText(DAOVeiculo.consultParam("dataSupervisionado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		marcaModelo.setText(DAOVeiculo.consultParam("marcaModelo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+    }
+	
 }
 

@@ -89,7 +89,7 @@ public class DAOServidor extends DAO {
 			pst.setString(1, servidor.getCpf());
 			pst.setString(2, servidor.getNome());
 			pst.setString(3, servidor.getSenha());
-			pst.setString(4, String.valueOf(servidor.getDataNascS()));
+			pst.setString(4, String.valueOf(servidor.getDataN()));
 			pst.setString(5, servidor.getCnh());
 			pst.setString(6, servidor.getCategoria());
 			pst.setString(7, servidor.getAutorizadoVeicInstitucional());

@@ -38,7 +38,6 @@ public class RegistroController {
     @FXML
     private TableColumn<Registro, String> horaSaidaCln;
 
-
 	private AnchorPane fxmlAlterar;
 	
     @FXML
@@ -124,7 +123,6 @@ public class RegistroController {
 		horaSaidaCln.setCellValueFactory(cellData -> cellData.getValue().getHoraSaidaProperty());
 		
 		fxmlAdd = FXMLLoader.load(getClass().getResource("../view/CadastroRegistros.fxml"));
-		//fxmlAdd2 = FXMLLoader.load(getClass().getResource("../view/AlteracaoRegistros.fxml"));
 
 		fxmlAlterar = FXMLLoader.load(getClass().getResource("../view/AlteracaoRegistros.fxml"));
 
@@ -133,8 +131,6 @@ public class RegistroController {
 	@FXML
 	void atualizaSelect(MouseEvent event) throws IOException {
 		refreshTable();
-//		split.getItems().remove(1);
-//		split.getItems().add(1, fxmlAdd2);
 	}
 
 	@FXML

@@ -204,7 +204,10 @@
             </MaterialIconView>
          </children>
       </VBox>
-      <JFXButton fx:id="bVoltar" layoutX="74.0" layoutY="499.0" onAction="#backAction" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Voltar" />
+      <JFXButton fx:id="bVoltar" layoutX="74.0" layoutY="499.0" onAction="#backAction" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <Line endX="-1.7071075439453125" endY="-0.9142135381698608" layoutX="278.0" layoutY="37.0" startX="-98.0" stroke="#2dc0e5" />
       <Label layoutX="180.0" layoutY="14.0" styleClass="login" stylesheets="@style.css" text="CADASTRO" textFill="#757474">
          <font>

@@ -2,6 +2,7 @@ package scesvi.controller;
 
 import java.util.List;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
@@ -68,6 +69,9 @@ public class AlteracaoSolicitacoesController {
 	private ObservableList<String> qtde;
 
 	@FXML
+    private JFXButton bCarregaDados;
+	
+	@FXML
 	public void initialize() {
 		group();
 	}
@@ -133,6 +137,20 @@ public class AlteracaoSolicitacoesController {
 			
 		}
 	}
-
+	
+	@FXML
+    void carregarDados(ActionEvent event) {
+		dataInicio.setText(DAOSolicitacao.consultParam("dataInicio", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+		dataFim.setText(DAOSolicitacao.consultParam("dataFim", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+		dataSolicitAuto.setText(DAOSolicitacao.consultParam("dataAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+		dataC.setText(DAOSolicitacao.consultParam("dataCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		horaAuto.setText(DAOSolicitacao.consultParam("horaAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+			
+		tDestino.setText(DAOSolicitacao.consultParam("localViagem", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbSiapeSolicit.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServRealiza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbFin.getSelectionModel().select(DAOSolicitacao.consultParam("finalidade", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbTipoSolic.getSelectionModel().select(DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+    }
 
 }

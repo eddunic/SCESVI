@@ -1,5 +1,6 @@
 package scesvi.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.jfoenix.controls.JFXButton;
@@ -10,8 +11,10 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import scesvi.model.Contratado;
@@ -124,8 +127,10 @@ public class UserRegisterScreenController {
 
 			bCadastrar.setText("Cadastrar");
 		}
+		
 		if (bCadastrar.getText().equals("Cadastrar") && !pfSenha.getText().equals("")
-				&& !sfSenha.getText().equals("") && !cbDepart.getSelectionModel().isEmpty() && !cbCargo.getSelectionModel().isEmpty()) {
+				&& !sfSenha.getText().equals("") && !cbDepart.getSelectionModel().isEmpty() && !cbCargo.getSelectionModel().isEmpty() 
+				&& pfSenha.getText().equals(sfSenha.getText())) {
 			selectedRadioButton = (JFXRadioButton) radioGroup.getSelectedToggle();
 
 			servidor = new Servidor(siape.getText(), cpf.getText(), nome.getText(), pfSenha.getText(),
@@ -150,6 +155,10 @@ public class UserRegisterScreenController {
 
 	@FXML
 	void backAction(ActionEvent event) {
+		if (bCadastrar.getText().equals("Próximo")) {
+			
+		}
+		
 		if (bCadastrar.getText().equals("Cadastrar")) {
 			vDadosIcons.setVisible(true);
 			vDados.setVisible(true);

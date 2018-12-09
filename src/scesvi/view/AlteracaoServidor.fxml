@@ -127,7 +127,7 @@
             </HBox>
          </children>
       </FlowPane>
-      <VBox fx:id="vDados" alignment="TOP_CENTER" fillWidth="false" layoutX="74.0" layoutY="47.0" prefHeight="436.0" prefWidth="309.0" styleClass="cardPane" stylesheets="@style.css">
+      <VBox fx:id="vDados" alignment="TOP_CENTER" fillWidth="false" layoutX="74.0" layoutY="47.0" prefHeight="443.0" prefWidth="309.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
             <ImageView fitHeight="84.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -144,7 +144,7 @@
             </Label>
             <Label text="SIAPE">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </Label>
             <ComboBox fx:id="cbSiape" prefWidth="150.0">
@@ -152,12 +152,20 @@
                   <Insets />
                </VBox.margin>
             </ComboBox>
+            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" text="Carregar Dados" textFill="#3196de" textOverrun="CLIP">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
             <JFXTextField fx:id="cpf" labelFloat="true" prefHeight="30.0" prefWidth="200.0" promptText="CPF" unFocusColor="#9d9c9c">
                <font>
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets right="20.0" top="25.0" />
+                  <Insets right="20.0" top="15.0" />
                </VBox.margin>
             </JFXTextField>
             <JFXTextField fx:id="nome" labelFloat="true" prefHeight="30.0" prefWidth="200.0" promptText="Nome" unFocusColor="#9d9c9c">
@@ -186,7 +194,7 @@
          <children>
             <MaterialIconView fill="#838383" glyphName="FACE" size="20">
                <VBox.margin>
-                  <Insets bottom="10.0" top="115.0" />
+                  <Insets bottom="10.0" top="155.0" />
                </VBox.margin>
             </MaterialIconView>
             <MaterialIconView fill="#838383" glyphName="ASSIGNMENT" size="20" wrappingWidth="20.0">
@@ -194,19 +202,22 @@
                   <Insets bottom="8.0" top="-85.0" />
                </VBox.margin>
             </MaterialIconView>
-            <MaterialIconView fill="#838383" glyphName="ASSIGNMENT_IND" size="21">
+            <MaterialIconView fill="#838383" glyphName="ASSIGNMENT_IND" size="21" wrappingWidth="21.0">
                <VBox.margin>
-                  <Insets bottom="7.0" top="-85.0" />
+                  <Insets bottom="7.0" top="-120.0" />
                </VBox.margin>
             </MaterialIconView>
             <MaterialIconView fill="#838383" glyphName="CONTACT_PHONE" size="20">
                <VBox.margin>
-                  <Insets top="145.0" />
+                  <Insets top="175.0" />
                </VBox.margin>
             </MaterialIconView>
          </children>
       </VBox>
-      <JFXButton fx:id="bVoltar" layoutX="74.0" layoutY="499.0" onAction="#backAction" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Voltar" />
+      <JFXButton fx:id="bVoltar" layoutX="74.0" layoutY="499.0" onAction="#backAction" prefHeight="20.0" prefWidth="113.0" styleClass="cardPane" stylesheets="@style.css" text="Voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <Line endX="-1.7071075439453125" endY="-0.9142135381698608" layoutX="278.0" layoutY="37.0" startX="-98.0" stroke="#2dc0e5" />
       <Label layoutX="180.0" layoutY="14.0" styleClass="login" stylesheets="@style.css" text="ALTERAÇÃO" textFill="#757474">
          <font>
