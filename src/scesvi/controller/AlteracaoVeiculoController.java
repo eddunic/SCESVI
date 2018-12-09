@@ -71,6 +71,7 @@ public class AlteracaoVeiculoController {
 	int cod;
 
 	private JFXRadioButton selectedRadioButton, selectedRadioButton2;
+	
     @FXML
     private Label codV;
 	
@@ -78,7 +79,6 @@ public class AlteracaoVeiculoController {
 	private void initialize() {
 		group();
 	}
-	
 
 	public void group() {
 
@@ -110,7 +110,7 @@ public class AlteracaoVeiculoController {
 				"Verde", "Cinza", "Branco"));
 		
 		codigos.setItems(DAOVeiculo.codAll());
-		codigos.getSelectionModel().select(1);
+		codigos.getSelectionModel().select(0);
 		
 		placa.setText(DAOVeiculo.consultParam("placa", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
 		renavam.setText(DAOVeiculo.consultParam("renavam", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));

@@ -13,7 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import scesvi.model.Contratado;
+import scesvi.model.Lotado;
 import scesvi.model.Servidor;
+import scesvi.model.Telefone;
 import scesvi.model.dao.DAOCargo;
 import scesvi.model.dao.DAOCargoSP;
 import scesvi.model.dao.DAOContratado;
@@ -137,8 +140,26 @@ public class ServidorController {
 	@FXML
 	void editarTable(ActionEvent event) {
 		servTable.setItems(DAOServidor.list());
-		servTable.getSelectionModel().selectFirst();
+	    servTable.getSelectionModel().selectFirst();
 		refreshTable();
+//		servidor = new Servidor(servTable.getSelectionModel().getSelectedItem().getSiape(), 
+//				DAOServidor.consultParam("cpf", servTable.getSelectionModel().getSelectedItem().getSiape()),
+//				servTable.getSelectionModel().getSelectedItem().getNome(), 
+//				pfSenha.getText(),
+//				dataNasc.getValue(), cnh.getText(), cbCategoria.getSelectionModel().getSelectedItem(),
+//				(selectedRadioButton.getText().equals("Sim")) ? "S" : "N");
+//		DAOServidor.update(servidor);
+//
+//		tel = new Telefone(siape.getText(), telefone.getText());
+//		DAOTelefone.update(tel);
+//
+//		codDep = DAODepartamento.searchDepart(cbDepart.getSelectionModel().getSelectedItem());
+//		lotado = new Lotado(siape.getText(), codDep, dateFormat(), "");
+//		DAOLotado.update(lotado);
+//
+//		codCargo = DAOCargo.searchCargo(cbCargo.getSelectionModel().getSelectedItem());
+//		contratado = new Contratado(siape.getText(), codCargo, dateFormat(), "");
+//		DAOContratado.update(contratado);
 	}
 
 	@FXML

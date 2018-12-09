@@ -46,5 +46,5 @@ public class DAODepartamento extends DAO {
 		}
 		return lblText;
 	}
-	
+		
 }

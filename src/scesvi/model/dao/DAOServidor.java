@@ -3,8 +3,11 @@ package scesvi.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +26,9 @@ public class DAOServidor extends DAO {
 	
 	@FXML
 	private static ComboBox<Servidor> cbSiapeSolicit;
+	
+	@FXML
+	private static LocalDate dataNasc;
 	
 	public static Servidor getServidor() {
 		return servidor;
@@ -78,7 +84,7 @@ public class DAOServidor extends DAO {
 	
 	public static void update(Servidor servidor) {
         String query = "UPDATE SERVIDOR SET cpf = ?, nome = ?, senha = ?, dataNasc = ?, cnh = ?, categoria = ?, "
-        				+ "autorizadoVeicAutorizado = ? WHERE siape = ?";
+        				+ "autorizadoVeicInstitucional = ? WHERE siape = ?";
         try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, servidor.getCpf());
 			pst.setString(2, servidor.getNome());
@@ -121,16 +127,11 @@ public class DAOServidor extends DAO {
 	}
 	
 	public static ObservableList<String> siapeList() {
-		siapes = FXCollections.observableArrayList();
 		String query = "SELECT siape FROM SERVIDOR";
+		siapes = FXCollections.observableArrayList();
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultSet = pst.executeQuery(query);
-			while(resultSet.next()) {
-				//Servidor serv = new Servidor();
-				//serv.setSiape(resultSet.getString("siape"));	
-	//			cbSiapeSolicit = new ComboBox<Servidor>();
-	//			cbSiapeSolicit.addItem(resultSet.getString("siape"));
-				//siapes.add(serv);		
+			while(resultSet.next()) {	
 				 siapes.add(resultSet.getString("siape"));
 			}
 			
@@ -161,6 +162,23 @@ public class DAOServidor extends DAO {
 		} else {
 			return false;
 		}
+	}
+	
+	public static LocalDate consultDataNasc(String siape) {
+		String query = "SELECT dataNasc FROM SERVIDOR WHERE siape = " + siape;
+		dataNasc = LocalDate.now();
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while(resultSet.next()) {	
+				 dataNasc = LocalDate.parse(resultSet.getString("dataNasc"), DateTimeFormatter.ofPattern("yyyyMMdd"));
+			}
+			
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return dataNasc;
 	}
 
 //	public static void listNomeDepCargo() {
