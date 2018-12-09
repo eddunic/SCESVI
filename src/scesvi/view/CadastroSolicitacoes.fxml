@@ -38,7 +38,7 @@
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets left="40.0" right="50.0" top="30.0" />
+                  <Insets left="40.0" right="50.0" top="20.0" />
                </VBox.margin>
             </JFXTextField>
             <JFXTextField fx:id="dataSolicitAuto" labelFloat="true" layoutX="10.0" layoutY="495.0" promptText="Data solicitação autorizada" unFocusColor="#9d9c9c">
@@ -65,6 +65,14 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
+            <JFXTextField fx:id="horaCria" labelFloat="true" promptText="Hora criação da solicitação" unFocusColor="#9d9c9c">
+               <VBox.margin>
+                  <Insets left="40.0" right="50.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="33.0" prefHeight="507.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
@@ -81,26 +89,31 @@
             </VBox>
             <Label prefHeight="17.0" prefWidth="116.0" styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE do solicitante">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <ComboBox fx:id="cbSiapeSolicit" prefHeight="25.0" prefWidth="116.0" />
-            <Label prefHeight="17.0" prefWidth="69.0" styleClass="padraoFonts" stylesheets="@style.css" text="Quantidade">
+            <ComboBox fx:id="cbSiapeSolicit" prefWidth="150.0" />
+            <Label styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE do outorgante">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="padraoFonts" stylesheets="@style.css" text="de passageiros" />
+            <ComboBox fx:id="cbSiapeOutorg" prefWidth="150.0" />
+            <Label prefHeight="17.0" prefWidth="158.0" styleClass="padraoFonts" stylesheets="@style.css" text="Quantidade de passageiros">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
             <ComboBox fx:id="cbQTDEpass" prefHeight="25.0" prefWidth="69.0" />
             <Label layoutX="10.0" layoutY="121.0" styleClass="padraoFonts" stylesheets="@style.css" text="Tipo de solicitação">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
             <ComboBox fx:id="cbTipoSolic" prefWidth="150.0" />
             <Label prefHeight="17.0" prefWidth="69.0" styleClass="padraoFonts" stylesheets="@style.css" text="Finalidade">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
             <ComboBox fx:id="cbFin" prefHeight="25.0" prefWidth="185.0" />
@@ -114,7 +127,7 @@
             </JFXTextArea>
             <Label styleClass="padraoFonts" stylesheets="@style.css" text="Modelo do veículo">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
             <ComboBox fx:id="modelVeic" prefHeight="25.0" prefWidth="150.0" />

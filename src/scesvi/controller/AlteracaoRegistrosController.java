@@ -88,9 +88,7 @@ public class AlteracaoRegistrosController {
 		codigos.setItems(DAORegistro.codAll());
 		codigos.getSelectionModel().select(0);
 
-		// solicitVeiculo
-		// codVeic.getSelectionModel().select(DAOSolicitVeiculo.consultParam("codVeic",
-		// Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		codVeic.getSelectionModel().select(DAORegistro.consultParam("codVeiculo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		servResp.getSelectionModel().select(DAORegistro.consultParam("siapeServResponsavel",
 				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		servidorIni.getSelectionModel().select(DAORegistro.consultParam("siapeServInicia",
@@ -123,7 +121,7 @@ public class AlteracaoRegistrosController {
 
 	@FXML
 	void alterar(ActionEvent event) {
-		registro = new Registro(Integer.parseInt(DAORegistro.numReg()), obs.getText(),
+		registro = new Registro(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()), obs.getText(),
 				codVeic.getSelectionModel().getSelectedItem(), servidorIni.getSelectionModel().getSelectedItem(),
 				servidorEncerra.getSelectionModel().getSelectedItem(), servResp.getSelectionModel().getSelectedItem(),
 				dataInicio.getText(), dataSaida.getText(), horaSaida.getText(), dataEntrada.getText(),
@@ -135,7 +133,7 @@ public class AlteracaoRegistrosController {
 
 	@FXML
 	void carregarDados(ActionEvent event) {
-		// solicitVeiculo codVeic.getSelectionModel().select(DAOSolicitVeiculo.consultParam("codVeic", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		codVeic.getSelectionModel().select(DAORegistro.consultParam("codVeiculo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		servResp.getSelectionModel().select(DAORegistro.consultParam("siapeServResponsavel",
 				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		servidorIni.getSelectionModel().select(DAORegistro.consultParam("siapeServInicia",

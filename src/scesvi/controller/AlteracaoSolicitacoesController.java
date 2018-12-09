@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import scesvi.model.Servidor;
+import scesvi.model.SolicitVeiculo;
 import scesvi.model.Solicitacao;
 import scesvi.model.dao.DAOServidor;
 import scesvi.model.dao.DAOSolicitacao;
@@ -55,7 +56,7 @@ public class AlteracaoSolicitacoesController {
 	private JFXTextArea tDestino;
 
 	@FXML
-	private ComboBox<String> modelVeic;
+	private ComboBox<String> codVeic;
 
 	private ObservableList<String> siapesServs;
 
@@ -72,6 +73,14 @@ public class AlteracaoSolicitacoesController {
     private JFXButton bCarregaDados;
 	
 	@FXML
+    private JFXTextField horaCria;
+
+    @FXML
+    private ComboBox<String> cbSiapeOutorg;
+    
+    private SolicitVeiculo solicitVeic;
+	
+	@FXML
 	public void initialize() {
 		group();
 	}
@@ -81,10 +90,11 @@ public class AlteracaoSolicitacoesController {
 		qtde = FXCollections.observableArrayList();
 
 		cbSiapeSolicit.setItems(DAOServidor.siapeList());
+		cbSiapeOutorg.setItems(DAOServidor.siapeList());
 		cbFin.setItems(FXCollections.observableArrayList("Visita técnica", "Visita social",
 				"Entrega de documento e/ou material", "Transporte de servidor ou aluno"));
 
-		modelVeic.setItems(DAOVeiculo.listMarcaModelox());
+		codVeic.setItems(DAOVeiculo.codAll());
 
 		for (int i = 1; i <= 40; i++) {
 			qtde.add("" + i);
@@ -104,17 +114,18 @@ public class AlteracaoSolicitacoesController {
 		dataSolicitAuto.setText(DAOSolicitacao.consultParam("dataAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
 		dataC.setText(DAOSolicitacao.consultParam("dataCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		horaAuto.setText(DAOSolicitacao.consultParam("horaAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-			
 		tDestino.setText(DAOSolicitacao.consultParam("localViagem", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbSiapeSolicit.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServRealiza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbSiapeOutorg.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServAutoriza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbFin.getSelectionModel().select(DAOSolicitacao.consultParam("finalidade", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbTipoSolic.getSelectionModel().select(DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		horaCria.setText(DAOSolicitacao.consultParam("horaCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
 	}
 
 	@FXML
 	void alterar(ActionEvent event) {
-		if (!modelVeic.getItems().isEmpty()) {
+		if (!codVeic.getItems().isEmpty()) {
 			// Para armazenar o tipo no banco
 			String tipo = "a";
 			if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Visita técnica")) {
@@ -127,14 +138,16 @@ public class AlteracaoSolicitacoesController {
 				tipo = "D";
 			}
 
-			solicitacao = new Solicitacao(Integer.parseInt(DAOSolicitacao.numSolic()), dataInicio.getText(),
-					dataFim.getText(), dataSolicitAuto.getText(), horaAuto.getText(), dataC.getText(), "10h",
+			solicitacao = new Solicitacao(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()), dataInicio.getText(),
+					dataFim.getText(), dataSolicitAuto.getText(), horaAuto.getText(), dataC.getText(), horaCria.getText(),
 					tDestino.getText(), Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
-					cbFin.getSelectionModel().getSelectedItem(), "44444444"/* pegar siape do login */,
+					cbFin.getSelectionModel().getSelectedItem(), cbSiapeOutorg.getSelectionModel().getSelectedItem(),
 					cbSiapeSolicit.getSelectionModel().getSelectedItem());
 
-			DAOSolicitacao.update(solicitacao);
+			DAOSolicitacao.update(solicitacao);	
 			
+			solicitVeic = new SolicitVeiculo(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()), codVeic.getSelectionModel().getSelectedItem(),
+					"L");
 		}
 	}
 	
@@ -145,12 +158,13 @@ public class AlteracaoSolicitacoesController {
 		dataSolicitAuto.setText(DAOSolicitacao.consultParam("dataAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
 		dataC.setText(DAOSolicitacao.consultParam("dataCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		horaAuto.setText(DAOSolicitacao.consultParam("horaAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-			
 		tDestino.setText(DAOSolicitacao.consultParam("localViagem", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbSiapeSolicit.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServRealiza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbSiapeOutorg.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServAutoriza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbFin.getSelectionModel().select(DAOSolicitacao.consultParam("finalidade", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbTipoSolic.getSelectionModel().select(DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-    }
+		horaCria.setText(DAOSolicitacao.consultParam("horaCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+	}
 
 }

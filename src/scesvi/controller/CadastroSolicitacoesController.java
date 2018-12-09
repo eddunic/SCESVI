@@ -76,6 +76,12 @@ public class CadastroSolicitacoesController {
 	private Label num;
 
 	private ObservableList<String> qtde;
+	
+	@FXML
+    private JFXTextField horaCria;
+
+    @FXML
+    private ComboBox<String> cbSiapeOutorg;
 
 	@FXML
 	public void initialize() {
@@ -88,6 +94,7 @@ public class CadastroSolicitacoesController {
 		qtde = FXCollections.observableArrayList();
 
 		cbSiapeSolicit.setItems(DAOServidor.siapeList());
+		cbSiapeOutorg.setItems(DAOServidor.siapeList());
 		cbFin.setItems(FXCollections.observableArrayList("Visita técnica", "Visita social",
 				"Entrega de documento e/ou material", "Transporte de servidor ou aluno"));
 
@@ -125,9 +132,9 @@ public class CadastroSolicitacoesController {
 			}
 
 			solicitacao = new Solicitacao(Integer.parseInt(DAOSolicitacao.numSolic()), dataInicio.getText(),
-					dataFim.getText(), dataSolicitAuto.getText(), horaAuto.getText(), dataC.getText(), "10h",
+					dataFim.getText(), dataSolicitAuto.getText(), horaAuto.getText(), dataC.getText(), horaCria.getText(),
 					tDestino.getText(), Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
-					cbFin.getSelectionModel().getSelectedItem(), "44444444"/* pegar siape do login */,
+					cbFin.getSelectionModel().getSelectedItem(), cbSiapeOutorg.getSelectionModel().getSelectedItem(),
 					cbSiapeSolicit.getSelectionModel().getSelectedItem());
 
 			DAOSolicitacao.insert(solicitacao);

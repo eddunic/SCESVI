@@ -42,7 +42,7 @@ public class DAORegistro extends DAO {
 	public static void insert(Registro registro) {
 		String query = "INSERT INTO REGISTRO (observacao, codVeiculo, siapeServInicia, siapeServEncerra, siapeServResponsavel, "
 				+ "dataInicia, horaSaida, dataSaida, dataEntrada, horaEntrada, dataEncerra, descricao, "
-				+ "kmInicial, kmFinal, dataSupervisionado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "kmInicial, kmFinal, dataSupervisionado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, registro.getObservacao());
 			pst.setString(2, registro.getCodVeiculo());
@@ -121,7 +121,7 @@ public class DAORegistro extends DAO {
 	
 	public static void update(Registro registro) {
         String query = "UPDATE REGISTRO SET observacao = ?, codVeiculo = ?, siapeServInicia = ?, siapeServEncerra = ?, "
-        				+ "siapeServResponsavel = ?, DataInicia = ?, HoraSaida = ?, dataSaida = ?, dataEntrada = ?, "
+        				+ "siapeServResponsavel = ?, dataInicia = ?, horaSaida = ?, dataSaida = ?, dataEntrada = ?, "
         				+ "horaEntrada = ?, dataEncerra = ?, descricao = ?, kmInicial = ?, kmFinal = ?, "
         				+ "dataSupervisionado = ? WHERE numero = ?";
         try (PreparedStatement pst = getConnection().prepareStatement(query)) {

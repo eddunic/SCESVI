@@ -66,6 +66,14 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
+            <JFXTextField fx:id="horaCria" labelFloat="true" promptText="Hora criação da solicitação" unFocusColor="#9d9c9c">
+               <VBox.margin>
+                  <Insets left="40.0" right="50.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="33.0" prefHeight="500.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
@@ -99,7 +107,16 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <ComboBox fx:id="cbSiapeSolicit" prefHeight="25.0" prefWidth="116.0" />
+            <ComboBox fx:id="cbSiapeSolicit" prefWidth="150.0" />
+            <Label styleClass="padraoFonts" stylesheets="@style.css" text="SIAPE do outorgante">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbSiapeOutorg" prefWidth="150.0" />
             <Label prefHeight="17.0" prefWidth="157.0" styleClass="padraoFonts" stylesheets="@style.css" text="Quantidade de Passageiros">
                <VBox.margin>
                   <Insets top="20.0" />
@@ -126,12 +143,12 @@
                   <Insets left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </JFXTextArea>
-            <Label styleClass="padraoFonts" stylesheets="@style.css" text="Modelo do veículo">
+            <Label styleClass="padraoFonts" stylesheets="@style.css" text="Código do veículo">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <ComboBox fx:id="modelVeic" prefHeight="25.0" prefWidth="150.0" />
+            <ComboBox fx:id="codVeic" prefHeight="25.0" prefWidth="150.0" />
          </children>
       </VBox>
       <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="4.0" styleClass="fontSection" stylesheets="@style.css" text="ALTERAÇÃO DE SOLICITAÇÃO" textFill="#236b8e" />
