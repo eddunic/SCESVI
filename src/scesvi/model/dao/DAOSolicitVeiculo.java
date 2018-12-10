@@ -9,10 +9,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import scesvi.model.Lotado;
 import scesvi.model.SolicitVeiculo;
+import scesvi.model.Solicitacao;
 
 public class DAOSolicitVeiculo extends DAO {
 
 	private static SolicitVeiculo solicitVeiculo;
+	
+	@FXML
+	private static ObservableList<SolicitVeiculo> listSolicit;
 	
 	public static SolicitVeiculo getSolicitVeiculo() {
 		return solicitVeiculo;
@@ -31,6 +35,42 @@ public class DAOSolicitVeiculo extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+	}
+	
+	public static void update(SolicitVeiculo solicitVeiculo) {
+		String query = "UPDATE SOLICITVEICULO VALUES(?,?,?)";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			pst.setString(1, String.valueOf(solicitVeiculo.getNumSolicit()));
+			pst.setString(2, solicitVeiculo.getCodVeic());
+			pst.setString(3, solicitVeiculo.getSituacao());
+			
+			pst.executeUpdate();
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+	}
+	
+	public static ObservableList<SolicitVeiculo> list() {
+		listSolicit = FXCollections.observableArrayList();
+		String query = "SELECT numSolicit, codVeic, situacao FROM SOLICITVEICULO";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while (resultSet.next()) {
+				SolicitVeiculo solicit = new SolicitVeiculo();
+				solicit.setNumSolicit(resultSet.getInt("numSolicit"));
+				solicit.setCodVeic(resultSet.getString("codVeic"));
+				solicit.setSituacao(resultSet.getString("dataCriacao"));
+				listSolicit.add(solicit);
+			}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return listSolicit;
 	}
 	
 	public static String listSituacao(String numSolic) {

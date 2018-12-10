@@ -27,16 +27,14 @@ public class DAOSolicitacaoSP extends DAO {
 			pst.setString(1, String.valueOf(solicitacao.getNumero()));
 			pst.setString(2, solicitacao.getDataInicio());
 			pst.setString(3, solicitacao.getDataFim());
-			pst.setString(4, solicitacao.getHoraCriacao());
-			pst.setString(5, solicitacao.getDataCriacao());
-			pst.setString(6, solicitacao.getLocalViagem());
-			pst.setString(7, solicitacao.getHoraAutorizado());
-			pst.setString(8, solicitacao.getDataAutorizado());
-			pst.setString(9, String.valueOf(solicitacao.getQtdePassageiros()));
-			pst.setString(10, solicitacao.getTipo());
-			pst.setString(11, solicitacao.getFinalidade());
-			pst.setString(12, solicitacao.getSiapeServAutoriza());
-			pst.setString(13, solicitacao.getSiapeServRealiza());
+			pst.setString(4, solicitacao.getDataCriacao());
+			pst.setString(5, solicitacao.getLocalViagem());
+			pst.setString(6, solicitacao.getDataAutorizado());
+			pst.setString(7, String.valueOf(solicitacao.getQtdePassageiros()));
+			pst.setString(8, solicitacao.getTipo());
+			pst.setString(9, solicitacao.getFinalidade());
+			pst.setString(10, solicitacao.getSiapeServAutoriza());
+			pst.setString(11, solicitacao.getSiapeServRealiza());
 
 			pst.executeUpdate();
 			pst.close();

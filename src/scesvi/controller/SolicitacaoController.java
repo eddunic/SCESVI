@@ -61,9 +61,6 @@ public class SolicitacaoController {
 	private Label lbDataCria;
 
 	@FXML
-	private Label lbHoraCria;
-
-	@FXML
 	private Label lbInicio;
 
 	@FXML
@@ -96,10 +93,6 @@ public class SolicitacaoController {
 
 	@FXML
 	private AnchorPane lateral;
-
-	// private int i = 0;
-
-	// private AnchorPane novaSolic;
 
 	@FXML
 	void initialize() throws IOException {
@@ -144,11 +137,6 @@ public class SolicitacaoController {
 
 	@FXML
 	void editarTable(ActionEvent event) {
-//		solicitacao = new Solicitacao(solicitTable.getSelectionModel().getSelectedItem().getNumero(),
-//				solicitTable.getSelectionModel().getSelectedItem().getVeiculoRequisitado(), "133932", "122212",
-//				"121414", "1213", solicitTable.getSelectionModel().getSelectedItem().getDataCriacao(), "lo3a", "1224",
-//				solicitTable.getSelectionModel().getSelectedItem().getDataAutorizado(), 4,
-//				solicitTable.getSelectionModel().getSelectedItem().getTipo(), "nad", "23", "32");
 		solicitTable.setItems(DAOSolicitacao.list());
 		solicitTable.getSelectionModel().selectFirst();
 		refreshTable();
@@ -165,8 +153,6 @@ public class SolicitacaoController {
 		lbTipo.setText(solicitTable.getSelectionModel().getSelectedItem().getTipo());
 		lbSitu.setText(DAOSolicitVeiculo.listSituacao(String.valueOf(solicitTable.getSelectionModel().getSelectedItem().getNumero())));
 		lbDataCria.setText(solicitTable.getSelectionModel().getSelectedItem().getDataCriacao());
-		lbHoraCria.setText(DAOSolicitacao.consultParam("horaCriacao",
-				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbInicio.setText(DAOSolicitacao.consultParam("dataInicio",
 				solicitTable.getSelectionModel().getSelectedItem().getNumero()));
 		lbFim.setText(

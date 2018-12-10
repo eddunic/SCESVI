@@ -50,23 +50,7 @@
                   <Insets left="40.0" right="50.0" top="30.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField fx:id="horaAuto" labelFloat="true" promptText="Hora autorizada" unFocusColor="#9d9c9c">
-               <VBox.margin>
-                  <Insets left="40.0" right="50.0" top="30.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
             <JFXTextField fx:id="dataC" labelFloat="true" promptText="Data criação da solicitação" unFocusColor="#9d9c9c">
-               <VBox.margin>
-                  <Insets left="40.0" right="50.0" top="30.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="horaCria" labelFloat="true" promptText="Hora criação da solicitação" unFocusColor="#9d9c9c">
                <VBox.margin>
                   <Insets left="40.0" right="50.0" top="30.0" />
                </VBox.margin>
@@ -94,7 +78,7 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="codigos" layoutX="118.0" layoutY="109.0" prefHeight="25.0" prefWidth="116.0" />
-            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" text="Carregar Dados" textFill="#3196de">
+            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" styleClass="buttonsCRUD" stylesheets="@style.css" text="Carregar Dados" textFill="#3196de">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -149,10 +133,16 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="codVeic" prefHeight="25.0" prefWidth="150.0" />
+            <Label layoutX="124.0" layoutY="539.0" styleClass="padraoFonts" stylesheets="@style.css" text="Situação">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="situacao" layoutX="101.0" layoutY="556.0" prefHeight="25.0" prefWidth="150.0" />
          </children>
       </VBox>
       <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="4.0" styleClass="fontSection" stylesheets="@style.css" text="ALTERAÇÃO DE SOLICITAÇÃO" textFill="#236b8e" />
-      <JFXButton layoutX="534.0" layoutY="580.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar">
+      <JFXButton layoutX="535.0" layoutY="605.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>

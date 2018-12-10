@@ -40,20 +40,18 @@ public class DAOSolicitacao extends DAO {
 	}
 
 	public static void insert(Solicitacao solicitacao) {
-		String query = "INSERT INTO SOLICITACAO (dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO SOLICITACAO (dataInicio, dataFim, dataCriacao, localViagem, dataAutorizado, qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, solicitacao.getDataInicio());
 			pst.setString(2, solicitacao.getDataFim());
-			pst.setString(3, solicitacao.getHoraCriacao());
-			pst.setString(4, solicitacao.getDataCriacao());
-			pst.setString(5, solicitacao.getLocalViagem());
-			pst.setString(6, solicitacao.getHoraAutorizado());
-			pst.setString(7, solicitacao.getDataAutorizado());
-			pst.setString(8, String.valueOf(solicitacao.getQtdePassageiros()));
-			pst.setString(9, solicitacao.getTipo());
-			pst.setString(10, solicitacao.getFinalidade());
-			pst.setString(11, solicitacao.getSiapeServAutoriza());
-			pst.setString(12, solicitacao.getSiapeServRealiza());
+			pst.setString(3, solicitacao.getDataCriacao());
+			pst.setString(4, solicitacao.getLocalViagem());
+			pst.setString(5, solicitacao.getDataAutorizado());
+			pst.setString(6, String.valueOf(solicitacao.getQtdePassageiros()));
+			pst.setString(7, solicitacao.getTipo());
+			pst.setString(8, solicitacao.getFinalidade());
+			pst.setString(9, solicitacao.getSiapeServAutoriza());
+			pst.setString(10, solicitacao.getSiapeServRealiza());
 
 			pst.executeUpdate();
 			pst.close();
@@ -87,22 +85,20 @@ public class DAOSolicitacao extends DAO {
 
 	public static void update(Solicitacao solicitacao) {
 		String query = "UPDATE SOLICITACAO SET dataInicio = ?, "
-				+ "dataFim = ?, horaCriacao = ?, dataCriacao = ?, localViagem = ?, horaAutorizado = ?, dataAutorizado = ?, "
+				+ "dataFim = ?, dataCriacao = ?, localViagem = ?, dataAutorizado = ?, "
 				+ "qtdePassageiros = ?, tipo = ?, finalidade  = ?, siapeServAutoriza = ?, siapeServRealiza = ? WHERE numero = ?";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.setString(1, solicitacao.getDataInicio());
 			pst.setString(2, solicitacao.getDataFim());
-			pst.setString(3, solicitacao.getHoraCriacao());
-			pst.setString(4, solicitacao.getDataCriacao());
-			pst.setString(5, solicitacao.getLocalViagem());
-			pst.setString(6, solicitacao.getHoraAutorizado());
-			pst.setString(7, solicitacao.getDataAutorizado());
-			pst.setString(8, String.valueOf(solicitacao.getQtdePassageiros()));
-			pst.setString(9, solicitacao.getTipo());
-			pst.setString(10, solicitacao.getFinalidade());
-			pst.setString(11, solicitacao.getSiapeServAutoriza());
-			pst.setString(12, solicitacao.getSiapeServRealiza());
-			pst.setString(13, String.valueOf(solicitacao.getNumero()));
+			pst.setString(3, solicitacao.getDataCriacao());
+			pst.setString(4, solicitacao.getLocalViagem());
+			pst.setString(5, solicitacao.getDataAutorizado());
+			pst.setString(6, String.valueOf(solicitacao.getQtdePassageiros()));
+			pst.setString(7, solicitacao.getTipo());
+			pst.setString(8, solicitacao.getFinalidade());
+			pst.setString(9, solicitacao.getSiapeServAutoriza());
+			pst.setString(10, solicitacao.getSiapeServRealiza());
+			pst.setString(11, String.valueOf(solicitacao.getNumero()));
 
 			pst.executeUpdate();
 			pst.close();

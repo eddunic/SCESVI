@@ -76,23 +76,25 @@ CREATE TABLE CONTRATADO(
     
 drop table solicitacao;
 
-INSERT INTO SOLICITACAO (dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, qtdePassageiros,
+INSERT INTO SOLICITACAO (dataInicio, dataFim, dataCriacao, localViagem, dataAutorizado, qtdePassageiros,
 tipo, finalidade, siapeServAutoriza, siapeServRealiza)
-VALUES ('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 10, 'A', 'Visita técnica', '32112312', '32714444'),
-('11121999', '12121999', '1020', '11101999', 'casa', '1030', '11111999', 7, 'E', 'Visita técnica', '33113212', '3216666');
+VALUES ('11121999', '12121999', '11101999', 'casa', '11111999', 10, 'A', 'Visita técnica', '32112312', '32714444'),
+('11121999', '12121999', '11101999', 'casa', '11111999', 7, 'E', 'Visita técnica', '33113212', '3216666');
 
 -- select count(numero) from solicitacao;
 
 desc solicitacao;
 
+drop table solicitacao;
+
 CREATE TABLE SOLICITACAO(
 	numero INT PRIMARY KEY auto_increment,
     dataInicio VARCHAR(8) NOT NULL,
     dataFim VARCHAR(8) NOT NULL,
-    horaCriacao VARCHAR(4) NOT NULL,
+    -- horaCriacao VARCHAR(4) NOT NULL,
     dataCriacao VARCHAR(8) NOT NULL,
     localViagem VARCHAR(50) NOT NULL,
-    horaAutorizado VARCHAR(4),
+    -- horaAutorizado VARCHAR(4),
     dataAutorizado VARCHAR(8),
     qtdePassageiros SMALLINT(2) NOT NULL,
     tipo CHAR NOT NULL,
@@ -121,11 +123,10 @@ CREATE TABLE SOLICITVEICULO(
     
 DROP TABLE SOLICITACAO;
 
-INSERT INTO VEICULO (tipo, placa, renavam, autorizado, categoria, institucional, chassi, maxPassageiros, observacao, exercicio,
-	tipoCombustivel, potencia, cor, marcaModelo, anoFabricacao, anoModelo, dataSupervisionado, siapeServSupervisiona,
+INSERT INTO VEICULO (placa, renavam, autorizado, categoria, institucional, maxPassageiros, observacao,
+	cor, marcaModelo, dataSupervisionado, siapeServSupervisiona,
     siapeServResponsavel, situacao) VALUES
-('comum', 'phw1234', 'renvai8765', 'S', 'D', 'N', 'chassi2a', 11, 'nenhuma obs', '2010', 'A', 
-12, 'azul', 'che gueva', '1999', '1999', '12112011', '122', '322', 'L');
+('phw1234', 'renvai8765', 'S', 'D', 'N', 11, 'nenhuma obs', 'azul', 'che gueva', '12112011', '122', '322', 'L');
 
 select * from veiculo;
 
@@ -167,6 +168,7 @@ INSERT INTO SolicitVeiculo VALUES (1, 1, 'A');
 INSERT INTO REGISTRO (observacao, codVeiculo, siapeServInicia, siapeServEncerra, siapeServResponsavel, dataInicia,
     horaSaida, dataSaida, dataEntrada, horaEntrada, dataEncerra, descricao, kmInicial, kmFinal, dataSupervisionado) VALUES
     ('nda', '3', '12', '32', '23', '2', '2', '1', '12', '23', '2', 'd', '23', '12', 'n');
+
 
 CREATE TABLE REGISTRO(
 	numero INT PRIMARY KEY auto_increment,
@@ -379,14 +381,13 @@ DELIMITER $$
 USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_InsertSolicitacao $$
 CREATE PROCEDURE sp_insertSolicitacao (IN numero INT, IN veiculoRequisitado VARCHAR(50), 
-IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
-IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
-IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
+IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
+IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
 IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza CHAR(8), 
 IN siapeServRealiza CHAR(8))
 BEGIN
     INSERT INTO SOLICITACAO VALUES(numero, veiculoRequisitado, dataVeiculoConfirmado, 
-    dataInicio, dataFim, horaCriacao, dataCriacao, localViagem, horaAutorizado, dataAutorizado, 
+    dataInicio, dataFim, dataCriacao, localViagem, dataAutorizado, 
     qtdePassageiros, tipo, finalidade, siapeServAutoriza, siapeServRealiza);
 END $$
 DELIMITER ;
@@ -414,14 +415,14 @@ USE SCESVI $$
 DROP PROCEDURE IF EXISTS sp_UpdateSolicit $$
 CREATE PROCEDURE sp_UpdateSolicit (IN veiculoRequisitado VARCHAR(50), 
 IN dataVeiculoConfirmado VARCHAR(8), IN dataInicio VARCHAR(8), IN dataFim VARCHAR(8),
-IN horaCriacao VARCHAR(4), IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
-IN horaAutorizado VARCHAR(4), IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
+IN dataCriacao VARCHAR(8), IN localViagem VARCHAR(50), 
+IN dataAutorizado VARCHAR(8), IN qtdePassageiros SMALLINT, 
 IN tipo CHAR, IN finalidade VARCHAR(150), IN siapeServAutoriza CHAR(8), 
 IN siapeServRealiza CHAR(8), IN numero INT(4))
 BEGIN
     UPDATE SOLICITACAO SET SOLICITACAO.veiculoRequisitado = veiculoRequisitado, SOLICITACAO.dataVeiculoConfirmado = dataVeiculoConfirmado, 
-    SOLICITACAO.dataInicio = dataInicio, SOLICITACAO.dataFim = dataFim, SOLICITACAO.horaCriacao = horaCriacao, SOLICITACAO.dataCriacao = dataCriacao,
-    SOLICITACAO.localViagem = localViagem, SOLICITACAO.horaAutorizado = horaAutorizado, SOLICITACAO.dataAutorizado = dataAutorizado,
+    SOLICITACAO.dataInicio = dataInicio, SOLICITACAO.dataFim = dataFim, SOLICITACAO.dataCriacao = dataCriacao,
+    SOLICITACAO.localViagem = localViagem, SOLICITACAO.dataAutorizado = dataAutorizado,
 	SOLICITACAO.qtdePassageiros = qtdePassageiros, SOLICITACAO.tipo = tipo, SOLICITACAO.finalidade = finalidade, 
     SOLICITACAO.siapeServAutoriza = siapeServAutoriza, SOLICITACAO.siapeServRealiza = siapeServRealiza WHERE SOLICITACAO.numero = numero;
 END $$

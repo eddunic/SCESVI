@@ -152,7 +152,7 @@
                   <Insets />
                </VBox.margin>
             </ComboBox>
-            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" text="Carregar Dados" textFill="#3196de" textOverrun="CLIP">
+            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" styleClass="buttonsCRUD" stylesheets="@style.css" text="Carregar Dados" textFill="#3196de" textOverrun="CLIP">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>

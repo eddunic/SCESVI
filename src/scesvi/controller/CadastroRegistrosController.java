@@ -74,7 +74,7 @@ public class CadastroRegistrosController {
 	
 	public void group() {
 		
-		codVeic.setItems(DAOVeiculo.listCod());
+		codVeic.setItems(DAOVeiculo.codAll());
 		servResp.setItems(DAOServidor.siapeList());
 		servidorIni.setItems(DAOServidor.siapeList());
 		servidorEncerra.setItems(DAOServidor.siapeList());

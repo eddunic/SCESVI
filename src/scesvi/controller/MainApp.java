@@ -35,7 +35,7 @@ public class MainApp extends Application {
 	protected static VBox graficosFluxo;
 
 	@FXML
-	protected static BorderPane fxmlSolicitacoes;
+	protected static BorderPane fxmlSolicitacoes, menuInicial;
 
 	@FXML
 	protected static BorderPane fxmlVeiculos;
@@ -84,6 +84,8 @@ public class MainApp extends Application {
 		fxmlVeiculos = FXMLLoader.load(getClass().getResource("../view/Veiculos.fxml"));
 		fxmlRegistros = FXMLLoader.load(getClass().getResource("../view/Registros.fxml"));
 		fxmlServidores = FXMLLoader.load(getClass().getResource("../view/Servidores.fxml"));
+		
+		menuInicial  = FXMLLoader.load(getClass().getResource("../view/MenuInicial.fxml"));
 	}
 
 	public static void changeScreen(String scr) {
@@ -92,6 +94,7 @@ public class MainApp extends Application {
 			getStage().setScene(loginScene);
 			break;
 		case "ContainerTelas":
+			fxmlContainerTelas.setCenter(menuInicial);
 			getStage().setScene(containerTelasScene);
 			stage.setMaximized(true);
 			break;

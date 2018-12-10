@@ -67,7 +67,7 @@ public class ContainerTelasController {
 		
 		switch (fx) {
 		case "MenuInicial":
-			MainApp.fxmlContainerTelas.setCenter(MainApp.graficosFluxo);
+			MainApp.fxmlContainerTelas.setCenter(MainApp.menuInicial);
 			break;
 		case "Solicitacoes":
 			MainApp.fxmlContainerTelas.setCenter(MainApp.fxmlSolicitacoes);
@@ -82,6 +82,7 @@ public class ContainerTelasController {
 			MainApp.fxmlContainerTelas.setCenter(MainApp.fxmlServidores);
 			break;
 		case "Relatorios":
+			MainApp.fxmlContainerTelas.setCenter(MainApp.graficosFluxo);
 			break;
 			//fxmlContainerTelas.setBottom(graficosFluxo);
 			//borderPaneContainer.setAlignment(graficosFluxo, Pos.CENTER);

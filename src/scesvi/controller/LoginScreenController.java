@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -56,9 +57,15 @@ public class LoginScreenController {
 		transition.play();
 
 		bp.setRight(MainApp.fxmlUserRegister);
-
+		
+		
 		// MainApp.changeScreen("UserRegister");
 	}
+	
+    @FXML
+    void volta(ActionEvent event) {
+    	screenLogin();
+    }
 
 	public void btOpenContainerAction() {
 		

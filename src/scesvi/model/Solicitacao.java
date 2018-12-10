@@ -15,9 +15,7 @@ public class Solicitacao {
 
 	private final IntegerProperty numero;
 
-	private final StringProperty horaCriacao;
 	private final StringProperty localViagem;
-	private final StringProperty horaAutorizado;
 
 	private final IntegerProperty qtdePassageiros;
 	private final StringProperty tipo;
@@ -39,10 +37,8 @@ public class Solicitacao {
 		this.numero = new SimpleIntegerProperty(0);
 		this.dataInicio = new SimpleStringProperty("");
 		this.dataFim = new SimpleStringProperty("");
-		this.horaCriacao = new SimpleStringProperty("");
 		this.dataCriacao = new SimpleStringProperty("");
 		this.localViagem = new SimpleStringProperty("");
-		this.horaAutorizado = new SimpleStringProperty("");
 		this.dataAutorizado = new SimpleStringProperty("");
 		this.qtdePassageiros = new SimpleIntegerProperty(0);
 		this.tipo = new SimpleStringProperty("");
@@ -61,10 +57,10 @@ public class Solicitacao {
 	 * @param dataVeiculoConfirmado
 	 * @param dataInicio
 	 * @param dataFim
-	 * @param horaCriacao
+	 * @param Criacao
 	 * @param dataCriacao
 	 * @param localViagem
-	 * @param horaAutorizado
+	 * @param Autorizado
 	 * @param dataAutorizado
 	 * @param qtdePassageiros
 	 * @param tipo
@@ -73,11 +69,9 @@ public class Solicitacao {
 	 * @param siapeServRealiza
 	 */
 
-	public Solicitacao(int numero, String dataIni, String dataF, String dataAut,
-			String horaAuto, String dataC, String horaCriacao, String localViagem,
+	public Solicitacao(int numero, String dataIni, String dataF, String dataAut, String dataC, String localViagem,
 			int qtdePassageiros, String tipo, String finalidade, String siapeServAutoriza, String siapeServRealiza) {
 		this.numero = new SimpleIntegerProperty(numero);
-		this.horaCriacao = new SimpleStringProperty(horaCriacao);
 		this.localViagem = new SimpleStringProperty(localViagem);
 		this.qtdePassageiros = new SimpleIntegerProperty(qtdePassageiros);
 		this.tipo = new SimpleStringProperty(tipo);
@@ -90,8 +84,6 @@ public class Solicitacao {
 		this.dataFim = new SimpleStringProperty(dataF);
 		this.dataCriacao = new SimpleStringProperty(dataC);
 		this.dataAutorizado = new SimpleStringProperty(dataAut);
-		
-		horaAutorizado = new SimpleStringProperty(horaAuto);
 	}
 
 	public void setDataNasc(LocalDate data) {
@@ -160,18 +152,6 @@ public class Solicitacao {
 		return dataFim;
 	}
 
-	public void setHoraCriacao(String horaCriacao) {
-		this.horaCriacao.set(horaCriacao);
-	}
-
-	public String getHoraCriacao() {
-		return horaCriacao.get();
-	}
-
-	public StringProperty getHoraCriacaoProperty() {
-		return horaCriacao;
-	}
-
 	public void setDataCriacao(String dataCriacao) {
 		this.dataCriacao.set(dataCriacao);
 	}
@@ -194,18 +174,6 @@ public class Solicitacao {
 
 	public StringProperty getLocalViagemProperty() {
 		return localViagem;
-	}
-
-	public void setHoraAutorizado(String horaAutorizado) {
-		this.horaAutorizado.set(horaAutorizado);
-	}
-
-	public String getHoraAutorizado() {
-		return horaAutorizado.get();
-	}
-
-	public StringProperty getHoraAutorizadoProperty() {
-		return horaAutorizado;
 	}
 
 	public void setDataAutorizado(String dataAutorizado) {

@@ -80,7 +80,7 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="codigos" layoutX="118.0" layoutY="94.0" prefHeight="25.0" prefWidth="116.0" />
-            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" text="Carregar Dados" textFill="#3196de">
+            <JFXButton fx:id="bCarregaDados" buttonType="RAISED" onAction="#carregarDados" styleClass="buttonsCRUD" stylesheets="@style.css" text="Carregar Dados" textFill="#3196de">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import scesvi.model.Servidor;
+import scesvi.model.SolicitVeiculo;
 import scesvi.model.Solicitacao;
 import scesvi.model.dao.DAOCargo;
 import scesvi.model.dao.DAOContratado;
@@ -40,9 +41,6 @@ public class CadastroSolicitacoesController {
 	private JFXTextField dataFim;
 
 	@FXML
-	private JFXTextField horaAuto;
-
-	@FXML
 	private JFXTextField dataSolicitAuto;
 
 	@FXML
@@ -58,7 +56,7 @@ public class CadastroSolicitacoesController {
 	private ComboBox<String> cbTipoSolic;
 
 	@FXML
-	private ComboBox<String> cbFin;
+	private ComboBox<String> cbFin, situacao;
 
 	@FXML
 	private JFXTextArea tDestino;
@@ -71,17 +69,16 @@ public class CadastroSolicitacoesController {
 	private List<Servidor> servidores;
 
 	private Solicitacao solicitacao;
+	
+	private SolicitVeiculo solicitVeiculo;
 
 	@FXML
 	private Label num;
 
 	private ObservableList<String> qtde;
-	
-	@FXML
-    private JFXTextField horaCria;
 
-    @FXML
-    private ComboBox<String> cbSiapeOutorg;
+	@FXML
+	private ComboBox<String> cbSiapeOutorg;
 
 	@FXML
 	public void initialize() {
@@ -104,6 +101,8 @@ public class CadastroSolicitacoesController {
 			qtde.add("" + i);
 		}
 
+		situacao.setItems(FXCollections.observableArrayList("Solicitada", "Confirmada", "Cancelada"));
+
 		cbQTDEpass.setItems(qtde);
 
 		cbTipoSolic.setItems(FXCollections.observableArrayList("Ativ. administrativas", "Ativ. de pesquisa ou extensão",
@@ -120,7 +119,7 @@ public class CadastroSolicitacoesController {
 	void cadastrarSolic(ActionEvent event) {
 		if (!modelVeic.getItems().isEmpty()) {
 			// Para armazenar o tipo no banco
-			String tipo = "a";
+			String tipo = "";
 			if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Visita técnica")) {
 				tipo = "T";
 			} else if (cbTipoSolic.getSelectionModel().getSelectedItem().equals("Visita social")) {
@@ -132,14 +131,24 @@ public class CadastroSolicitacoesController {
 			}
 
 			solicitacao = new Solicitacao(Integer.parseInt(DAOSolicitacao.numSolic()), dataInicio.getText(),
-					dataFim.getText(), dataSolicitAuto.getText(), horaAuto.getText(), dataC.getText(), horaCria.getText(),
-					tDestino.getText(), Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
+					dataFim.getText(), dataSolicitAuto.getText(), dataC.getText(), tDestino.getText(),
+					Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
 					cbFin.getSelectionModel().getSelectedItem(), cbSiapeOutorg.getSelectionModel().getSelectedItem(),
 					cbSiapeSolicit.getSelectionModel().getSelectedItem());
 
 			DAOSolicitacao.insert(solicitacao);
 			modelVeic.setItems(DAOVeiculo.listMarcaModelox());
+
+			String situ = "";
+			if (situacao.getSelectionModel().getSelectedItem().equals("Cancelada")) {
+				situ = "N";
+			} else if(situacao.getSelectionModel().getSelectedItem().equals("Confirmada")) {
+				situ = "S";
+			} else situ = "A";
 			
+			solicitVeiculo = new SolicitVeiculo(Integer.parseInt(DAOSolicitacao.numSolic()), DAOVeiculo.listCod(modelVeic.getSelectionModel().getSelectedItem()), situ);
+			
+			DAOSolicitVeiculo.insert(solicitVeiculo);
 		}
 	}
 

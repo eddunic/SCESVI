@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="420.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.MenuInicial">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="632.0" BorderPane.alignment="CENTER">
+         <children>
+            <MaterialIconView fill="#3196de" glyphName="RECORD_VOICE_OVER" size="25">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></MaterialIconView>
+            <Label styleClass="fontSection" stylesheets="@style.css" text="MENU INICIAL" textFill="#3196de">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <TableView fx:id="solicitVeicTable" editable="true" prefHeight="380.0" prefWidth="297.0" styleClass="tableViewStyle" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn minWidth="3.0" prefWidth="274.0" text="Solicitação">
+               <columns>
+                  <TableColumn fx:id="numCln" prefWidth="66.0" text="Número" />
+                  <TableColumn prefWidth="257.0" text="Situação">
+                     <columns>
+                        <TableColumn fx:id="solicC" prefWidth="67.0" text="Solicitada" />
+                        <TableColumn fx:id="conf" prefWidth="92.0" text="Confirmada" />
+                        <TableColumn fx:id="cancel" prefWidth="66.0" text="Cancelada" />
+                     </columns>
+                  </TableColumn>
+               </columns>
+            </TableColumn>
+         </columns>
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+         <BorderPane.margin>
+            <Insets left="5.0" />
+         </BorderPane.margin>
+      </TableView>
+   </left>
+   <center>
+      <TableView fx:id="situVeicTable" prefHeight="380.0" prefWidth="290.0" styleClass="tableViewStyle" stylesheets="@style.css" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn prefWidth="95.0" text="Veículo">
+               <columns>
+                <TableColumn fx:id="codV" prefWidth="119.0" text="Código" />
+                <TableColumn fx:id="situVeic" prefWidth="95.0" text="Situação" />
+               </columns>
+            </TableColumn>
+        </columns>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+</BorderPane>

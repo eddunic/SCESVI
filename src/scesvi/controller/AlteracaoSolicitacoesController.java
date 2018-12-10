@@ -16,20 +16,18 @@ import scesvi.model.Servidor;
 import scesvi.model.SolicitVeiculo;
 import scesvi.model.Solicitacao;
 import scesvi.model.dao.DAOServidor;
+import scesvi.model.dao.DAOSolicitVeiculo;
 import scesvi.model.dao.DAOSolicitacao;
 import scesvi.model.dao.DAOVeiculo;
 import scesvi.model.dao.DAOSolicitacao;
 
 public class AlteracaoSolicitacoesController {
-	
+
 	@FXML
 	private JFXTextField dataInicio;
 
 	@FXML
 	private JFXTextField dataFim;
-
-	@FXML
-	private JFXTextField horaAuto;
 
 	@FXML
 	private JFXTextField dataSolicitAuto;
@@ -45,7 +43,7 @@ public class AlteracaoSolicitacoesController {
 
 	@FXML
 	private ComboBox<String> cbTipoSolic;
-	
+
 	@FXML
 	private ComboBox<String> codigos;
 
@@ -56,7 +54,7 @@ public class AlteracaoSolicitacoesController {
 	private JFXTextArea tDestino;
 
 	@FXML
-	private ComboBox<String> codVeic;
+	private ComboBox<String> codVeic, situacao;
 
 	private ObservableList<String> siapesServs;
 
@@ -70,16 +68,13 @@ public class AlteracaoSolicitacoesController {
 	private ObservableList<String> qtde;
 
 	@FXML
-    private JFXButton bCarregaDados;
-	
-	@FXML
-    private JFXTextField horaCria;
+	private JFXButton bCarregaDados;
 
-    @FXML
-    private ComboBox<String> cbSiapeOutorg;
-    
-    private SolicitVeiculo solicitVeic;
-	
+	@FXML
+	private ComboBox<String> cbSiapeOutorg;
+
+	private SolicitVeiculo solicitVeic;
+
 	@FXML
 	public void initialize() {
 		group();
@@ -104,23 +99,30 @@ public class AlteracaoSolicitacoesController {
 
 		cbTipoSolic.setItems(FXCollections.observableArrayList("Ativ. administrativas", "Ativ. de pesquisa ou extensão",
 				"Ativ. cultural ou esportiva"));
-		
-		
+
 		codigos.setItems(DAOSolicitacao.codAll());
 		codigos.getSelectionModel().select(0);
-		
-		dataInicio.setText(DAOSolicitacao.consultParam("dataInicio", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
-		dataFim.setText(DAOSolicitacao.consultParam("dataFim", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
-		dataSolicitAuto.setText(DAOSolicitacao.consultParam("dataAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
-		dataC.setText(DAOSolicitacao.consultParam("dataCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		horaAuto.setText(DAOSolicitacao.consultParam("horaAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		tDestino.setText(DAOSolicitacao.consultParam("localViagem", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbSiapeSolicit.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServRealiza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbSiapeOutorg.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServAutoriza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbFin.getSelectionModel().select(DAOSolicitacao.consultParam("finalidade", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbTipoSolic.getSelectionModel().select(DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		horaCria.setText(DAOSolicitacao.consultParam("horaCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+
+		dataInicio.setText(DAOSolicitacao.consultParam("dataInicio",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		dataFim.setText(DAOSolicitacao.consultParam("dataFim",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		dataSolicitAuto.setText(DAOSolicitacao.consultParam("dataAutorizado",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		dataC.setText(DAOSolicitacao.consultParam("dataCriacao",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		tDestino.setText(DAOSolicitacao.consultParam("localViagem",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbSiapeSolicit.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServRealiza",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbSiapeOutorg.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServAutoriza",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbFin.getSelectionModel().select(DAOSolicitacao.consultParam("finalidade",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbTipoSolic.getSelectionModel().select(
+				DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 	}
 
 	@FXML
@@ -138,33 +140,53 @@ public class AlteracaoSolicitacoesController {
 				tipo = "D";
 			}
 
-			solicitacao = new Solicitacao(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()), dataInicio.getText(),
-					dataFim.getText(), dataSolicitAuto.getText(), horaAuto.getText(), dataC.getText(), horaCria.getText(),
-					tDestino.getText(), Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
+			solicitacao = new Solicitacao(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()),
+					dataInicio.getText(), dataFim.getText(), dataSolicitAuto.getText(),
+					dataC.getText(), tDestino.getText(),
+					Integer.parseInt(cbQTDEpass.getSelectionModel().getSelectedItem()), tipo,
 					cbFin.getSelectionModel().getSelectedItem(), cbSiapeOutorg.getSelectionModel().getSelectedItem(),
 					cbSiapeSolicit.getSelectionModel().getSelectedItem());
 
-			DAOSolicitacao.update(solicitacao);	
+			DAOSolicitacao.update(solicitacao);
+
+			solicitVeic = new SolicitVeiculo(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()),
+					codVeic.getSelectionModel().getSelectedItem(), "L");
 			
-			solicitVeic = new SolicitVeiculo(Integer.parseInt(codigos.getSelectionModel().getSelectedItem()), codVeic.getSelectionModel().getSelectedItem(),
-					"L");
+			String situ = "";
+			if (situacao.getSelectionModel().getSelectedItem().equals("Cancelada")) {
+				situ = "N";
+			} else if(situacao.getSelectionModel().getSelectedItem().equals("Confirmada")) {
+				situ = "S";
+			} else situ = "A";
+			
+			solicitVeic = new SolicitVeiculo(Integer.parseInt(DAOSolicitacao.numSolic()), codVeic.getSelectionModel().getSelectedItem(), situ);
+			
+			DAOSolicitVeiculo.update(solicitVeic);
 		}
 	}
-	
+
 	@FXML
-    void carregarDados(ActionEvent event) {
-		dataInicio.setText(DAOSolicitacao.consultParam("dataInicio", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
-		dataFim.setText(DAOSolicitacao.consultParam("dataFim", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
-		dataSolicitAuto.setText(DAOSolicitacao.consultParam("dataAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
-		dataC.setText(DAOSolicitacao.consultParam("dataCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		horaAuto.setText(DAOSolicitacao.consultParam("horaAutorizado", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		tDestino.setText(DAOSolicitacao.consultParam("localViagem", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbSiapeSolicit.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServRealiza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbSiapeOutorg.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServAutoriza", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbFin.getSelectionModel().select(DAOSolicitacao.consultParam("finalidade", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbTipoSolic.getSelectionModel().select(DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
-		horaCria.setText(DAOSolicitacao.consultParam("horaCriacao", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
+	void carregarDados(ActionEvent event) {
+		dataInicio.setText(DAOSolicitacao.consultParam("dataInicio",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		dataFim.setText(DAOSolicitacao.consultParam("dataFim",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		dataSolicitAuto.setText(DAOSolicitacao.consultParam("dataAutorizado",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		dataC.setText(DAOSolicitacao.consultParam("dataCriacao",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		tDestino.setText(DAOSolicitacao.consultParam("localViagem",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbSiapeSolicit.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServRealiza",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbSiapeOutorg.getSelectionModel().select(DAOSolicitacao.consultParam("siapeServAutoriza",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbFin.getSelectionModel().select(DAOSolicitacao.consultParam("finalidade",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbTipoSolic.getSelectionModel().select(
+				DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 	}
 
 }
