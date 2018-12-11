@@ -1,5 +1,7 @@
 package scesvi.controller;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -36,6 +38,9 @@ public class LoginScreenController {
 	private ImageView vBar;
 
 	@FXML
+	private JFXButton volta;
+
+	@FXML
 	private AnchorPane anchor;
 
 	TranslateTransition transition;
@@ -57,33 +62,22 @@ public class LoginScreenController {
 		transition.play();
 
 		bp.setRight(MainApp.fxmlUserRegister);
-		
-		
-		// MainApp.changeScreen("UserRegister");
+		volta.setVisible(true);
 	}
-	
-    @FXML
-    void volta(ActionEvent event) {
-    	screenLogin();
-    }
+
+	@FXML
+	void volta(ActionEvent event) {
+		screenLogin();
+	}
 
 	public void btOpenContainerAction() {
-		
-		if (DAOContratado.consultContratadoAdmin(tSiape.getText()).equals(tSiape.getText())) {
-			if(DAOServidor.consultAdminLogin(tSiape.getText(), pPassword.getText())) {
-				MainApp.changeScreen("ContainerTelas");
-			}
+		//DAOContratado.consultContratadoAdmin(tSiape.getText()))
+			
+		if(!tSiape.getText().equals("") && !pPassword.getText().equals("")
+				&& DAOServidor.consultAdminLogin(tSiape.getText(), pPassword.getText())) {
+			MainApp.changeScreen("ContainerTelas");
+		} else {
+			JOptionPane.showMessageDialog(null, "Dados inválidos!", "Erro no login", JOptionPane.ERROR_MESSAGE);
 		}
-		
 	}
-
-//	public void loadDialog(ActionEvent event) {
-//		JFXDialogLayout dialogo = new JFXDialogLayout();
-//		dialogo.setHeading(new Text("Atenção"));
-//		dialogo.setBody(new Text("Presta atenção"));
-
-		//JFXDialog caixa = new JFXDialog(stackPane, dialogo, JFXDialog.DialogTransition.CENTER);
-
-//	}
-
 }

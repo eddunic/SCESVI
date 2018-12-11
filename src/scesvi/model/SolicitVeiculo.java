@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class SolicitVeiculo {
 	
-	private final IntegerProperty numSolicit;
+	private final StringProperty numSolicit;
 	private final StringProperty codVeic;
 	private final StringProperty situacao;
 	
@@ -15,7 +15,7 @@ public class SolicitVeiculo {
 	 * Construtor vazio.
 	 */
 	public SolicitVeiculo() {
-		this.numSolicit = new SimpleIntegerProperty(0);
+		this.numSolicit = new SimpleStringProperty("");
 		this.codVeic = new SimpleStringProperty("");
 		this.situacao = new SimpleStringProperty("");
 	}
@@ -27,21 +27,21 @@ public class SolicitVeiculo {
 	 * @param codVeic
 	 */
 	public SolicitVeiculo(int numSolicit, String codVeic, String situ) {
-		this.numSolicit = new SimpleIntegerProperty(numSolicit);
+		this.numSolicit = new SimpleStringProperty(String.valueOf(numSolicit));
 		this.codVeic = new SimpleStringProperty(codVeic);
 		this.situacao = new SimpleStringProperty(situ);
 	}
 	
 	/* Getters & Setters */
 	public void setNumSolicit(int numSolicit) {
-		this.numSolicit.set(numSolicit);
+		this.numSolicit.set((String.valueOf(numSolicit)));
 	}
 
-	public int getNumSolicit() {
+	public String getNumSolicit() {
 		return numSolicit.get();
 	}
 
-	public IntegerProperty getNumSolicitProperty() {
+	public StringProperty getNumSolicitProperty() {
 		return numSolicit;
 	}
 

@@ -1,5 +1,7 @@
 package scesvi.controller;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -143,10 +145,13 @@ public class AlteracaoVeiculoController {
 				"L");
 
 		DAOVeiculo.update(veiculo);
+		
+		JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	@FXML
     void CarregarDados(ActionEvent event) {
+		codigos.setItems(DAOVeiculo.codAll());
 		placa.setText(DAOVeiculo.consultParam("placa", Integer.parseInt(codigos.getSelectionModel().getSelectedItem()))); 
 		renavam.setText(DAOVeiculo.consultParam("renavam", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		categoria.getSelectionModel().select(DAOVeiculo.consultParam("categoria", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));

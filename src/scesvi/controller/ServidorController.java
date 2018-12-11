@@ -2,6 +2,8 @@ package scesvi.controller;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -135,6 +137,7 @@ public class ServidorController {
 		servTable.setItems(DAOServidor.list());
 		servTable.getSelectionModel().selectFirst();
 		refreshTable();
+		JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@FXML

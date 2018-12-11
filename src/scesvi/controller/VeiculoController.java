@@ -2,6 +2,8 @@ package scesvi.controller;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,6 +131,7 @@ public class VeiculoController {
 		veicTable.setItems(DAOVeiculo.list());
 		veicTable.getSelectionModel().selectFirst();
 		refreshTable();
+		JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@FXML

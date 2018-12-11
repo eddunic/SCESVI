@@ -76,6 +76,7 @@ public class DAOContratado extends DAO {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e);
 		}
+		System.out.println(siapeServ);
 		return siapeServ;
 	}
 

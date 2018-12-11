@@ -31,13 +31,7 @@
             <TableColumn minWidth="3.0" prefWidth="274.0" text="Solicitação">
                <columns>
                   <TableColumn fx:id="numCln" prefWidth="66.0" text="Número" />
-                  <TableColumn prefWidth="257.0" text="Situação">
-                     <columns>
-                        <TableColumn fx:id="solicC" prefWidth="67.0" text="Solicitada" />
-                        <TableColumn fx:id="conf" prefWidth="92.0" text="Confirmada" />
-                        <TableColumn fx:id="cancel" prefWidth="66.0" text="Cancelada" />
-                     </columns>
-                  </TableColumn>
+                  <TableColumn fx:id="situS" prefWidth="257.0" text="Situação" />
                </columns>
             </TableColumn>
          </columns>
@@ -54,11 +48,11 @@
       </TableView>
    </left>
    <center>
-      <TableView fx:id="situVeicTable" prefHeight="380.0" prefWidth="290.0" styleClass="tableViewStyle" stylesheets="@style.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="situVeicTable" prefHeight="380.0" prefWidth="294.0" styleClass="tableViewStyle" stylesheets="@style.css" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn prefWidth="95.0" text="Veículo">
                <columns>
-                <TableColumn fx:id="codV" prefWidth="119.0" text="Código" />
+                <TableColumn fx:id="codV" prefWidth="119.0" text="Marca/Modelo" />
                 <TableColumn fx:id="situVeic" prefWidth="95.0" text="Situação" />
                </columns>
             </TableColumn>

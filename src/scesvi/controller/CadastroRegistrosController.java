@@ -1,5 +1,7 @@
 package scesvi.controller;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
@@ -91,7 +93,8 @@ public class CadastroRegistrosController {
 				desc.getText(), Integer.parseInt(kmInic.getText()), Integer.parseInt(kmFinal.getText()), dataSupervis.getText());
 
 		DAORegistro.insert(registro);
-
+		
+		JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

@@ -1,5 +1,7 @@
 package scesvi.controller;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -124,5 +126,7 @@ public class CadastroVeiculosController {
 				"L");
 
 		DAOVeiculo.insert(veiculo);
+		
+		JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

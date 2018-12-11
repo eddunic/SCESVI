@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="621.0" prefWidth="648.0" styleClass="backgroundRegister" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.AlteracaoSolicitacoesController">
+<AnchorPane prefHeight="558.0" prefWidth="648.0" styleClass="backgroundRegister" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.AlteracaoSolicitacoesController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="367.0" layoutY="43.0" prefHeight="489.0" prefWidth="256.0" styleClass="cardPane" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" layoutX="367.0" layoutY="43.0" prefHeight="368.0" prefWidth="256.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
             <VBox alignment="CENTER" prefHeight="38.0" prefWidth="285.0" styleClass="topPane" stylesheets="@style.css">
                <children>
@@ -58,6 +58,20 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
+            <JFXTextArea fx:id="tDestino" labelFloat="true" prefHeight="23.0" prefWidth="292.0" promptText="Destino" unFocusColor="#9d9c9c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextArea>
+            <Label prefHeight="17.0" prefWidth="157.0" styleClass="padraoFonts" stylesheets="@style.css" text="Quantidade de Passageiros">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="cbQTDEpass" prefHeight="25.0" prefWidth="69.0" />
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="33.0" prefHeight="500.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
@@ -101,12 +115,6 @@
                </font>
             </Label>
             <ComboBox fx:id="cbSiapeOutorg" prefWidth="150.0" />
-            <Label prefHeight="17.0" prefWidth="157.0" styleClass="padraoFonts" stylesheets="@style.css" text="Quantidade de Passageiros">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Label>
-            <ComboBox fx:id="cbQTDEpass" prefHeight="25.0" prefWidth="69.0" />
             <Label layoutX="10.0" layoutY="121.0" styleClass="padraoFonts" stylesheets="@style.css" text="Tipo de solicitação">
                <VBox.margin>
                   <Insets top="20.0" />
@@ -119,14 +127,6 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="cbFin" prefHeight="25.0" prefWidth="185.0" />
-            <JFXTextArea fx:id="tDestino" labelFloat="true" prefHeight="23.0" prefWidth="292.0" promptText="Destino" unFocusColor="#9d9c9c">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
-               </VBox.margin>
-            </JFXTextArea>
             <Label styleClass="padraoFonts" stylesheets="@style.css" text="Código do veículo">
                <VBox.margin>
                   <Insets top="15.0" />
@@ -142,7 +142,7 @@
          </children>
       </VBox>
       <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="4.0" styleClass="fontSection" stylesheets="@style.css" text="ALTERAÇÃO DE SOLICITAÇÃO" textFill="#236b8e" />
-      <JFXButton layoutX="535.0" layoutY="605.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar">
+      <JFXButton layoutX="533.0" layoutY="523.0" onAction="#alterar" styleClass="buttonsCRUD" stylesheets="@style.css" text="Alterar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>

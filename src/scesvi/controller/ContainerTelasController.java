@@ -14,8 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-//https://www.youtube.com/watch?v=NQQOPy-jmhA CRUD
-//
 public class ContainerTelasController {
 
 	@FXML
@@ -26,10 +24,10 @@ public class ContainerTelasController {
 
 	@FXML
 	private static VBox menuLateral;
-        
-    @FXML
-    private VBox contemGuias;
-	
+
+	@FXML
+	private VBox contemGuias;
+
 	@FXML
 	public void initialize() throws IOException {
 		createComponents();
@@ -48,7 +46,6 @@ public class ContainerTelasController {
 			if (jfxDrawerBar.isOpened()) {
 				jfxDrawerBar.setManaged(false);
 				jfxDrawerBar.close();
-				//JFXDrawer.setMargin(menuLateral, new Insets(0, menuLateral.translateXProperty().doubleValue(), 0, 0));
 			} else {
 				jfxDrawerBar.setManaged(true);
 				jfxDrawerBar.open();
@@ -61,10 +58,10 @@ public class ContainerTelasController {
 
 		menuLateral = FXMLLoader.load(getClass().getResource("../view/BarraLateral.fxml"));
 	}
-	
+
 	static void loadComponent(String fx) {
-		//fxmlContainerTelas.setCenter(null);
-		
+		// fxmlContainerTelas.setCenter(null);
+
 		switch (fx) {
 		case "MenuInicial":
 			MainApp.fxmlContainerTelas.setCenter(MainApp.menuInicial);
@@ -84,15 +81,15 @@ public class ContainerTelasController {
 		case "Relatorios":
 			MainApp.fxmlContainerTelas.setCenter(MainApp.graficosFluxo);
 			break;
-			//fxmlContainerTelas.setBottom(graficosFluxo);
-			//borderPaneContainer.setAlignment(graficosFluxo, Pos.CENTER);
+		// fxmlContainerTelas.setBottom(graficosFluxo);
+		// borderPaneContainer.setAlignment(graficosFluxo, Pos.CENTER);
 		}
 	}
-	
+
 	void nodesButons() {
 		JFXButton nr = new JFXButton("A");
 		nr.setButtonType(JFXButton.ButtonType.RAISED);
-		//borderPaneContainer.setRight(nr);
-		//nr.getStyleClass().add
+		// borderPaneContainer.setRight(nr);
+		// nr.getStyleClass().add
 	}
 }

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="593.0" prefWidth="648.0" styleClass="backgroundRegister" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.CadastroSolicitacoesController">
+<AnchorPane prefHeight="532.0" prefWidth="648.0" styleClass="backgroundRegister" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scesvi.controller.CadastroSolicitacoesController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="367.0" layoutY="43.0" prefHeight="489.0" prefWidth="256.0" styleClass="cardPane" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" layoutX="367.0" layoutY="43.0" prefHeight="390.0" prefWidth="256.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
             <VBox alignment="CENTER" prefHeight="38.0" prefWidth="285.0" styleClass="topPane" stylesheets="@style.css">
                <children>
@@ -57,9 +57,17 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
+            <JFXTextArea fx:id="tDestino" labelFloat="true" prefHeight="44.0" prefWidth="216.0" promptText="Destino" unFocusColor="#9d9c9c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="30.0" />
+               </VBox.margin>
+            </JFXTextArea>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="33.0" prefHeight="507.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="33.0" prefHeight="480.0" prefWidth="332.0" styleClass="cardPane" stylesheets="@style.css">
          <children>
             <VBox alignment="CENTER" prefHeight="52.0" prefWidth="218.0" styleClass="topPane" stylesheets="@style.css">
                <children>
@@ -101,14 +109,6 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="cbFin" prefHeight="25.0" prefWidth="185.0" />
-            <JFXTextArea fx:id="tDestino" labelFloat="true" promptText="Destino" unFocusColor="#9d9c9c">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="30.0" />
-               </VBox.margin>
-            </JFXTextArea>
             <Label styleClass="padraoFonts" stylesheets="@style.css" text="Modelo do veículo">
                <VBox.margin>
                   <Insets top="20.0" />
@@ -124,6 +124,6 @@
          </children>
       </VBox>
       <Label fx:id="num" alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="4.0" styleClass="fontSection" stylesheets="@style.css" text="CADASTRO DE SOLICITAÇÃO Nº" textFill="#236b8e" />
-      <JFXButton layoutX="532.0" layoutY="536.0" onAction="#cadastrarSolic" styleClass="buttonsCRUD" stylesheets="@style.css" text="Cadastrar" />
+      <JFXButton layoutX="532.0" layoutY="500.0" onAction="#cadastrarSolic" styleClass="buttonsCRUD" stylesheets="@style.css" text="Cadastrar" />
    </children>
 </AnchorPane>

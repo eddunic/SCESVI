@@ -18,7 +18,7 @@ public class DAOVeiculo extends DAO {
 	private static ObservableList<Veiculo> listVeic;
 	
 	@FXML
-	private static ObservableList<String> listMarcaM, list, codAll;
+	private static ObservableList<String> listMarcaM, list, codAll, listV;
 	
 	public static Veiculo getVeiculo() {
 		return veiculo;
@@ -71,6 +71,27 @@ public class DAOVeiculo extends DAO {
 		}
 		return listVeic;
 	}
+	
+	public static ObservableList<Veiculo> listCodSitu() {
+		listV = FXCollections.observableArrayList();
+		String query = "SELECT codigo, situacao FROM VEICULO";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while (resultSet.next()) {
+				Veiculo veic = new Veiculo();
+				veic.setCodigo(Integer.parseInt(resultSet.getString("codigo")));
+				veic.setSituacao(resultSet.getString("situacao"));
+				listVeic.add(veic);
+			}
+
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return listVeic;
+	}
+	
 //////////////////////////////////////
 	public static ObservableList<String> listMarcaModelo() {
 		listMarcaM = FXCollections.observableArrayList();
@@ -125,7 +146,7 @@ public class DAOVeiculo extends DAO {
 	}
 /////////////////////////////////////
 	public static void delete(int codigo) {
-		String query = "DELETE FROM VEICULO WHERE VEICULO.codigo = " + codigo;
+		String query = "DELETE FROM VEICULO WHERE codigo = " + codigo;
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			pst.executeUpdate(query);
 			pst.close();

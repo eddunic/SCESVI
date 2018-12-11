@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -149,6 +151,8 @@ public class CadastroSolicitacoesController {
 			solicitVeiculo = new SolicitVeiculo(Integer.parseInt(DAOSolicitacao.numSolic()), DAOVeiculo.listCod(modelVeic.getSelectionModel().getSelectedItem()), situ);
 			
 			DAOSolicitVeiculo.insert(solicitVeiculo);
+			
+			JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 

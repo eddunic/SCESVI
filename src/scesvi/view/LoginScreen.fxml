@@ -104,7 +104,7 @@
             <Image url="@../../../res/images/blueAbstract.jpg" />
          </image>
       </ImageView>
-      <JFXButton fx:id="volta" layoutX="363.0" layoutY="485.0" onAction="#volta" ripplerFill="TRANSPARENT" styleClass="buttonsCRUD" stylesheets="@style.css" text="Voltar ao login" textFill="#4059a9" visible="false">
+      <JFXButton fx:id="volta" layoutX="341.0" layoutY="485.0" onAction="#volta" ripplerFill="TRANSPARENT" styleClass="buttonsCRUD" stylesheets="@style.css" text="Voltar ao login" textFill="#4059a9" visible="false">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

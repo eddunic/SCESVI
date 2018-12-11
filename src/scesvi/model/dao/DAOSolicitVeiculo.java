@@ -22,6 +22,22 @@ public class DAOSolicitVeiculo extends DAO {
 		return solicitVeiculo;
 	}
 	
+	public static String consultParam(String var, int numero) {
+		String query = "SELECT " + var + " FROM SOLICITVEICULO WHERE SOLICITVEICULO.numSolicit = " + numero;
+		String lblText = null;
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			ResultSet resultSet = pst.executeQuery(query);
+			while (resultSet.next()) {
+				lblText = resultSet.getString(var);
+			}
+			pst.close();
+			disconnection();
+		} catch (SQLException e) {
+			System.out.println("Erro: " + e);
+		}
+		return lblText;
+	}
+	
 	public static void insert(SolicitVeiculo solicitVeiculo) {
 		String query = "INSERT INTO SOLICITVEICULO VALUES(?,?,?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
@@ -54,14 +70,13 @@ public class DAOSolicitVeiculo extends DAO {
 	
 	public static ObservableList<SolicitVeiculo> list() {
 		listSolicit = FXCollections.observableArrayList();
-		String query = "SELECT numSolicit, codVeic, situacao FROM SOLICITVEICULO";
+		String query = "SELECT numSolicit, situacao FROM SOLICITVEICULO";
 		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 			ResultSet resultSet = pst.executeQuery(query);
 			while (resultSet.next()) {
 				SolicitVeiculo solicit = new SolicitVeiculo();
 				solicit.setNumSolicit(resultSet.getInt("numSolicit"));
-				solicit.setCodVeic(resultSet.getString("codVeic"));
-				solicit.setSituacao(resultSet.getString("dataCriacao"));
+				solicit.setSituacao(resultSet.getString("situacao"));
 				listSolicit.add(solicit);
 			}
 

@@ -3,6 +3,9 @@ package scesvi.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
@@ -148,6 +151,10 @@ public class UserRegisterScreenController {
 			codCargo = DAOCargo.searchCargo(cbCargo.getSelectionModel().getSelectedItem());
 			contratado = new Contratado(siape.getText(), codCargo, dateFormat(), "");
 			DAOContratado.insert(contratado);
+			
+			JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+			
+			
 
 			// backAction(event);
 		}
@@ -155,9 +162,9 @@ public class UserRegisterScreenController {
 
 	@FXML
 	void backAction(ActionEvent event) {
-		if (bCadastrar.getText().equals("Próximo")) {
-			
-		}
+//		if (bCadastrar.getText().equals("Próximo")) {
+//			
+//		}
 		
 		if (bCadastrar.getText().equals("Cadastrar")) {
 			vDadosIcons.setVisible(true);

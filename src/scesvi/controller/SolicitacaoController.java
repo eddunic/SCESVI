@@ -2,6 +2,8 @@ package scesvi.controller;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -132,7 +134,8 @@ public class SolicitacaoController {
 		DAOSolicitacaoSP.delete(solicitTable.getSelectionModel().getSelectedItem().getNumero());
 		solicitTable.setItems(DAOSolicitacaoSP.list());
 		solicitTable.getSelectionModel().selectFirst();
-		refreshTable();
+		JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso! Clique em atualizar", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+
 	}
 
 	@FXML

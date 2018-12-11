@@ -2,6 +2,8 @@ package scesvi.controller;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -94,6 +96,8 @@ public class AlteracaoSolicitacoesController {
 		for (int i = 1; i <= 40; i++) {
 			qtde.add("" + i);
 		}
+		
+		situacao.setItems(FXCollections.observableArrayList("Solicitada", "Confirmada", "Cancelada"));
 
 		cbQTDEpass.setItems(qtde);
 
@@ -122,6 +126,8 @@ public class AlteracaoSolicitacoesController {
 		cbTipoSolic.getSelectionModel().select(
 				DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		situacao.getSelectionModel().select(DAOSolicitVeiculo.consultParam("situacao",
 				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 	}
 
@@ -162,11 +168,15 @@ public class AlteracaoSolicitacoesController {
 			solicitVeic = new SolicitVeiculo(Integer.parseInt(DAOSolicitacao.numSolic()), codVeic.getSelectionModel().getSelectedItem(), situ);
 			
 			DAOSolicitVeiculo.update(solicitVeic);
+			
+			JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
 	@FXML
 	void carregarDados(ActionEvent event) {
+		codigos.setItems(DAOSolicitacao.codAll());
+
 		dataInicio.setText(DAOSolicitacao.consultParam("dataInicio",
 				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		dataFim.setText(DAOSolicitacao.consultParam("dataFim",
@@ -187,6 +197,7 @@ public class AlteracaoSolicitacoesController {
 				DAOSolicitacao.consultParam("tipo", Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 		cbQTDEpass.getSelectionModel().select(DAOSolicitacao.consultParam("qtdePassageiros",
 				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
+		situacao.getSelectionModel().select(DAOSolicitVeiculo.consultParam("situacao",
+				Integer.parseInt(codigos.getSelectionModel().getSelectedItem())));
 	}
-
 }

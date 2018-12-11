@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
@@ -208,11 +210,14 @@ public class AlteracaoServidorController {
 			codCargo = DAOCargo.searchCargo(cbCargo.getSelectionModel().getSelectedItem());
 			contratado = new Contratado(cbSiape.getSelectionModel().getSelectedItem(), codCargo, dateFormat(), "");
 			DAOContratado.update(contratado);
+			
+			JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
 	@FXML
     void carregarDados(ActionEvent event) {
+		cbSiape.setItems(DAOServidor.siapeList());
 		cpf.setText(DAOServidor.consultParam("cpf", cbSiape.getSelectionModel().getSelectedItem())); 
 		nome.setText(DAOServidor.consultParam("nome", cbSiape.getSelectionModel().getSelectedItem())); 
 		telefone.setText(DAOTelefone.consultTel(cbSiape.getSelectionModel().getSelectedItem())); 

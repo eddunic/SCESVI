@@ -1,54 +1,54 @@
 package scesvi.controller;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import scesvi.model.SolicitVeiculo;
+import scesvi.model.Veiculo;
 import scesvi.model.dao.DAOSolicitVeiculo;
+import scesvi.model.dao.DAOVeiculo;
 import scesvi.model.SolicitVeiculo;
 
 public class MenuInicial {
 
     @FXML
-    private TableView<SolicitVeiculo> SolicitVeiculoTable;
+    private TableView<SolicitVeiculo> solicitVeicTable;
 
     @FXML
     private TableColumn<SolicitVeiculo, String> numCln;
-    
-    @FXML
-    private TableColumn<SolicitVeiculo, CheckBox> solicC;
+      @FXML
+    private TableColumn<SolicitVeiculo, String> situS;
 
     @FXML
-    private TableColumn<SolicitVeiculo, CheckBox> conf;
+    private TableView<Veiculo> situVeicTable;
 
     @FXML
-    private TableColumn<SolicitVeiculo, CheckBox> cancel;
+    private TableColumn<Veiculo, String> codV;
 
     @FXML
-    private TableView<SolicitVeiculo> situVeicTable;
-
-    @FXML
-    private TableColumn<SolicitVeiculo, String> codV;
-
-    @FXML
-    private TableColumn<SolicitVeiculo, CheckBox> situVeic;
+    private TableColumn<Veiculo, String> situVeic;
     
     @FXML
     void initialize() {
-    	//SolicitVeiculoTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-    	//situVeicTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    	solicitVeicTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    	situVeicTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     	
-    	//SolicitVeiculoTable.setItems(DAOSolicitVeiculo.list());
+    	solicitVeicTable.setItems(DAOSolicitVeiculo.list());
+    	solicitVeicTable.getSelectionModel().selectFirst();
     	
-    	//solicC.setCellValueFactory(c -> new SimpleBooleanProperty(c.));
-    	//solicC.setCellFactory(tc -> new CheckBoxTableCell<>());
-    	//conf.setCellFactory(tc -> new CheckBoxTableCell<>());
-    	//cancel.setCellFactory(tc -> new CheckBoxTableCell<>());
+    	situS.setCellValueFactory(cellData -> cellData.getValue().getSituacaoProperty());
+    	numCln.setCellValueFactory(cellData -> cellData.getValue().getNumSolicitProperty());
+    	
+    	situVeicTable.setItems(DAOVeiculo.listCodSitu());
+		situVeicTable.getSelectionModel().selectFirst();
+
+		codV.setCellValueFactory(cellData -> cellData.getValue().getMarcaModeloProperty());
+		situVeic.setCellValueFactory(cellData -> cellData.getValue().getSituacaoProperty());
+		
     }
 }
